@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Bus Tracking System</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🚍 College Bus Tracking System</h1>
+
+    <nav>
+        <a href="/">👨‍🎓 Students</a>
+        <a href="/buses">🚌 Buses</a>
+        <a href="/add_bus">➕ Add Bus</a>
+    </nav>
+</header>
+<div class="dashboard">
+    <div class="dash-card">
+        <h3>👨‍🎓 Students</h3>
+        <p>4</p>
+    </div>
+
+    <div class="dash-card">
+        <h3>🚌 Buses</h3>
+        <p>2</p>
+    </div>
+
+    <div class="dash-card">
+        <h3>🛣️ Routes</h3>
+        <p>1</p>
+    </div>
+</div>
+<h2>👨‍🎓 Student List</h2>
+
+<div class="student-container">
+
+{% for student in students %}
+
+<div class="student-card">
+
+    <div class="student-icon">👨‍🎓</div>
+
+    <h3>{{ student[1] }}</h3>
+
+    <p><strong>ID:</strong> {{ student[0] }}</p>
+    <p><strong>Roll:</strong> {{ student[2] }}</p>
+    <p><strong>Phone:</strong> {{ student[3] }}</p>
+    <p><strong>Route:</strong> {{ student[4] }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+/* Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* Body */
+body{
+    background:linear-gradient(135deg,#dbeafe,#bfdbfe,#dbeafe);
+    min-height:100vh;
+    padding:20px;
+}
+
+/* Main Heading */
+h1{
+    text-align:center;
+    color:#0d47a1;
+    font-size:55px;
+    margin-bottom:20px;
+    text-shadow:2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Navbar */
+nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-bottom:40px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(45deg,#1565c0,#0d47a1);
+    padding:14px 28px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    transition:all 0.3s ease;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+nav a:hover{
+    transform:translateY(-4px);
+    background:linear-gradient(45deg,#1976d2,#1565c0);
+}
+
+/* Section Title */
+h2{
+    color:#222;
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+/* Dashboard */
+.dashboard{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    margin:40px 0;
+}
+
+/* Dashboard Cards */
+.dash-card{
+    width:250px;
+    background:linear-gradient(135deg,#1565c0,#0d47a1);
+    color:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:all 0.4s ease;
+}
+
+.dash-card:hover{
+    transform:translateY(-10px) scale(1.05);
+}
+.card h2{
+    color:white;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:42px;
+    font-weight:bold;
+}
+
+/* Student Grid */
+.student-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+/* Student Card */
+.student-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    border-top:5px solid #1565c0;
+    transition:all 0.3s ease;
+}
+
+.student-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.25);
+}
+
+.student-icon{
+    font-size:50px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.student-card h3{
+    text-align:center;
+    color:#0d47a1;
+    margin-bottom:15px;
+}
+
+.student-card p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.student-card strong{
+    color:#0d47a1;
+}
+
+/* Bus Card */
+.bus-card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    border-top:5px solid #1565c0;
+    transition:all 0.3s ease;
+}
+
+.bus-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.25);
+}
+
+.bus-card p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.bus-card strong{
+    color:#0d47a1;
+}
+
+/* Footer */
+footer{
+    margin-top:50px;
+    text-align:center;
+    color:#555;
+    font-size:16px;
+    padding:20px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Routes</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>🚍 College Bus Tracking System</h1>
+
+<nav>
+    <a href="/">👨‍🎓 Students</a>
+    <a href="/buses">🚌 Buses</a>
+    <a href="/routes">🛣️ Routes</a>
+</nav>
+
+<h2>🛣️ Route List</h2>
+
+{% for route in routes %}
+
+<div class="student-card">
+
+<p><strong>Route ID:</strong> {{ route[0] }}</p>
+<p><strong>Route Name:</strong> {{ route[1] }}</p>
+<p><strong>Start:</strong> {{ route[2] }}</p>
+<p><strong>End:</strong> {{ route[3] }}</p>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>
