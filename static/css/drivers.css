@@ -1,0 +1,746 @@
+/* ===========================================
+        DRIVER MANAGEMENT CSS
+=========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* ================= PAGE TITLE ================= */
+
+.page-title{
+    margin-top:120px;
+    background:#FFC107;
+    text-align:center;
+    padding:70px 20px;
+}
+
+.page-title h1{
+    font-size:60px;
+    color:#111827;
+    margin-bottom:15px;
+}
+
+.page-title p{
+    font-size:20px;
+    color:#333;
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+
+    width:90%;
+    margin:50px auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.filter-form{
+
+    display:flex;
+    gap:20px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.search-box{
+
+    position:relative;
+}
+
+.search-box i{
+
+    position:absolute;
+    left:18px;
+    top:17px;
+    color:#999;
+    font-size:22px;
+}
+
+.search-box input{
+
+    width:430px;
+    padding:16px 20px 16px 55px;
+
+    border:none;
+    outline:none;
+    border-radius:18px;
+    background:white;
+
+    font-size:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+select{
+
+    padding:16px 25px;
+
+    border:none;
+    outline:none;
+
+    border-radius:18px;
+
+    background:white;
+
+    font-size:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.search-btn{
+
+    background:#111827;
+    color:white;
+
+    border:none;
+
+    padding:16px 35px;
+
+    border-radius:18px;
+
+    font-size:18px;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.search-btn:hover{
+
+    background:#000;
+}
+
+.add-btn{
+
+    background:#FFC107;
+    color:#111827;
+
+    text-decoration:none;
+
+    padding:18px 35px;
+
+    border-radius:18px;
+
+    font-size:18px;
+    font-weight:700;
+
+    transition:.3s;
+}
+
+.add-btn:hover{
+
+    background:#ffca2c;
+}
+.filter-form{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+}
+
+.filter-form select{
+
+    width:180px;
+    height:48px;
+
+    border:1px solid #ddd;
+    border-radius:10px;
+
+    padding:0 12px;
+
+    font-size:16px;
+
+    background:white;
+
+    cursor:pointer;
+
+}
+
+.filter-form select:focus{
+
+    outline:none;
+
+    border-color:#FFC107;
+
+}
+/* ================= TABLE ================= */
+
+.table-section{
+
+    width:90%;
+    margin:auto;
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+thead{
+
+    background:#111827;
+    color:white;
+}
+
+thead th{
+
+    padding:22px;
+    text-align:left;
+    font-size:20px;
+}
+
+tbody td{
+
+    padding:22px;
+    border-bottom:1px solid #eee;
+    font-size:18px;
+}
+
+tbody tr:hover{
+
+    background:#fff9e5;
+}
+
+/* ================= STATUS ================= */
+
+.status{
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-size:15px;
+    font-weight:600;
+
+    color:white;
+}
+
+.available{
+
+    background:#28a745;
+}
+
+.on-trip{
+
+    background:#007bff;
+}
+
+.on-leave{
+
+    background:#dc3545;
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.view,
+.edit,
+.delete{
+
+    display:inline-flex;
+
+    justify-content:center;
+    align-items:center;
+
+    width:42px;
+    height:42px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:white;
+
+    margin-right:8px;
+}
+
+.view{
+
+    background:#17a2b8;
+}
+
+.edit{
+
+    background:#3b82f6;
+}
+
+.delete{
+
+    background:#ef4444;
+}
+
+.view:hover{
+
+    background:#138496;
+}
+
+.edit:hover{
+
+    background:#2563eb;
+}
+
+.delete:hover{
+
+    background:#dc2626;
+}
+.form-container{
+
+    width:550px;
+
+    margin:50px auto;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+}
+
+.form-container label{
+
+    display:block;
+
+    margin-top:15px;
+
+    font-weight:600;
+
+}
+
+.form-container input,
+.form-container select{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:8px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+}
+
+.form-buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:30px;
+
+}
+
+.save-btn{
+
+    background:#FFC107;
+
+    color:#111827;
+
+    border:none;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
+
+.save-btn:hover{
+
+    background:#ffca2c;
+
+}
+
+.cancel-btn{
+
+    background:#ef4444;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+}
+
+.cancel-btn:hover{
+
+    background:#dc2626;
+
+}
+.delete{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:10px;
+
+    background:#ef4444;
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.delete:hover{
+
+    background:#dc2626;
+
+    transform:scale(1.08);
+
+}
+
+.toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:40px auto;
+
+    width:90%;
+
+}
+
+.filter-form{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.search-box{
+
+    position:relative;
+
+}
+
+.search-box i{
+
+    position:absolute;
+
+    left:18px;
+
+    top:16px;
+
+    color:#777;
+
+}
+
+.search-box input{
+
+    width:320px;
+
+    padding:14px 20px 14px 45px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    font-size:16px;
+
+}
+
+.search-btn{
+
+    background:#FFC107;
+
+    color:#111827;
+
+    border:none;
+
+    padding:14px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+.search-btn:hover{
+
+    background:#ffca2c;
+
+}
+.view{
+
+    background:#0d6efd;
+    color:white;
+
+    padding:8px 10px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    margin-right:5px;
+
+}
+
+.view:hover{
+
+    background:#0b5ed7;
+
+}
+
+.edit{
+
+    background:#FFC107;
+
+    color:black;
+
+    padding:8px 10px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    margin-right:5px;
+
+}
+
+.edit:hover{
+
+    background:#e0a800;
+
+}
+
+.delete{
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:8px 10px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+}
+
+.delete:hover{
+
+    background:#bb2d3b;
+
+}
+.profile-container{
+
+    margin-top:140px;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:40px;
+
+}
+
+.profile-card{
+
+    width:700px;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:35px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.profile-card h1{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#222;
+
+}
+
+.profile-card table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.profile-card th{
+
+    width:220px;
+
+    text-align:left;
+
+    background:#FFC107;
+
+    padding:15px;
+
+}
+
+.profile-card td{
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    background:#FFC107;
+
+    color:black;
+
+    text-decoration:none;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+.back-btn:hover{
+
+    background:#e0a800;
+
+}
+/* ================= PAGINATION ================= */
+
+.pagination{
+
+    width:90%;
+    margin:40px auto;
+
+    display:flex;
+    justify-content:center;
+    gap:12px;
+}
+
+.pagination button{
+
+    border:none;
+
+    background:white;
+
+    padding:12px 22px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.pagination .active{
+
+    background:#FFC107;
+    font-weight:bold;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:992px){
+
+.page-title h1{
+
+    font-size:42px;
+}
+
+.toolbar{
+
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.search-box input{
+
+    width:100%;
+}
+
+.filter-form{
+
+    width:100%;
+    flex-direction:column;
+}
+
+select,
+.search-btn{
+
+    width:100%;
+}
+
+.add-btn{
+
+    width:100%;
+    text-align:center;
+}
+
+table{
+
+    min-width:1100px;
+}
+
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bus Profile</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/buses.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/bus_profile.css') }}">
+
+<link rel="stylesheet"  
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<section class="page-title">
+
+<h1>Bus Profile</h1>
+
+<p>Complete information about the selected bus.</p>
+
+</section>
+
+<div class="profile-container">
+
+<div class="profile-card">
+
+<div class="profile-header">
+
+<i class="fas fa-bus fa-4x"></i>
+
+<h2>{{ bus.bus_number }}</h2>
+
+</div>
+
+<table>
+
+<tr>
+<th>Bus ID</th>
+<td>{{ bus.bus_id }}</td>
+</tr>
+
+<tr>
+<th>Bus Number</th>
+<td>{{ bus.bus_number }}</td>
+</tr>
+
+<tr>
+<th>Driver Name</th>
+<td>{{ bus.driver_name }}</td>
+</tr>
+
+<tr>
+<th>Capacity</th>
+<td>{{ bus.capacity }} Students</td>
+</tr>
+
+<tr>
+<th>Route</th>
+<td>{{ bus.route_name }}</td>
+</tr>
+
+<tr>
+<th>Start Location</th>
+<td>{{ bus.source }}</td>
+</tr>
+
+<tr>
+<th>End Location</th>
+<td>{{ bus.destination }}</td>
+</tr>
+
+</table>
+
+<div class="profile-buttons">
+
+<a href="{{ url_for('edit_bus', bus_id=bus.bus_id) }}"
+class="edit-btn">
+
+<i class="fas fa-pen"></i>
+
+Edit Bus
+
+</a>
+
+<a href="{{ url_for('buses') }}"
+class="back-btn">
+
+<i class="fas fa-arrow-left"></i>
+
+Back
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

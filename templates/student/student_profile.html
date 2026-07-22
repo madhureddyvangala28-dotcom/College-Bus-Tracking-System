@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Profile CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/student_profile.css') }}">
+</head>
+
+<body>
+
+<div class="desktop-layout">
+
+    <!-- ==========================
+         PROFILE CONTAINER
+    =========================== -->
+
+    <div class="profile-container">
+
+    <!-- ================= Sticky Header ================= -->
+
+    <div class="sticky-header" id="stickyHeader">
+
+        <a href="{{ url_for('student_dashboard') }}" class="sticky-back">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div class="sticky-profile">
+
+            {% if student.profile_image %}
+            <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
+                alt="Profile Image">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/students/student.png') }}"
+                alt="Default Profile Image">
+            {% endif %}
+
+            <div class="sticky-info">
+                <h3>{{ student.student_name }}</h3>
+                <span>{{ student.roll_number }}</span>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- ==========================================
+         DESKTOP PROFILE
+    ========================================== -->
+
+<div class="desktop-content">
+
+    <!-- Top Bar -->
+
+    <div class="desktop-topbar">
+
+        <a href="{{ url_for('student_dashboard') }}" class="desktop-back">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </a>
+
+        <a href="{{ url_for('edit_profile') }}" class="desktop-edit-btn">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Edit Profile
+
+        </a>
+
+    </div>
+
+    <!-- Heading -->
+
+    <div class="desktop-title">
+
+        <h1>My Profile</h1>
+
+        <p>View your profile information</p>
+
+    </div>
+
+    <!-- Profile Card -->
+
+    <div class="desktop-profile-card">
+
+        {% if student.profile_image %}
+
+        <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}">
+
+        {% else %}
+
+        <img src="{{ url_for('static', filename='images/students/student.png') }}">
+
+        {% endif %}
+
+        <div class="profile-details">
+
+            <h2>{{ student.student_name }}</h2>
+
+            <p>{{ student.roll_number }}</p>
+
+            <span class="desktop-status">
+
+                On Roll
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Information Grid -->
+
+    <div class="desktop-info">
+
+        <!-- Academic -->
+
+        <div class="desktop-card">
+
+            <h3>
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                Academic Details
+
+            </h3>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <label>Roll Number</label>
+
+                    <p>{{ student.roll_number }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Department</label>
+
+                    <p>{{ student.department }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Semester</label>
+
+                    <p>{{ student.semester }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Contact -->
+
+        <div class="desktop-card">
+
+            <h3>
+
+                <i class="fa-solid fa-phone"></i>
+
+                Contact Details
+
+            </h3>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <label>Phone</label>
+
+                    <p>{{ student.phone }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Email</label>
+
+                    <p>{{ student.email }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Bus -->
+
+        <div class="desktop-card">
+
+            <h3>
+
+                <i class="fa-solid fa-bus"></i>
+
+                Bus Information
+
+            </h3>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <label>Route</label>
+
+                    <p>{{ student.route_id }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Status</label>
+
+                    <p class="status-active">
+
+                        ● Active
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Parent -->
+
+        <div class="desktop-card">
+
+            <h3>
+
+                <i class="fa-solid fa-users"></i>
+
+                Parent Details
+
+            </h3>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <label>Parent Name</label>
+
+                    <p>{{ student.parent_name }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Parent Phone</label>
+
+                    <p>{{ student.parent_phone }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- ==========================================
+        MOBILE LAYOUT
+    ========================================== -->
+
+     <div class="mobile-container">
+
+        <!-- ================= Profile Header ================= -->
+
+        <header class="profile-header">
+
+            <div class="profile-topbar">
+
+                <a href="{{ url_for('student_dashboard') }}" class="back-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+
+            </div>
+
+            <div class="profile-avatar">
+
+                {% if student.profile_image %}
+                <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
+                    alt="Profile Image">
+                {% else %}
+                <img src="{{ url_for('static', filename='images/students/student.png') }}"
+                    alt="Default Profile Image">
+                {% endif %}
+
+            </div>
+
+            <h1 class="student-name">
+                {{ student.student_name }}
+            </h1>
+
+            <p class="student-roll">
+                {{ student.roll_number }}
+            </p>
+
+            <div class="student-status">
+                On Roll
+            </div>
+
+        </header>
+
+        <!-- ================= Profile Content ================= -->
+
+        <div class="profile-content">
+
+            <!-- Academic Details -->
+
+            <div class="profile-card">
+
+                <h2>
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Academic Details
+                </h2>
+
+                <div class="info-grid">
+
+                    <div class="info-box">
+                        <label>Roll Number</label>
+                        <p>{{ student.roll_number or "Not Available" }}</p>
+                    </div>
+
+                    <div class="info-box">
+                        <label>Department</label>
+                        <p>{{ student.department or "Not Available" }}</p>
+                    </div>
+
+                    <div class="info-box">
+                        <label>Semester</label>
+                        <p>{{ student.semester or "Not Available" }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Contact Details -->
+
+            <div class="profile-card">
+
+                <h2>
+                    <i class="fa-solid fa-phone"></i>
+                    Contact Details
+                </h2>
+
+                <div class="info-grid">
+
+                    <div class="info-box">
+                        <label>Phone</label>
+                        <p>{{ student.phone or "Not Available" }}</p>
+                    </div>
+
+                    <div class="info-box">
+                        <label>Email</label>
+                        <p>{{ student.email or "Not Available" }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Bus Information -->
+
+            <div class="profile-card">
+
+                <h2>
+                    <i class="fa-solid fa-bus"></i>
+                    Bus Information
+                </h2>
+
+                <div class="info-grid">
+
+                    <div class="info-box">
+                        <label>Route</label>
+                        <p>{{ student.route_id or "Not Assigned" }}</p>
+                    </div>
+
+                    <div class="info-box">
+                        <label>Status</label>
+                        <p class="status-active">
+                            ● Active
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Parent Details -->
+
+            <div class="profile-card">
+
+                <h2>
+                    <i class="fa-solid fa-users"></i>
+                    Parent Details
+                </h2>
+
+                <div class="info-grid">
+
+                    <div class="info-box">
+                        <label>Parent Name</label>
+                        <p>{{ student.parent_name or "Not Available" }}</p>
+                    </div>
+
+                    <div class="info-box">
+                        <label>Parent Phone</label>
+                        <p>{{ student.parent_phone or "Not Available" }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Edit Profile -->
+
+            <a href="{{ url_for('edit_profile') }}" class="edit-btn">
+                <i class="fa-solid fa-pen"></i>
+                Edit Profile
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= JavaScript ================= -->
+
+    <script>
+        window.addEventListener("scroll", function () {
+
+            const stickyHeader = document.getElementById("stickyHeader");
+
+            if (window.scrollY > 180) {
+                stickyHeader.classList.add("show");
+            } else {
+                stickyHeader.classList.remove("show");
+            }
+
+        });
+        </script>
+
+    </div> <!-- mobile-container -->
+
+</div> <!-- profile-container -->
+
+</div> <!-- desktop-layout -->
+
+</body>
+</html>

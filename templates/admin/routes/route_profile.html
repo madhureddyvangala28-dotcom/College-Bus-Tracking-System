@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Route Profile</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/routes.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+<h1>Route Profile</h1>
+
+<p>View complete route information.</p>
+
+</section>
+
+<!-- ================= PROFILE ================= -->
+
+<div class="profile-container">
+
+<div class="profile-card">
+
+<h1>
+
+<i class="fas fa-road"></i>
+
+{{ route.route_name }}
+
+</h1>
+
+<table>
+
+<tr>
+
+<th>Route ID</th>
+
+<td>{{ route.route_id }}</td>
+
+</tr>
+
+<tr>
+
+<th>Route Name</th>
+
+<td>{{ route.route_name }}</td>
+
+</tr>
+
+<tr>
+
+<th>Source</th>
+
+<td>{{ route.source }}</td>
+
+</tr>
+
+<tr>
+
+<th>Destination</th>
+
+<td>{{ route.destination }}</td>
+
+</tr>
+
+<tr>
+
+<th>Distance</th>
+
+<td>{{ route.distance }}</td>
+
+</tr>
+
+<tr>
+
+<th>Estimated Time</th>
+
+<td>{{ route.estimated_time }}</td>
+
+</tr>
+
+<tr>
+
+<th>Status</th>
+
+<td>
+
+{% if route.status=="Active" %}
+
+<span class="status available">
+
+{{ route.status }}
+
+</span>
+
+{% else %}
+
+<span class="status on-leave">
+
+{{ route.status }}
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<div style="display:flex;justify-content:space-between;">
+
+<a
+href="{{ url_for('routes') }}"
+class="back-btn">
+
+<i class="fas fa-arrow-left"></i>
+
+Back
+
+</a>
+
+<a
+href="{{ url_for('edit_route', route_id=route.route_id) }}"
+class="save-btn">
+
+<i class="fas fa-pen"></i>
+
+Edit Route
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

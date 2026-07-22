@@ -1,0 +1,112 @@
+<!-- ================= HEADER ================= -->
+
+<header class="student-header" id="studentHeader">
+
+    <div class="header-left">
+
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+
+        <div>
+
+            <h1>College Bus Tracking</h1>
+
+            <span>Student Portal</span>
+
+        </div>
+
+    </div>
+
+    <div class="header-right">
+
+        <div class="student-info">
+
+            <span>Hi,</span>
+
+            <h3>{{ student.student_name }}</h3>
+
+        </div>
+
+        {% if session.get('profile_image') %}
+
+            <img
+            src="{{ url_for('static', filename='images/students/' + session['profile_image']) }}"
+            class="student-avatar">
+
+        {% else %}
+
+            <img
+            src="{{ url_for('static', filename='images/students/student.png') }}"
+            class="student-avatar">
+
+        {% endif %}
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= GLASS NAVBAR ================= -->
+
+<nav class="glass-navbar">
+
+    <a href="{{ url_for('student_dashboard') }}"
+    class="{% if active_page=='dashboard' %}active{% endif %}">
+        🏠 Dashboard
+    </a>
+
+    <a href="{{ url_for('student_profile') }}"
+   class="{% if active_page=='profile' %}active{% endif %}">
+    👤 Profile
+    </a>
+
+    <a href="{{ url_for('student_bus') }}"
+    class="{% if active_page=='bus' %}active{% endif %}">
+        🚌 My Bus
+    </a>
+
+    <a href="{{ url_for('student_route') }}"
+    class="{% if active_page=='route' %}active{% endif %}">
+        🛣 Route
+    </a>
+
+    <a href="{{ url_for('student_notifications') }}"
+    class="{% if active_page=='notifications' %}active{% endif %}">
+        🔔 Notifications
+    </a>
+
+    <a href="{{ url_for('logout') }}" class="logout">
+        🚪 Logout
+    </a>
+
+</nav>
+
+
+
+<script>
+
+let lastScroll = 0;
+
+window.addEventListener("scroll", function () {
+
+    const header = document.getElementById("studentHeader");
+    const navbar = document.querySelector(".glass-navbar");
+
+    if(window.scrollY > 80){
+
+        header.classList.add("hide-header");
+
+        navbar.style.top="10px";
+
+    }
+
+    else{
+
+        header.classList.remove("hide-header");
+
+        navbar.style.top="110px";
+
+    }
+
+});
+</script>

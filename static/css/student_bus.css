@@ -1,0 +1,827 @@
+/*==================================================
+GOOGLE FONT
+==================================================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*==================================================
+GLOBAL
+==================================================*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#EEF3FA;
+    color:#111827;
+}
+
+a{
+    text-decoration:none;
+}
+
+/*==================================================
+HIDE DESKTOP
+==================================================*/
+.desktop-content{
+    display:none;
+}
+
+/*==================================================
+MOBILE CONTAINER
+==================================================*/
+.mobile-container{
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    padding-bottom:30px;
+}
+
+/*==================================================
+HEADER
+==================================================*/
+.profile-header{
+    background:#111827;
+    color:#fff;
+    padding:22px 18px 28px;
+    border-radius:0 0 28px 28px;
+
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.back-btn{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    background:#FFC107;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#111827;
+
+    font-size:18px;
+
+    flex-shrink:0;
+}
+
+.profile-title h1{
+    margin:0;
+    font-size:28px;
+    font-weight:700;
+    color:#fff;
+}
+
+.profile-title p{
+    margin-top:5px;
+    color:#d1d5db;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/*==================================================
+MAIN
+==================================================*/
+.bus-container{
+    padding:18px;
+}
+
+/*==================================================
+PROFILE CARD
+==================================================*/
+.profile-card{
+    background:#fff;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    margin-bottom:20px;
+}
+
+.profile-top{
+
+    background:#FFC107;
+
+    padding:28px 20px;
+
+    text-align:center;
+
+}
+
+.student-image{
+
+    width:115px;
+    height:115px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #fff;
+
+}
+
+.profile-top h2{
+
+    margin-top:15px;
+
+    font-size:26px;
+
+    font-weight:700;
+
+}
+
+.profile-top p{
+
+    margin-top:5px;
+
+    color:#374151;
+
+}
+
+.profile-bottom{
+
+    padding:20px;
+
+}
+
+/*==================================================
+INFO BOX
+==================================================*/
+.info-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:18px;
+
+}
+
+.info-box:last-child{
+
+    margin-bottom:0;
+
+}
+
+.info-box i{
+
+    width:50px;
+
+    height:50px;
+
+    background:#FFC107;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#111827;
+
+    font-size:18px;
+
+}
+
+.info-box span{
+
+    display:block;
+
+    color:#6B7280;
+
+    font-size:13px;
+
+}
+
+.info-box h4{
+
+    margin-top:4px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+/*==================================================
+CARDS
+==================================================*/
+.glass-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.glass-card h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+    color:#111827;
+
+}
+
+.glass-card h2 i{
+
+    color:#FFC107;
+
+    margin-right:10px;
+
+}
+
+/*==================================================
+DETAIL CARD
+==================================================*/
+.detail-card{
+
+    background:#F9FAFB;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:18px;
+
+    padding:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:15px;
+
+}
+
+.icon-yellow{
+
+    width:48px;
+
+    height:48px;
+
+    background:#FFC107;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#111827;
+
+    font-size:18px;
+
+}
+
+.detail-card span{
+
+    display:block;
+
+    color:#6B7280;
+
+    font-size:13px;
+
+}
+
+.detail-card h5{
+
+    margin-top:3px;
+
+    margin-bottom:0;
+
+    font-size:17px;
+
+    color:#111827;
+
+}
+
+/*==================================================
+TABLE
+==================================================*/
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table th{
+
+    width:38%;
+
+    color:#111827;
+
+    font-weight:600;
+
+}
+
+.table td{
+
+    color:#4B5563;
+
+}
+
+/*==================================================
+STATUS CARD
+==================================================*/
+.status-card{
+
+    background:#F9FAFB;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+}
+
+.status-card h6{
+
+    color:#6B7280;
+
+    margin-bottom:8px;
+
+}
+
+.status-card h4{
+
+    color:#111827;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+/*==================================================
+BADGE
+==================================================*/
+.badge{
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+}
+
+/*==================================================
+RESPONSIVE
+==================================================*/
+@media(max-width:768px){
+
+.detail-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.table th,
+.table td{
+
+    font-size:14px;
+
+}
+
+}
+
+/*==================================================
+DESKTOP LAYOUT
+==================================================*/
+@media (min-width:992px){
+
+/* Hide Mobile Header */
+.profile-header{
+    display:none;
+}
+
+/* Show Desktop Header */
+.desktop-content{
+    display:block;
+    max-width:1400px;
+    margin:30px auto 0;
+    padding:0 25px;
+}
+
+.desktop-header{
+    background:#111827;
+    border-radius:25px;
+    padding:25px 35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.desktop-title{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.desktop-back{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#FFC107;
+    color:#111827;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    transition:.3s;
+}
+
+.desktop-back:hover{
+    background:#F59E0B;
+    color:#111827;
+    transform:scale(1.05);
+}
+
+.desktop-title h1{
+    margin:0;
+    color:#fff;
+    font-size:34px;
+    font-weight:700;
+}
+
+.desktop-title p{
+    margin-top:6px;
+    margin-bottom:0;
+    color:#D1D5DB;
+    font-size:16px;
+}
+
+/* Desktop Wrapper */
+.desktop-page{
+    max-width:1400px;
+    margin:25px auto 40px;
+    padding:0 25px;
+}
+
+.mobile-container{
+    max-width:100%;
+    padding:0;
+}
+
+/* Two Column Layout */
+.desktop-grid{
+    display:grid;
+    grid-template-columns:360px 1fr;
+    gap:25px;
+    align-items:start;
+}
+
+.left-column{
+    position:sticky;
+    top:25px;
+}
+
+.right-column{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* Profile Card */
+.profile-card{
+    margin-bottom:0;
+}
+
+.student-image{
+    width:140px;
+    height:140px;
+}
+
+.profile-top h2{
+    font-size:30px;
+}
+
+.profile-top p{
+    font-size:17px;
+}
+
+/* Section Cards */
+.glass-card{
+    padding:28px;
+    margin-bottom:0;
+}
+
+.glass-card h2{
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+/* Bus Details */
+.detail-card{
+    margin-bottom:0;
+    height:100%;
+}
+
+/* Status */
+.status-card{
+    height:100%;
+    margin-bottom:0;
+}
+
+/* Table */
+.table th{
+    width:240px;
+}
+
+/* Hover Effects */
+.profile-card,
+.glass-card{
+    transition:.3s;
+}
+
+.profile-card:hover,
+.glass-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.detail-card{
+    transition:.3s;
+}
+
+.detail-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+.status-card{
+    transition:.3s;
+}
+
+.status-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+}
+
+/*==================================================
+TABLET
+==================================================*/
+@media (min-width:769px) and (max-width:991px){
+
+.desktop-content{
+    display:none;
+}
+
+.profile-header{
+    display:flex;
+}
+
+.desktop-grid{
+    display:block;
+}
+
+.left-column{
+    margin-bottom:20px;
+}
+
+}
+/*==================================================
+STEP 4 - FINAL POLISH
+==================================================*/
+
+/* Smooth Animation */
+.profile-card,
+.glass-card,
+.detail-card,
+.status-card{
+    transition:all .35s ease;
+}
+
+/* Card Hover */
+.profile-card:hover,
+.glass-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+/* Detail Card Hover */
+.detail-card:hover{
+    transform:translateY(-5px);
+    border-color:#FFC107;
+    box-shadow:0 10px 25px rgba(255,193,7,.25);
+}
+
+/* Status Card Hover */
+.status-card:hover{
+    transform:translateY(-5px);
+    border-color:#FFC107;
+    box-shadow:0 10px 25px rgba(255,193,7,.25);
+}
+
+/* Icons Animation */
+.info-box i,
+.icon-yellow{
+    transition:.35s;
+}
+
+.info-box:hover i,
+.detail-card:hover .icon-yellow{
+    transform:rotate(10deg) scale(1.08);
+    background:#F59E0B;
+}
+
+/* Student Image */
+.student-image{
+    transition:.35s;
+}
+
+.profile-card:hover .student-image{
+    transform:scale(1.06);
+}
+
+/* Section Titles */
+.glass-card h2{
+    transition:.35s;
+}
+
+.glass-card:hover h2{
+    color:#F59E0B;
+}
+
+/* Badge Animation */
+.badge{
+    transition:.3s;
+}
+
+.badge:hover{
+    transform:scale(1.08);
+}
+
+/* Table Hover */
+.table tbody tr{
+    transition:.3s;
+}
+
+.table tbody tr:hover{
+    background:#FFF8E1;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#EEF3FA;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#FFC107;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#F59E0B;
+}
+
+/* Fade Animation */
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+.profile-card{
+    animation:fadeUp .5s ease;
+}
+
+.glass-card:nth-child(1){
+    animation:fadeUp .6s ease;
+}
+
+.glass-card:nth-child(2){
+    animation:fadeUp .7s ease;
+}
+
+.glass-card:nth-child(3){
+    animation:fadeUp .8s ease;
+}
+
+/* Desktop Header Animation */
+.desktop-header{
+    animation:fadeDown .5s ease;
+}
+
+@keyframes fadeDown{
+
+    from{
+
+        opacity:0;
+        transform:translateY(-20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Better Spacing */
+.info-box{
+    padding:6px 0;
+}
+
+.detail-card{
+    min-height:100px;
+}
+
+.status-card{
+    min-height:120px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.table th{
+    padding:14px 0;
+}
+
+.table td{
+    padding:14px 0;
+}
+
+/* Desktop Hover */
+@media(min-width:992px){
+
+.profile-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.glass-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.desktop-back{
+
+    transition:.3s;
+
+}
+
+.desktop-back:hover{
+
+    transform:scale(1.08);
+
+}
+
+}

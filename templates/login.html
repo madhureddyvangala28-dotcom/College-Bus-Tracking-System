@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | College Bus Tracking System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Left Side -->
+
+        <div class="left-panel">
+
+            <div class="overlay">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+
+                <h1>College Bus Tracking System</h1>
+
+                <p>
+
+                    Smart, Secure and Intelligent
+                    Bus Management System
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Right Side -->
+
+        <div class="right-panel">
+
+            <div class="login-card">
+
+                <h2>Welcome Back 👋</h2>
+
+                <p class="subtitle">
+                    Login to Continue
+                </p>
+
+                <!-- Role Selection -->
+
+                <div class="role-selection">
+
+                    <div class="role-card active" onclick="selectRole('student')" id="studentCard">
+
+                        🎓
+
+                        <span>Student</span>
+
+                    </div>
+
+                    <div class="role-card" onclick="selectRole('driver')" id="driverCard">
+
+                        🚌
+
+                        <span>Driver</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Login Form -->
+
+                <form action="/login" method="POST">
+
+                    <input type="hidden" name="role" id="role" value="student">
+
+                    <div class="input-box">
+
+                        <i class="fa fa-user"></i>
+
+                        <input type="text" id="username" name="username" placeholder="Enter Roll Number" required>
+
+                    </div>
+
+
+                    <div class="input-box">
+
+                        <i class="fa fa-lock"></i>
+
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+
+                        <i class="fa fa-eye eye" onclick="togglePassword()"></i>
+
+                    </div>
+
+
+                    <div class="options">
+
+                        <label>
+
+                            <input type="checkbox">
+
+                            Remember Me
+
+                        </label>
+
+                        <a href="/forgot_password">
+
+                            Forgot Password?
+
+                        </a>
+
+                    </div>
+
+
+                    <button class="login-btn">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+                <div class="bottom">
+
+                    <a href="/">
+
+                        ← Back to Home
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function selectRole(role) {
+
+            document.getElementById("role").value = role;
+
+            let student = document.getElementById("studentCard");
+
+            let driver = document.getElementById("driverCard");
+
+            let username = document.getElementById("username");
+
+            if (role == "student") {
+
+                student.classList.add("active");
+                driver.classList.remove("active");
+
+                username.placeholder = "Enter Roll Number";
+
+            }
+
+            else {
+
+                driver.classList.add("active");
+                student.classList.remove("active");
+
+                username.placeholder = "Enter Driver ID";
+
+            }
+
+        }
+
+        function togglePassword() {
+
+            let password = document.getElementById("password");
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+            }
+
+            else {
+
+                password.type = "password";
+
+            }
+
+        }
+
+    </script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            Swal.fire({
+
+                icon: "{{ 'error' if category == 'danger' else category }}",
+
+                title: "Login Failed",
+
+                text: "{{ message }}",
+
+                confirmButtonColor: "#FFC107",
+
+                confirmButtonText: "OK"
+
+            });
+
+        });
+
+    </script>
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+</body>
+
+</html>

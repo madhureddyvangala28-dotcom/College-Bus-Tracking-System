@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Route Management</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/routes.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<section class="page-title">
+
+<h1>Route Management</h1>
+
+<p>Manage all college bus routes.</p>
+
+</section>
+
+<section class="toolbar">
+
+<form
+action="{{ url_for('routes') }}"
+method="GET"
+class="filter-form">
+
+<div class="search-box">
+
+<i class="fas fa-search"></i>
+
+<input
+type="text"
+name="search"
+placeholder="Search Route..."
+value="{{ search }}">
+
+</div>
+
+<select name="status">
+
+<option value="">All Status</option>
+
+<option value="Active"
+{% if status=="Active" %}selected{% endif %}>
+Active
+</option>
+
+<option value="Inactive"
+{% if status=="Inactive" %}selected{% endif %}>
+Inactive
+</option>
+
+</select>
+
+<button
+type="submit"
+class="search-btn">
+
+<i class="fas fa-search"></i>
+
+Search
+
+</button>
+
+</form>
+
+<a
+href="{{ url_for('add_route') }}"
+class="add-btn">
+
++ Add Route
+
+</a>
+
+</section>
+
+<section class="table-section">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>Route Name</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Distance</th>
+<th>Time</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for route in routes %}
+
+<tr>
+
+<td>{{ route.route_id }}</td>
+
+<td>{{ route.route_name }}</td>
+
+<td>{{ route.source }}</td>
+
+<td>{{ route.destination }}</td>
+
+<td>{{ route.distance }} km</td>
+
+<td>{{ route.estimated_time }}</td>
+
+<td>
+
+<span class="status {{ route.status|lower }}">
+
+{{ route.status }}
+
+</span>
+
+</td>
+
+<td>
+
+<a href="{{ url_for('route_profile', route_id=route.route_id) }}" class="view">
+    <i class="fas fa-eye"></i>
+</a>
+
+<a href="{{ url_for('edit_route', route_id=route.route_id) }}" class="edit">
+    <i class="fas fa-pen"></i>
+</a>
+
+<a href="{{ url_for('delete_route', route_id=route.route_id) }}"
+   class="delete"
+   onclick="return confirm('Delete this route?')">
+    <i class="fas fa-trash"></i>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</section>
+
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Driver Profile</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/driver_profile.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<section class="page-header">
+
+<h1>Driver Profile</h1>
+
+<p>Complete Driver Information</p>
+
+</section>
+
+<div class="profile-card">
+
+<div class="profile-top">
+
+<div class="avatar">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+<div>
+
+<h2>{{ driver.driver_name }}</h2>
+
+<p>{{ driver.license_number }}</p>
+
+</div>
+
+</div>
+
+<div class="info-grid">
+
+<div class="item">
+<label>Driver ID</label>
+<span>{{ driver.id }}</span>
+</div>
+
+<div class="item">
+<label>Phone</label>
+<span>{{ driver.phone }}</span>
+</div>
+
+<div class="item">
+<label>Bus Number</label>
+<span>{{ driver.bus_number }}</span>
+</div>
+
+<div class="item">
+<label>Route</label>
+<span>{{ driver.route_name }}</span>
+</div>
+
+<div class="item">
+<label>Capacity</label>
+<span>{{ driver.capacity }} Seats</span>
+</div>
+
+<div class="item">
+<label>Status</label>
+
+<span class="status">
+
+{{ driver.status }}
+
+</span>
+
+</div>
+
+<div class="item full">
+
+<label>Password</label>
+
+<span>{{ driver.password }}</span>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a
+href="{{ url_for('drivers') }}"
+class="back-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back
+
+</a>
+
+<a
+href="{{ url_for('edit_driver',id=driver.id) }}"
+class="edit-btn">
+
+<i class="fa-solid fa-pen"></i>
+
+Edit Driver
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

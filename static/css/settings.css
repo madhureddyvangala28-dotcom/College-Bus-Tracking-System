@@ -1,0 +1,1097 @@
+/*==================================================
+GOOGLE FONT
+==================================================*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*==================================================
+GLOBAL
+==================================================*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#EEF3FA;
+    color:#111827;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+.desktop-content{
+    display:none;
+}
+
+/*==================================================
+MOBILE CONTAINER
+==================================================*/
+.mobile-container{
+    width:100%;
+    max-width:500px;
+    margin:auto;
+    padding:20px 15px 30px;
+}
+
+/*==================================================
+MOBILE HEADER
+==================================================*/
+.profile-header{
+
+    background:#111827;
+    border-radius:22px;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.back-btn{
+
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#FFC107;
+    color:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    flex-shrink:0;
+
+}
+
+.profile-title h1{
+
+    margin:0;
+    color:#FFFFFF;
+    font-size:24px;
+    font-weight:700;
+
+}
+
+.profile-title p{
+
+    margin:4px 0 0;
+    color:#D1D5DB;
+    font-size:14px;
+
+}
+
+/*==================================================
+MAIN LAYOUT
+==================================================*/
+.route-container{
+    width:100%;
+}
+
+.desktop-grid{
+    display:block;
+}
+
+.left-column,
+.right-column{
+    width:100%;
+}
+
+/*==================================================
+PROFILE CARD
+==================================================*/
+.profile-card{
+
+    background:#FFFFFF;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-bottom:22px;
+
+}
+
+.profile-top{
+
+    background:#FFC107;
+    text-align:center;
+    padding:22px 20px;
+
+}
+
+.student-image{
+
+    width:105px;
+    height:105px;
+    margin:auto;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #FFFFFF;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.profile-top h2{
+
+    margin-top:12px;
+    margin-bottom:5px;
+    color:#111827;
+    font-size:22px;
+    font-weight:700;
+
+}
+
+.profile-top p{
+
+    margin:0;
+    color:#374151;
+    font-size:15px;
+    font-weight:500;
+
+}
+
+.profile-bottom{
+
+    padding:18px 20px;
+
+}
+
+/*==================================================
+PROFILE INFORMATION
+==================================================*/
+.info-box{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:8px 0;
+    margin-bottom:12px;
+
+}
+
+.info-box:last-child{
+    margin-bottom:0;
+}
+
+.info-box i{
+
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:#FFC107;
+    color:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    flex-shrink:0;
+
+}
+
+.info-box span{
+
+    display:block;
+    color:#6B7280;
+    font-size:13px;
+
+}
+
+.info-box h4{
+
+    margin-top:2px;
+    margin-bottom:0;
+    color:#111827;
+    font-size:17px;
+    font-weight:700;
+
+}
+/*==================================================
+CONTENT CARD
+==================================================*/
+.desktop-card{
+
+    background:#FFFFFF;
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-bottom:22px;
+
+}
+
+.route-card h2{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:0 0 22px;
+    color:#111827;
+    font-size:22px;
+    font-weight:700;
+
+}
+
+.route-card h2 i{
+
+    color:#FFC107;
+    font-size:28px;
+
+}
+
+/*==================================================
+DETAIL CARD
+==================================================*/
+.detail-card{
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+    background:#F9FAFB;
+    border:1px solid #E5E7EB;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:16px;
+    overflow:hidden;
+
+}
+
+.detail-card:last-child{
+    margin-bottom:0;
+}
+
+.icon-yellow{
+
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#FFC107;
+    color:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    flex-shrink:0;
+
+}
+
+.detail-card div{
+
+    flex:1;
+    min-width:0;
+
+}
+
+.detail-card span{
+
+    display:block;
+    color:#6B7280;
+    font-size:13px;
+    margin-bottom:3px;
+
+}
+
+.detail-card h5{
+
+    margin:0;
+    color:#111827;
+    font-size:17px;
+    font-weight:700;
+    line-height:1.4;
+
+    /* Fix Long Email Address */
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    white-space:normal;
+
+}
+
+/*==================================================
+SUMMARY GRID
+==================================================*/
+.summary-grid{
+
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+
+}
+
+.summary-box{
+
+    background:#F9FAFB;
+    border:1px solid #E5E7EB;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+
+}
+
+.summary-box h6{
+
+    margin-bottom:8px;
+    color:#6B7280;
+    font-size:13px;
+    font-weight:500;
+
+}
+
+.summary-box h4{
+
+    margin:0;
+    color:#111827;
+    font-size:16px;
+    font-weight:600;
+    line-height:1.5;
+
+}
+
+/*==================================================
+ACTION BUTTON GRID
+==================================================*/
+.action-grid{
+
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+
+}
+
+.action-btn{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    background:#FFC107;
+    color:#111827;
+
+    padding:16px 18px;
+
+    border-radius:18px;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.action-btn i{
+
+    font-size:18px;
+
+}
+
+.action-btn:hover{
+
+    background:#F59E0B;
+    color:#111827;
+
+}
+
+/*==================================================
+BADGE
+==================================================*/
+.badge{
+
+    padding:8px 16px;
+    border-radius:25px;
+    font-size:13px;
+    font-weight:600;
+
+}
+
+/*==================================================
+UTILITY
+==================================================*/
+.text-center{
+
+    text-align:center;
+
+}
+
+.mt-4{
+
+    margin-top:1.5rem;
+
+}
+
+.mb-4{
+
+    margin-bottom:1.5rem;
+
+}
+/*==================================================
+SMALL MOBILE
+==================================================*/
+@media (max-width:380px){
+
+.profile-title h1{
+    font-size:20px;
+}
+
+.profile-title p{
+    font-size:13px;
+}
+
+.student-image{
+    width:90px;
+    height:90px;
+}
+
+.profile-top{
+    padding:18px 15px;
+}
+
+.profile-top h2{
+    font-size:20px;
+}
+
+.profile-top p{
+    font-size:14px;
+}
+
+.route-card h2{
+    font-size:20px;
+}
+
+.route-card h2 i{
+    font-size:22px;
+}
+
+.info-box{
+    gap:12px;
+}
+
+.info-box i{
+    width:42px;
+    height:42px;
+    font-size:16px;
+}
+
+.info-box h4{
+    font-size:15px;
+}
+
+.detail-card{
+    gap:12px;
+    padding:15px;
+}
+
+.icon-yellow{
+    width:46px;
+    height:46px;
+    font-size:18px;
+}
+
+.detail-card h5{
+    font-size:15px;
+}
+
+.summary-box{
+    padding:16px;
+}
+
+.summary-box h4{
+    font-size:15px;
+}
+
+.action-btn{
+    padding:14px;
+    font-size:14px;
+}
+
+.action-btn i{
+    font-size:16px;
+}
+
+}
+
+/*==================================================
+DESKTOP LAYOUT
+==================================================*/
+@media (min-width:992px){
+
+/* Hide Mobile Header */
+.profile-header{
+    display:none;
+}
+
+/* Show Desktop Header */
+.desktop-content{
+    display:block;
+    max-width:1400px;
+    margin:30px auto 0;
+    padding:0 25px;
+}
+
+/* Desktop Header */
+.desktop-header{
+    background:#111827;
+    border-radius:25px;
+    padding:24px 35px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.desktop-title{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.desktop-back{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#FFC107;
+    color:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    transition:.3s;
+}
+
+.desktop-back:hover{
+    background:#F59E0B;
+    color:#111827;
+    transform:scale(1.05);
+}
+
+.desktop-title h1{
+    margin:0;
+    color:#FFFFFF;
+    font-size:34px;
+    font-weight:700;
+}
+
+.desktop-title p{
+    margin-top:6px;
+    margin-bottom:0;
+    color:#D1D5DB;
+    font-size:16px;
+}
+
+/*==================================================
+PAGE
+==================================================*/
+
+.desktop-page{
+    max-width:1400px;
+    margin:25px auto 40px;
+    padding:0 25px;
+}
+
+.mobile-container{
+    max-width:100%;
+    padding:0;
+}
+
+/*==================================================
+GRID
+==================================================*/
+
+.desktop-grid{
+    display:grid;
+    grid-template-columns:330px 1fr;
+    gap:28px;
+    align-items:start;
+}
+
+.left-column{
+    position:sticky;
+    top:25px;
+}
+
+.right-column{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+}
+
+/*==================================================
+PROFILE CARD
+==================================================*/
+
+.profile-card{
+    margin-bottom:0;
+}
+
+.profile-top{
+    padding:22px 20px;
+}
+
+.student-image{
+    width:115px;
+    height:115px;
+}
+
+.profile-top h2{
+    font-size:24px;
+    margin-top:12px;
+}
+
+.profile-top p{
+    font-size:15px;
+}
+
+.profile-bottom{
+    padding:18px 20px;
+}
+
+.info-box{
+    padding:8px 0;
+    margin-bottom:12px;
+}
+
+.info-box i{
+    width:46px;
+    height:46px;
+}
+
+.info-box h4{
+    font-size:16px;
+}
+
+/*==================================================
+CONTENT CARD
+==================================================*/
+
+.desktop-card{
+    margin-bottom:0;
+    padding:24px;
+}
+
+.route-card h2{
+    font-size:25px;
+    margin-bottom:22px;
+}
+
+.route-card h2 i{
+    font-size:28px;
+}
+
+.route-card .row{
+    row-gap:18px;
+}
+
+/*==================================================
+DETAIL CARD
+==================================================*/
+
+.detail-card{
+    margin-bottom:0;
+    height:100%;
+    min-height:92px;
+}
+
+.detail-card h5{
+    font-size:16px;
+}
+
+/*==================================================
+SUMMARY
+==================================================*/
+
+.summary-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.summary-box{
+    min-height:120px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.summary-box h6{
+    font-size:14px;
+}
+
+.summary-box h4{
+    font-size:17px;
+}
+
+/*==================================================
+ACTION BUTTONS
+==================================================*/
+
+.action-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.action-btn{
+    min-height:62px;
+    padding:18px;
+    font-size:15px;
+}
+
+.action-btn i{
+    font-size:20px;
+}
+
+}
+
+/*==================================================
+TABLET
+==================================================*/
+@media (min-width:769px) and (max-width:991px){
+
+.desktop-content{
+    display:none;
+}
+
+.profile-header{
+    display:flex;
+}
+
+.desktop-grid{
+    display:block;
+}
+
+.left-column{
+    margin-bottom:22px;
+}
+
+.summary-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.action-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+/*==================================================
+STEP 4 - FINAL POLISH
+==================================================*/
+
+/* Smooth Transition */
+.profile-card,
+.desktop-card,
+.detail-card,
+.summary-box,
+.action-btn,
+.back-btn,
+.desktop-back{
+    transition:all .35s ease;
+}
+
+/*==================================================
+CARD HOVER EFFECT
+==================================================*/
+
+.profile-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+.desktop-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+/*==================================================
+DETAIL CARD
+==================================================*/
+
+.detail-card:hover{
+
+    transform:translateY(-4px);
+    border-color:#FFC107;
+    box-shadow:0 12px 28px rgba(255,193,7,.22);
+
+}
+
+.detail-card:hover .icon-yellow{
+
+    background:#F59E0B;
+    transform:rotate(10deg) scale(1.08);
+
+}
+
+/*==================================================
+SUMMARY BOX
+==================================================*/
+
+.summary-box:hover{
+
+    transform:translateY(-4px);
+    border-color:#FFC107;
+    box-shadow:0 12px 28px rgba(255,193,7,.22);
+
+}
+
+.summary-box:hover h4{
+
+    color:#F59E0B;
+
+}
+
+/*==================================================
+PROFILE IMAGE
+==================================================*/
+
+.student-image{
+    transition:.4s;
+}
+
+.profile-card:hover .student-image{
+
+    transform:scale(1.05);
+
+}
+
+/*==================================================
+INFO BOX ICON
+==================================================*/
+
+.info-box i,
+.icon-yellow,
+.action-btn i{
+
+    transition:.35s;
+
+}
+
+.info-box:hover i{
+
+    transform:rotate(10deg);
+    background:#F59E0B;
+
+}
+
+/*==================================================
+HEADING
+==================================================*/
+
+.route-card h2{
+
+    transition:.35s;
+
+}
+
+.desktop-card:hover h2{
+
+    color:#F59E0B;
+
+}
+
+/*==================================================
+ACTION BUTTON
+==================================================*/
+
+.action-btn:hover{
+
+    transform:translateY(-5px);
+    background:#F59E0B;
+    color:#111827;
+    box-shadow:0 12px 28px rgba(255,193,7,.30);
+
+}
+
+.action-btn:hover i{
+
+    transform:scale(1.15);
+
+}
+
+.action-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/*==================================================
+BACK BUTTON
+==================================================*/
+
+.back-btn:hover,
+.desktop-back:hover{
+
+    transform:scale(1.08);
+    background:#F59E0B;
+    color:#111827;
+
+}
+
+/*==================================================
+SCROLLBAR
+==================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#EEF3FA;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#FFC107;
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#F59E0B;
+
+}
+
+/*==================================================
+ANIMATIONS
+==================================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes fadeDown{
+
+    from{
+
+        opacity:0;
+        transform:translateY(-20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==================================================
+PAGE ANIMATION
+==================================================*/
+
+.profile-card{
+
+    animation:fadeUp .5s ease;
+
+}
+
+.desktop-card:nth-child(1){
+
+    animation:fadeUp .6s ease;
+
+}
+
+.desktop-card:nth-child(2){
+
+    animation:fadeUp .7s ease;
+
+}
+
+.desktop-card:nth-child(3){
+
+    animation:fadeUp .8s ease;
+
+}
+
+.desktop-card:nth-child(4){
+
+    animation:fadeUp .9s ease;
+
+}
+
+.desktop-card:nth-child(5){
+
+    animation:fadeUp 1s ease;
+
+}
+
+.desktop-header{
+
+    animation:fadeDown .5s ease;
+
+}
+
+/*==================================================
+BETTER SPACING
+==================================================*/
+
+.detail-card{
+
+    min-height:90px;
+
+}
+
+.summary-box{
+
+    min-height:120px;
+
+}
+
+.action-btn{
+
+    min-height:65px;
+
+}
+
+/*==================================================
+DESKTOP IMPROVEMENT
+==================================================*/
+
+@media (min-width:992px){
+
+.profile-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.desktop-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.action-btn:hover{
+
+    transform:translateY(-6px);
+
+}
+
+}
+
+/*==================================================
+END OF FILE
+==================================================*/

@@ -1,0 +1,888 @@
+/* =====================================================
+   GOOGLE FONT
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f6fb;
+    color:#222;
+}
+
+/* =====================================================
+   PAGE TITLE
+===================================================== */
+
+.page-title{
+    width:95%;
+    margin:35px auto 20px;
+}
+
+.page-title h1{
+    font-size:34px;
+    font-weight:700;
+    color:#111827;
+}
+
+.page-title p{
+    margin-top:8px;
+    color:#6b7280;
+    font-size:15px;
+}
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar{
+
+    width:95%;
+    margin:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    flex-wrap:wrap;
+    gap:20px;
+
+}
+
+.filter-form{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+
+}
+
+.search-box{
+
+    position:relative;
+
+}
+
+.search-box i{
+
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#888;
+
+}
+
+.search-box input{
+
+    width:260px;
+    height:46px;
+
+    border:1px solid #ddd;
+    border-radius:12px;
+
+    padding-left:45px;
+    padding-right:15px;
+
+    outline:none;
+    transition:.3s;
+
+}
+
+.search-box input:focus{
+
+    border-color:#ffb400;
+
+}
+
+.filter-form select{
+
+    width:180px;
+    height:46px;
+
+    border-radius:12px;
+    border:1px solid #ddd;
+
+    padding:0 12px;
+    outline:none;
+
+}
+
+.search-btn{
+
+    height:46px;
+    padding:0 24px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#ffb400;
+    color:#111;
+
+    font-weight:600;
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.search-btn:hover{
+
+    background:#e8a400;
+
+}
+
+.add-btn{
+
+    background:#16a34a;
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:12px 22px;
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.add-btn:hover{
+
+    background:#15803d;
+
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-section{
+
+    width:95%;
+    margin:30px auto;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#ffb400;
+
+}
+
+thead th{
+
+    padding:18px;
+
+    text-align:left;
+
+    color:#111827;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+tbody tr{
+
+    transition:.25s;
+
+    border-bottom:1px solid #eee;
+
+}
+
+tbody tr:hover{
+
+    background:#fff8e7;
+
+}
+
+tbody td{
+
+    padding:16px;
+
+    font-size:14px;
+
+}
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.student-photo{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #ffb400;
+
+}
+
+/* =====================================================
+   ROUTE BADGE
+===================================================== */
+
+.route-badge{
+
+    background:#eaf8ff;
+
+    color:#0c4a6e;
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:13px;
+    font-weight:600;
+
+}
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.view,
+.edit,
+.delete{
+
+    width:40px;
+    height:40px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    margin-right:8px;
+
+    transition:.3s;
+
+}
+
+.view{
+
+    background:#2563eb;
+
+}
+
+.view:hover{
+
+    background:#1d4ed8;
+
+}
+
+.edit{
+
+    background:#16a34a;
+
+}
+
+.edit:hover{
+
+    background:#15803d;
+
+}
+
+.delete{
+
+    background:#dc2626;
+
+}
+
+.delete:hover{
+
+    background:#b91c1c;
+
+}
+
+/* =====================================================
+   EMPTY DATA
+===================================================== */
+
+.no-data{
+
+    text-align:center;
+
+    padding:60px;
+
+    color:#777;
+
+}
+
+.no-data i{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+    color:#bbb;
+
+}
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+.pagination{
+
+    width:95%;
+    margin:25px auto 60px;
+
+    display:flex;
+    justify-content:center;
+    gap:10px;
+
+}
+
+.pagination button{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#fff;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.pagination button:hover{
+
+    background:#ffb400;
+
+}
+
+.pagination .active{
+
+    background:#ffb400;
+
+    font-weight:700;
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:991px){
+
+.toolbar{
+
+    flex-direction:column;
+    align-items:flex-start;
+
+}
+
+.filter-form{
+
+    width:100%;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+}
+
+.filter-form select{
+
+    width:100%;
+
+}
+
+.search-btn{
+
+    width:100%;
+
+}
+
+.add-btn{
+
+    width:100%;
+    text-align:center;
+
+}
+
+.table-section{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    min-width:900px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.page-title h1{
+
+    font-size:28px;
+
+}
+
+.page-title p{
+
+    font-size:14px;
+
+}
+
+thead th,
+tbody td{
+
+    padding:12px;
+
+}
+
+.student-photo{
+
+    width:45px;
+    height:45px;
+
+}
+
+.view,
+.edit,
+.delete{
+
+    width:36px;
+    height:36px;
+
+    margin-right:5px;
+
+}
+
+}
+
+/* ==========================================
+   ADD STUDENT FORM
+========================================== */
+
+.form-container{
+
+    width:700px;
+
+    margin:40px auto;
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.form-container label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.form-container input,
+.form-container select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+.form-container input:focus,
+.form-container select:focus{
+
+    border-color:#ffb400;
+
+}
+
+.password-box{
+
+    position:relative;
+
+}
+
+.password-box input{
+
+    padding-right:45px;
+
+}
+
+.toggle-password{
+
+    position:absolute;
+
+    right:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    color:#666;
+
+}
+
+.form-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+.save-btn{
+
+    background:#16a34a;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 30px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.save-btn:hover{
+
+    background:#15803d;
+
+}
+
+.cancel-btn{
+
+    background:#dc2626;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 30px;
+
+    border-radius:10px;
+
+}
+
+.cancel-btn:hover{
+
+    background:#b91c1c;
+
+}
+
+.flash-container{
+
+    width:700px;
+
+    margin:20px auto;
+
+}
+
+.flash-message{
+
+    padding:14px;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+.flash-message.success{
+
+    background:#d1fae5;
+
+    color:#065f46;
+
+}
+
+.flash-message.danger{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+@media(max-width:768px){
+
+.form-container{
+
+    width:95%;
+
+}
+
+.flash-container{
+
+    width:95%;
+
+}
+
+.form-buttons{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.save-btn,
+.cancel-btn{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+}
+
+/* ==========================================
+   EDIT STUDENT IMAGE
+========================================== */
+
+.image-preview{
+
+    display:flex;
+    justify-content:center;
+    margin-bottom:25px;
+
+}
+
+.preview-image{
+
+    width:140px;
+    height:140px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #FFC107;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+/* ==========================================
+        STUDENT PROFILE
+========================================== */
+
+.profile-container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    margin:40px 0;
+
+}
+
+.profile-card{
+
+    width:700px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+
+}
+
+.profile-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.profile-image{
+
+    width:150px;
+
+    height:150px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #FFC107;
+
+    margin-bottom:15px;
+
+}
+
+.profile-header h2{
+
+    font-size:30px;
+
+    color:#222;
+
+}
+
+.profile-header p{
+
+    color:#777;
+
+}
+
+.profile-card table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.profile-card th{
+
+    width:220px;
+
+    background:#f8f8f8;
+
+    text-align:left;
+
+    padding:15px;
+
+}
+
+.profile-card td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.profile-buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:30px;
+
+}
+
+/* ==========================================
+   FLASH MESSAGE
+========================================== */
+
+.flash-container{
+
+    width:90%;
+    margin:20px auto;
+
+}
+
+.flash-message{
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+.flash-message.success{
+
+    background:#d4edda;
+
+    color:#155724;
+
+    border-left:5px solid #28a745;
+
+}
+
+.flash-message.danger{
+
+    background:#f8d7da;
+
+    color:#721c24;
+
+    border-left:5px solid #dc3545;
+
+}

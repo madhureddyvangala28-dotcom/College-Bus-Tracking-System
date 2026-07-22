@@ -1,0 +1,33 @@
+<header class="student-header">
+
+    <div class="header-left">
+
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="header-logo">
+
+        <div class="header-title">
+
+            <h2>College Bus Tracking</h2>
+
+            <span>Student Portal</span>
+
+        </div>
+
+    </div>
+
+    <div class="header-right">
+
+        <div class="student-info">
+
+            <small>Hi,</small>
+
+            <h3>{{ session['student_name'] }}</h3>
+
+        </div>
+
+        <img
+        src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
+        class="header-profile">
+
+    </div>
+
+</header>

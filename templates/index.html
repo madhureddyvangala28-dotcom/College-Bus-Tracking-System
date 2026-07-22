@@ -1,60 +1,589 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Bus Tracking System</title>
 
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
-<body>
 
-<header>
-    <h1>🚍 College Bus Tracking System</h1>
+<body>
+<!-- ===================== NAVBAR START ===================== -->
+
+<header class="navbar">
+
+    <!-- Logo -->
+
+    <div class="logo-section">
+
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+
+        <div class="logo-text">
+
+            <h2>College Bus Tracking System</h2>
+
+            <p>Smart Transport Management</p>
+
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
 
     <nav>
-        <a href="/">👨‍🎓 Students</a>
-        <a href="/buses">🚌 Buses</a>
-        <a href="/add_bus">➕ Add Bus</a>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="/" class="active">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="#about">
+                    <i class="fa-solid fa-circle-info"></i>
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="#features">
+                    <i class="fa-solid fa-layer-group"></i>
+                    Features
+                </a>
+            </li>
+
+            <li>
+                <a href="#contact">
+                    <i class="fa-solid fa-phone"></i>
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
     </nav>
+
+    <!-- Login -->
+
+    <a href="/login" class="login-btn">
+
+        <i class="fa-solid fa-right-to-bracket"></i>
+
+        Login
+
+    </a>
+
 </header>
-<div class="dashboard">
-    <div class="dash-card">
-        <h3>👨‍🎓 Students</h3>
-        <p>4</p>
+
+<!-- ===================== NAVBAR END ===================== -->
+<!-- ================= HERO SECTION START ================= -->
+
+<section class="hero">
+
+    <div class="hero-container">
+
+        <!-- Left Content -->
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+
+                <i class="fa-solid fa-bus"></i>
+
+                Smart Transport Management
+
+            </div>
+
+            <h1>
+
+                College Bus
+
+                <span>Tracking System</span>
+
+            </h1>
+
+            <h3>
+
+                Smarter • Safer • Faster Transportation
+
+            </h3>
+
+            <p>
+
+                A modern AI-powered college transportation platform that offers
+                real-time GPS tracking, shortest-path route optimization,
+                driver management, instant notifications, and enhanced student
+                safety through one intelligent system.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/login" class="hero-btn-primary">
+
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    Get Started
+
+                </a>
+
+                <a href="#features" class="hero-btn-secondary">
+
+                    <i class="fa-solid fa-arrow-down"></i>
+
+                    Explore Features
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Right Image -->
+
+        <div class="hero-image">
+
+            <img
+                src="{{ url_for('static', filename='images/hero.png') }}"
+                alt="College Bus Tracking System">
+
+        </div>
+
     </div>
 
-    <div class="dash-card">
-        <h3>🚌 Buses</h3>
-        <p>2</p>
+</section>
+
+<!-- ================= HERO SECTION END ================= -->
+
+
+<!-- ================= HERO STATS ================= -->
+
+<section class="hero-stats">
+
+    <div class="stat-card">
+
+        <h2>250+</h2>
+
+        <p>Students</p>
+
     </div>
 
-    <div class="dash-card">
-        <h3>🛣️ Routes</h3>
-        <p>1</p>
+    <div class="stat-card">
+
+        <h2>20+</h2>
+
+        <p>Drivers</p>
+
     </div>
-</div>
-<h2>👨‍🎓 Student List</h2>
 
-<div class="student-container">
+    <div class="stat-card">
 
-{% for student in students %}
+        <h2>15+</h2>
 
-<div class="student-card">
+        <p>Buses</p>
 
-    <div class="student-icon">👨‍🎓</div>
+    </div>
 
-    <h3>{{ student[1] }}</h3>
+    <div class="stat-card">
 
-    <p><strong>ID:</strong> {{ student[0] }}</p>
-    <p><strong>Roll:</strong> {{ student[2] }}</p>
-    <p><strong>Phone:</strong> {{ student[3] }}</p>
-    <p><strong>Route:</strong> {{ student[4] }}</p>
+        <h2>10+</h2>
 
-</div>
+        <p>Routes</p>
 
-{% endfor %}
+    </div>
 
-</div>
+</section>
 
+<!-- =========================================
+            ABOUT SECTION
+========================================= -->
+
+<section class="about" id="about">
+
+    <div class="about-container">
+
+        <!-- Left Side -->
+
+        <div class="about-image">
+
+            <img src="{{ url_for('static', filename='images/about.png') }}" alt="About">
+
+        </div>
+
+        <!-- Right Side -->
+
+        <div class="about-content">
+
+            <span class="section-tag">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                About Our System
+
+            </span>
+
+            <h2>
+
+                Smart & Secure College
+
+                <span>Bus Tracking Solution</span>
+
+            </h2>
+
+            <p>
+
+                The College Bus Tracking System is an AI-powered transportation
+                management platform designed to improve student safety,
+                optimize bus routes using shortest-path algorithms,
+                and provide real-time GPS tracking for educational institutions.
+
+            </p>
+
+            <p>
+
+                Students can track buses live, drivers receive optimized
+                routes, and administrators manage the complete transportation
+                system through one intelligent dashboard.
+
+            </p>
+
+            <div class="about-features">
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span>Real-Time GPS Tracking</span>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-route"></i>
+
+                    <span>Shortest Path Routing</span>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span>Instant Notifications</span>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>Enhanced Student Safety</span>
+
+                </div>
+
+            </div>
+
+            <a href="#features" class="about-btn">
+
+                Learn More
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+            FEATURES SECTION
+========================================= -->
+
+<section class="features" id="features">
+
+    <div class="section-header">
+
+        <span class="section-tag">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            Our Features
+
+        </span>
+
+        <h2>
+
+            Features for
+
+            <span>Smart Transportation</span>
+
+        </h2>
+
+        <p>
+
+            Our AI-powered College Bus Tracking System provides advanced features
+            to improve transportation efficiency, student safety, and route management.
+
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <!-- Card 1 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+            </div>
+
+            <h3>Live GPS Tracking</h3>
+
+            <p>
+
+                Track buses in real-time and monitor their exact location with GPS.
+
+            </p>
+
+        </div>
+
+        <!-- Card 2 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-route"></i>
+
+            </div>
+
+            <h3>Shortest Path</h3>
+
+            <p>
+
+                AI-based shortest-path routing reduces travel time and fuel usage.
+
+            </p>
+
+        </div>
+
+        <!-- Card 3 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+            </div>
+
+            <h3>Student Dashboard</h3>
+
+            <p>
+
+                Students can view bus location, timings, and notifications.
+
+            </p>
+
+        </div>
+
+        <!-- Card 4 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-id-card"></i>
+
+            </div>
+
+            <h3>Driver Dashboard</h3>
+
+            <p>
+
+                Drivers receive optimized routes and trip information instantly.
+
+            </p>
+
+        </div>
+
+        <!-- Card 5 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-bell"></i>
+
+            </div>
+
+            <h3>Smart Notifications</h3>
+
+            <p>
+
+                Notify students about arrivals, delays, and important updates.
+
+            </p>
+
+        </div>
+
+        <!-- Card 6 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+            <h3>Admin Dashboard</h3>
+
+            <p>
+
+                Manage buses, drivers, students, and transportation reports.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================================
+                FOOTER
+========================================= -->
+
+<footer class="footer" id="contact">
+
+    <div class="footer-container">
+
+        <!-- Logo -->
+
+        <div class="footer-about">
+
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+
+            <h2>College Bus Tracking System</h2>
+
+            <p>
+
+                A modern AI-powered transportation management system
+                providing real-time GPS tracking, shortest-path routing,
+                and enhanced student safety.
+
+            </p>
+
+        </div>
+
+        <!-- Quick Links -->
+
+        <div class="footer-links">
+
+            <h3>Quick Links</h3>
+
+            <a href="/">Home</a>
+
+            <a href="#about">About</a>
+
+            <a href="/login">Login</a>
+
+        </div>
+
+        <!-- Features -->
+
+        <div class="footer-links">
+
+            <h3>Features</h3>
+
+            <a href="#">GPS Tracking</a>
+
+            <a href="#">Shortest Path</a>
+
+            <a href="#">Notifications</a>
+
+            <a href="#">Student Safety</a>
+
+        </div>
+
+        <!-- Contact -->
+
+        <div class="footer-contact">
+
+            <h3>Contact</h3>
+
+            <p>
+
+                <i class="fa-solid fa-envelope"></i>
+
+                support@collegebus.com
+
+            </p>
+
+            <p>
+
+                <i class="fa-solid fa-phone"></i>
+
+                +91 8309134148
+
+            </p>
+
+            <p>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                P P Savani University
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+
+        <p>
+
+            © 2026 College Bus Tracking System | Developed by
+
+            <span>V. Madhu Reddy</span>
+
+        </p>
+
+    </div>
+
+</footer>
+<script>
+const navbar = document.querySelector("header");
+
+window.addEventListener("scroll", function(){
+
+    if(window.scrollY > 60){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+</script>
 </body>
 </html>

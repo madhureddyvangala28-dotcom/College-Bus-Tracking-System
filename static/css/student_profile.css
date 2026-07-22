@@ -1,0 +1,703 @@
+body{
+
+    margin:0;
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f5f7fb;
+
+}
+
+/*==============================
+MOBILE CONTAINER
+==============================*/
+
+.mobile-container{
+
+    width:100%;
+    max-width:430px;
+
+    margin:25px auto;
+
+    background:#fff;
+
+    border-radius:40px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+    min-height:100vh;
+
+}
+/*==============================*/
+
+.profile-header{
+    background:#0F172A;
+    color:#fff;
+    text-align:center;
+    padding:25px 20px 30px;
+    border-bottom-left-radius:35px;
+    border-bottom-right-radius:35px;
+}
+
+
+/*==============================*/
+
+.profile-topbar{
+
+    display:flex;
+
+    justify-content:flex-start;
+
+     margin-bottom:15px;
+
+}
+
+
+/*==============================*/
+
+.back-btn{
+
+    color:white;
+
+    font-size:28px;
+
+    text-decoration:none;
+
+}
+
+
+/*==============================*/
+
+.profile-avatar{
+
+    margin-top:15px;
+
+}
+
+.profile-avatar img{
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid rgba(255,255,255,.2);
+
+}
+
+
+/*==============================*/
+
+.student-name{
+
+    margin-top:20px;
+
+    font-size:34px;
+
+    margin:15px 0 5px;
+
+    font-weight:700;
+
+}
+
+
+/*==============================*/
+
+.student-roll{
+
+    margin-top:8px;
+
+    font-size:18px;
+
+    color:#CBD5E1;
+
+}
+
+
+/*==============================*/
+
+.student-status{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    background:#F59E0B;
+
+    color:white;
+
+    padding:10px 28px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+/*==================================
+STICKY HEADER
+==================================*/
+
+.sticky-header{
+
+    position:fixed;
+
+    top:15px;
+
+    left:50%;
+
+    transform:translate(-50%,-120%);
+
+    width:100%;
+
+    max-width:430px;
+
+    height:75px;
+
+    background:#111827;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    z-index:999;
+
+    transition:.35s ease;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+}
+
+.sticky-header.show{
+
+    transform:translate(-50%,0);
+
+}
+
+/*==================================
+BACK BUTTON
+==================================*/
+
+.sticky-back{
+
+    color:#fff;
+
+    font-size:24px;
+
+    margin-right:18px;
+
+    text-decoration:none;
+
+}
+
+/*==================================
+PROFILE
+==================================*/
+
+.sticky-profile{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.sticky-profile img{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #FFC107;
+
+    margin-right:12px;
+
+}
+
+.sticky-info h3{
+
+    margin:0;
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.sticky-info span{
+
+    color:#CBD5E1;
+
+    font-size:15px;
+
+}
+/*==================================
+PROFILE CONTENT
+==================================*/
+
+.profile-content{
+
+    padding:20px;
+
+}
+
+/*==================================
+CARD
+==================================*/
+
+.profile-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+}
+
+.profile-card h2{
+
+    margin-bottom:18px;
+
+    color:#111827;
+
+    font-size:22px;
+
+}
+
+.profile-card h2 i{
+
+    color:#FFC107;
+
+    margin-right:10px;
+
+}
+
+/*==================================
+GRID
+==================================*/
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+.info-box{
+
+    background:#F8FAFC;
+
+    border-radius:12px;
+
+    padding:15px;
+
+}
+
+.info-box label{
+
+    color:#64748B;
+
+    font-size:14px;
+
+}
+
+.info-box p{
+
+    margin-top:8px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+/*==================================
+STATUS
+==================================*/
+
+.status-active{
+
+    color:#16A34A !important;
+
+}
+
+/*==================================
+BUTTON
+==================================*/
+
+.edit-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#F59E0B;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.edit-btn:hover{
+
+    background:#D97706;
+
+}
+/*==================================
+DESKTOP LAYOUT
+==================================*/
+
+.desktop-layout{
+    display:flex;
+    min-height:100vh;
+    background:#F5F7FB;
+}
+
+/*==================================
+PROFILE CONTAINER
+==================================*/
+
+.profile-container{
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+    padding:25px 40px;
+}
+
+/*==================================
+RESPONSIVE
+==================================*/
+
+@media (max-width:991px){
+
+.desktop-layout{
+    display:block;
+}
+
+.desktop-sidebar{
+    display:none;
+}
+
+.profile-container{
+
+    width:100%;
+
+    padding:30px 40px;
+
+    box-sizing:border-box;
+
+}
+
+.mobile-container{
+    display:block;
+}
+
+}
+
+@media (min-width:992px){
+
+body{
+    background:#EEF2F7;
+}
+
+.mobile-container{
+    max-width:430px;
+    margin:30px auto;
+}
+
+.sticky-header{
+    display:none;
+}
+
+}
+
+/*==================================
+DESKTOP PROFILE
+==================================*/
+
+.desktop-content{
+    display:none;
+}
+
+@media (min-width:992px){
+
+    /* Hide Mobile */
+    .mobile-container{
+        display:none;
+    }
+
+    .sticky-header{
+        display:none;
+    }
+
+    /* Show Desktop */
+    .desktop-content{
+        display:block;
+        width:100%;
+        max-width:1400px;
+        margin:0 auto;
+    }
+
+    /* Top Bar */
+
+    .desktop-topbar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:25px;
+    }
+
+    .desktop-back{
+        font-size:32px;
+        color:#111827;
+        text-decoration:none;
+    }
+
+    .desktop-back:hover{
+        color:#F59E0B;
+    }
+
+    .desktop-edit-btn{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+
+        width:190px;
+        height:52px;
+
+        background:#FFC107;
+        color:#111827;
+        text-decoration:none;
+
+        border-radius:12px;
+
+        font-size:18px;
+        font-weight:600;
+
+        transition:.3s;
+    }
+
+    .desktop-edit-btn:hover{
+
+        background:#F59E0B;
+        color:#fff;
+
+    }
+
+    /* Heading */
+
+    .desktop-title{
+        margin-bottom:30px;
+    }
+
+    .desktop-title h1{
+        margin:0;
+        font-size:48px;
+        color:#111827;
+    }
+
+    .desktop-title p{
+        margin-top:8px;
+        color:#64748B;
+        font-size:18px;
+    }
+
+    /* Profile Card */
+
+    .desktop-profile-card{
+
+        display:flex;
+
+        align-items:center;
+
+        gap:45px;
+
+        background:#111827;
+
+        color:#fff;
+
+        border-radius:22px;
+
+        padding:35px 50px;
+
+        box-shadow:0 12px 35px rgba(0,0,0,.15);
+
+    }
+
+    .desktop-profile-card img{
+
+        width:145px;
+
+        height:145px;
+
+        border-radius:50%;
+
+        object-fit:cover;
+
+        border:5px solid rgba(255,255,255,.18);
+
+    }
+
+    .profile-details{
+
+        text-align:left;
+
+    }
+
+    .profile-details h2{
+
+        margin:0;
+
+        font-size:44px;
+
+    }
+
+    .profile-details p{
+
+        margin:12px 0 24px;
+
+        font-size:24px;
+
+        color:#CBD5E1;
+
+    }
+
+    .desktop-status{
+
+        display:inline-block;
+
+        padding:12px 30px;
+
+        background:#FFC107;
+
+        color:#111827;
+
+        border-radius:40px;
+
+        font-weight:700;
+
+    }
+
+    /* Cards */
+
+    .desktop-info{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:28px;
+
+        margin-top:35px;
+
+    }
+
+    .desktop-card{
+
+        background:#fff;
+
+        border-radius:20px;
+
+        padding:25px;
+
+        box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+        transition:.3s;
+
+    }
+
+    .desktop-card:hover{
+
+        transform:translateY(-5px);
+
+        box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+    }
+
+    .desktop-card h3{
+
+        margin:0 0 22px;
+
+        font-size:30px;
+
+        color:#111827;
+
+    }
+
+    .desktop-card h3 i{
+
+        color:#FFC107;
+
+        margin-right:10px;
+
+    }
+
+}
+
+/* Tablet */
+
+@media (max-width:1200px){
+
+    .desktop-profile-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:25px;
+
+    }
+
+    .profile-details{
+
+        text-align:center;
+
+    }
+
+    .desktop-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

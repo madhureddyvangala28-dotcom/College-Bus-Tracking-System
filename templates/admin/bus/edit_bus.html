@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Edit Bus</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/buses.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<section class="page-title">
+
+<h1>Edit Bus</h1>
+
+<p>Update bus information.</p>
+
+</section>
+
+<div class="form-container">
+
+<form
+action="{{ url_for('edit_bus', bus_id=bus.bus_id) }}"
+method="POST">
+
+<label>Bus Number</label>
+
+<input
+type="text"
+name="bus_number"
+value="{{ bus.bus_number }}"
+required>
+
+<label>Driver</label>
+
+<select
+name="driver_name"
+required>
+
+{% for driver in drivers %}
+
+<option
+value="{{ driver.driver_name }}"
+{% if driver.driver_name == bus.driver_name %}
+selected
+{% endif %}>
+
+{{ driver.driver_name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Capacity</label>
+
+<input
+type="number"
+name="capacity"
+value="{{ bus.capacity }}"
+required>
+
+<label>Route</label>
+
+<select
+name="route_id"
+required>
+
+{% for route in routes %}
+
+<option
+value="{{ route.route_id }}"
+{% if route.route_id == bus.route_id %}
+selected
+{% endif %}>
+
+{{ route.route_name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<div class="form-buttons">
+
+<button
+type="submit"
+class="save-btn">
+
+<i class="fas fa-save"></i>
+
+Update Bus
+
+</button>
+
+<a
+href="{{ url_for('buses') }}"
+class="cancel-btn">
+
+Cancel
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

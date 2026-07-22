@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Add Bus</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/buses.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<section class="page-title">
+
+<h1>Add Bus</h1>
+
+<p>Register a new college bus.</p>
+
+</section>
+
+<div class="form-container">
+
+<form
+action="{{ url_for('add_bus') }}"
+method="POST">
+
+<label>Bus Number</label>
+
+<input
+type="text"
+name="bus_number"
+placeholder="TS09AB1234"
+required>
+
+<label>Driver</label>
+
+<select
+name="driver_name"
+required>
+
+<option value="">Select Driver</option>
+
+{% for driver in drivers %}
+
+<option value="{{ driver.driver_name }}">
+
+{{ driver.driver_name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<label>Capacity</label>
+
+<input
+type="number"
+name="capacity"
+value="50"
+required>
+
+<label>Route</label>
+
+<select
+name="route_id"
+required>
+
+<option value="">Select Route</option>
+
+{% for route in routes %}
+
+<option value="{{ route.route_id }}">
+
+{{ route.route_name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<div class="form-buttons">
+
+<button
+type="submit"
+class="save-btn">
+
+<i class="fas fa-save"></i>
+
+Save Bus
+
+</button>
+
+<a
+href="{{ url_for('buses') }}"
+class="cancel-btn">
+
+Cancel
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

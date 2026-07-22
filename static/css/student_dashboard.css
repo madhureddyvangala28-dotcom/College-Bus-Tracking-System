@@ -1,0 +1,1427 @@
+/*==================================================
+  GOOGLE FONT
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/*==================================================
+  GLOBAL
+==================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:#eef2f7;
+
+    color:#222;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+/*==================================================
+  APP CONTAINER
+==================================================*/
+
+.app-container{
+
+    width:100%;
+
+    max-width:430px;
+
+    min-height:100vh;
+
+    background:#f8f9fc;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:0 0 30px rgba(0,0,0,.12);
+
+}
+
+
+/*==================================================
+  HEADER
+==================================================*/
+
+.dashboard-header{
+
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+
+    color:#fff;
+
+    padding:20px;
+
+    padding-bottom:95px;
+
+    border-bottom-left-radius:35px;
+
+    border-bottom-right-radius:35px;
+
+    position:relative;
+
+}
+
+
+/*==================================================
+  TOP BAR
+==================================================*/
+
+.top-bar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+/*==================================================
+  HEADER ACTIONS
+==================================================*/
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+
+/*==================================================
+  NOTIFICATION BUTTON
+==================================================*/
+
+.notification-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.12);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    transition:.30s;
+
+    position:relative;
+
+}
+
+.notification-btn i{
+
+    font-size:20px;
+
+    color:#FFC107;
+
+}
+
+
+/* Hover */
+
+.notification-btn:hover{
+
+    background:#FFC107;
+
+    transform:translateY(-2px);
+
+}
+
+.notification-btn:hover i{
+
+    color:#111827;
+
+}
+
+
+/* Click */
+
+.notification-btn:active{
+
+    transform:scale(.95);
+
+}
+
+
+/*==================================================
+  NOTIFICATION BADGE
+==================================================*/
+
+.notification-btn::after{
+
+    content:"3";
+
+    position:absolute;
+
+    top:-4px;
+
+    right:-2px;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#EF4444;
+
+    color:#fff;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:2px solid #1E293B;
+
+}
+
+/*==================================================
+  LOGO
+==================================================*/
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.logo i{
+
+    font-size:24px;
+
+    color:#FFC107;
+
+}
+
+.logo span{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#fff;
+
+}
+
+
+/*==================================================
+  PROFILE IMAGE
+==================================================*/
+
+.profile-image{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:3px solid #FFC107;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    flex-shrink:0;
+
+}
+
+.profile-image:hover{
+
+    transform:scale(1.06);
+
+}
+
+.profile-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+/*==================================================
+  STUDENT DETAILS
+==================================================*/
+
+.student-details{
+
+    margin-top:10px;
+
+}
+
+.student-details h3{
+
+    color:#FFC107;
+
+    font-size:18px;
+
+    font-weight:500;
+
+    margin-bottom:10px;
+
+}
+
+.student-details h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    color:#fff;
+
+}
+
+.student-details p{
+
+    font-size:15px;
+
+    color:#d8dce3;
+
+    margin-bottom:5px;
+
+}
+/*==================================================
+  TODAY'S BUS CARD
+==================================================*/
+
+.bus-card{
+
+    width:90%;
+
+    margin:-60px auto 25px;
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    box-shadow:0 12px 28px rgba(0,0,0,.10);
+
+    animation:cardUp .45s ease;
+
+}
+
+
+/*==================================================
+  BUS TITLE
+==================================================*/
+
+.bus-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+.bus-title i{
+
+    font-size:22px;
+
+    color:#FFC107;
+
+}
+
+.bus-title span{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
+/*==================================================
+  BUS INFO GRID
+==================================================*/
+
+.bus-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+
+/*==================================================
+  INFO BOX
+==================================================*/
+
+.info-box{
+
+    background:#F8FAFC;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    text-align:center;
+
+    transition:.30s;
+
+    border:1px solid #EDF2F7;
+
+}
+
+.info-box:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.info-box small{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#6B7280;
+
+    margin-bottom:8px;
+
+}
+
+.info-box h4{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+.status{
+
+    color:#22C55E;
+
+    font-weight:700;
+
+}
+
+
+/*==================================================
+  LIVE TRACKING
+==================================================*/
+
+.live-tracking-card{
+
+    padding:0 20px 25px;
+
+}
+
+.live-card{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    text-decoration:none;
+
+    color:#ffffff;
+
+    background:linear-gradient(135deg,#0F172A,#334155);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    box-shadow:0 15px 30px rgba(15,23,42,.25);
+
+    transition:.30s;
+
+    animation:cardUp .55s ease;
+
+}
+
+.live-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.live-left{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-shrink:0;
+
+}
+
+.live-left i{
+
+    font-size:28px;
+
+    color:#FFC107;
+
+}
+
+.live-right{
+
+    flex:1;
+
+    margin-left:18px;
+
+}
+
+.live-right h3{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.live-right p{
+
+    font-size:14px;
+
+    color:#E5E7EB;
+
+}
+
+.live-arrow{
+
+    font-size:22px;
+
+    color:#FFC107;
+
+}
+
+
+/*==================================================
+  FEATURE GRID
+==================================================*/
+
+.feature-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    padding:0 20px 30px;
+
+}
+
+
+/*==================================================
+  FEATURE CARD
+==================================================*/
+
+.feature-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    min-height:135px;
+
+    text-decoration:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:1px solid #EDF2F7;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+    transition:.30s;
+
+    animation:cardUp .65s ease;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 16px 28px rgba(0,0,0,.12);
+
+}
+
+.feature-card i{
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+    color:#111827;
+
+    transition:.30s;
+
+}
+
+.feature-card span{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#1F2937;
+
+    text-align:center;
+
+    line-height:22px;
+
+    padding:0 10px;
+
+}
+
+.feature-card:hover i{
+
+    color:#FFC107;
+
+    transform:scale(1.12);
+
+}
+
+
+/*==================================================
+  FEATURE CARD COLORS
+==================================================*/
+
+.feature-card:nth-child(1){border-top:5px solid #2563EB;}
+
+.feature-card:nth-child(2){border-top:5px solid #16A34A;}
+
+.feature-card:nth-child(3){border-top:5px solid #F59E0B;}
+
+.feature-card:nth-child(4){border-top:5px solid #DC2626;}
+
+.feature-card:nth-child(5){border-top:5px solid #7C3AED;}
+
+.feature-card:nth-child(6){border-top:5px solid #0EA5E9;}
+
+.feature-card:nth-child(7){border-top:5px solid #F97316;}
+
+.feature-card:nth-child(8){border-top:5px solid #374151;}
+/*==================================================
+  FOOTER
+==================================================*/
+
+.dashboard-footer{
+
+    text-align:center;
+
+    padding:30px 20px;
+
+}
+
+.dashboard-footer p{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#444;
+
+    margin-bottom:6px;
+
+}
+
+.dashboard-footer span{
+
+    font-size:13px;
+
+    color:#888;
+
+}
+
+
+/*==================================================
+  PROFILE POPUP
+==================================================*/
+
+.profile-menu{
+
+    position:absolute;
+
+    top:70px;
+
+    right:20px;
+
+    width:280px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+    overflow:hidden;
+
+    z-index:9999;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(-10px);
+
+    transition:.3s;
+
+}
+
+.profile-menu.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+/*==================================================
+  PROFILE HEADER
+==================================================*/
+
+.profile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:20px;
+
+    background:#FFC107;
+
+}
+
+.popup-photo{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #ffffff;
+
+}
+
+.profile-info{
+
+    flex:1;
+
+}
+
+.profile-info h3{
+
+    font-size:17px;
+
+    color:#111;
+
+    margin-bottom:5px;
+
+}
+
+.profile-info p{
+
+    font-size:13px;
+
+    color:#444;
+
+}
+
+
+/*==================================================
+  DIVIDER
+==================================================*/
+
+.menu-divider{
+
+    height:1px;
+
+    background:#eeeeee;
+
+}
+
+
+/*==================================================
+  PROFILE LINKS
+==================================================*/
+
+.profile-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:16px 20px;
+
+    text-decoration:none;
+
+    color:#333;
+
+    font-size:15px;
+
+    transition:.25s;
+
+}
+
+.profile-menu a:hover{
+
+    background:#FFF8E1;
+
+}
+
+.profile-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    color:#F4B400;
+
+    font-size:18px;
+
+}
+
+.profile-menu a:last-child{
+
+    color:#E53935;
+
+}
+
+.profile-menu a:last-child i{
+
+    color:#E53935;
+
+}
+
+
+/*==================================================
+  CLICK EFFECT
+==================================================*/
+
+.feature-card:active,
+.live-card:active{
+
+    transform:scale(.97);
+
+}
+
+
+/*==================================================
+  ANIMATIONS
+==================================================*/
+
+@keyframes cardUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/*==================================================
+  IMAGE
+==================================================*/
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+/*==================================================
+  MOBILE
+==================================================*/
+
+@media (max-width:600px){
+
+    .app-container{
+
+        width:100%;
+
+        max-width:100%;
+
+        min-height:100vh;
+
+        box-shadow:none;
+
+    }
+
+    .dashboard-header{
+
+        border-bottom-left-radius:28px;
+
+        border-bottom-right-radius:28px;
+
+        padding:18px;
+
+        padding-bottom:90px;
+
+    }
+
+    .student-details h2{
+
+        font-size:24px;
+
+    }
+
+    .student-details h3{
+
+        font-size:17px;
+
+    }
+
+    .student-details p{
+
+        font-size:14px;
+
+    }
+
+    .bus-card{
+
+        width:92%;
+
+    }
+
+    .bus-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .feature-grid{
+
+        gap:15px;
+
+    }
+
+    .feature-card{
+
+        min-height:120px;
+
+    }
+
+    .feature-card i{
+
+        font-size:28px;
+
+    }
+
+    .feature-card span{
+
+        font-size:14px;
+
+    }
+
+    .live-card{
+
+        padding:18px;
+
+    }
+
+    .live-left{
+
+        width:52px;
+
+        height:52px;
+
+    }
+
+    .live-left i{
+
+        font-size:24px;
+
+    }
+
+    .live-right h3{
+
+        font-size:18px;
+
+    }
+
+    .live-right p{
+
+        font-size:13px;
+
+    }
+
+    .profile-menu{
+
+        width:260px;
+
+        right:12px;
+
+        top:75px;
+
+    }
+
+}
+
+
+/*==================================================
+  TABLET
+==================================================*/
+
+@media (min-width:601px) and (max-width:991px){
+
+    .app-container{
+
+        max-width:500px;
+
+        margin:20px auto;
+
+        border-radius:25px;
+
+    }
+
+    .feature-card{
+
+        min-height:145px;
+
+    }
+
+    .feature-card i{
+
+        font-size:34px;
+
+    }
+
+    .feature-card span{
+
+        font-size:15px;
+
+    }
+
+    .profile-menu{
+
+        right:20px;
+
+    }
+
+}
+
+
+/*==================================================
+  DESKTOP
+==================================================*/
+
+@media (min-width:992px){
+
+    body{
+
+        display:flex;
+
+        justify-content:center;
+
+        align-items:flex-start;
+
+        background:#E8EDF5;
+
+        padding:30px;
+
+    }
+
+    .app-container{
+
+        max-width:430px;
+
+        border-radius:30px;
+
+        overflow:hidden;
+
+    }
+
+}
+
+
+/*==================================================
+  SCROLLBAR
+==================================================*/
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#F5F5F5;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#C5C5C5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#999;
+
+}
+
+
+/*==================================================
+  IMAGE
+==================================================*/
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+
+/*==================================================
+  REMOVE BLUE TAP
+==================================================*/
+
+*{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+/*==================================================
+  SELECTION
+==================================================*/
+
+::selection{
+
+    background:#FFC107;
+
+    color:#111;
+
+}
+/*=========================================
+DESKTOP LAYOUT
+=========================================*/
+
+.desktop-layout{
+    display:flex;
+    width:100%;
+}
+
+/* Hide sidebar on Mobile */
+
+.desktop-sidebar{
+    display:none;
+}
+
+/*=========================================
+DESKTOP
+=========================================*/
+
+@media (min-width:1200px){
+
+body{
+
+    background:#EEF2F7;
+    padding:25px;
+    justify-content:center;
+    align-items:flex-start;
+
+}
+
+/* Main Layout */
+
+.desktop-layout{
+
+    display:grid;
+    grid-template-columns:240px 1fr;
+    gap:30px;
+    width:100%;
+    max-width:1700px;
+    margin:auto;
+    align-items:flex-start;
+
+}
+
+/* Sidebar */
+
+.desktop-sidebar{
+
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    background:#0F172A;
+    padding:30px;
+    border-radius:30px;
+    height:calc(100vh - 60px);
+    position:sticky;
+    top:30px;
+
+}
+
+.sidebar-logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+    color:#FFC107;
+    font-size:24px;
+    font-weight:700;
+
+}
+
+.sidebar-logo i{
+
+    font-size:30px;
+
+}
+
+.desktop-sidebar a{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:16px 18px;
+    margin-bottom:12px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#CBD5E1;
+    font-size:17px;
+    transition:.30s;
+
+}
+
+.desktop-sidebar a:hover,
+.desktop-sidebar a.active{
+
+    background:#FFC107;
+    color:#111827;
+
+}
+
+.desktop-sidebar a i{
+
+    width:24px;
+    text-align:center;
+    font-size:18px;
+
+}
+
+/* App */
+
+.app-container{
+
+    width:100%;
+    max-width:100%;
+    margin:0;
+    border-radius:30px;
+    padding-bottom:30px;
+    overflow:hidden;
+    background:#F8F9FC;
+
+}
+
+/* Header */
+
+.dashboard-header{
+    padding:30px 45px;
+    min-height:240px;
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+}
+
+/* Student */
+
+.student-details{
+
+    max-width:700px;
+
+}
+
+.student-details h2{
+
+    font-size:38px;
+
+}
+
+.student-details h3{
+
+    font-size:24px;
+
+}
+
+.student-details p{
+
+    font-size:18px;
+
+}
+
+/* Bus Card */
+
+.bus-card{
+
+    width:96%;
+    margin:-60px auto 30px;
+
+}
+
+.bus-info{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+
+}
+
+.info-box{
+
+    padding:30px 20px;
+
+}
+
+.info-box small{
+
+    font-size:15px;
+
+}
+
+.info-box h4{
+
+    font-size:22px;
+
+}
+
+/* Live Tracking */
+
+.live-tracking-card{
+
+    padding:0 25px 30px;
+
+}
+
+.live-card{
+
+    padding:30px;
+
+}
+
+/* Feature Grid */
+
+.feature-grid{
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:20px;
+    padding:0 25px 40px;
+
+}
+
+}
+

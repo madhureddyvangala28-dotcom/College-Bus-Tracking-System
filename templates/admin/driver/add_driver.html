@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Driver</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/add_driver.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<section class="page-header">
+
+    <h1>Add Driver</h1>
+
+    <p>Register a new driver into the College Bus Tracking System</p>
+
+</section>
+
+<div class="card">
+
+<form action="{{ url_for('add_driver') }}" method="POST">
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Driver Name</label>
+
+<input
+type="text"
+name="driver_name"
+placeholder="Enter Driver Name"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>License Number</label>
+
+<input
+type="text"
+name="license_number"
+placeholder="Enter License Number"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Phone Number</label>
+
+<input
+type="text"
+name="phone"
+placeholder="Enter Phone Number"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Bus Number</label>
+
+<select name="bus_number" required>
+
+<option value="">Select Bus</option>
+
+{% for bus in buses %}
+
+<option value="{{ bus[1] }}">
+{{ bus[1] }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Route</label>
+
+<select name="route_id" required>
+
+<option value="">Select Route</option>
+
+{% for route in routes %}
+
+<option value="{{ route[0] }}">
+{{ route[1] }}
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Status</label>
+
+<select name="status">
+
+<option value="Available">
+Available
+</option>
+
+<option value="On Trip">
+On Trip
+</option>
+
+<option value="On Leave">
+On Leave
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group full">
+
+<label>Password</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+name="password"
+placeholder="Create Password"
+required>
+
+<i
+class="fa-solid fa-eye"
+onclick="togglePassword()">
+</i>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button class="save-btn">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Driver
+
+</button>
+
+<a
+href="{{ url_for('drivers') }}"
+class="cancel-btn">
+
+Cancel
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+let x=document.getElementById("password");
+
+if(x.type==="password")
+x.type="text";
+else
+x.type="password";
+
+}
+
+</script>
+
+</body>
+
+</html>

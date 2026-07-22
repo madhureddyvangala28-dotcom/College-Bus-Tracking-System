@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_dashboard.css') }}">
+</head>
+
+<body>
+
+    <div class="desktop-layout">
+
+        <!-- ================= Sidebar ================= -->
+        <div class="desktop-sidebar">
+
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-bus"></i>
+                <span>College Bus</span>
+            </div>
+
+            <a href="{{ url_for('student_dashboard') }}" class="active">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('student_live_tracking') }}">
+                <i class="fa-solid fa-location-dot"></i>
+                Live Tracking
+            </a>
+
+            <a href="{{ url_for('student_profile') }}">
+                <i class="fa-solid fa-user"></i>
+                My Profile
+            </a>
+
+            <a href="{{ url_for('student_notifications') }}">
+                <i class="fa-solid fa-bell"></i>
+                Notifications
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </div>
+
+        <!-- ================= Main Content ================= -->
+        <div class="app-container">
+
+            <!-- ================= Header ================= -->
+            <header class="dashboard-header">
+
+                <div class="top-bar">
+
+                    <div class="logo">
+                        <i class="fa-solid fa-bus"></i>
+                        <span>College Bus Tracking</span>
+                    </div>
+
+                    <div class="header-actions">
+
+                        <a href="{{ url_for('student_notifications') }}" class="notification-btn">
+                            <i class="fa-solid fa-bell"></i>
+                        </a>
+
+                        <div class="profile-image" id="profileBtn">
+
+                            {% if student.profile_image %}
+                            <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
+                                class="erp-photo" alt="Profile">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/students/student.png') }}" class="erp-photo"
+                                alt="Profile">
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Student Details -->
+                <div class="student-details">
+                    <h3 id="greeting">Good Morning 👋</h3>
+                    <h2>{{ student.student_name }}</h2>
+                    <p>Roll No : {{ student.roll_number }}</p>
+                    <p>Phone : {{ student.phone }}</p>
+                </div>
+
+                <!-- ================= Profile Popup ================= -->
+
+                <div class="profile-menu" id="profileMenu">
+
+                    <div class="profile-header">
+
+                        {% if student.profile_image %}
+                        <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
+                            class="popup-photo" alt="Profile">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/students/student.png') }}" class="popup-photo"
+                            alt="Profile">
+                        {% endif %}
+
+                        <div class="profile-info">
+                            <h3>{{ student.student_name }}</h3>
+                            <p>{{ student.roll_number }}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="menu-divider"></div>
+
+                    <a href="{{ url_for('student_profile') }}">
+                        <i class="fa-solid fa-user"></i>
+                        <span>My Profile</span>
+                    </a>
+
+                    <a href="{{ url_for('change_password') }}">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Change Password</span>
+                    </a>
+
+                    <a href="{{ url_for('logout') }}">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+
+                </div>
+
+            </header>
+
+            <!-- ================= Today's Bus ================= -->
+
+            <section class="bus-card">
+
+                <div class="bus-title">
+                    <i class="fa-solid fa-bus"></i>
+                    <span>Today's Bus</span>
+                </div>
+
+                {% if bus_status %}
+
+                <div class="bus-info">
+
+                    <div class="info-box">
+                        <small>Bus Number</small>
+                        <h4>{{ bus_status.bus_number }}</h4>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Driver</small>
+                        <h4>{{ bus_status.driver_name }}</h4>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Route</small>
+                        <h4>{{ bus_status.route_name }}</h4>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Status</small>
+                        <h4 class="status">
+                            🟢 {{ bus_status.status }}
+                        </h4>
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <p>No bus assigned.</p>
+
+                {% endif %}
+
+            </section>
+
+            <!-- ================= Live Tracking ================= -->
+
+            <section class="live-tracking-card">
+
+                <a href="{{ url_for('student_live_tracking') }}" class="live-card">
+
+                    <div class="live-left">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <div class="live-right">
+                        <h3>Live Bus Tracking</h3>
+                        <p>View Current Bus Location</p>
+                    </div>
+
+                    <div class="live-arrow">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+
+                </a>
+
+            </section>
+
+            <!-- ================= Feature Grid ================= -->
+
+            <section class="feature-grid">
+
+                <a href="{{ url_for('student_bus') }}" class="feature-card">
+                    <i class="fa-solid fa-bus-simple"></i>
+                    <span>My Bus</span>
+                </a>
+
+                <a href="{{ url_for('student_route') }}" class="feature-card">
+                    <i class="fa-solid fa-route"></i>
+                    <span>Route Details</span>
+                </a>
+
+                <a href="{{ url_for('travel_history') }}" class="feature-card">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Travel History</span>
+                </a>
+
+                <a href="{{ url_for('student_emergency') }}" class="feature-card">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Emergency</span>
+                </a>
+                <a href="{{ url_for('student_settings') }}" class="feature-card">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+            </section>
+
+            <!-- ================= Footer ================= -->
+
+            <footer class="dashboard-footer">
+                <p>College Bus Tracking System</p>
+                <span>Version 1.0</span>
+            </footer>
+
+        </div>
+
+    </div>
+
+    <!-- Dashboard JS -->
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

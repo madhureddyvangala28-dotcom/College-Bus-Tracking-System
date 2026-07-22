@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Travel History | College Bus Tracking</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/travel_history.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ======================================
+            DESKTOP HEADER
+    ======================================= -->
+
+    <div class="desktop-content">
+
+        <div class="desktop-header">
+
+            <div class="desktop-title">
+
+                <a href="{{ url_for('student_dashboard') }}"
+                   class="desktop-back">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </a>
+
+                <div>
+
+                    <h1>Travel History</h1>
+
+                    <p>
+                        View all your previous bus journeys.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="desktop-page">
+
+        <div class="mobile-container">
+
+            <!-- ======================================
+                    MOBILE HEADER
+            ======================================= -->
+
+            <div class="profile-header">
+
+                <a href="{{ url_for('student_dashboard') }}"
+                   class="back-btn">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </a>
+
+                <div class="profile-title">
+
+                    <h1>Travel History</h1>
+
+                    <p>
+                        View all your previous bus journeys.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+                    MAIN CONTENT
+            ======================================= -->
+
+            <div class="route-container">
+
+                <div class="desktop-grid">
+
+                    <!-- ======================================
+                            LEFT PROFILE CARD
+                    ======================================= -->
+
+                    <div class="left-column">
+
+                        <div class="profile-card">
+
+                            <div class="profile-top">
+
+                                {% if student.profile_image %}
+
+                                <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
+                                     class="student-image">
+
+                                {% else %}
+
+                                <img src="{{ url_for('static', filename='images/students/student.png') }}"
+                                     class="student-image">
+
+                                {% endif %}
+
+                                <h2>
+
+                                    {{ student.student_name }}
+
+                                </h2>
+
+                                <p>
+
+                                    {{ student.roll_number }}
+
+                                </p>
+
+                            </div>
+
+                            <div class="profile-bottom">
+
+                                <div class="info-box">
+
+                                    <i class="fas fa-clock-rotate-left"></i>
+
+                                    <div>
+
+                                        <span>Total Trips</span>
+
+                                        <h4>
+
+                                            {{ total_trips if total_trips else 0 }}
+
+                                        </h4>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="info-box">
+
+                                    <i class="fas fa-calendar-check"></i>
+
+                                    <div>
+
+                                        <span>Last Journey</span>
+
+                                        <h4>
+
+                                            {{ last_trip_date if last_trip_date else "-" }}
+
+                                        </h4>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="info-box">
+
+                                    <i class="fas fa-bus"></i>
+
+                                    <div>
+
+                                        <span>Assigned Bus</span>
+
+                                        <h4>
+
+                                            {{ route.bus_number if route else "-" }}
+
+                                        </h4>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ======================================
+                            RIGHT COLUMN STARTS HERE
+                            (Part 2)
+                    ======================================= -->
+
+                    <div class="right-column">
+                                                <!-- ======================================
+                                TRAVEL HISTORY
+                        ======================================= -->
+
+                        <div class="desktop-card route-card mb-4">
+
+                            <h2>
+
+                                <i class="fas fa-clock-rotate-left"></i>
+
+                                Recent Travel History
+
+                            </h2>
+
+                            {% if travel_history %}
+
+                            <div class="travel-history-list mt-4">
+
+                                {% for trip in travel_history %}
+
+                                <div class="history-card">
+
+                                    <div class="history-top">
+
+                                        <div class="history-date">
+
+                                            <i class="fas fa-calendar-day"></i>
+
+                                            <span>
+
+                                                {{ trip.travel_date }}
+
+                                            </span>
+
+                                        </div>
+
+                                        <div>
+
+                                            {% if trip.status == "Completed" %}
+
+                                            <span class="badge bg-success">
+
+                                                Completed
+
+                                            </span>
+
+                                            {% elif trip.status == "Cancelled" %}
+
+                                            <span class="badge bg-danger">
+
+                                                Cancelled
+
+                                            </span>
+
+                                            {% else %}
+
+                                            <span class="badge bg-warning text-dark">
+
+                                                Pending
+
+                                            </span>
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4">
+
+                                        <div class="col-md-6 mb-3">
+
+                                            <div class="detail-card">
+
+                                                <i class="fas fa-location-dot icon-yellow"></i>
+
+                                                <div>
+
+                                                    <span>Boarding Point</span>
+
+                                                    <h5>
+
+                                                        {{ trip.boarding_point }}
+
+                                                    </h5>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+
+                                            <div class="detail-card">
+
+                                                <i class="fas fa-flag-checkered icon-yellow"></i>
+
+                                                <div>
+
+                                                    <span>Drop Point</span>
+
+                                                    <h5>
+
+                                                        {{ trip.drop_point }}
+
+                                                    </h5>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="detail-card">
+
+                                                <i class="fas fa-clock icon-yellow"></i>
+
+                                                <div>
+
+                                                    <span>Boarding Time</span>
+
+                                                    <h5>
+
+                                                        {{ trip.boarding_time }}
+
+                                                    </h5>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="detail-card">
+
+                                                <i class="fas fa-hourglass-end icon-yellow"></i>
+
+                                                <div>
+
+                                                    <span>Arrival Time</span>
+
+                                                    <h5>
+
+                                                        {{ trip.arrival_time }}
+
+                                                    </h5>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                            {% else %}
+
+                            <div class="text-center py-5">
+
+                                <i class="fas fa-clock-rotate-left fa-4x text-secondary mb-3"></i>
+
+                                <h4>No Travel History Found</h4>
+
+                                <p class="text-muted mb-0">
+
+                                    Your completed bus journeys will appear here.
+
+                                </p>
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- ======================================
+                                JOURNEY STATISTICS
+                        ======================================= -->
+
+                        <div class="desktop-card route-card">
+
+                            <h2>
+
+                                <i class="fas fa-chart-column"></i>
+
+                                Journey Statistics
+
+                            </h2>
+
+                            <div class="summary-grid mt-4">
+
+                                <div class="summary-box">
+
+                                    <h6>Total Trips</h6>
+
+                                    <h4>
+
+                                        {{ total_trips if total_trips else 0 }}
+
+                                    </h4>
+
+                                </div>
+
+                                <div class="summary-box">
+
+                                    <h6>Completed</h6>
+
+                                    <h4>
+
+                                        {{ completed_trips if completed_trips else 0 }}
+
+                                    </h4>
+
+                                </div>
+
+                                <div class="summary-box">
+
+                                    <h6>Cancelled</h6>
+
+                                    <h4>
+
+                                        {{ cancelled_trips if cancelled_trips else 0 }}
+
+                                    </h4>
+
+                                </div>
+
+                                <div class="summary-box">
+
+                                    <h6>Assigned Route</h6>
+
+                                    <h4>
+
+                                        {{ route.route_name if route else "-" }}
+
+                                    </h4>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                                            </div>
+                    <!-- End Right Column -->
+
+                </div>
+                <!-- End desktop-grid -->
+
+            </div>
+            <!-- End route-container -->
+
+        </div>
+        <!-- End mobile-container -->
+
+    </div>
+    <!-- End desktop-page -->
+
+    <!-- ======================================
+            BOOTSTRAP JS
+    ======================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

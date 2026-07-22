@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Route</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/routes.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+    <h1>Edit Route</h1>
+
+    <p>Update route information for the College Bus Tracking System.</p>
+
+</section>
+
+<!-- ================= FORM ================= -->
+
+<div class="form-container">
+
+<form method="POST">
+
+    <!-- Route Name -->
+
+    <label>
+        <i class="fas fa-road"></i>
+        Route Name
+    </label>
+
+    <input
+        type="text"
+        name="route_name"
+        value="{{ route.route_name }}"
+        required>
+
+    <!-- Source -->
+
+    <label>
+        <i class="fas fa-location-dot"></i>
+        Source
+    </label>
+
+    <input
+        type="text"
+        name="source"
+        value="{{ route.source }}"
+        required>
+
+    <!-- Destination -->
+
+    <label>
+        <i class="fas fa-map-marker-alt"></i>
+        Destination
+    </label>
+
+    <input
+        type="text"
+        name="destination"
+        value="{{ route.destination }}"
+        required>
+
+    <!-- Distance -->
+
+    <label>
+        <i class="fas fa-ruler-horizontal"></i>
+        Distance
+    </label>
+
+    <input
+        type="text"
+        name="distance"
+        value="{{ route.distance }}"
+        required>
+
+    <!-- Estimated Time -->
+
+    <label>
+        <i class="fas fa-clock"></i>
+        Estimated Time
+    </label>
+
+    <input
+        type="text"
+        name="estimated_time"
+        value="{{ route.estimated_time }}"
+        required>
+
+    <!-- Status -->
+
+    <label>
+        <i class="fas fa-signal"></i>
+        Status
+    </label>
+
+    <select name="status">
+
+        <option value="Active"
+        {% if route.status == "Active" %}selected{% endif %}>
+        Active
+        </option>
+
+        <option value="Inactive"
+        {% if route.status == "Inactive" %}selected{% endif %}>
+        Inactive
+        </option>
+
+    </select>
+
+    <!-- Buttons -->
+
+    <div class="form-buttons">
+
+        <button
+            type="submit"
+            class="save-btn">
+
+            <i class="fas fa-save"></i>
+
+            Update Route
+
+        </button>
+
+        <a
+        href="{{ url_for('routes') }}"
+        class="cancel-btn">
+
+            Cancel
+
+        </a>
+
+    </div>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

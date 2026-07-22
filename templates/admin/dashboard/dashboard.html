@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | College Bus Tracking</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    {% include "admin/navbar.html" %}
+    <!-- ================= HERO SECTION ================= -->
+
+<section class="dashboard-hero">
+
+    <div class="hero-left">
+
+        <h1>Dashboard <br> Overview</h1>
+
+        <p class="welcome">
+            Welcome back, Admin 👋
+        </p>
+
+        <p class="description">
+            Manage students, drivers, buses and routes
+            from one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="/add_student" class="btn-dark">
+                <i class="fas fa-user-plus"></i>
+                Add Student
+            </a>
+
+            <a href="/add_driver" class="btn-light">
+                <i class="fas fa-id-card"></i>
+                Add Driver
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+      Dashboard Statistics
+=========================== -->
+
+<section class="stats-section">
+
+    <div class="stat-card">
+
+        <div class="icon purple">
+            🎓
+        </div>
+
+        <div class="stat-info">
+            <h4>Students</h4>
+            <h2>{{ student_count }}</h2>
+            <p>Total Registered</p>
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="icon blue">
+            👨‍✈️
+        </div>
+
+        <div class="stat-info">
+            <h4>Drivers</h4>
+            <h2>{{ driver_count }}</h2>
+            <p>Total Drivers</p>
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="icon green">
+            🚌
+        </div>
+
+        <div class="stat-info">
+            <h4>Buses</h4>
+            <h2>{{ bus_count }}</h2>
+            <p>Total Buses</p>
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="icon orange">
+            🛣️
+        </div>
+
+        <div class="stat-info">
+            <h4>Routes</h4>
+            <h2>{{ route_count }}</h2>
+            <p>Total Routes</p>
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================
+        Driver Status
+=========================== -->
+
+<div class="dashboard-row">
+
+<div class="status-card">
+
+<div class="card-header">
+
+<h2>Driver Status</h2>
+
+<a href="/drivers">View All</a>
+
+</div>
+
+<div class="status-grid">
+
+<div class="status-box available">
+
+<div class="status-icon">
+🟢
+</div>
+
+<h3>Available</h3>
+
+<h1>{{ available_count }}</h1>
+
+<div class="line green"></div>
+
+</div>
+
+<div class="status-box trip">
+
+<div class="status-icon">
+🚌
+</div>
+
+<h3>On Trip</h3>
+
+<h1>{{ trip_count }}</h1>
+
+<div class="line blue"></div>
+
+</div>
+
+<div class="status-box leave">
+
+<div class="status-icon">
+🔴
+</div>
+
+<h3>On Leave</h3>
+
+<h1>{{ leave_count }}</h1>
+
+<div class="line red"></div>
+
+</div>
+
+</div>
+
+</div>
+
+    <!-- ================= QUICK ACTIONS ================= -->
+
+    <section class="quick-actions">
+
+        <h2>Quick Actions</h2>
+
+        <div class="action-grid">
+
+            <a href="/add_student" class="action-btn">
+                <i class="fas fa-user-plus"></i>
+                Add Student
+            </a>
+
+            <a href="/add_driver" class="action-btn">
+                <i class="fas fa-id-card"></i>
+                Add Driver
+            </a>
+
+            <a href="/add_bus" class="action-btn">
+                <i class="fas fa-bus"></i>
+                Add Bus
+            </a>
+
+            <a href="/add_route" class="action-btn">
+                <i class="fas fa-road"></i>
+                Add Route
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ================= RECENT ACTIVITY ================= -->
+
+    <section class="activity-section">
+
+        <h2>Recent Activities</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Activity</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            <tr>
+
+                <td>Student Registered</td>
+
+                <td><span class="badge success">Completed</span></td>
+
+            </tr>
+
+            <tr>
+
+                <td>Driver Added</td>
+
+                <td><span class="badge success">Completed</span></td>
+
+            </tr>
+
+            <tr>
+
+                <td>Bus Assigned</td>
+
+                <td><span class="badge warning">Pending</span></td>
+
+            </tr>
+
+            <tr>
+
+                <td>Route Updated</td>
+
+                <td><span class="badge success">Completed</span></td>
+
+            </tr>
+
+        </table>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+
+            © 2026 College Bus Tracking System
+
+            |
+
+            Developed by V. Madhu Reddy
+
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

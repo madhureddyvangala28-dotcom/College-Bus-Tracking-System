@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Edit Driver</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/add_driver.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<section class="page-header">
+
+<h1>Edit Driver</h1>
+
+<p>Update Driver Information</p>
+
+</section>
+
+<div class="card">
+
+<form method="POST">
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Driver Name</label>
+
+<input
+type="text"
+name="driver_name"
+value="{{ driver[1] }}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>License Number</label>
+
+<input
+type="text"
+name="license_number"
+value="{{ driver[2] }}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Phone Number</label>
+
+<input
+type="text"
+name="phone"
+value="{{ driver[3] }}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Bus Number</label>
+
+<select name="bus_number">
+
+{% for bus in buses %}
+
+<option
+value="{{ bus[0] }}"
+{% if bus[0]==driver[4] %}
+selected
+{% endif %}
+>
+
+{{ bus[0] }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Route</label>
+
+<select name="route_id">
+
+{% for route in routes %}
+
+<option
+value="{{ route[0] }}"
+{% if route[0]==driver[5] %}
+selected
+{% endif %}
+>
+
+{{ route[1] }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Status</label>
+
+<select name="status">
+
+<option
+value="Available"
+{% if driver[6]=="Available" %}
+selected
+{% endif %}
+>
+
+Available
+
+</option>
+
+<option
+value="On Trip"
+{% if driver[6]=="On Trip" %}
+selected
+{% endif %}
+>
+
+On Trip
+
+</option>
+
+<option
+value="On Leave"
+{% if driver[6]=="On Leave" %}
+selected
+{% endif %}
+>
+
+On Leave
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group full">
+
+<label>Password</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+name="password"
+value="{{ driver[7] }}">
+
+<i
+class="fa-solid fa-eye"
+onclick="togglePassword()">
+</i>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button class="save-btn">
+
+<i class="fa-solid fa-pen"></i>
+
+Update Driver
+
+</button>
+
+<a
+href="{{ url_for('drivers') }}"
+class="cancel-btn">
+
+Cancel
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+let x=document.getElementById("password");
+
+if(x.type==="password")
+x.type="text";
+else
+x.type="password";
+
+}
+
+</script>
+
+</body>
+
+</html>

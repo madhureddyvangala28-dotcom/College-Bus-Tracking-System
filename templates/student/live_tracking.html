@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Live Bus Tracking</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/live_tracking.css') }}">
+
+</head>
+
+<body>
+<!-- ======================================
+     DESKTOP CONTENT
+====================================== -->
+
+<div class="desktop-content">
+
+    <div class="desktop-header">
+
+        <div class="desktop-title">
+
+            <a href="{{ url_for('student_dashboard') }}"
+               class="desktop-back">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </a>
+
+            <div>
+
+                <h1>Live Bus Tracking</h1>
+
+                <p>Track your college bus in real time.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="desktop-page">
+
+<div class="mobile-container">
+
+    <!-- Sticky Header -->
+
+    <div class="sticky-header">
+
+        <a href="{{ url_for('student_dashboard') }}" class="sticky-back">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </a>
+
+        <div class="sticky-profile">
+
+            {% if session.get('profile_image') %}
+
+            <img src="{{ url_for('static', filename='images/students/' + session['profile_image']) }}">
+
+            {% else %}
+
+            <img src="{{ url_for('static', filename='images/students/student.png') }}">
+
+            {% endif %}
+
+            <div class="sticky-info">
+
+                <h3>Live Bus Tracking</h3>
+
+                <span>{{ tracking.bus_number }}</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+
+    <div class="profile-header">
+
+        <div class="profile-topbar">
+
+            <a href="{{ url_for('student_dashboard') }}" class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </a>
+
+        </div>
+
+        <div class="profile-avatar">
+
+            <i class="fa-solid fa-bus"
+               style="font-size:90px;color:#FFC107;"></i>
+
+        </div>
+
+        <div class="student-name">
+
+            Live Bus Tracking
+
+        </div>
+
+        <div class="student-roll">
+
+            {{ tracking.route_name }}
+
+        </div>
+
+        <div class="student-status">
+
+            🟢 {{ tracking.status }}
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="desktop-grid profile-content">
+
+        <div class="desktop-card profile-card">
+
+            <h2>
+
+                <i class="fa-solid fa-bus"></i>
+
+                Bus Information
+
+            </h2>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <label>Bus Number</label>
+
+                    <p>{{ tracking.bus_number }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Driver</label>
+
+                    <p>{{ tracking.driver_name }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Current Stop</label>
+
+                    <p>{{ tracking.current_stop }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>ETA</label>
+
+                    <p>{{ tracking.eta }}</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Speed</label>
+
+                    <p>{{ tracking.speed }} km/h</p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <label>Status</label>
+
+                    <p class="status-active">
+
+                        ● {{ tracking.status }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MAP -->
+
+        <div class="desktop-card profile-card">
+
+            <h2>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Live Location
+
+            </h2>
+
+            <div id="liveMap"
+
+              data-lat="{{ tracking.latitude }}"
+
+              data-lng="{{ tracking.longitude }}"
+
+              data-bus="{{ tracking.bus_number }}"
+
+              data-driver="{{ tracking.driver_name }}"
+
+              data-stop="{{ tracking.current_stop }}"
+
+              data-speed="{{ tracking.speed }}"
+            
+              data-eta="{{ tracking.eta }}">
+
+        </div>
+
+        <div class="map-info">
+            
+            <i class="fa-solid fa-map-location-dot"></i>
+            <h3>Live Bus Location</h3>
+            <p>Real-time location updates using GPS.</p>
+
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/live_tracking.js') }}"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static',filename='js/live_map.js') }}"></script>
+
+</body>
+
+</html>

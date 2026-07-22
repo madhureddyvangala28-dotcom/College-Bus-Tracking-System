@@ -1,0 +1,137 @@
+/* ===================================================
+   BUS PROFILE
+=================================================== */
+
+.profile-container{
+
+    margin-top:60px;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:40px;
+
+}
+
+.profile-card{
+
+    width:750px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+}
+
+.profile-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.profile-header i{
+
+    color:#FFC107;
+
+    margin-bottom:15px;
+
+}
+
+.profile-header h2{
+
+    font-size:34px;
+
+    color:#111827;
+
+}
+
+.profile-card table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.profile-card th{
+
+    width:250px;
+
+    background:#111827;
+
+    color:white;
+
+    padding:16px;
+
+    text-align:left;
+
+}
+
+.profile-card td{
+
+    padding:16px;
+
+    border:1px solid #ddd;
+
+    font-size:17px;
+
+}
+
+.profile-buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:35px;
+
+}
+
+.edit-btn{
+
+    background:#FFC107;
+
+    color:#111827;
+
+    text-decoration:none;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+}
+
+.edit-btn:hover{
+
+    background:#ffca2c;
+
+}
+
+.back-btn{
+
+    background:#111827;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+}
+
+.back-btn:hover{
+
+    background:#000;
+
+}

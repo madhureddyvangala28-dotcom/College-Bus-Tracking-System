@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Student</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/students.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+{% include "admin/navbar.html" %}
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+<h1>Add Student</h1>
+
+<p>Register a new student into the College Bus Tracking System.</p>
+
+</section>
+
+<!-- ================= FLASH MESSAGE ================= -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+<div class="flash-container">
+
+{% for category, message in messages %}
+
+<div class="flash-message {{ category }}">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endwith %}
+
+<!-- ================= FORM ================= -->
+
+<div class="form-container">
+
+<form method="POST"
+      enctype="multipart/form-data">
+
+<!-- Student Name -->
+
+<label>
+
+<i class="fas fa-user-graduate"></i>
+
+Student Name
+
+</label>
+
+<input
+type="text"
+name="student_name"
+placeholder="Enter Student Name"
+required>
+
+<!-- Roll Number -->
+
+<label>
+
+<i class="fas fa-id-card"></i>
+
+Roll Number
+
+</label>
+
+<input
+type="text"
+name="roll_number"
+placeholder="Enter Roll Number"
+required>
+
+<!-- Phone -->
+
+<label>
+
+<i class="fas fa-phone"></i>
+
+Phone Number
+
+</label>
+
+<input
+type="text"
+name="phone"
+placeholder="Enter Phone Number"
+maxlength="10"
+required>
+
+<!-- Route -->
+
+<label>
+
+<i class="fas fa-road"></i>
+
+Route
+
+</label>
+
+<select
+name="route_id"
+required>
+
+<option value="">Select Route</option>
+
+{% for route in routes %}
+
+<option value="{{ route.route_id }}">
+
+{{ route.route_name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<!-- Password -->
+
+<label>
+
+<i class="fas fa-lock"></i>
+
+Password
+
+</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+name="password"
+placeholder="Enter Password"
+required>
+
+<span
+class="toggle-password"
+onclick="togglePassword()">
+
+<i
+id="eyeIcon"
+class="fas fa-eye"></i>
+
+</span>
+
+</div>
+
+<!-- Profile Image -->
+
+<label>
+
+<i class="fas fa-image"></i>
+
+Profile Image
+
+</label>
+
+<input
+type="file"
+name="profile_image"
+accept=".jpg,.jpeg,.png">
+
+<!-- Buttons -->
+
+<div class="form-buttons">
+
+<button
+type="submit"
+class="save-btn">
+
+<i class="fas fa-save"></i>
+
+Save Student
+
+</button>
+
+<a
+href="{{ url_for('students') }}"
+class="cancel-btn">
+
+Cancel
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+<!-- ================= PASSWORD TOGGLE ================= -->
+
+<script>
+
+function togglePassword(){
+
+const password=document.getElementById("password");
+
+const eye=document.getElementById("eyeIcon");
+
+if(password.type==="password"){
+
+password.type="text";
+
+eye.classList.remove("fa-eye");
+
+eye.classList.add("fa-eye-slash");
+
+}
+else{
+
+password.type="password";
+
+eye.classList.remove("fa-eye-slash");
+
+eye.classList.add("fa-eye");
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
