@@ -10,15 +10,11 @@
 
     <title>Emergency | College Bus Tracking</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
     <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- CSS -->
+    <!-- Emergency CSS -->
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/emergency.css') }}">
 
@@ -26,9 +22,9 @@
 
 <body>
 
-    <!-- ======================================
-            DESKTOP HEADER
-    ======================================= -->
+    <!-- =====================================================
+         DESKTOP HEADER
+    ====================================================== -->
 
     <div class="desktop-content">
 
@@ -48,9 +44,7 @@
                     <h1>Emergency</h1>
 
                     <p>
-
                         Emergency contacts and quick assistance.
-
                     </p>
 
                 </div>
@@ -61,13 +55,19 @@
 
     </div>
 
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
     <div class="desktop-page">
 
         <div class="mobile-container">
 
-            <!-- ======================================
-                    MOBILE HEADER
-            ======================================= -->
+
+            <!-- =================================================
+                 MOBILE HEADER
+            ================================================== -->
 
             <div class="profile-header">
 
@@ -83,60 +83,76 @@
                     <h1>Emergency</h1>
 
                     <p>
-
                         Emergency contacts and quick assistance.
-
                     </p>
 
                 </div>
 
             </div>
 
-            <!-- ======================================
-                    MAIN CONTENT
-            ======================================= -->
+
+            <!-- =================================================
+                 MAIN CONTENT
+            ================================================== -->
 
             <div class="route-container">
 
                 <div class="desktop-grid">
 
-                    <!-- ======================================
-                            LEFT PROFILE CARD
-                    ======================================= -->
+
+                    <!-- =================================================
+                         LEFT PROFILE
+                    ================================================== -->
 
                     <div class="left-column">
 
                         <div class="profile-card">
 
+
+                            <!-- PROFILE TOP -->
+
                             <div class="profile-top">
 
-                                {% if student.profile_image %}
+                                {% if emergency.profile_image %}
 
-                                <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
-                                     class="student-image">
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='images/students/' + emergency.profile_image
+                                    ) }}"
+                                    class="student-image"
+                                    alt="Student Profile">
 
                                 {% else %}
 
-                                <img src="{{ url_for('static', filename='images/students/student.png') }}"
-                                     class="student-image">
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='images/students/student.png'
+                                    ) }}"
+                                    class="student-image"
+                                    alt="Student Profile">
 
                                 {% endif %}
 
+
                                 <h2>
-
-                                    {{ student.student_name }}
-
+                                    {{ emergency.student_name }}
                                 </h2>
 
                                 <p>
-
-                                    {{ student.roll_number }}
-
+                                    {{ emergency.roll_number }}
                                 </p>
 
                             </div>
 
+
+                            <!-- PROFILE INFORMATION -->
+
                             <div class="profile-bottom">
+
+
+                                <!-- ASSIGNED BUS -->
 
                                 <div class="info-box">
 
@@ -144,17 +160,20 @@
 
                                     <div>
 
-                                        <span>Assigned Bus</span>
+                                        <span>
+                                            Assigned Bus
+                                        </span>
 
                                         <h4>
-
-                                            {{ route.bus_number if route else "-" }}
-
+                                            {{ emergency.bus_number or "-" }}
                                         </h4>
 
                                     </div>
 
                                 </div>
+
+
+                                <!-- DRIVER -->
 
                                 <div class="info-box">
 
@@ -162,17 +181,20 @@
 
                                     <div>
 
-                                        <span>Driver</span>
+                                        <span>
+                                            Driver
+                                        </span>
 
                                         <h4>
-
-                                            {{ route.driver_name if route else "-" }}
-
+                                            {{ emergency.driver_name or "-" }}
                                         </h4>
 
                                     </div>
 
                                 </div>
+
+
+                                <!-- EMERGENCY STATUS -->
 
                                 <div class="info-box">
 
@@ -180,12 +202,12 @@
 
                                     <div>
 
-                                        <span>Emergency Status</span>
+                                        <span>
+                                            Emergency Status
+                                        </span>
 
                                         <h4>
-
                                             Available 24×7
-
                                         </h4>
 
                                     </div>
@@ -198,17 +220,19 @@
 
                     </div>
 
-                    <!-- ======================================
-                            RIGHT COLUMN
-                            (Part 2)
-                    ======================================= -->
+
+                    <!-- =================================================
+                         RIGHT COLUMN
+                    ================================================== -->
 
                     <div class="right-column">
-                                                <!-- ======================================
-                                EMERGENCY CONTACTS
-                        ======================================= -->
 
-                        <div class="desktop-card route-card mb-4">
+
+                        <!-- =================================================
+                             EMERGENCY CONTACTS
+                        ================================================== -->
+
+                        <div class="desktop-card route-card">
 
                             <h2>
 
@@ -218,97 +242,110 @@
 
                             </h2>
 
-                            <div class="row mt-4">
 
-                                <!-- Driver Contact -->
+                            <div class="contact-grid">
 
-                                <div class="col-md-6 mb-4">
 
-                                    <div class="detail-card">
+                                <!-- DRIVER NAME -->
 
-                                        <i class="fas fa-user-tie icon-yellow"></i>
+                                <div class="detail-card">
 
-                                        <div>
+                                    <i class="fas fa-user-tie icon-yellow"></i>
 
-                                            <span>Driver Name</span>
+                                    <div>
 
-                                            <h5>
+                                        <span>
+                                            Driver Name
+                                        </span>
 
-                                                {{ route.driver_name if route else "-" }}
-
-                                            </h5>
-
-                                        </div>
+                                        <h5>
+                                            {{ emergency.driver_name or "-" }}
+                                        </h5>
 
                                     </div>
 
                                 </div>
 
-                                <div class="col-md-6 mb-4">
 
-                                    <div class="detail-card">
+                                <!-- DRIVER PHONE -->
 
-                                        <i class="fas fa-phone icon-yellow"></i>
+                                <div class="detail-card">
 
-                                        <div>
+                                    <i class="fas fa-phone icon-yellow"></i>
 
-                                            <span>Driver Phone</span>
+                                    <div>
 
-                                            <h5>
+                                        <span>
+                                            Driver Phone
+                                        </span>
 
-                                                {{ route.driver_phone if route else "-" }}
+                                        {% if emergency.driver_phone %}
 
-                                            </h5>
+                                        <a
+                                            href="tel:{{ emergency.driver_phone }}"
+                                            class="phone-link">
 
-                                        </div>
+                                            {{ emergency.driver_phone }}
 
-                                    </div>
+                                        </a>
 
-                                </div>
+                                        {% else %}
 
-                                <!-- Transport Office -->
+                                        <h5>
+                                            Not Available
+                                        </h5>
 
-                                <div class="col-md-6 mb-4">
-
-                                    <div class="detail-card">
-
-                                        <i class="fas fa-building icon-yellow"></i>
-
-                                        <div>
-
-                                            <span>Transport Office</span>
-
-                                            <h5>
-
-                                                +91 98765 43210
-
-                                            </h5>
-
-                                        </div>
+                                        {% endif %}
 
                                     </div>
 
                                 </div>
 
-                                <!-- Security -->
 
-                                <div class="col-md-6 mb-4">
+                                <!-- TRANSPORT OFFICE -->
 
-                                    <div class="detail-card">
+                                <div class="detail-card">
 
-                                        <i class="fas fa-shield-halved icon-yellow"></i>
+                                    <i class="fas fa-building icon-yellow"></i>
 
-                                        <div>
+                                    <div>
 
-                                            <span>Security Office</span>
+                                        <span>
+                                            Transport Office
+                                        </span>
 
-                                            <h5>
+                                        <a
+                                            href="tel:+919876543210"
+                                            class="phone-link">
 
-                                                +91 91234 56789
+                                            +91 98765 43210
 
-                                            </h5>
+                                        </a>
 
-                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- SECURITY OFFICE -->
+
+                                <div class="detail-card">
+
+                                    <i class="fas fa-shield-halved icon-yellow"></i>
+
+                                    <div>
+
+                                        <span>
+                                            Security Office
+                                        </span>
+
+                                        <a
+                                            href="tel:+919123456789"
+                                            class="phone-link">
+
+                                            +91 91234 56789
+
+                                        </a>
 
                                     </div>
 
@@ -318,11 +355,112 @@
 
                         </div>
 
-                        <!-- ======================================
-                                SAFETY INSTRUCTIONS
-                        ======================================= -->
 
-                        <div class="desktop-card route-card mb-4">
+                        <!-- =================================================
+                             LIVE BUS INFORMATION
+                        ================================================== -->
+
+                        <div class="desktop-card route-card">
+
+                            <h2>
+
+                                <i class="fas fa-bus"></i>
+
+                                Current Bus Information
+
+                            </h2>
+
+
+                            <div class="summary-grid">
+
+
+                                <div class="summary-box">
+
+                                    <h6>
+                                        Bus Number
+                                    </h6>
+
+                                    <h4>
+                                        {{ emergency.bus_number or "-" }}
+                                    </h4>
+
+                                </div>
+
+
+                                <div class="summary-box">
+
+                                    <h6>
+                                        Current Stop
+                                    </h6>
+
+                                    <h4>
+                                        {{ emergency.current_stop or "Not Available" }}
+                                    </h4>
+
+                                </div>
+
+
+                                <div class="summary-box">
+
+                                    <h6>
+                                        Speed
+                                    </h6>
+
+                                    <h4>
+
+                                        {% if emergency.speed is not none %}
+
+                                        {{ emergency.speed }} km/h
+
+                                        {% else %}
+
+                                        Not Available
+
+                                        {% endif %}
+
+                                    </h4>
+
+                                </div>
+
+
+                                <div class="summary-box">
+
+                                    <h6>
+                                        Bus Status
+                                    </h6>
+
+                                    <h4>
+
+                                        {% if emergency.trip_status == "Online" %}
+
+                                        <span class="status-online">
+                                            <span class="status-dot"></span>
+                                            Online
+                                        </span>
+
+                                        {% else %}
+
+                                        <span class="status-offline">
+                                            <span class="status-dot"></span>
+                                            Offline
+                                        </span>
+
+                                        {% endif %}
+
+                                    </h4>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             SAFETY INSTRUCTIONS
+                        ================================================== -->
+
+                        <div class="desktop-card route-card">
 
                             <h2>
 
@@ -332,68 +470,57 @@
 
                             </h2>
 
-                            <div class="summary-grid mt-4">
+
+                            <div class="summary-grid">
+
 
                                 <div class="summary-box">
 
                                     <h6>
-
                                         Stay Calm
-
                                     </h6>
 
                                     <h4>
-
                                         Do not panic during any emergency.
-
                                     </h4>
 
                                 </div>
 
+
                                 <div class="summary-box">
 
                                     <h6>
-
                                         Contact Driver
-
                                     </h6>
 
                                     <h4>
-
                                         Inform the driver immediately.
-
                                     </h4>
 
                                 </div>
 
+
                                 <div class="summary-box">
 
                                     <h6>
-
                                         Share Location
-
                                     </h6>
 
                                     <h4>
-
                                         Share your current location.
-
                                     </h4>
 
                                 </div>
 
+
                                 <div class="summary-box">
 
                                     <h6>
-
                                         Wait Safely
-
                                     </h6>
 
                                     <h4>
-
                                         Stay at a safe place until help arrives.
-
                                     </h4>
 
                                 </div>
@@ -402,10 +529,10 @@
 
                         </div>
 
-                        <!-- ======================================
-                                QUICK ACTIONS
-                                (Part 3)
-                        ======================================= -->
+
+                        <!-- =================================================
+                             QUICK ACTIONS
+                        ================================================== -->
 
                         <div class="desktop-card route-card">
 
@@ -417,55 +544,83 @@
 
                             </h2>
 
-                            <div class="action-grid mt-4">
-                                                                <a href="tel:{{ route.driver_phone if route else '' }}"
-                                   class="action-btn">
+
+                            <div class="action-grid">
+
+
+                                <!-- CALL DRIVER -->
+
+                                {% if emergency.driver_phone %}
+
+                                <a
+                                    href="tel:{{ emergency.driver_phone }}"
+                                    class="action-btn">
 
                                     <i class="fas fa-phone"></i>
 
                                     <span>
-
                                         Call Driver
-
                                     </span>
 
                                 </a>
 
-                                <a href="tel:+919876543210"
-                                   class="action-btn">
+                                {% else %}
+
+                                <button
+                                    type="button"
+                                    class="action-btn disabled-btn">
+
+                                    <i class="fas fa-phone-slash"></i>
+
+                                    <span>
+                                        Driver Phone Unavailable
+                                    </span>
+
+                                </button>
+
+                                {% endif %}
+
+
+                                <!-- TRANSPORT -->
+
+                                <a
+                                    href="tel:+919876543210"
+                                    class="action-btn">
 
                                     <i class="fas fa-building"></i>
 
                                     <span>
-
                                         Transport Office
-
                                     </span>
 
                                 </a>
 
-                                <a href="tel:+919123456789"
-                                   class="action-btn">
+
+                                <!-- SECURITY -->
+
+                                <a
+                                    href="tel:+919123456789"
+                                    class="action-btn">
 
                                     <i class="fas fa-shield-halved"></i>
 
                                     <span>
-
                                         Security Office
-
                                     </span>
 
                                 </a>
 
-                                <a href="{{ url_for('student_dashboard') }}"
-                                   class="action-btn">
+
+                                <!-- DASHBOARD -->
+
+                                <a
+                                    href="{{ url_for('student_dashboard') }}"
+                                    class="action-btn">
 
                                     <i class="fas fa-house"></i>
 
                                     <span>
-
                                         Back to Dashboard
-
                                     </span>
 
                                 </a>
@@ -474,26 +629,17 @@
 
                         </div>
 
+
                     </div>
-                    <!-- End Right Column -->
 
                 </div>
-                <!-- End desktop-grid -->
 
             </div>
-            <!-- End route-container -->
 
         </div>
-        <!-- End mobile-container -->
 
     </div>
-    <!-- End desktop-page -->
 
-    <!-- ======================================
-            BOOTSTRAP JS
-    ======================================= -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

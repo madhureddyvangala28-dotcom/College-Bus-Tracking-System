@@ -1,213 +1,385 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================
+                GLOBAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
-background:#f4f6fb;
+body {
+    background: #f4f6f9;
+    color: #1f2937;
 }
 
-.page-header{
 
-margin-top:110px;
+/* ==========================================
+                PAGE HEADER
+========================================== */
 
-background:#FFC107;
+.page-header {
 
-padding:70px;
+    background: #ffffff;
 
-text-align:center;
+    border-bottom: 1px solid #e5e7eb;
 
+    padding: 40px 7%;
 }
 
-.page-header h1{
+.page-header h1 {
 
-font-size:55px;
+    font-size: 32px;
 
-color:#111827;
+    font-weight: 700;
 
+    color: #111827;
+
+    margin-bottom: 8px;
 }
 
-.page-header p{
+.page-header p {
 
-margin-top:10px;
+    font-size: 14px;
 
-font-size:20px;
-
-color:#333;
-
+    color: #6b7280;
 }
 
-.card{
 
-width:900px;
+/* ==========================================
+                FORM CARD
+========================================== */
 
-margin:40px auto;
+.card {
 
-background:white;
+    width: 100%;
+    max-width: 950px;
 
-padding:40px;
+    margin: 35px auto 50px;
 
-border-radius:18px;
+    padding: 32px;
 
-box-shadow:0 10px 30px rgba(0,0,0,.12);
+    background: #ffffff;
 
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.06);
 }
 
-.grid{
 
-display:grid;
+/* ==========================================
+                FORM GRID
+========================================== */
 
-grid-template-columns:1fr 1fr;
+.grid {
 
-gap:25px;
+    display: grid;
 
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
 }
 
-.form-group{
 
-display:flex;
+.form-group {
 
-flex-direction:column;
+    display: flex;
 
+    flex-direction: column;
 }
 
-.form-group label{
 
-margin-bottom:8px;
+.form-group.full {
 
-font-weight:600;
-
+    grid-column: 1 / -1;
 }
+
+
+/* ==========================================
+                LABEL
+========================================== */
+
+.form-group label {
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #374151;
+}
+
+
+/* ==========================================
+                INPUTS & SELECT
+========================================== */
 
 .form-group input,
-.form-group select{
+.form-group select {
 
-padding:15px;
+    width: 100%;
 
-border:1px solid #ddd;
+    height: 48px;
 
-border-radius:10px;
+    padding: 0 15px;
 
-font-size:16px;
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    font-size: 14px;
+
+    color: #374151;
+
+    transition: 0.3s ease;
+}
+
+
+.form-group input::placeholder {
+
+    color: #9ca3af;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #f59e0b;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(245, 158, 11, 0.12);
+}
+
+
+/* ==========================================
+                PASSWORD BOX
+========================================== */
+
+.password-box {
+
+    position: relative;
+
+    width: 100%;
+}
+
+
+.password-box input {
+
+    padding-right: 48px;
+}
+
+
+.password-box i {
+
+    position: absolute;
+
+    right: 16px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #9ca3af;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.password-box i:hover {
+
+    color: #f59e0b;
+}
+
+
+/* ==========================================
+                BUTTONS
+========================================== */
+
+.buttons {
+
+    margin-top: 32px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid #f1f5f9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+}
+
+
+/* SAVE BUTTON */
+
+.save-btn {
+
+    height: 48px;
+
+    border: none;
+
+    background: #f59e0b;
+
+    color: #ffffff;
+
+    padding: 0 24px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+        0 5px 15px
+        rgba(245, 158, 11, 0.20);
+}
+
+
+.save-btn:hover {
+
+    background: #d97706;
+
+    transform: translateY(-2px);
+}
+
+
+/* CANCEL BUTTON */
+
+.cancel-btn {
+
+    height: 48px;
+
+    background: #ffffff;
+
+    color: #dc2626;
+
+    border: 1px solid #fecaca;
+
+    padding: 0 24px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.3s ease;
+}
+
+
+.cancel-btn:hover {
+
+    background: #fee2e2;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+                RESPONSIVE
+========================================== */
+
+@media (max-width: 1000px) {
+
+    .card {
+
+        width: calc(100% - 40px);
+
+    }
 
 }
 
-.full{
 
-grid-column:1/3;
+@media (max-width: 700px) {
 
-}
+    .page-header {
 
-.password-box{
+        padding: 30px 20px;
+    }
 
-position:relative;
 
-}
+    .page-header h1 {
 
-.password-box input{
+        font-size: 26px;
+    }
 
-width:100%;
 
-}
+    .card {
 
-.password-box i{
+        width: calc(100% - 36px);
 
-position:absolute;
+        padding: 22px;
 
-right:18px;
+        margin: 25px auto 40px;
+    }
 
-top:18px;
 
-cursor:pointer;
+    .grid {
 
-color:#777;
+        grid-template-columns: 1fr;
 
-}
+        gap: 18px;
+    }
 
-.buttons{
 
-margin-top:35px;
+    .form-group.full {
 
-display:flex;
+        grid-column: auto;
+    }
 
-justify-content:space-between;
 
-}
+    .buttons {
 
-.save-btn{
+        flex-direction: column-reverse;
 
-background:#FFC107;
+        align-items: stretch;
+    }
 
-border:none;
 
-padding:15px 35px;
+    .save-btn,
+    .cancel-btn {
 
-font-size:18px;
-
-border-radius:10px;
-
-cursor:pointer;
-
-font-weight:600;
-
-}
-
-.save-btn:hover{
-
-background:#ffca2c;
-
-}
-
-.cancel-btn{
-
-background:#ef4444;
-
-color:white;
-
-padding:15px 35px;
-
-text-decoration:none;
-
-border-radius:10px;
-
-font-weight:600;
-
-}
-
-.cancel-btn:hover{
-
-background:#dc2626;
-
-}
-
-@media(max-width:900px){
-
-.card{
-
-width:95%;
-
-}
-
-.grid{
-
-grid-template-columns:1fr;
-
-}
-
-.full{
-
-grid-column:auto;
-
-}
-
-.buttons{
-
-flex-direction:column;
-
-gap:15px;
-
-}
+        width: 100%;
+    }
 
 }

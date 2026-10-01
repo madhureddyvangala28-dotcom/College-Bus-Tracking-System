@@ -1,0 +1,407 @@
+/*==========================================================
+                    LARGE DESKTOP
+==========================================================*/
+
+@media screen and (max-width:1600px){
+
+    .dashboard-container{
+
+        padding:20px;
+
+    }
+
+}
+
+
+/*==========================================================
+                    LAPTOP
+==========================================================*/
+
+@media screen and (max-width:1400px){
+
+    .dashboard-cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .dashboard-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .welcome-banner{
+
+        padding:35px;
+
+    }
+
+    .welcome-left h1{
+
+        font-size:38px;
+
+    }
+
+}
+
+
+/*==========================================================
+                    TABLET
+==========================================================*/
+
+@media screen and (max-width:992px){
+
+    /*================ Sidebar ================*/
+
+    .driver-sidebar{
+
+        left:-280px;
+
+    }
+
+    .driver-sidebar.active{
+
+        left:0;
+
+    }
+
+    /*================ Main ================*/
+
+    .driver-main{
+
+        margin-left:0;
+
+    }
+
+    /*================ Navbar ================*/
+
+    .driver-navbar{
+
+        padding:18px 20px;
+
+        height:auto;
+
+    }
+
+    .navbar-title h1{
+
+        font-size:28px;
+
+    }
+
+    .navbar-subtitle{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:5px;
+
+    }
+
+    /*================ Welcome ================*/
+
+    .welcome-banner{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:35px;
+
+    }
+
+    .welcome-left{
+
+        width:100%;
+
+    }
+
+    .welcome-right{
+
+        width:100%;
+
+    }
+
+    .driver-info-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    /*================ Cards ================*/
+
+    .dashboard-cards{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    /*================ Schedule ================*/
+
+    .dashboard-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+/*==========================================================
+                    MOBILE
+==========================================================*/
+
+@media screen and (max-width:768px){
+
+    /*================ Layout ================*/
+
+    .dashboard-container{
+
+        padding:15px;
+
+    }
+
+    /*================ Navbar ================*/
+
+    .driver-navbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+
+        padding:18px;
+
+    }
+
+    .navbar-left{
+
+        width:100%;
+
+    }
+
+    .navbar-right{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+    .profile-info{
+
+        display:none;
+
+    }
+
+    .navbar-title h1{
+
+        font-size:24px;
+
+    }
+
+    .live-date-time{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:2px;
+
+        font-size:12px;
+
+    }
+
+    /*================ Banner ================*/
+
+    .welcome-banner{
+
+        padding:25px;
+
+        border-radius:20px;
+
+    }
+
+    .welcome-left h1{
+
+        font-size:30px;
+
+    }
+
+    .welcome-left p{
+
+        font-size:15px;
+
+    }
+
+    .driver-info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .welcome-right img{
+
+        max-width:280px;
+
+    }
+
+    /*================ Cards ================*/
+
+    .dashboard-cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .dashboard-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    /*================ Schedule ================*/
+
+    .schedule-item{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+        gap:12px;
+
+    }
+
+    .schedule-line{
+
+        display:none;
+
+    }
+
+    .actions-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .action-btn{
+
+        flex-direction:row;
+
+        justify-content:flex-start;
+
+        padding:0 20px;
+
+        height:85px;
+
+    }
+
+    /*================ Notifications ================*/
+
+    .notification-item{
+
+        gap:12px;
+
+    }
+
+    .notification-icon{
+
+        width:48px;
+
+        height:48px;
+
+        font-size:18px;
+
+    }
+
+    .live-icon{
+
+        width:46px;
+
+        height:46px;
+
+        font-size:18px;
+
+    }
+
+    /*================ Profile ================*/
+
+    .profile-dropdown{
+
+        width:300px;
+
+        right:15px;
+
+        top:85px;
+
+    }
+
+}
+
+
+/*==========================================================
+                    SMALL MOBILE
+==========================================================*/
+
+@media screen and (max-width:480px){
+
+    .dashboard-container{
+
+        padding:10px;
+
+    }
+
+    .driver-navbar{
+
+        border-radius:18px;
+
+    }
+
+    .menu-toggle{
+
+        width:46px;
+
+        height:46px;
+
+    }
+
+    .notification-btn{
+
+        width:46px;
+
+        height:46px;
+
+    }
+
+    .profile-btn img{
+
+        width:46px;
+
+        height:46px;
+
+    }
+
+    .welcome-left h1{
+
+        font-size:26px;
+
+    }
+
+    .card-header{
+
+        padding:18px;
+
+    }
+
+    .card-header h3{
+
+        font-size:18px;
+
+    }
+
+}

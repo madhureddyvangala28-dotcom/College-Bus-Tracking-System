@@ -1,0 +1,25 @@
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables
+.env
+
+# Firebase credentials
+firebase/firebase-service-account.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Local/system files
+desktop.ini
+
+# Local database/test files
+*.log
+
+# Uploaded files
+static/uploads/

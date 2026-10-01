@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bus Boarding QR Code</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: #f4f6f9;
+
+            padding: 20px;
+
+        }
+
+        .qr-card {
+
+            width: 450px;
+
+            max-width: 100%;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+
+        }
+
+        .bus-icon {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin: auto auto 20px;
+
+            background: #ffc107;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+            color: #111827;
+
+        }
+
+        h1 {
+
+            color: #111827;
+
+            margin-bottom: 10px;
+
+        }
+
+        .subtitle {
+
+            color: #64748b;
+
+            margin-bottom: 25px;
+
+        }
+
+        .bus-info {
+
+            background: #f8fafc;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            margin-bottom: 25px;
+
+        }
+
+        .bus-info h3 {
+
+            color: #2563eb;
+
+            margin-bottom: 8px;
+
+        }
+
+        .qr-image {
+
+            width: 280px;
+
+            max-width: 100%;
+
+            padding: 12px;
+
+            border: 5px solid #111827;
+
+            border-radius: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .scan-text {
+
+            font-weight: bold;
+
+            color: #16a34a;
+
+            margin-bottom: 25px;
+
+        }
+
+        .seat-info {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+        }
+
+        .seat-box {
+
+            flex: 1;
+
+            padding: 15px;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+        }
+
+        .seat-box strong {
+
+            display: block;
+
+            font-size: 24px;
+
+            color: #111827;
+
+        }
+
+        .seat-box span {
+
+            font-size: 13px;
+
+            color: #64748b;
+
+        }
+
+        .back-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 13px 22px;
+
+            background: #111827;
+
+            color: white;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="qr-card">
+
+
+        <div class="bus-icon">
+
+            <i class="fa-solid fa-bus"></i>
+
+        </div>
+
+
+        <h1>Student Boarding QR</h1>
+
+
+        <p class="subtitle">
+
+            Students can scan this QR Code to board the bus.
+
+        </p>
+
+
+        <div class="bus-info">
+
+            <h3>
+
+                {{ trip.bus_number }}
+
+            </h3>
+
+            <p>
+
+                Active Trip
+
+            </p>
+
+        </div>
+
+
+        <img
+
+            src="data:image/png;base64,{{ qr_base64 }}"
+
+            alt="Bus Boarding QR Code"
+
+            class="qr-image"
+
+        >
+
+
+        <p class="scan-text">
+
+            <i class="fa-solid fa-qrcode"></i>
+
+            Scan QR Code to Board
+
+        </p>
+
+
+        <div class="seat-info">
+
+
+            <div class="seat-box">
+
+                <strong>
+
+                    {{ trip.capacity }}
+
+                </strong>
+
+                <span>Total Seats</span>
+
+            </div>
+
+
+            <div class="seat-box">
+
+                <strong>
+
+                    {{ trip.available_seats }}
+
+                </strong>
+
+                <span>Available</span>
+
+            </div>
+
+
+            <div class="seat-box">
+
+                <strong>
+
+                    {{ trip.occupied_seats }}
+
+                </strong>
+
+                <span>Occupied</span>
+
+            </div>
+
+
+        </div>
+
+
+        <a
+            href="{{ url_for('driver_dashboard') }}"
+            class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Dashboard
+
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

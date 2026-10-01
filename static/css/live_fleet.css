@@ -1,0 +1,910 @@
+/* =====================================================
+   LIVE FLEET PAGE
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f6fb;
+    color: #111827;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.fleet-page {
+    width: 96%;
+    max-width: 1800px;
+    margin: 25px auto 50px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.fleet-header {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, .07);
+    margin-bottom: 20px;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.title-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    background: #fff4cc;
+    color: #f2a900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.page-title h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.page-title p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 16px;
+    border-radius: 14px;
+    background: #ecfdf5;
+    color: #15803d;
+    font-weight: 800;
+}
+
+.live-indicator small {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, .15);
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, .35);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.fleet-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.fleet-stat {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, .06);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.stat-icon.total {
+    background: #fff4cc;
+    color: #f2a900;
+}
+
+.stat-icon.online {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.stat-icon.moving {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.stat-icon.stopped {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.stat-icon.offline {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.fleet-stat span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.fleet-stat strong {
+    display: block;
+    margin-top: 3px;
+    font-size: 25px;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.fleet-container {
+    min-height: 680px;
+    display: grid;
+    grid-template-columns: 350px minmax(0, 1fr);
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, .08);
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.fleet-sidebar {
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.sidebar-header {
+    padding: 23px 22px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.sidebar-header p {
+    margin: 4px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+#busCountBadge {
+    background: #ffc107;
+    color: #111827;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.fleet-search {
+    margin: 0 18px 14px;
+    height: 45px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 13px;
+    background: #f8fafc;
+}
+
+.fleet-search i {
+    color: #94a3b8;
+}
+
+.fleet-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.fleet-filters {
+    display: flex;
+    gap: 7px;
+    padding: 0 18px 15px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #475569;
+    border-radius: 9px;
+    padding: 7px 11px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.filter-btn:hover {
+    border-color: #ffc107;
+}
+
+.filter-btn.active {
+    background: #ffc107;
+    border-color: #ffc107;
+    color: #111827;
+}
+
+
+/* =====================================================
+   BUS LIST
+===================================================== */
+
+.fleet-list {
+    overflow-y: auto;
+    flex: 1;
+    padding: 0 12px 15px;
+}
+
+.fleet-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 13px 10px;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: .2s;
+    margin-bottom: 5px;
+}
+
+.fleet-item:hover {
+    background: #f8fafc;
+}
+
+.fleet-item.selected {
+    background: #fff8dc;
+    box-shadow: inset 3px 0 0 #ffc107;
+}
+
+.bus-item-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #fff4cc;
+    color: #e9a900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bus-item-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.bus-item-info strong {
+    display: block;
+    font-size: 14px;
+}
+
+.bus-item-info span,
+.bus-item-info small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bus-item-info span {
+    margin-top: 2px;
+    color: #334155;
+    font-size: 12px;
+}
+
+.bus-item-info small {
+    color: #94a3b8;
+    margin-top: 2px;
+    font-size: 11px;
+}
+
+.bus-item-status {
+    flex-shrink: 0;
+}
+
+.status-dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-dot.moving {
+    background: #22c55e;
+}
+
+.status-dot.stopped {
+    background: #f59e0b;
+}
+
+.status-dot.offline {
+    background: #ef4444;
+}
+
+.empty-fleet {
+    text-align: center;
+    padding: 50px 20px;
+    color: #64748b;
+}
+
+.empty-fleet i {
+    font-size: 40px;
+    color: #cbd5e1;
+}
+
+.empty-fleet h3 {
+    color: #334155;
+    margin-bottom: 5px;
+}
+
+
+/* =====================================================
+   MAP
+===================================================== */
+
+.map-panel {
+    position: relative;
+    min-width: 0;
+    min-height: 680px;
+}
+
+#fleetMap {
+    width: 100%;
+    height: 100%;
+    min-height: 680px;
+    background: #e5e7eb;
+}
+
+
+/* =====================================================
+   MAP TOOLS
+===================================================== */
+
+.map-tools {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 500;
+    display: flex;
+    gap: 8px;
+}
+
+.map-tools button {
+    width: 43px;
+    height: 43px;
+    border: 0;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #111827;
+    cursor: pointer;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .15);
+    font-size: 16px;
+}
+
+.map-tools button:hover {
+    background: #ffc107;
+}
+
+
+/* =====================================================
+   MAP LEGEND
+===================================================== */
+
+.map-legend {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    z-index: 500;
+    background: rgba(255, 255, 255, .96);
+    border-radius: 13px;
+    padding: 12px 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .12);
+    font-size: 12px;
+}
+
+.legend-title {
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.map-legend > div:not(.legend-title) {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.legend-dot.moving {
+    background: #22c55e;
+}
+
+.legend-dot.stopped {
+    background: #f59e0b;
+}
+
+.legend-dot.offline {
+    background: #ef4444;
+}
+
+.legend-stop {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ffc107;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 1px #d97706;
+}
+
+
+/* =====================================================
+   BUS MARKER
+===================================================== */
+
+.admin-bus-wrapper {
+    background: transparent;
+    border: 0;
+}
+
+.admin-bus-marker {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 4px solid #ffc107;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111827;
+    font-size: 22px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .25);
+}
+
+.admin-bus-marker.moving {
+    border-color: #22c55e;
+}
+
+.admin-bus-marker.stopped {
+    border-color: #f59e0b;
+}
+
+.admin-bus-marker.offline {
+    border-color: #ef4444;
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+.fleet-popup {
+    min-width: 240px;
+}
+
+.fleet-popup h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+}
+
+.popup-driver {
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.popup-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.popup-row span {
+    color: #64748b;
+}
+
+.popup-row strong {
+    color: #111827;
+}
+
+
+/* =====================================================
+   SELECTED BUS CARD
+===================================================== */
+
+.selected-bus-card {
+    display: none;
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    z-index: 600;
+    width: 310px;
+    background: rgba(255, 255, 255, .98);
+    border-radius: 17px;
+    padding: 17px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .2);
+}
+
+.selected-bus-card.show {
+    display: block;
+}
+
+.close-selected {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 0;
+    background: #f1f5f9;
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.selected-bus-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 25px;
+}
+
+.selected-bus-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: #fff4cc;
+    color: #e9a900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.selected-bus-top strong {
+    display: block;
+}
+
+.selected-bus-top span {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.selected-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.selected-grid > div {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 9px;
+}
+
+.selected-grid label {
+    display: block;
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.selected-grid strong {
+    display: block;
+    margin-top: 3px;
+    font-size: 12px;
+}
+
+.selected-footer {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #64748b;
+}
+
+
+/* =====================================================
+   ROUTE OVERVIEW
+===================================================== */
+
+.route-overview {
+    margin-top: 22px;
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.section-heading h2 i {
+    color: #f2a900;
+    margin-right: 8px;
+}
+
+.section-heading p {
+    color: #64748b;
+    margin: 7px 0 20px;
+}
+
+.route-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.route-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 17px;
+    transition: .2s;
+}
+
+.route-card:hover {
+    border-color: #ffc107;
+    transform: translateY(-2px);
+}
+
+.route-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.route-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    background: #fff4cc;
+    color: #e9a900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.route-card-header h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.route-card-header span {
+    display: block;
+    color: #64748b;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.route-card-info {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    color: #475569;
+    font-size: 12px;
+}
+
+.route-card-info i {
+    color: #f2a900;
+    margin-right: 5px;
+}
+
+.show-route-btn {
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    background: #111827;
+    color: #ffffff;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.show-route-btn:hover {
+    background: #ffc107;
+    color: #111827;
+}
+
+.no-routes {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 35px;
+    color: #64748b;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1250px) {
+
+    .fleet-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .route-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .fleet-page {
+        width: 94%;
+    }
+
+    .fleet-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .fleet-container {
+        grid-template-columns: 1fr;
+    }
+
+    .fleet-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid #e5e7eb;
+        max-height: 400px;
+    }
+
+    .map-panel {
+        min-height: 550px;
+    }
+
+    #fleetMap {
+        min-height: 550px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .fleet-page {
+        width: 94%;
+        margin-top: 15px;
+    }
+
+    .fleet-header {
+        padding: 20px;
+    }
+
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .title-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .fleet-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fleet-stat {
+        padding: 13px;
+    }
+
+    .stat-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .fleet-container {
+        border-radius: 18px;
+    }
+
+    .map-panel,
+    #fleetMap {
+        min-height: 500px;
+    }
+
+    .selected-bus-card {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        width: auto;
+    }
+
+    .map-legend {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .route-overview {
+        padding: 18px;
+    }
+
+    .route-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

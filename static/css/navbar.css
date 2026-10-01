@@ -2,14 +2,17 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Segoe UI', sans-serif;
 }
 
 body{
     background:#f5f6fa;
 }
 
-/* ================= NAVBAR ================= */
+
+/* =====================================================
+                    NAVBAR
+===================================================== */
 
 .navbar{
 
@@ -19,15 +22,15 @@ body{
 
     background:#ffffff;
 
-    border-radius:18px;
+    border-radius:20px;
 
     display:flex;
 
     align-items:center;
 
-    justify-content:space-between;
+    gap:25px;
 
-    padding:12px 30px;
+    padding:14px 22px;
 
     box-shadow:0 8px 25px rgba(0,0,0,.08);
 
@@ -36,9 +39,13 @@ body{
     top:10px;
 
     z-index:1000;
+
 }
 
-/* ================= LOGO ================= */
+
+/* =====================================================
+                    LOGO AREA
+===================================================== */
 
 .logo-area{
 
@@ -46,46 +53,59 @@ body{
 
     align-items:center;
 
-    gap:15px;
+    gap:12px;
+
+    flex-shrink:0;
 }
+
 
 .logo-area img{
 
-    width:70px;
+    width:58px;
 
-    height:70px;
+    height:58px;
 
-    border-radius:50%;
+    object-fit:contain;
 }
+
+
+/* TITLE */
 
 .logo-text h2{
 
-    font-size:30px;
+    font-size:24px;
 
-    color:#16213e;
+    line-height:1.2;
+
+    color:#1e2a44;
 
     font-weight:700;
+
+    max-width:220px;
 }
 
-.logo-text p{
 
-    color:#666;
-
-    font-size:15px;
-
-    margin-top:4px;
-}
-
-/* ================= MENU ================= */
+/* =====================================================
+                    NAVIGATION MENU
+===================================================== */
 
 .nav-links{
 
     display:flex;
 
+    align-items:center;
+
+    justify-content:center;
+
+    flex:1;
+
     list-style:none;
 
-    gap:10px;
+    gap:6px;
 }
+
+
+/* MENU LINKS */
 
 .nav-links li a{
 
@@ -97,45 +117,63 @@ body{
 
     justify-content:center;
 
-    gap:6px;
+    gap:5px;
 
-    width:95px;
+    min-width:72px;
 
     height:70px;
 
+    padding:8px 10px;
+
     text-decoration:none;
 
-    color:#222;
+    color:#2f3640;
 
-    border-radius:15px;
+    border-radius:14px;
 
-    transition:.3s;
+    transition:all .3s ease;
+
+    white-space:nowrap;
 }
+
+
+/* ICON */
 
 .nav-links li a i{
 
-    font-size:22px;
+    font-size:21px;
 }
+
+
+/* TEXT */
 
 .nav-links li a span{
 
-    font-size:15px;
+    font-size:13px;
 
     font-weight:600;
+
+    text-align:center;
 }
 
-/* Hover */
+
+/* =====================================================
+                    HOVER
+===================================================== */
 
 .nav-links li a:hover{
 
-    background:#ffd54f;
+    background:#fff3cd;
 
-    transform:translateY(-3px);
+    color:#111;
 
-    box-shadow:0 6px 15px rgba(255,193,7,.35);
+    transform:translateY(-2px);
 }
 
-/* Active */
+
+/* =====================================================
+                    ACTIVE
+===================================================== */
 
 .nav-links li a.active{
 
@@ -143,18 +181,35 @@ body{
 
     color:#111;
 
-    box-shadow:0 8px 18px rgba(255,193,7,.5);
+    box-shadow:0 7px 18px rgba(255,193,7,.40);
 }
 
-/* ================= Logout ================= */
+
+/* =====================================================
+                    LOGOUT
+===================================================== */
+
+.logout{
+
+    flex-shrink:0;
+}
+
 
 .logout a{
 
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
     background:#dc3545;
 
-    color:#fff;
+    color:#ffffff;
 
-    padding:12px 22px;
+    padding:14px 18px;
 
     border-radius:12px;
 
@@ -162,53 +217,159 @@ body{
 
     font-weight:600;
 
+    white-space:nowrap;
+
     transition:.3s;
 }
 
+
 .logout a:hover{
 
-    background:#b71c1c;
+    background:#b91c2b;
+
+    transform:translateY(-2px);
 }
+
 
 .logout i{
 
-    margin-right:8px;
+    margin:0;
+
+    font-size:16px;
 }
 
-/* ================= Responsive ================= */
 
-@media(max-width:1200px){
+/* =====================================================
+                LARGE LAPTOP RESPONSIVE
+===================================================== */
 
-.logo-text h2{
+@media(max-width:1400px){
 
-font-size:22px;
+    .navbar{
+
+        gap:15px;
+
+        padding:12px 18px;
+    }
+
+
+    .logo-area img{
+
+        width:50px;
+
+        height:50px;
+    }
+
+
+    .logo-text h2{
+
+        font-size:20px;
+
+        max-width:180px;
+    }
+
+
+    .nav-links{
+
+        gap:3px;
+    }
+
+
+    .nav-links li a{
+
+        min-width:62px;
+
+        padding:7px 6px;
+    }
+
+
+    .nav-links li a span{
+
+        font-size:12px;
+    }
 
 }
 
-.nav-links li a{
 
-width:80px;
+/* =====================================================
+                    TABLET
+===================================================== */
+
+@media(max-width:1100px){
+
+    .navbar{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+    }
+
+
+    .logo-area{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+
+    .nav-links{
+
+        flex-wrap:wrap;
+    }
 
 }
 
-}
 
-@media(max-width:992px){
+/* =====================================================
+                    MOBILE
+===================================================== */
 
-.navbar{
+@media(max-width:600px){
 
-flex-direction:column;
+    .navbar{
 
-gap:20px;
+        width:95%;
 
-}
+        margin:10px auto;
 
-.nav-links{
+        border-radius:15px;
 
-flex-wrap:wrap;
+        padding:15px 10px;
+    }
 
-justify-content:center;
 
-}
+    .logo-text h2{
+
+        font-size:18px;
+
+        text-align:center;
+    }
+
+
+    .nav-links li a{
+
+        min-width:65px;
+
+        height:65px;
+    }
+
+
+    .nav-links li a i{
+
+        font-size:18px;
+    }
+
+
+    .nav-links li a span{
+
+        font-size:11px;
+    }
+
+
+    .logout a{
+
+        padding:12px 20px;
+    }
 
 }

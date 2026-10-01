@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications | College Bus Tracking</title>
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <!-- Navbar CSS -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/admin_notifications.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+                ADMIN NAVBAR
+========================================== -->
+
+    {% include "admin/navbar.html" %}
+
+
+    <!-- ==========================================
+                PAGE HEADER
+========================================== -->
+
+    <section class="notification-page-header">
+
+        <div class="header-content">
+
+
+            <div>
+
+
+                <span class="page-label">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    NOTIFICATION CENTER
+
+                </span>
+
+
+                <h1>
+
+                    Notifications
+
+                </h1>
+
+
+                <p>
+
+                    Create, manage and monitor notifications
+                    sent to students and parents.
+
+                </p>
+
+
+            </div>
+
+
+            <button class="refresh-btn" onclick="location.reload()">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+                NOTIFICATION SUMMARY
+========================================== -->
+
+    <section class="notification-summary">
+
+
+        <!-- TOTAL NOTIFICATIONS -->
+
+        <div class="summary-card total">
+
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-bell"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>Total Notifications</span>
+
+                <h2>
+
+                    {{ notifications|length if notifications else 0 }}
+
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- INFO NOTIFICATIONS -->
+
+        <div class="summary-card info">
+
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>Information</span>
+
+                <h2>
+
+                    {% set info_count = namespace(value=0) %}
+
+                    {% if notifications %}
+
+                    {% for notification in notifications %}
+
+                    {% if notification.notification_type == "Info" %}
+
+                    {% set info_count.value =
+                    info_count.value + 1 %}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {% endif %}
+
+                    {{ info_count.value }}
+
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- WARNING NOTIFICATIONS -->
+
+        <div class="summary-card warning">
+
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>Warnings</span>
+
+                <h2>
+
+                    {% set warning_count = namespace(value=0) %}
+
+                    {% if notifications %}
+
+                    {% for notification in notifications %}
+
+                    {% if notification.notification_type == "Warning" %}
+
+                    {% set warning_count.value =
+                    warning_count.value + 1 %}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {% endif %}
+
+                    {{ warning_count.value }}
+
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- EMERGENCY NOTIFICATIONS -->
+
+        <div class="summary-card emergency">
+
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-truck-medical"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>Emergency Alerts</span>
+
+                <h2>
+
+                    {% set emergency_count = namespace(value=0) %}
+
+                    {% if notifications %}
+
+                    {% for notification in notifications %}
+
+                    {% if notification.notification_type == "Emergency" %}
+
+                    {% set emergency_count.value =
+                    emergency_count.value + 1 %}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {% endif %}
+
+                    {{ emergency_count.value }}
+
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+                MAIN CONTENT
+========================================== -->
+
+    <section class="notification-main-section">
+
+
+        <!-- ======================================
+                CREATE NOTIFICATION
+    ======================================= -->
+
+        <div class="create-notification-card">
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+
+                    <span class="page-label">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        SEND NOTIFICATION
+
+                    </span>
+
+
+                    <h2>
+
+                        Create New Notification
+
+                    </h2>
+
+
+                    <p>
+
+                        Send important updates and announcements
+                        to students and parents.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- NOTIFICATION FORM -->
+
+            <form method="POST" action="/admin/notifications/send" class="notification-form">
+
+
+                <!-- TITLE -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-solid fa-heading"></i>
+
+                        Notification Title
+
+                    </label>
+
+
+                    <input type="text" name="title" placeholder="Enter notification title" required>
+
+                </div>
+
+
+
+                <!-- NOTIFICATION TYPE -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-solid fa-tag"></i>
+
+                        Notification Type
+
+                    </label>
+
+
+                    <select name="notification_type" required>
+
+
+                        <option value="Info">
+
+                            Information
+
+                        </option>
+
+
+                        <option value="Warning">
+
+                            Warning
+
+                        </option>
+
+
+                        <option value="Emergency">
+
+                            Emergency
+
+                        </option>
+
+
+                        <option value="Holiday">
+
+                            Holiday
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- TARGET AUDIENCE -->
+
+                <div class="form-group">
+
+                    <label for="target_audience">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        Send To
+
+                    </label>
+
+
+                    <select id="target_audience" name="target_audience" required>
+
+                        <option value="All">
+
+                            🌐 Everyone
+
+                        </option>
+
+
+                        <option value="Students">
+
+                            🎓 Students
+
+                        </option>
+
+
+                        <option value="Parents">
+
+                            👨‍👩‍👧 Parents
+
+                        </option>
+
+
+                        <option value="Drivers">
+
+                            🚌 Drivers
+
+                        </option>
+
+                    </select>
+                    
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group full-width">
+
+                    <label>
+
+                        <i class="fa-solid fa-message"></i>
+
+                        Notification Message
+
+                    </label>
+
+
+                    <textarea name="message" rows="6" placeholder="Write your notification message here..."
+                        required></textarea>
+
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <div class="form-actions">
+
+
+                    <button type="reset" class="clear-btn">
+
+
+                        <i class="fa-solid fa-eraser"></i>
+
+                        Clear
+
+                    </button>
+
+
+
+                    <button type="submit" class="send-btn">
+
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Send Notification
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+                NOTIFICATION INFORMATION
+    ======================================= -->
+
+        <div class="notification-guide-card">
+
+
+            <div class="guide-header">
+
+
+                <div class="guide-icon">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        Notification Guide
+
+                    </h3>
+
+
+                    <p>
+
+                        Choose the appropriate notification type.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="guide-item info-guide">
+
+
+                <i class="fa-solid fa-circle-info"></i>
+
+
+                <div>
+
+                    <strong>
+
+                        Information
+
+                    </strong>
+
+
+                    <p>
+
+                        General announcements and updates.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="guide-item warning-guide">
+
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+
+                <div>
+
+                    <strong>
+
+                        Warning
+
+                    </strong>
+
+
+                    <p>
+
+                        Important alerts requiring attention.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="guide-item emergency-guide">
+
+
+                <i class="fa-solid fa-truck-medical"></i>
+
+
+                <div>
+
+                    <strong>
+
+                        Emergency
+
+                    </strong>
+
+
+                    <p>
+
+                        Critical alerts requiring immediate action.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="guide-item holiday-guide">
+
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+
+                <div>
+
+                    <strong>
+
+                        Holiday
+
+                    </strong>
+
+
+                    <p>
+
+                        Holiday and service schedule updates.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+                RECENT NOTIFICATIONS
+========================================== -->
+
+    <section class="recent-notifications-section">
+
+
+        <div class="section-heading">
+
+
+            <div>
+
+
+                <span class="page-label">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    RECENT ACTIVITY
+
+                </span>
+
+
+                <h2>
+
+                    Recent Notifications
+
+                </h2>
+
+
+                <p>
+
+                    View recently created system notifications.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="notification-list">
+
+
+
+            {% if notifications %}
+
+
+            {% for notification in notifications %}
+
+
+            <div class="notification-item">
+
+
+
+                <!-- ICON -->
+
+                <div class="notification-type-icon
+
+                    {% if notification.notification_type == 'Info' %}
+
+                        info
+
+                    {% elif notification.notification_type == 'Warning' %}
+
+                        warning
+
+                    {% elif notification.notification_type == 'Emergency' %}
+
+                        emergency
+
+                    {% elif notification.notification_type == 'Holiday' %}
+
+                        holiday
+
+                    {% endif %}
+
+                ">
+
+
+                    {% if notification.notification_type == "Info" %}
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    {% elif notification.notification_type == "Warning" %}
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    {% elif notification.notification_type == "Emergency" %}
+
+                    <i class="fa-solid fa-truck-medical"></i>
+
+                    {% elif notification.notification_type == "Holiday" %}
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    {% else %}
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- CONTENT -->
+
+                <div class="notification-content">
+
+
+                    <div class="notification-title-row">
+
+
+                        <h3>
+
+                            {{ notification.title }}
+
+                        </h3>
+
+
+                        <span class="notification-badge
+
+                            {% if notification.notification_type == 'Info' %}
+
+                                info
+
+                            {% elif notification.notification_type == 'Warning' %}
+
+                                warning
+
+                            {% elif notification.notification_type == 'Emergency' %}
+
+                                emergency
+
+                            {% elif notification.notification_type == 'Holiday' %}
+
+                                holiday
+
+                            {% endif %}
+
+                        ">
+
+                            {{ notification.notification_type }}
+
+                        </span>
+
+
+                    </div>
+
+
+                    <p>
+
+                        {{ notification.message }}
+
+                    </p>
+
+
+                    <div class="notification-date">
+
+
+                        <i class="fa-regular fa-clock"></i>
+
+
+                        {{ notification.created_at }}
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+
+            {% else %}
+
+
+
+            <!-- NO NOTIFICATIONS -->
+
+            <div class="no-notifications">
+
+
+                <i class="fa-regular fa-bell"></i>
+
+
+                <h3>
+
+                    No Notifications Available
+
+                </h3>
+
+
+                <p>
+
+                    Create a notification to send important
+                    updates to students and parents.
+
+                </p>
+
+
+            </div>
+
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+                FOOTER
+========================================== -->
+
+    <footer class="footer">
+
+
+        <p>
+
+            © 2026 College Bus Tracking System
+
+            <span>|</span>
+
+            Notification Management
+
+        </p>
+
+
+    </footer>
+
+
+</body>
+
+</html>

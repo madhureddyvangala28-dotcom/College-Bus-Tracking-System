@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================
+                GLOBAL
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    color:#1f2937;
+    padding-top:95px;
+}
+
+
+/* ==========================================
+                PAGE TITLE
+========================================== */
+
+.page-title{
+    background:#ffffff;
+    border-bottom:1px solid #e5e7eb;
+
+    padding:40px 7%;
+}
+
+.page-title h1{
+    max-width:1100px;
+    margin:0 auto 8px;
+
+    font-size:32px;
+    font-weight:700;
+
+    color:#111827;
+}
+
+.page-title p{
+    max-width:1100px;
+    margin:auto;
+
+    font-size:14px;
+    color:#6b7280;
+}
+
+
+/* ==========================================
+                PROFILE CONTAINER
+========================================== */
+
+.profile-container{
+    width:100%;
+    padding:40px 20px 60px;
+
+    display:flex;
+    justify-content:center;
+}
+
+
+/* ==========================================
+                PROFILE CARD
+========================================== */
+
+.profile-card{
+    width:100%;
+    max-width:850px;
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.06);
+}
+
+
+/* ==========================================
+                PROFILE HEADING
+========================================== */
+
+.profile-card h1{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:12px;
+
+    margin-bottom:30px;
+
+    color:#111827;
+
+    font-size:26px;
+    font-weight:700;
+}
+
+.profile-card h1 i{
+    color:#f59e0b;
+}
+
+
+/* ==========================================
+                PROFILE TABLE
+========================================== */
+
+.profile-card table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+}
+
+
+/* TABLE ROW */
+
+.profile-card table tr{
+    transition:0.25s ease;
+}
+
+.profile-card table tr:hover{
+    background:#fffaf0;
+}
+
+
+/* TABLE HEADER */
+
+.profile-card th{
+    width:35%;
+
+    padding:16px 20px;
+
+    text-align:left;
+
+    background:#f9fafb;
+
+    border-bottom:1px solid #e5e7eb;
+
+    color:#374151;
+
+    font-size:14px;
+    font-weight:600;
+}
+
+
+/* TABLE DATA */
+
+.profile-card td{
+    padding:16px 20px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    color:#4b5563;
+
+    font-size:14px;
+}
+
+
+/* LAST ROW */
+
+.profile-card tr:last-child th,
+.profile-card tr:last-child td{
+    border-bottom:none;
+}
+
+
+/* ==========================================
+                STATUS
+========================================== */
+
+.status{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:12px;
+    font-weight:600;
+}
+
+
+/* ACTIVE */
+
+.status.available{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+
+/* INACTIVE */
+
+.status.on-leave{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+
+/* ==========================================
+                BUTTONS
+========================================== */
+
+.back-btn,
+.save-btn{
+    height:46px;
+
+    padding:0 22px;
+
+    border-radius:10px;
+
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:0.3s ease;
+}
+
+
+/* BACK BUTTON */
+
+.back-btn{
+    background:#f1f5f9;
+    color:#374151;
+
+    border:1px solid #e5e7eb;
+}
+
+.back-btn:hover{
+    background:#e5e7eb;
+
+    transform:translateY(-2px);
+}
+
+
+/* EDIT BUTTON */
+
+.save-btn{
+    background:#f59e0b;
+    color:#ffffff;
+
+    border:none;
+
+    box-shadow:
+        0 5px 15px rgba(245,158,11,0.25);
+}
+
+.save-btn:hover{
+    background:#d97706;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(245,158,11,0.35);
+}
+
+
+/* ==========================================
+                RESPONSIVE
+========================================== */
+
+@media(max-width:850px){
+
+    body{
+        padding-top:80px;
+    }
+
+    .page-title{
+        padding:30px 25px;
+    }
+
+    .page-title h1{
+        font-size:27px;
+    }
+
+    .profile-container{
+        padding:30px 15px 50px;
+    }
+
+    .profile-card{
+        padding:25px;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .profile-card{
+        padding:20px;
+    }
+
+    .profile-card h1{
+        font-size:22px;
+
+        flex-wrap:wrap;
+
+        text-align:center;
+    }
+
+    .profile-card th,
+    .profile-card td{
+        padding:13px 12px;
+
+        font-size:12px;
+    }
+
+    .profile-card th{
+        width:42%;
+    }
+
+    .back-btn,
+    .save-btn{
+        padding:0 15px;
+
+        font-size:12px;
+    }
+
+}

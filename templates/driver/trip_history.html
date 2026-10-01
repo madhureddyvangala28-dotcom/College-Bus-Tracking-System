@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trip History - College Bus</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Trip History CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/driver/trip_history.css') }}">
+
+</head>
+
+<body>
+
+<div class="driver-layout">
+
+    <!-- =====================================================
+                         SIDEBAR
+    ====================================================== -->
+
+    <aside class="driver-sidebar" id="driverSidebar">
+
+        <!-- Logo -->
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-bus"></i>
+
+            <span>College Bus</span>
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <nav class="sidebar-nav">
+
+            <a href="{{ url_for('driver_dashboard') }}">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="{{ url_for('driver_live_tracking') }}">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span>Live Tracking</span>
+
+            </a>
+
+
+            <a href="{{ url_for('driver_students') }}">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Students</span>
+
+            </a>
+
+
+            <a href="{{ url_for('driver_notifications') }}">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </a>
+
+
+            <!-- Trip History -->
+
+            <a href="{{ url_for('driver_trip_history') }}"
+               class="active">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <span>Trip History</span>
+
+            </a>
+
+
+            <a href="{{ url_for('logout') }}">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+                         SIDEBAR OVERLAY
+         Mobile only
+    ====================================================== -->
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+    <!-- =====================================================
+                         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+                         MOBILE HEADER
+        ================================================== -->
+
+        <header class="mobile-header">
+
+            <button
+                type="button"
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="Open menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="mobile-title">
+
+                <i class="fa-solid fa-bus"></i>
+
+                <span>College Bus</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+                         PAGE HEADER
+        ================================================== -->
+
+        <section class="page-header">
+
+            <div class="page-title-area">
+
+                <div class="page-icon">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>Trip History</h1>
+
+                    <p>
+                        Your completed and current trips
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('driver_dashboard') }}"
+                class="back-button"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+                         TOTAL TRIPS
+        ================================================== -->
+
+        <section class="total-trips-card">
+
+            <div class="total-icon">
+
+                <i class="fa-solid fa-route"></i>
+
+            </div>
+
+
+            <div class="total-info">
+
+                <span>Total Trips</span>
+
+                <strong>
+                    {{ trips|length }}
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+                         TRIP LIST
+        ================================================== -->
+
+        <section class="trips-section">
+
+
+            <div class="section-heading">
+
+                <div class="heading-icon">
+
+                    <i class="fa-solid fa-list"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>My Trips</h2>
+
+                    <p>
+                        Trip records for your assigned bus
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                            TRIP RECORDS
+            ================================================== -->
+
+            <div class="trip-list">
+
+                {% if trips %}
+
+                    {% for trip in trips %}
+
+                    <article class="trip-card">
+
+
+                        <!-- Trip Number + Status -->
+
+                        <div class="trip-top">
+
+                            <div class="trip-number">
+
+                                #{{ loop.index }}
+
+                            </div>
+
+
+                            <div class="trip-status
+                                {% if trip.status == 'Completed' %}
+                                    completed
+                                {% elif trip.status == 'Running' %}
+                                    running
+                                {% else %}
+                                    cancelled
+                                {% endif %}"
+                            >
+
+                                <span></span>
+
+                                {{ trip.status }}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Date -->
+
+                        <div class="trip-date">
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            <span>
+
+                                {% if trip.trip_date %}
+
+                                    {{ trip.trip_date }}
+
+                                {% else %}
+
+                                    —
+
+                                {% endif %}
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- Route -->
+
+                        <div class="trip-route">
+
+                            <div class="route-icon">
+
+                                <i class="fa-solid fa-route"></i>
+
+                            </div>
+
+
+                            <div class="route-info">
+
+                                <small>Route</small>
+
+                                <strong>
+
+                                    {{ trip.route_name or 'Assigned Route' }}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="trip-divider"></div>
+
+
+                        <!-- Bus + Trip Type -->
+
+                        <div class="trip-details-grid">
+
+                            <div class="trip-detail">
+
+                                <small>Bus</small>
+
+                                <strong>
+
+                                    {{ trip.bus_number or '—' }}
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="trip-detail">
+
+                                <small>Trip Type</small>
+
+                                <strong>
+
+                                    {{ trip.trip_type or '—' }}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="trip-divider"></div>
+
+
+                        <!-- Start + End -->
+
+                        <div class="trip-details-grid">
+
+                            <div class="trip-detail">
+
+                                <small>Start</small>
+
+                                <strong>
+
+                                    {% if trip.start_time %}
+
+                                        {{ trip.start_time }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="trip-detail">
+
+                                <small>End</small>
+
+                                <strong>
+
+                                    {% if trip.end_time %}
+
+                                        {{ trip.end_time }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Running Message -->
+
+                        {% if trip.status == 'Running' %}
+
+                        <div class="running-message">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Trip currently in progress
+
+                        </div>
+
+                        {% endif %}
+
+
+                    </article>
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <!-- No Trips -->
+
+                    <div class="no-trips">
+
+                        <div class="no-trips-icon">
+
+                            <i class="fa-solid fa-route"></i>
+
+                        </div>
+
+                        <h3>No Trip History</h3>
+
+                        <p>
+                            Your completed trips will appear here.
+                        </p>
+
+                    </div>
+
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+                            FOOTER
+        ================================================== -->
+
+        <footer class="page-footer">
+
+            <span>
+                College Bus Tracking System
+            </span>
+
+            <span>
+                Version 1.0
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- Trip History JS -->
+
+<script src="{{ url_for(
+    'static',
+    filename='js/driver/trip_history.js'
+) }}"></script>
+
+
+</body>
+
+</html>

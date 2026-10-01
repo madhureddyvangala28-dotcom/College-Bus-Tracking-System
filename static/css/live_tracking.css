@@ -710,3 +710,785 @@ Animations
     }
 
 }
+
+/* =====================================================
+   ROUTE STOPS
+===================================================== */
+
+.route-stops-section {
+
+    margin-top: 25px;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e5e7eb;
+
+}
+
+
+.route-stops-section h3 {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    color: #111827;
+
+    font-size: 20px;
+
+}
+
+
+.route-stops-section h3 i {
+
+    color: #FFC107;
+
+}
+
+
+/* =====================================================
+   STOP
+===================================================== */
+
+.route-stop {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    min-height: 65px;
+
+}
+
+
+.stop-number {
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #374151;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
+
+}
+
+
+.stop-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.stop-content strong {
+
+    color: #111827;
+
+    font-size: 15px;
+
+}
+
+
+.stop-content span {
+
+    color: #64748b;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   STOP LINE
+===================================================== */
+
+.stop-line {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 30px;
+
+    width: 2px;
+
+    height: 35px;
+
+    background: #e5e7eb;
+
+}
+
+
+.route-stop:last-child .stop-line {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   CURRENT STOP
+===================================================== */
+
+.route-stop.current-stop .stop-number {
+
+    background: #FFC107;
+
+    color: #111827;
+
+}
+
+
+.route-stop.current-stop
+.stop-content strong {
+
+    color: #d97706;
+
+}
+
+
+/* =====================================================
+   NEXT STOP
+===================================================== */
+
+.route-stop.next-stop .stop-number {
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+}
+
+
+.route-stop.next-stop
+.stop-content strong {
+
+    color: #15803d;
+
+}
+
+
+/* =====================================================
+   MAP STOP MARKER
+===================================================== */
+
+.stop-marker {
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    border: 3px solid #FFC107;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.20);
+
+}
+
+
+.stop-marker i {
+
+    color: #FFC107;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   CURRENT STOP MARKER
+===================================================== */
+
+.current-stop-marker {
+
+    width: 36px;
+
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: #FFC107;
+
+    border: 3px solid #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 0 0 6px rgba(255,193,7,.20);
+
+}
+
+
+.current-stop-marker i {
+
+    color: #111827;
+
+}
+
+
+/* =====================================================
+   NEXT STOP MARKER
+===================================================== */
+
+.next-stop-marker {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #16a34a;
+
+    border: 3px solid #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 0 0 7px rgba(22,163,74,.18);
+
+}
+
+
+.next-stop-marker i {
+
+    color: #ffffff;
+
+}
+
+
+/* =====================================================
+   MAP POPUP
+===================================================== */
+
+.map-stop-popup {
+
+    font-family: Arial, sans-serif;
+
+    line-height: 1.6;
+
+}
+
+
+.map-stop-popup strong {
+
+    color: #111827;
+
+    font-size: 15px;
+
+}
+
+
+.map-bus-popup {
+
+    line-height: 1.7;
+
+    font-size: 13px;
+
+}
+
+
+.map-bus-popup strong {
+
+    font-size: 16px;
+
+    color: #111827;
+
+}
+
+
+/* =====================================================
+   NEXT STOP CARD
+===================================================== */
+
+.next-stop-box {
+
+    border: 2px solid #FFC107;
+
+    background: #fffdf3;
+
+}
+
+
+.next-stop-box label {
+
+    color: #b45309;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .route-stops-section {
+
+        padding: 18px;
+
+        margin-top: 18px;
+
+    }
+
+    .route-stops-section h3 {
+
+        font-size: 18px;
+
+    }
+
+    .stop-content strong {
+
+        font-size: 14px;
+
+    }
+
+    .stop-content span {
+
+        font-size: 11px;
+
+    }
+
+}
+
+/* =========================================================
+   LIVE BUS MAP
+========================================================= */
+
+#liveMap {
+    width: 100%;
+    height: 560px;
+    min-height: 560px;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================================
+   RED BUS PNG MARKER
+========================================================= */
+
+.student-live-bus-wrapper {
+    background: transparent !important;
+    border: none !important;
+}
+
+.student-live-bus {
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    animation: busMarkerPulse 2s infinite;
+}
+
+.student-live-bus img {
+    width: 56px;
+    height: 56px;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: transparent;
+
+    border: none;
+}
+
+/* =========================================================
+   BUS PULSE
+========================================================= */
+
+@keyframes busMarkerPulse {
+
+    0% {
+
+        box-shadow:
+            0 0 0 0 rgba(255, 193, 7, 0.45);
+
+    }
+
+    70% {
+
+        box-shadow:
+            0 0 0 15px rgba(255, 193, 7, 0);
+
+    }
+
+    100% {
+
+        box-shadow:
+            0 0 0 0 rgba(255, 193, 7, 0);
+
+    }
+
+}
+
+
+/* =========================================================
+   ROUTE STOP MARKER
+========================================================= */
+
+.student-stop-marker {
+
+    background: transparent !important;
+
+    border: none !important;
+
+}
+
+.student-stop-marker > div {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    border: 3px solid #FFC107;
+
+    color: #111827;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.20);
+
+}
+
+
+/* =========================================================
+   CURRENT STOP
+========================================================= */
+
+.student-stop-marker.current > div {
+
+    background: #16A34A;
+
+    border-color: #ffffff;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 0 0 5px rgba(22, 163, 74, 0.20),
+        0 5px 15px rgba(0, 0, 0, 0.20);
+
+}
+
+
+/* =========================================================
+   NEXT STOP
+========================================================= */
+
+.student-stop-marker.next > div {
+
+    background: #FFC107;
+
+    border-color: #ffffff;
+
+    color: #111827;
+
+}
+
+
+/* =========================================================
+   STOP POPUP
+========================================================= */
+
+.map-stop-popup {
+
+    min-width: 180px;
+
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.map-stop-popup .popup-stop-number {
+
+    display: inline-block;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background: #FFF8E1;
+
+    color: #B45309;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+
+}
+
+.map-stop-popup h3 {
+
+    margin: 0 0 6px;
+
+    color: #111827;
+
+    font-size: 15px;
+
+}
+
+.map-stop-popup p {
+
+    margin: 0;
+
+    color: #64748B;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   BUS POPUP
+========================================================= */
+
+.map-bus-popup {
+
+    min-width: 210px;
+
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.map-bus-popup h3 {
+
+    margin: 0 0 10px;
+
+    color: #111827;
+
+    font-size: 16px;
+
+}
+
+.map-bus-popup h3 i {
+
+    color: #F59E0B;
+
+    margin-right: 5px;
+
+}
+
+.map-bus-popup p {
+
+    margin: 5px 0;
+
+    color: #64748B;
+
+    font-size: 12px;
+
+}
+
+.map-bus-popup strong {
+
+    color: #334155;
+
+}
+
+.live-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 8px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #ECFDF5;
+
+    color: #15803D;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+.live-status span {
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22C55E;
+
+}
+
+
+/* =========================================================
+   ROUTE POPUP
+========================================================= */
+
+.map-route-popup {
+
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.map-route-popup strong {
+
+    color: #111827;
+
+    font-size: 14px;
+
+}
+
+.map-route-popup p {
+
+    color: #64748B;
+
+    font-size: 12px;
+
+    margin: 5px 0 0;
+
+}
+
+
+/* =========================================================
+   LEAFLET CONTROLS
+========================================================= */
+
+#liveMap .leaflet-control-zoom {
+
+    border: none;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+
+}
+
+#liveMap .leaflet-control-zoom a {
+
+    width: 38px;
+
+    height: 38px;
+
+    line-height: 38px;
+
+    font-size: 20px;
+
+    color: #111827;
+
+    background: #ffffff;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    #liveMap {
+
+        height: 430px;
+
+        min-height: 430px;
+
+        border-radius: 18px;
+
+    }
+
+    .student-live-bus {
+
+        width: 46px;
+
+        height: 46px;
+
+    }
+
+    .student-live-bus i {
+
+        font-size: 21px;
+
+    }
+
+    .student-stop-marker > div {
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 12px;
+
+    }
+
+}

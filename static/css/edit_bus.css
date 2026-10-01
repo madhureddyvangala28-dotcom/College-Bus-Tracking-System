@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================
+                GLOBAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #1f2937;
+    padding-top: 20px;
+}
+
+
+/* ==========================================
+                PAGE HEADER
+========================================== */
+
+.page-title {
+    max-width: 1400px;
+    margin: 25px auto 0;
+    padding: 35px 25px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.page-title h1 {
+    font-size: 32px;
+    font-weight: 700;
+
+    color: #111827;
+
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+
+/* ==========================================
+                FORM CONTAINER
+========================================== */
+
+.form-container {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 35px auto 60px;
+
+    padding: 35px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+/* ==========================================
+                FORM
+========================================== */
+
+.form-container form {
+    width: 100%;
+}
+
+
+/* ==========================================
+                LABELS
+========================================== */
+
+.form-container label {
+    display: block;
+
+    margin-bottom: 8px;
+    margin-top: 20px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #374151;
+}
+
+.form-container label:first-child {
+    margin-top: 0;
+}
+
+
+/* ==========================================
+                INPUTS & SELECTS
+========================================== */
+
+.form-container input,
+.form-container select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+
+/* Focus Effect */
+
+.form-container input:focus,
+.form-container select:focus {
+    border-color: #f59e0b;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(245, 158, 11, 0.12);
+}
+
+
+/* ==========================================
+                FORM BUTTONS
+========================================== */
+
+.form-buttons {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+
+/* ==========================================
+                UPDATE BUTTON
+========================================== */
+
+.save-btn {
+    border: none;
+
+    background: #f59e0b;
+
+    color: #ffffff;
+
+    padding: 13px 24px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+        0 5px 15px
+        rgba(245, 158, 11, 0.20);
+}
+
+.save-btn:hover {
+    background: #d97706;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+                CANCEL BUTTON
+========================================== */
+
+.cancel-btn {
+    background: #f3f4f6;
+
+    color: #374151;
+
+    text-decoration: none;
+
+    padding: 13px 24px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background: #e5e7eb;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+                RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .form-container {
+        width: calc(100% - 36px);
+
+        padding: 28px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    body {
+        padding-top: 10px;
+    }
+
+    .page-title {
+        padding: 30px 20px;
+    }
+
+    .page-title h1 {
+        font-size: 26px;
+    }
+
+    .form-container {
+        width: calc(100% - 30px);
+
+        padding: 22px;
+    }
+
+    .form-buttons {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .save-btn,
+    .cancel-btn {
+        width: 100%;
+    }
+
+}

@@ -2,65 +2,114 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>My Bus | College Bus Tracking</title>
 
+
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
+
+    <link
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_bus.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/student_bus.css') }}">
+
 </head>
+
 
 <body>
 
+
     <!-- ===================== Desktop Header ===================== -->
+
     <div class="desktop-content">
+
         <div class="desktop-header">
+
             <div class="desktop-title">
 
-                <a href="{{ url_for('student_dashboard') }}" class="desktop-back">
+                <a
+                    href="{{ url_for('student_dashboard') }}"
+                    class="desktop-back">
+
                     <i class="fa-solid fa-arrow-left"></i>
+
                 </a>
 
+
                 <div>
+
                     <h1>My Bus</h1>
-                    <p>View your assigned bus and live transportation details.</p>
+
+                    <p>
+                        View your assigned bus and live transportation details.
+                    </p>
+
                 </div>
 
             </div>
+
         </div>
+
     </div>
 
+
     <!-- ===================== Main Page ===================== -->
+
     <div class="desktop-page">
 
         <div class="mobile-container">
 
-            <!-- Mobile Header -->
+
+            <!-- ===================== Mobile Header ===================== -->
+
             <div class="profile-header">
 
-                <a href="{{ url_for('student_dashboard') }}" class="back-btn">
+                <a
+                    href="{{ url_for('student_dashboard') }}"
+                    class="back-btn">
+
                     <i class="fa-solid fa-arrow-left"></i>
+
                 </a>
 
+
                 <div class="profile-title">
+
                     <h1>My Bus</h1>
-                    <p>View your assigned bus and live transportation details.</p>
+
+                    <p>
+                        View your assigned bus and live transportation details.
+                    </p>
+
                 </div>
 
             </div>
 
+
             <!-- ===================== Main Content ===================== -->
+
             <div class="bus-container">
 
                 <div class="desktop-grid">
+
 
                     <!-- ================================================= -->
                     <!-- LEFT COLUMN -->
@@ -68,47 +117,117 @@
 
                     <div class="left-column">
 
+
+                        <!-- Student Profile -->
+
                         <div class="profile-card">
 
                             <div class="profile-top">
 
+
                                 {% if student.profile_image %}
-                                <img src="{{ url_for('static', filename='images/students/' + student.profile_image) }}"
-                                    class="student-image">
+
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='images/students/' + student.profile_image
+                                    ) }}"
+                                    class="student-image"
+                                    alt="Student Profile">
+
                                 {% else %}
-                                <img src="{{ url_for('static', filename='images/students/student.png') }}"
-                                    class="student-image">
+
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='images/students/student.png'
+                                    ) }}"
+                                    class="student-image"
+                                    alt="Student Profile">
+
                                 {% endif %}
 
-                                <h2>{{ student.student_name }}</h2>
-                                <p>{{ student.roll_number }}</p>
+
+                                <h2>
+                                    {{ student.student_name }}
+                                </h2>
+
+                                <p>
+                                    {{ student.roll_number }}
+                                </p>
 
                             </div>
 
+
                             <div class="profile-bottom">
 
+
+                                <!-- Assigned Bus -->
+
                                 <div class="info-box">
+
                                     <i class="fas fa-bus"></i>
+
                                     <div>
-                                        <span>Assigned Bus</span>
-                                        <h4>{{ bus.bus_number if bus else "Not Assigned" }}</h4>
+
+                                        <span>
+                                            Assigned Bus
+                                        </span>
+
+                                        <h4>
+                                            {{ bus.bus_number
+                                            if bus
+                                            else "Not Assigned" }}
+                                        </h4>
+
                                     </div>
+
                                 </div>
 
+
+                                <!-- Driver -->
+
                                 <div class="info-box">
+
                                     <i class="fas fa-user"></i>
+
                                     <div>
-                                        <span>Driver</span>
-                                        <h4>{{ bus.driver_name if bus else "-" }}</h4>
+
+                                        <span>
+                                            Driver
+                                        </span>
+
+                                        <h4>
+                                            {{ bus.driver_name
+                                            if bus
+                                            else "-" }}
+                                        </h4>
+
                                     </div>
+
                                 </div>
 
+
+                                <!-- Capacity -->
+
                                 <div class="info-box">
+
                                     <i class="fas fa-users"></i>
+
                                     <div>
-                                        <span>Capacity</span>
-                                        <h4>{{ bus.capacity if bus else "-" }}</h4>
+
+                                        <span>
+                                            Capacity
+                                        </span>
+
+                                        <h4>
+                                            {{ bus.capacity
+                                            if bus
+                                            else "-" }}
+                                        </h4>
+
                                     </div>
+
                                 </div>
 
                             </div>
@@ -116,6 +235,7 @@
                         </div>
 
                     </div>
+
 
                     <!-- ================================================= -->
                     <!-- RIGHT COLUMN -->
@@ -123,179 +243,863 @@
 
                     <div class="right-column">
 
-                        <!-- Bus Information -->
+
+                        <!-- ===============================
+                             BUS INFORMATION
+                        ================================ -->
+
                         <div class="desktop-card bus-card mb-4">
 
                             <h2>
+
                                 <i class="fas fa-bus"></i>
+
                                 Bus Information
+
                             </h2>
+
 
                             <div class="row mt-4">
 
+
+                                <!-- Bus Number -->
+
                                 <div class="col-md-6">
+
                                     <div class="detail-card">
+
                                         <i class="fas fa-bus icon-yellow"></i>
+
                                         <div>
-                                            <span>Bus Number</span>
-                                            <h5>{{ bus.bus_number if bus else "-" }}</h5>
+
+                                            <span>
+                                                Bus Number
+                                            </span>
+
+                                            <h5>
+                                                {{ bus.bus_number
+                                                if bus
+                                                else "-" }}
+                                            </h5>
+
                                         </div>
+
                                     </div>
+
                                 </div>
+
+
+                                <!-- Driver -->
 
                                 <div class="col-md-6">
+
                                     <div class="detail-card">
+
                                         <i class="fas fa-user-tie icon-yellow"></i>
+
                                         <div>
-                                            <span>Driver Name</span>
-                                            <h5>{{ bus.driver_name if bus else "-" }}</h5>
+
+                                            <span>
+                                                Driver Name
+                                            </span>
+
+                                            <h5>
+                                                {{ bus.driver_name
+                                                if bus
+                                                else "-" }}
+                                            </h5>
+
                                         </div>
+
                                     </div>
+
                                 </div>
 
+
+                                <!-- Capacity -->
+
                                 <div class="col-md-6 mt-4">
+
                                     <div class="detail-card">
+
                                         <i class="fas fa-users icon-yellow"></i>
+
                                         <div>
-                                            <span>Capacity</span>
-                                            <h5>{{ bus.capacity if bus else "-" }}</h5>
+
+                                            <span>
+                                                Capacity
+                                            </span>
+
+                                            <h5>
+                                                {{ bus.capacity
+                                                if bus
+                                                else "-" }}
+                                            </h5>
+
                                         </div>
+
                                     </div>
+
                                 </div>
 
+
+                                <!-- Route -->
+
                                 <div class="col-md-6 mt-4">
+
                                     <div class="detail-card">
+
                                         <i class="fas fa-map-location-dot icon-yellow"></i>
+
                                         <div>
-                                            <span>Route</span>
-                                            <h5>{{ bus.route_name if bus else "-" }}</h5>
+
+                                            <span>
+                                                Route
+                                            </span>
+
+                                            <h5>
+                                                {{ bus.route_name
+                                                if bus
+                                                else "-" }}
+                                            </h5>
+
                                         </div>
+
                                     </div>
+
                                 </div>
+
 
                             </div>
 
                         </div>
 
-                        <!-- Route Information -->
+
+                        <!-- ===============================
+                             ROUTE INFORMATION
+                        ================================ -->
+
                         <div class="desktop-card bus-card mb-4">
 
                             <h2>
+
                                 <i class="fas fa-route"></i>
+
                                 Route Information
+
                             </h2>
+
 
                             <table class="table table-borderless mt-4">
 
                                 <tr>
-                                    <th>Source</th>
-                                    <td>{{ bus.source if bus else "-" }}</td>
-                                </tr>
 
-                                <tr>
-                                    <th>Destination</th>
-                                    <td>{{ bus.destination if bus else "-" }}</td>
-                                </tr>
+                                    <th>
+                                        Source
+                                    </th>
 
-                                <tr>
-                                    <th>Distance</th>
                                     <td>
-                                        {% if bus %}
-                                        {{ bus.distance }}
-                                        {% else %}
-                                        -
-                                        {% endif %}
+                                        {{ bus.source
+                                        if bus
+                                        else "-" }}
                                     </td>
+
                                 </tr>
 
+
                                 <tr>
-                                    <th>Estimated Time</th>
-                                    <td>{{ bus.estimated_time if bus else "-" }}</td>
+
+                                    <th>
+                                        Destination
+                                    </th>
+
+                                    <td>
+                                        {{ bus.destination
+                                        if bus
+                                        else "-" }}
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <th>
+                                        Distance
+                                    </th>
+
+                                    <td>
+
+                                        {% if bus %}
+
+                                            {{ bus.distance }}
+
+                                        {% else %}
+
+                                            -
+
+                                        {% endif %}
+
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <th>
+                                        Estimated Time
+                                    </th>
+
+                                    <td>
+                                        {{ bus.estimated_time
+                                        if bus
+                                        else "-" }}
+                                    </td>
+
                                 </tr>
 
                             </table>
 
                         </div>
 
-                        <!-- Live Status -->
+
+                        <!-- ===============================
+                             LIVE STATUS
+                        ================================ -->
+
                         <div class="desktop-card bus-card">
 
+
                             <h2>
+
                                 <i class="fas fa-location-dot"></i>
+
                                 Live Bus Status
+
                             </h2>
+
+
+                            <!-- =================================
+                                 Hidden Bus ID
+                            ================================== -->
+
+                            {% if bus %}
+
+                            <div
+                                id="myBusLiveData"
+                                data-bus-id="{{ bus.bus_id }}"
+                                style="display:none;">
+                            </div>
+
+                            {% endif %}
+
 
                             <div class="row mt-4">
 
-                                <div class="col-md-6">
-                                    <div class="status-card">
-                                        <h6>Current Stop</h6>
-                                        <h4>{{ bus.current_stop if bus else "-" }}</h4>
-                                    </div>
-                                </div>
+
+                                <!-- ===============================
+                                     CURRENT STOP
+                                ================================ -->
 
                                 <div class="col-md-6">
+
                                     <div class="status-card">
-                                        <h6>Speed</h6>
-                                        <h4>{{ bus.speed if bus else "0" }} km/h</h4>
+
+                                        <h6>
+                                            Current Stop
+                                        </h6>
+
+                                        <h4 id="myBusCurrentStop">
+
+                                            {{ bus.current_stop
+                                            if bus and bus.current_stop
+                                            else "-" }}
+
+                                        </h4>
+
                                     </div>
+
                                 </div>
 
-                                <div class="col-md-6 mt-4">
+
+                                <!-- ===============================
+                                     SPEED
+                                ================================ -->
+
+                                <div class="col-md-6">
+
                                     <div class="status-card">
-                                        <h6>ETA</h6>
-                                        <h4>{{ bus.eta if bus else "-" }}</h4>
+
+                                        <h6>
+                                            Speed
+                                        </h6>
+
+                                        <h4 id="myBusSpeed">
+
+                                            {{ bus.speed
+                                            if bus and bus.speed is not none
+                                            else "0" }}
+
+                                            km/h
+
+                                        </h4>
+
                                     </div>
+
                                 </div>
 
+
+                                <!-- ===============================
+                                     ETA
+                                ================================ -->
+
                                 <div class="col-md-6 mt-4">
+
                                     <div class="status-card">
-                                        <h6>Status</h6>
+
+                                        <h6>
+                                            ETA
+                                        </h6>
+
+                                        <h4 id="myBusEta">
+
+                                            {{ bus.eta_time
+                                            if bus and bus.eta_time
+                                            else "-" }}
+
+                                        </h4>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- ===============================
+                                     STATUS
+                                ================================ -->
+
+                                <div class="col-md-6 mt-4">
+
+                                    <div class="status-card">
+
+                                        <h6>
+                                            Status
+                                        </h6>
+
 
                                         {% if bus %}
 
-                                            {% if bus.bus_status == "On Time" %}
-                                                <span class="badge bg-success fs-6">
-                                                    🟢 On Time
-                                                </span>
-                                            {% else %}
-                                                <span class="badge bg-warning text-dark fs-6">
-                                                    🟡 Delayed
-                                                </span>
-                                            {% endif %}
+                                        <span
+                                            id="myBusStatusBadge"
+                                            class="badge fs-6">
+
+
+                                            <span
+                                                id="myBusStatusDot"
+                                                class="my-status-dot">
+                                            </span>
+
+
+                                            <span id="myBusStatus">
+
+                                                {{ bus.bus_status
+                                                if bus.bus_status
+                                                else "Offline" }}
+
+                                            </span>
+
+
+                                        </span>
+
 
                                         {% else %}
 
-                                            <span class="badge bg-danger fs-6">
-                                                No Bus Assigned
-                                            </span>
+                                        <span
+                                            class="badge bg-danger fs-6">
+
+                                            No Bus Assigned
+
+                                        </span>
 
                                         {% endif %}
 
+
                                     </div>
+
                                 </div>
+
 
                             </div>
 
+
+                            <!-- ===============================
+                                 LAST UPDATED
+                            ================================ -->
+
+                            {% if bus %}
+
+                            <div
+                                class="live-updated-text">
+
+                                Last updated:
+
+                                <span id="myBusLastUpdated">
+
+                                    {{ bus.last_updated
+                                    if bus.last_updated
+                                    else "-" }}
+
+                                </span>
+
+                            </div>
+
+                            {% endif %}
+
+
                         </div>
 
+
                     </div>
+
                     <!-- End Right Column -->
 
+
                 </div>
+
                 <!-- End desktop-grid -->
 
             </div>
+
             <!-- End bus-container -->
 
         </div>
+
         <!-- End mobile-container -->
 
     </div>
+
     <!-- End desktop-page -->
 
+
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+
+    <!-- ==========================================
+         MY BUS LIVE UPDATE
+    =========================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const liveData =
+                    document.getElementById(
+                        "myBusLiveData"
+                    );
+
+
+                if (!liveData) {
+
+                    return;
+
+                }
+
+
+                const busId =
+                    liveData.dataset.busId;
+
+
+                if (!busId) {
+
+                    return;
+
+                }
+
+
+                const currentStop =
+                    document.getElementById(
+                        "myBusCurrentStop"
+                    );
+
+
+                const speed =
+                    document.getElementById(
+                        "myBusSpeed"
+                    );
+
+
+                const eta =
+                    document.getElementById(
+                        "myBusEta"
+                    );
+
+
+                const status =
+                    document.getElementById(
+                        "myBusStatus"
+                    );
+
+
+                const statusDot =
+                    document.getElementById(
+                        "myBusStatusDot"
+                    );
+
+
+                const statusBadge =
+                    document.getElementById(
+                        "myBusStatusBadge"
+                    );
+
+
+                const lastUpdated =
+                    document.getElementById(
+                        "myBusLastUpdated"
+                    );
+
+
+                // ==========================================
+                // UPDATE LIVE DATA
+                // ==========================================
+
+                async function updateMyBus() {
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                `/student/live_location/${busId}`,
+                                {
+                                    method: "GET",
+                                    cache: "no-store"
+                                }
+                            );
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                "Live bus request failed."
+                            );
+
+                        }
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (
+                            !data ||
+                            data.success === false
+                        ) {
+
+                            setStatus("Offline");
+
+                            return;
+
+                        }
+
+
+                        // ==================================
+                        // CURRENT STOP
+                        // ==================================
+
+                        if (currentStop) {
+
+                            currentStop.textContent =
+                                data.current_stop ||
+                                "-";
+
+                        }
+
+
+                        // ==================================
+                        // SPEED
+                        // ==================================
+
+                        if (speed) {
+
+                            const currentSpeed =
+                                parseFloat(
+                                    data.speed || 0
+                                );
+
+
+                            speed.textContent =
+                                currentSpeed +
+                                " km/h";
+
+                        }
+
+
+                        // ==================================
+                        // ETA
+                        // ==================================
+
+                        if (eta) {
+
+                            /*
+                             * This is the important part.
+                             *
+                             * The ETA now comes directly from:
+                             *
+                             * live_bus_location.eta
+                             *
+                             * through:
+                             *
+                             * /student/live_location/<bus_id>
+                             */
+
+                            eta.textContent =
+                                data.eta ||
+                                "-";
+
+                        }
+
+
+                        // ==================================
+                        // LAST UPDATED
+                        // ==================================
+
+                        if (lastUpdated) {
+
+                            lastUpdated.textContent =
+                                data.last_updated ||
+                                "-";
+
+                        }
+
+
+                        // ==================================
+                        // REAL STATUS
+                        // ==================================
+
+                        let liveStatus =
+                            data.trip_status;
+
+
+                        /*
+                         * If trip_status is empty,
+                         * calculate a basic fallback.
+                         */
+
+                        if (
+                            !liveStatus ||
+                            liveStatus.trim() === ""
+                        ) {
+
+                            const currentSpeed =
+                                parseFloat(
+                                    data.speed || 0
+                                );
+
+
+                            if (currentSpeed > 0) {
+
+                                liveStatus =
+                                    "Moving";
+
+                            } else {
+
+                                liveStatus =
+                                    "Stopped";
+
+                            }
+
+                        }
+
+
+                        setStatus(
+                            liveStatus
+                        );
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "My Bus live update error:",
+                            error
+                        );
+
+                    }
+
+                }
+
+
+                // ==========================================
+                // STATUS UI
+                // ==========================================
+
+                function setStatus(
+                    liveStatus
+                ) {
+
+                    liveStatus =
+                        String(
+                            liveStatus ||
+                            "Offline"
+                        ).trim();
+
+
+                    if (status) {
+
+                        status.textContent =
+                            liveStatus;
+
+                    }
+
+
+                    if (statusDot) {
+
+                        statusDot.className =
+                            "my-status-dot";
+
+                    }
+
+
+                    if (statusBadge) {
+
+                        statusBadge.className =
+                            "badge fs-6";
+
+                    }
+
+
+                    const value =
+                        liveStatus.toLowerCase();
+
+
+                    // ----------------------------------
+                    // ONLINE
+                    // ----------------------------------
+
+                    if (
+                        value === "online"
+                    ) {
+
+                        statusDot.classList.add(
+                            "status-online"
+                        );
+
+                        statusBadge.classList.add(
+                            "status-badge-online"
+                        );
+
+                    }
+
+
+                    // ----------------------------------
+                    // MOVING / ON TRIP
+                    // ----------------------------------
+
+                    else if (
+                        value === "moving" ||
+                        value === "on trip"
+                    ) {
+
+                        statusDot.classList.add(
+                            "status-moving"
+                        );
+
+                        statusBadge.classList.add(
+                            "status-badge-moving"
+                        );
+
+                    }
+
+
+                    // ----------------------------------
+                    // STOPPED
+                    // ----------------------------------
+
+                    else if (
+                        value === "stopped"
+                    ) {
+
+                        statusDot.classList.add(
+                            "status-stopped"
+                        );
+
+                        statusBadge.classList.add(
+                            "status-badge-stopped"
+                        );
+
+                    }
+
+
+                    // ----------------------------------
+                    // DELAYED
+                    // ----------------------------------
+
+                    else if (
+                        value === "delayed"
+                    ) {
+
+                        statusDot.classList.add(
+                            "status-delayed"
+                        );
+
+                        statusBadge.classList.add(
+                            "status-badge-delayed"
+                        );
+
+                    }
+
+
+                    // ----------------------------------
+                    // OFFLINE
+                    // ----------------------------------
+
+                    else {
+
+                        statusDot.classList.add(
+                            "status-offline"
+                        );
+
+                        statusBadge.classList.add(
+                            "status-badge-offline"
+                        );
+
+                    }
+
+                }
+
+
+                // ==========================================
+                // FIRST UPDATE
+                // ==========================================
+
+                updateMyBus();
+
+
+                // ==========================================
+                // AUTO UPDATE
+                //
+                // Every 10 seconds
+                // ==========================================
+
+                setInterval(
+                    updateMyBus,
+                    10000
+                );
+
+
+            }
+
+        );
+
+    </script>
+
 
 </body>
 

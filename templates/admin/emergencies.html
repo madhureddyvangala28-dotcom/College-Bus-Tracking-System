@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Emergency Management | College Bus Tracking
+    </title>
+
+
+    <!-- ==========================================
+                    FONT AWESOME
+    =========================================== -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <!-- ==========================================
+                    ADMIN NAVBAR CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+
+    <!-- ==========================================
+                    EMERGENCY PAGE CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/emergencies.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+                ADMIN NAVBAR
+========================================== -->
+
+    {% include "admin/navbar.html" %}
+
+
+
+    <!-- ==========================================
+                PAGE HEADER
+========================================== -->
+
+    <section class="emergency-page-header">
+
+        <div class="header-content">
+
+            <div>
+
+                <span class="page-label">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    EMERGENCY MANAGEMENT
+
+                </span>
+
+
+                <h1>
+
+                    Emergency Alerts
+
+                </h1>
+
+
+                <p>
+
+                    Monitor and respond to emergency alerts
+                    reported by college bus drivers.
+
+                </p>
+
+            </div>
+
+
+            <!-- REFRESH -->
+
+            <button type="button" class="refresh-btn" onclick="location.reload()">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================================
+                EMERGENCY SUMMARY
+========================================== -->
+
+    <section class="emergency-summary">
+
+
+        <!-- ======================================
+                TOTAL ALERTS
+    ======================================= -->
+
+        <div class="summary-card total">
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Total Alerts
+                </span>
+
+                <h2>
+
+                    {{ emergencies|length }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ======================================
+                PENDING ALERTS
+    ======================================= -->
+
+        <div class="summary-card pending">
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-clock"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Pending
+                </span>
+
+                <h2>
+
+                    {% set pending_count = namespace(value=0) %}
+
+                    {% for alert in emergencies %}
+
+                    {% if alert.status|lower == "pending" %}
+
+                    {% set pending_count.value =
+                    pending_count.value + 1 %}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {{ pending_count.value }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ======================================
+                RESPONDED ALERTS
+    ======================================= -->
+
+        <div class="summary-card responded">
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-reply"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Responded
+                </span>
+
+                <h2>
+
+                    {% set responded_count = namespace(value=0) %}
+
+                    {% for alert in emergencies %}
+
+                    {% if alert.status|lower == "responded" %}
+
+                    {% set responded_count.value =
+                    responded_count.value + 1 %}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {{ responded_count.value }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ======================================
+                RESOLVED ALERTS
+    ======================================= -->
+
+        <div class="summary-card resolved">
+
+            <div class="summary-icon">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Resolved
+                </span>
+
+                <h2>
+
+                    {% set resolved_count = namespace(value=0) %}
+
+                    {% for alert in emergencies %}
+
+                    {% if alert.status|lower == "resolved" %}
+
+                    {% set resolved_count.value =
+                    resolved_count.value + 1 %}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {{ resolved_count.value }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+                EMERGENCY ALERTS
+========================================== -->
+
+    <section class="emergency-alert-section">
+
+
+        <!-- ======================================
+                SECTION HEADER
+    ======================================= -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="page-label">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    DRIVER EMERGENCY ALERTS
+
+                </span>
+
+
+                <h2>
+
+                    Emergency Reports
+
+                </h2>
+
+
+                <p>
+
+                    Review emergency reports and take
+                    appropriate action immediately.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==========================================
+                    ALERT GRID
+    =========================================== -->
+
+        <div class="emergency-alert-grid">
+
+
+            {% for alert in emergencies %}
+
+
+            <!-- ======================================
+                    EMERGENCY CARD
+        ======================================= -->
+
+            <div class="emergency-alert-card
+            {{ alert.emergency_type|lower|replace(' ', '-')|replace('/', '-') }}">
+
+
+                <!-- ==================================
+                    CARD TOP
+            =================================== -->
+
+                <div class="alert-card-header">
+
+
+                    <!-- EMERGENCY ICON -->
+
+                    <div class="alert-type-icon">
+
+                        {% if alert.emergency_type == "Accident" %}
+
+                        <i class="fa-solid fa-car-burst"></i>
+
+                        {% elif alert.emergency_type == "Medical Emergency" %}
+
+                        <i class="fa-solid fa-truck-medical"></i>
+
+                        {% elif alert.emergency_type == "Bus Breakdown" %}
+
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                        {% else %}
+
+                        <i class="fa-solid fa-tower-broadcast"></i>
+
+                        {% endif %}
+
+                    </div>
+
+
+
+                    <!-- TITLE -->
+
+                    <div class="alert-title">
+
+                        <h3>
+
+                            {{ alert.emergency_type }}
+
+                        </h3>
+
+
+                        <span>
+
+                            Emergency #{{ alert.id }}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- STATUS -->
+
+                    {% if alert.status|lower == "resolved" %}
+
+                    <span class="alert-status resolved">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Resolved
+
+                    </span>
+
+                    {% elif alert.status|lower == "responded" %}
+
+                    <span class="alert-status responded">
+
+                        <i class="fa-solid fa-reply"></i>
+
+                        Responded
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="alert-status pending">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Pending
+
+                    </span>
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- ==================================
+                    DRIVER INFORMATION
+            =================================== -->
+
+                <div class="alert-driver">
+
+
+                    <div class="driver-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Driver
+                        </span>
+
+                        <strong>
+
+                            {{ alert.driver_name or
+                            "Driver #" ~ alert.driver_id }}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==================================
+                    BUS / ROUTE INFORMATION
+            =================================== -->
+
+                <div class="alert-info-grid">
+
+
+                    <!-- BUS -->
+
+                    <div class="alert-info-item">
+
+                        <i class="fa-solid fa-bus"></i>
+
+                        <div>
+
+                            <span>
+                                Bus
+                            </span>
+
+                            <strong>
+
+                                {{ alert.bus_number or
+                                "Not Assigned" }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ROUTE -->
+
+                    <div class="alert-info-item">
+
+                        <i class="fa-solid fa-route"></i>
+
+                        <div>
+
+                            <span>
+                                Route
+                            </span>
+
+                            <strong>
+
+                                {{ alert.route_name or
+                                "Not Assigned" }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==================================
+                    LOCATION
+            =================================== -->
+
+                {% if alert.latitude is not none
+                and alert.longitude is not none %}
+
+
+                <div class="alert-location">
+
+
+                    <div class="location-icon">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Emergency Location
+                        </span>
+
+                        <strong>
+
+                            {{ "%.6f"|format(alert.latitude) }},
+
+                            {{ "%.6f"|format(alert.longitude) }}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                {% else %}
+
+
+                <div class="alert-location no-location">
+
+
+                    <div class="location-icon">
+
+                        <i class="fa-solid fa-location-crosshairs"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Emergency Location
+                        </span>
+
+                        <strong>
+
+                            Location not available
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                {% endif %}
+
+
+
+                <!-- ==================================
+                    MESSAGE
+            =================================== -->
+
+                <div class="alert-message">
+
+
+                    <div class="message-title">
+
+                        <i class="fa-solid fa-message"></i>
+
+                        Driver Message
+
+                    </div>
+
+
+                    <p>
+
+                        {{ alert.message or
+                        "No additional message provided." }}
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- ==================================
+                    CREATED TIME
+            =================================== -->
+
+                <div class="alert-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    <span>
+
+                        Reported:
+
+                        {{ alert.created_at }}
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- ==================================
+                    ADMIN RESPONSE
+            =================================== -->
+
+                {% if alert.admin_response %}
+
+
+                <div class="admin-response">
+
+
+                    <div class="response-title">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        Admin Response
+
+                    </div>
+
+
+                    <p>
+
+                        {{ alert.admin_response }}
+
+                    </p>
+
+
+                </div>
+
+
+                {% endif %}
+
+
+
+                <!-- ==================================
+                    ACTION BUTTONS
+            =================================== -->
+
+                <div class="alert-actions">
+
+
+                    <!-- ==================================
+                        VIEW LOCATION
+                =================================== -->
+
+                    {% if alert.latitude is not none
+                    and alert.longitude is not none %}
+
+
+                    <a href="https://www.google.com/maps?q={{ alert.latitude }},{{ alert.longitude }}" target="_blank"
+                        rel="noopener noreferrer" class="action-btn location-btn">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        View Location
+
+                    </a>
+
+
+                    {% endif %}
+
+                    <!-- ==================================
+        NOTIFY PARENTS & STUDENTS
+================================== -->
+
+                    {% if alert.status|lower != "resolved" %}
+
+                    <button type="button" class="action-btn notify-btn" onclick="notifyEmergency({{ alert.id }})">
+
+                        <i class="fa-solid fa-bullhorn"></i>
+
+                        Notify Parents
+
+                    </button>
+
+                    {% endif %}
+
+                    <!-- ==================================
+                        RESPOND
+                =================================== -->
+
+                    {% if alert.status|lower != "resolved" %}
+
+
+                    <button type="button" class="action-btn respond-btn" onclick="openResponseModal({{ alert.id }})">
+
+                        <i class="fa-solid fa-reply"></i>
+
+                        Respond
+
+                    </button>
+
+
+
+                    <!-- ==================================
+                        RESOLVE
+                =================================== -->
+
+                    <button type="button" class="action-btn resolve-btn" onclick="resolveEmergency({{ alert.id }})">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Resolve
+
+                    </button>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- ======================================
+                    NO EMERGENCIES
+        ======================================= -->
+
+            <div class="no-emergencies">
+
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+
+                <h3>
+
+                    No Emergency Alerts
+
+                </h3>
+
+
+                <p>
+
+                    There are currently no emergency
+                    reports from drivers.
+
+                </p>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==========================================
+            RESPONSE MODAL
+========================================== -->
+
+    <div id="responseModal" class="response-modal">
+
+
+        <div class="modal-content">
+
+
+            <!-- ==================================
+                MODAL HEADER
+        =================================== -->
+
+            <div class="modal-header">
+
+
+                <div>
+
+                    <span class="page-label">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        ADMIN RESPONSE
+
+                    </span>
+
+
+                    <h2>
+
+                        Respond to Emergency
+
+                    </h2>
+
+                </div>
+
+
+                <button type="button" class="modal-close" onclick="closeResponseModal()">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- ==================================
+                RESPONSE FORM
+        =================================== -->
+
+            <form id="responseForm">
+
+
+                <div class="form-group">
+
+
+                    <label for="admin_response">
+
+                        Response Message
+
+                    </label>
+
+
+                    <textarea id="admin_response" name="admin_response" rows="5"
+                        placeholder="Enter your response or instructions for the driver..." required></textarea>
+
+
+                </div>
+
+
+
+                <div class="modal-actions">
+
+
+                    <button type="button" class="modal-cancel" onclick="closeResponseModal()">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit" class="modal-submit">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Send Response
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+                    FOOTER
+========================================== -->
+
+    <footer class="footer">
+
+        <p>
+
+            © 2026 College Bus Tracking System
+
+            <span>|</span>
+
+            Emergency Management
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- ==========================================
+                JAVASCRIPT
+========================================== -->
+
+    <script>
+
+
+        // ==========================================================
+        // CURRENT EMERGENCY ID
+        // ==========================================================
+
+        let currentEmergencyId = null;
+
+
+
+        // ==========================================================
+        // OPEN RESPONSE MODAL
+        // ==========================================================
+
+        function openResponseModal(emergencyId) {
+
+            currentEmergencyId =
+                emergencyId;
+
+
+            const modal =
+                document.getElementById(
+                    "responseModal"
+                );
+
+
+            const textarea =
+                document.getElementById(
+                    "admin_response"
+                );
+
+
+            if (!modal) {
+
+                console.error(
+                    "Response modal not found."
+                );
+
+                return;
+            }
+
+
+            if (textarea) {
+
+                textarea.value = "";
+
+            }
+
+
+            modal.classList.add(
+                "show"
+            );
+
+
+            // Focus textarea after modal opens
+
+            setTimeout(
+                function () {
+
+                    if (textarea) {
+
+                        textarea.focus();
+
+                    }
+
+                },
+                100
+            );
+
+        }
+
+
+
+        // ==========================================================
+        // CLOSE RESPONSE MODAL
+        // ==========================================================
+
+        function closeResponseModal() {
+
+            const modal =
+                document.getElementById(
+                    "responseModal"
+                );
+
+
+            const textarea =
+                document.getElementById(
+                    "admin_response"
+                );
+
+
+            if (modal) {
+
+                modal.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            if (textarea) {
+
+                textarea.value = "";
+
+            }
+
+
+            currentEmergencyId =
+                null;
+
+        }
+
+
+
+        // ==========================================================
+        // RESPONSE FORM SUBMIT
+        // ==========================================================
+
+        document
+            .getElementById("responseForm")
+            .addEventListener(
+                "submit",
+                async function (event) {
+
+                    // -----------------------------------------
+                    // STOP NORMAL FORM SUBMISSION
+                    // -----------------------------------------
+
+                    event.preventDefault();
+
+
+                    // -----------------------------------------
+                    // CHECK EMERGENCY ID
+                    // -----------------------------------------
+
+                    if (!currentEmergencyId) {
+
+                        alert(
+                            "Emergency ID not found."
+                        );
+
+                        return;
+
+                    }
+
+
+                    // -----------------------------------------
+                    // GET RESPONSE MESSAGE
+                    // -----------------------------------------
+
+                    const textarea =
+                        document.getElementById(
+                            "admin_response"
+                        );
+
+
+                    if (!textarea) {
+
+                        alert(
+                            "Response field not found."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const responseMessage =
+                        textarea.value.trim();
+
+
+                    // -----------------------------------------
+                    // VALIDATE
+                    // -----------------------------------------
+
+                    if (!responseMessage) {
+
+                        alert(
+                            "Please enter a response message."
+                        );
+
+                        textarea.focus();
+
+                        return;
+
+                    }
+
+
+                    // -----------------------------------------
+                    // GET SUBMIT BUTTON
+                    // -----------------------------------------
+
+                    const submitButton =
+                        document.querySelector(
+                            "#responseForm .modal-submit"
+                        );
+
+
+                    const originalButtonHTML =
+                        submitButton
+                            ? submitButton.innerHTML
+                            : "";
+
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            true;
+
+                        submitButton.innerHTML =
+                            '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+                    }
+
+
+                    // -----------------------------------------
+                    // SEND TO FLASK
+                    // -----------------------------------------
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "/admin/emergencies/"
+                                + currentEmergencyId
+                                + "/respond",
+                                {
+
+                                    method: "POST",
+
+                                    headers: {
+
+                                        "Content-Type":
+                                            "application/json",
+
+                                        "Accept":
+                                            "application/json"
+
+                                    },
+
+                                    body:
+                                        JSON.stringify({
+
+                                            response:
+                                                responseMessage
+
+                                        })
+
+                                }
+                            );
+
+
+                        const result =
+                            await response.json();
+
+
+                        console.log(
+                            "Emergency Response Result:",
+                            result
+                        );
+
+
+                        // -----------------------------------------
+                        // SUCCESS
+                        // -----------------------------------------
+
+                        if (
+                            response.ok &&
+                            result.success
+                        ) {
+
+                            alert(
+                                "Emergency response sent successfully."
+                            );
+
+
+                            closeResponseModal();
+
+
+                            // Refresh page to show
+                            // Responded status
+
+                            window.location.reload();
+
+                        }
+
+
+                        // -----------------------------------------
+                        // SERVER ERROR
+                        // -----------------------------------------
+
+                        else {
+
+                            alert(
+                                result.message ||
+                                "Unable to send emergency response."
+                            );
+
+                        }
+
+
+                    }
+
+
+                    catch (error) {
+
+                        console.error(
+                            "Emergency Response Error:",
+                            error
+                        );
+
+
+                        alert(
+                            "Unable to connect to the server."
+                        );
+
+                    }
+
+
+                    finally {
+
+                        // Restore button
+
+                        if (submitButton) {
+
+                            submitButton.disabled =
+                                false;
+
+                            submitButton.innerHTML =
+                                originalButtonHTML;
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+
+        // ==========================================================
+        // CLOSE MODAL WHEN CLICKING OUTSIDE
+        // ==========================================================
+
+        document
+            .getElementById("responseModal")
+            .addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        event.target === this
+                    ) {
+
+                        closeResponseModal();
+
+                    }
+
+                }
+            );
+
+
+
+        // ==========================================================
+        // RESOLVE EMERGENCY
+        // ==========================================================
+
+        async function resolveEmergency(
+            emergencyId
+        ) {
+
+
+            // -----------------------------------------
+            // CONFIRM
+            // -----------------------------------------
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to mark this emergency as resolved?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            // -----------------------------------------
+            // FIND BUTTON
+            // -----------------------------------------
+
+            const buttons =
+                document.querySelectorAll(
+                    ".resolve-btn"
+                );
+
+
+            let clickedButton = null;
+
+
+            buttons.forEach(
+                function (button) {
+
+                    const onclickValue =
+                        button.getAttribute(
+                            "onclick"
+                        );
+
+
+                    if (
+                        onclickValue &&
+                        onclickValue.includes(
+                            String(emergencyId)
+                        )
+                    ) {
+
+                        clickedButton =
+                            button;
+
+                    }
+
+                }
+            );
+
+
+            const originalHTML =
+                clickedButton
+                    ? clickedButton.innerHTML
+                    : "";
+
+
+            if (clickedButton) {
+
+                clickedButton.disabled =
+                    true;
+
+                clickedButton.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Resolving...';
+
+            }
+
+
+            // -----------------------------------------
+            // SEND RESOLVE REQUEST
+            // -----------------------------------------
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/admin/emergencies/"
+                        + emergencyId
+                        + "/resolve",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                "Accept":
+                                    "application/json"
+
+                            }
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Resolve Result:",
+                    data
+                );
+
+
+                // -----------------------------------------
+                // SUCCESS
+                // -----------------------------------------
+
+                if (
+                    response.ok &&
+                    data.success
+                ) {
+
+                    alert(
+                        "Emergency resolved successfully."
+                    );
+
+
+                    window.location.reload();
+
+                }
+
+
+                // -----------------------------------------
+                // ERROR
+                // -----------------------------------------
+
+                else {
+
+                    alert(
+                        data.message ||
+                        "Unable to resolve emergency."
+                    );
+
+                }
+
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Resolve Error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to connect to the server."
+                );
+
+            }
+
+
+            finally {
+
+                if (clickedButton) {
+
+                    clickedButton.disabled =
+                        false;
+
+                    clickedButton.innerHTML =
+                        originalHTML;
+
+                }
+
+            }
+
+        }
+
+
+
+        // ==========================================================
+        // ESC KEY CLOSE MODAL
+        // ==========================================================
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeResponseModal();
+
+                }
+
+            }
+        );
+
+
+        // ==========================================================
+        // NOTIFY PARENTS & STUDENTS
+        // ==========================================================
+
+        async function notifyEmergency(emergencyId) {
+
+            const confirmed = confirm(
+                "Send an emergency notification to all parents and students?"
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            // -----------------------------------------
+            // FIND BUTTON
+            // -----------------------------------------
+
+            const buttons =
+                document.querySelectorAll(".notify-btn");
+
+            let clickedButton = null;
+
+
+            buttons.forEach(function (button) {
+
+                const onclickValue =
+                    button.getAttribute("onclick");
+
+                if (
+                    onclickValue &&
+                    onclickValue.includes(
+                        String(emergencyId)
+                    )
+                ) {
+
+                    clickedButton = button;
+
+                }
+
+            });
+
+
+            const originalHTML =
+                clickedButton
+                    ? clickedButton.innerHTML
+                    : "";
+
+
+            if (clickedButton) {
+
+                clickedButton.disabled = true;
+
+                clickedButton.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+            }
+
+
+            // -----------------------------------------
+            // SEND REQUEST
+            // -----------------------------------------
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/admin/emergencies/"
+                        + emergencyId
+                        + "/notify",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Emergency Notification Result:",
+                    data
+                );
+
+
+                // -----------------------------------------
+                // SUCCESS
+                // -----------------------------------------
+
+                if (
+                    response.ok &&
+                    data.success
+                ) {
+
+                    alert(
+                        "Emergency notification sent successfully!"
+                    );
+
+                }
+
+
+                // -----------------------------------------
+                // ERROR
+                // -----------------------------------------
+
+                else {
+
+                    alert(
+                        data.message ||
+                        "Unable to send emergency notification."
+                    );
+
+                }
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Emergency Notification Error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to connect to the server."
+                );
+
+            }
+
+
+            finally {
+
+                if (clickedButton) {
+
+                    clickedButton.disabled = false;
+
+                    clickedButton.innerHTML =
+                        originalHTML;
+
+                }
+
+            }
+
+        }
+    </script>
+
+    <script>
+
+        async function notifyEmergency(emergencyId) {
+
+            const confirmed = confirm(
+                "Send this emergency alert to the students and parents of the affected bus?"
+            );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response = await fetch(
+                    `/admin/emergencies/${emergencyId}/notify`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }
+                );
+
+
+                const result = await response.json();
+
+
+                if (result.success) {
+
+                    alert(
+                        "Emergency notification sent successfully!\n\n" +
+
+                        "Students: " +
+                        result.students_notified +
+
+                        "\nParents: " +
+                        result.parents_notified +
+
+                        "\nStudent Push: " +
+                        result.student_push_sent +
+
+                        "\nParent Push: " +
+                        result.parent_push_sent
+                    );
+
+
+                    location.reload();
+
+                }
+
+                else {
+
+                    alert(
+                        result.message ||
+                        "Failed to send emergency notification."
+                    );
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Emergency notification error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to send emergency notification."
+                );
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

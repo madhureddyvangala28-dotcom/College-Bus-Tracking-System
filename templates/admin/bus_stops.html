@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bus Stops Management</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/bus_stops.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    {% include "admin/navbar.html" %}
+
+    <div class="page-container">
+
+        <!-- ==========================
+    HERO SECTION
+=========================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>Bus Stops Management</h1>
+
+                <p>
+                    Manage all bus stops from one place.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+    SEARCH SECTION
+=========================== -->
+
+        <section class="top-bar">
+
+            <form method="GET" class="search-form">
+
+                <div class="search-box">
+
+                    <i class="fas fa-search"></i>
+
+                    <input type="text" name="search" placeholder="Search Stop..."
+                        value="{{ search if search else '' }}">
+
+                </div>
+
+                <button class="search-btn">
+
+                    <i class="fas fa-search"></i>
+
+                    Search
+
+                </button>
+
+            </form>
+
+
+            <button class="add-btn" onclick="openAddStopModal()">
+
+                <i class="fas fa-plus"></i>
+
+                Add Stop
+
+            </button>
+
+        </section>
+
+        <div class="table-wrapper">
+
+            <table class="bus-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Route</th>
+
+                        <th>Order</th>
+
+                        <th>Stop Name</th>
+
+                        <th>Latitude</th>
+
+                        <th>Longitude</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for stop in stops %}
+
+                    <tr>
+
+                        <td>{{ stop.route_name }}</td>
+
+                        <td>{{ stop.stop_order }}</td>
+
+                        <td>{{ stop.stop_name }}</td>
+
+                        <td>
+
+                            {% if stop.latitude %}
+
+                            {{ stop.latitude }}
+
+                            {% else %}
+
+                            <span class="not-set">Not Set</span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if stop.longitude %}
+
+                            {{ stop.longitude }}
+
+                            {% else %}
+
+                            <span class="not-set">Not Set</span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td class="action-buttons">
+
+                            <a href="#" class="edit-btn"
+                                onclick="openEditModal('{{ stop.id }}','{{ stop.route_id }}','{{ stop.stop_name }}','{{ stop.stop_order }}')">
+
+                                <i class="fas fa-edit"></i>
+
+                            </a>
+
+                            <a href="{{ url_for('route_coordinate_manager') }}" class="gps-btn">
+
+                                <i class="fas fa-location-crosshairs"></i>
+
+                            </a>
+
+                            <a href="#" class="delete-btn"
+                                onclick="openDeleteModal('{{ stop.id }}','{{ stop.stop_name }}')">
+
+                                <i class="fas fa-trash"></i>
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            <!-- =====================================
+        ADD STOP MODAL
+===================================== -->
+
+            <div id="addStopModal" class="modal">
+
+                <div class="modal-content">
+
+                    <h2>Add New Bus Stop</h2>
+
+                    <form method="POST" action="{{ url_for('add_bus_stop') }}">
+
+                        <label>
+
+                            Route
+
+                        </label>
+
+                        <select name="route_id" required>
+
+                            {% for route in routes %}
+
+                            <option value="{{ route.route_id }}">
+
+                                {{ route.route_name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <label>
+
+                            Stop Name
+
+                        </label>
+
+                        <input type="text" name="stop_name" required>
+
+                        <label>
+
+                            Stop Order
+
+                        </label>
+
+                        <input type="number" name="stop_order" required>
+
+                        <div class="modal-buttons">
+
+                            <button type="submit" class="save-btn">
+
+                                Save
+
+                            </button>
+
+                            <button type="button" class="cancel-btn" onclick="closeAddStopModal()">
+
+                                Cancel
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+        EDIT STOP MODAL
+======================================= -->
+
+            <div id="editModal" class="modal">
+
+                <div class="modal-content">
+
+                    <h2>Edit Bus Stop</h2>
+
+                    <form method="POST" action="{{ url_for('update_bus_stop') }}">
+
+                        <input type="hidden" id="editStopId" name="stop_id">
+
+                        <label>Route</label>
+
+                        <select id="editRoute" name="route_id">
+
+                            {% for route in routes %}
+
+                            <option value="{{ route.route_id }}">
+
+                                {{ route.route_name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                        <label>Stop Name</label>
+
+                        <input type="text" id="editStopName" name="stop_name">
+
+                        <label>Stop Order</label>
+
+                        <input type="number" id="editStopOrder" name="stop_order">
+
+                        <div class="modal-buttons">
+
+                            <button class="save-btn">
+
+                                Update
+
+                            </button>
+
+                            <button type="button" class="cancel-btn" onclick="closeEditModal()">
+
+                                Cancel
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+        DELETE STOP MODAL
+======================================= -->
+
+            <div id="deleteModal" class="modal">
+
+                <div class="modal-content delete-modal">
+
+                    <div class="delete-icon">
+
+                        <i class="fas fa-trash"></i>
+
+                    </div>
+
+                    <h2>
+
+                        Delete Bus Stop
+
+                    </h2>
+
+                    <p>
+
+                        Are you sure you want to delete
+
+                        <strong id="deleteStopName"></strong>?
+
+                    </p>
+
+                    <small>
+
+                        This action cannot be undone.
+
+                    </small>
+
+                    <form id="deleteForm" method="GET">
+
+                        <div class="modal-buttons">
+
+                            <button type="button" class="cancel-btn" onclick="closeDeleteModal()">
+
+                                Cancel
+
+                            </button>
+
+                            <button type="submit" class="delete-confirm-btn">
+
+                                Delete
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+        SET COORDINATES MODAL
+======================================= -->
+
+            <div id="coordinateModal" class="modal">
+
+                <div class="modal-content">
+
+                    <h2>Set Stop Coordinates</h2>
+
+                    <form id="coordinateForm">
+
+                        <input type="hidden" id="coordinateStopId">
+
+                        <label>
+
+                            Stop Name
+
+                        </label>
+
+                        <input type="text" id="coordinateStopName" readonly>
+
+                        <label>
+
+                            Select Location on Map
+
+                        </label>
+
+                        <div id="coordinateMap"></div>
+
+                        <div class="coordinate-row">
+
+                            <div>
+
+                                <label>Latitude</label>
+
+                                <input id="latitude" readonly>
+
+                            </div>
+
+                            <div>
+
+                                <label>Longitude</label>
+
+                                <input id="longitude" readonly>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-buttons">
+
+                            <button type="button" class="save-btn" id="saveCoordinatesBtn">
+
+                                Save Coordinates
+
+                            </button>
+
+                            <button type="button" class="cancel-btn" onclick="closeCoordinateModal()">
+
+                                Cancel
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="{{ url_for('static',
+filename='js/admin/bus_stops.js') }}"></script>
+
+
+</body>
+
+</html>

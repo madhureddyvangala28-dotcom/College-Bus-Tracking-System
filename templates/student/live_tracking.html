@@ -1,198 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Live Bus Tracking</title>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
 
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/live_tracking.css') }}">
+    <!-- Existing Live Tracking CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/live_tracking.css') }}"
+    >
 
 </head>
 
+
 <body>
-<!-- ======================================
-     DESKTOP CONTENT
-====================================== -->
 
-<div class="desktop-content">
+    <!-- ======================================
+         DESKTOP CONTENT
+    ====================================== -->
 
-    <div class="desktop-header">
+    <div class="desktop-content">
 
-        <div class="desktop-title">
+        <div class="desktop-header">
 
-            <a href="{{ url_for('student_dashboard') }}"
-               class="desktop-back">
+            <div class="desktop-title">
 
-                <i class="fa-solid fa-arrow-left"></i>
+                <a
+                    href="{{ url_for('student_dashboard') }}"
+                    class="desktop-back"
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
 
-            </a>
+                <div>
 
-            <div>
+                    <h1>
+                        Live Bus Tracking
+                    </h1>
 
-                <h1>Live Bus Tracking</h1>
-
-                <p>Track your college bus in real time.</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="desktop-page">
-
-<div class="mobile-container">
-
-    <!-- Sticky Header -->
-
-    <div class="sticky-header">
-
-        <a href="{{ url_for('student_dashboard') }}" class="sticky-back">
-
-            <i class="fa-solid fa-arrow-left"></i>
-
-        </a>
-
-        <div class="sticky-profile">
-
-            {% if session.get('profile_image') %}
-
-            <img src="{{ url_for('static', filename='images/students/' + session['profile_image']) }}">
-
-            {% else %}
-
-            <img src="{{ url_for('static', filename='images/students/student.png') }}">
-
-            {% endif %}
-
-            <div class="sticky-info">
-
-                <h3>Live Bus Tracking</h3>
-
-                <span>{{ tracking.bus_number }}</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- HEADER -->
-
-    <div class="profile-header">
-
-        <div class="profile-topbar">
-
-            <a href="{{ url_for('student_dashboard') }}" class="back-btn">
-
-                <i class="fa-solid fa-arrow-left"></i>
-
-            </a>
-
-        </div>
-
-        <div class="profile-avatar">
-
-            <i class="fa-solid fa-bus"
-               style="font-size:90px;color:#FFC107;"></i>
-
-        </div>
-
-        <div class="student-name">
-
-            Live Bus Tracking
-
-        </div>
-
-        <div class="student-roll">
-
-            {{ tracking.route_name }}
-
-        </div>
-
-        <div class="student-status">
-
-            🟢 {{ tracking.status }}
-
-        </div>
-
-    </div>
-
-
-    <!-- CONTENT -->
-
-    <div class="desktop-grid profile-content">
-
-        <div class="desktop-card profile-card">
-
-            <h2>
-
-                <i class="fa-solid fa-bus"></i>
-
-                Bus Information
-
-            </h2>
-
-            <div class="info-grid">
-
-                <div class="info-box">
-
-                    <label>Bus Number</label>
-
-                    <p>{{ tracking.bus_number }}</p>
-
-                </div>
-
-                <div class="info-box">
-
-                    <label>Driver</label>
-
-                    <p>{{ tracking.driver_name }}</p>
-
-                </div>
-
-                <div class="info-box">
-
-                    <label>Current Stop</label>
-
-                    <p>{{ tracking.current_stop }}</p>
-
-                </div>
-
-                <div class="info-box">
-
-                    <label>ETA</label>
-
-                    <p>{{ tracking.eta }}</p>
-
-                </div>
-
-                <div class="info-box">
-
-                    <label>Speed</label>
-
-                    <p>{{ tracking.speed }} km/h</p>
-
-                </div>
-
-                <div class="info-box">
-
-                    <label>Status</label>
-
-                    <p class="status-active">
-
-                        ● {{ tracking.status }}
-
+                    <p>
+                        Track your college bus in real time.
                     </p>
 
                 </div>
@@ -201,54 +65,566 @@
 
         </div>
 
-        <!-- MAP -->
+    </div>
 
-        <div class="desktop-card profile-card">
 
-            <h2>
+    <!-- ======================================
+         DESKTOP PAGE
+    ====================================== -->
 
-                <i class="fa-solid fa-location-dot"></i>
+    <div class="desktop-page">
 
-                Live Location
+        <div class="mobile-container">
 
-            </h2>
 
-            <div id="liveMap"
+            <!-- ======================================
+                 STICKY HEADER
+            ====================================== -->
 
-              data-lat="{{ tracking.latitude }}"
+            <div class="sticky-header">
 
-              data-lng="{{ tracking.longitude }}"
+                <a
+                    href="{{ url_for('student_dashboard') }}"
+                    class="sticky-back"
+                >
 
-              data-bus="{{ tracking.bus_number }}"
+                    <i class="fa-solid fa-arrow-left"></i>
 
-              data-driver="{{ tracking.driver_name }}"
+                </a>
 
-              data-stop="{{ tracking.current_stop }}"
 
-              data-speed="{{ tracking.speed }}"
-            
-              data-eta="{{ tracking.eta }}">
+                <div class="sticky-profile">
 
-        </div>
+                    {% if session.get('profile_image') %}
 
-        <div class="map-info">
-            
-            <i class="fa-solid fa-map-location-dot"></i>
-            <h3>Live Bus Location</h3>
-            <p>Real-time location updates using GPS.</p>
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='images/students/' + session['profile_image']
+                        ) }}"
+                        alt="Student"
+                    >
 
+                    {% else %}
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='images/students/student.png'
+                        ) }}"
+                        alt="Student"
+                    >
+
+                    {% endif %}
+
+
+                    <div class="sticky-info">
+
+                        <h3>
+                            Live Bus Tracking
+                        </h3>
+
+                        <span>
+                            {{ tracking.bus_number }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 PROFILE HEADER
+            ====================================== -->
+
+            <div class="profile-header">
+
+                <div class="profile-topbar">
+
+                    <a
+                        href="{{ url_for('student_dashboard') }}"
+                        class="back-btn"
+                    >
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                    </a>
+
+                </div>
+
+
+                <div class="profile-avatar">
+
+                    <i
+                        class="fa-solid fa-bus"
+                        style="font-size:90px;color:#FFC107;"
+                    ></i>
+
+                </div>
+
+
+                <div class="student-name">
+
+                    Live Bus Tracking
+
+                </div>
+
+
+                <div class="student-roll">
+
+                    {{ tracking.route_name }}
+
+                </div>
+
+
+                <div class="student-status">
+
+                    🟢 {{ tracking.status }}
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 CONTENT
+            ====================================== -->
+
+            <div class="desktop-grid profile-content">
+
+
+                <!-- ======================================
+                     LEFT CARD - BUS INFORMATION
+                ====================================== -->
+
+                <div class="desktop-card profile-card">
+
+                    <h2>
+
+                        <i class="fa-solid fa-bus"></i>
+
+                        Bus Information
+
+                    </h2>
+
+
+                    <div class="info-grid">
+
+
+                        <!-- ==================================
+                             BUS NUMBER
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Bus Number
+                            </label>
+
+                            <p>
+                                {{ tracking.bus_number }}
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             DRIVER
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Driver
+                            </label>
+
+                            <p>
+                                {{ tracking.driver_name }}
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             CURRENT STOP
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Current Stop
+                            </label>
+
+                            <p id="currentStop">
+
+                                {{ tracking.current_stop or "On Route" }}
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             NEXT STOP
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Next Stop
+                            </label>
+
+                            <p id="nextStop">
+
+                                Calculating...
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             DISTANCE TO NEXT STOP
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Distance to Next Stop
+                            </label>
+
+                            <p id="distanceToNext">
+
+                                Calculating...
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             DISTANCE REMAINING
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Distance Remaining
+                            </label>
+
+                            <p id="distanceRemaining">
+
+                                Calculating...
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             STOPS REMAINING
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Stops Remaining
+                            </label>
+
+                            <p id="stopsRemaining">
+
+                                Calculating...
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             ETA
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                ETA
+                            </label>
+
+                            <p id="busEta">
+
+                                {{ tracking.eta or "--" }}
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             SPEED
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Speed
+                            </label>
+
+                            <p id="busSpeed">
+
+                                {{ tracking.speed or 0 }} km/h
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             DRIVER STATUS
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Driver Status
+                            </label>
+
+                            <p id="busStatus">
+
+                                {% if tracking.trip_status == "Online"
+                                   or tracking.trip_status == "On Trip" %}
+
+                                    🟢 Online
+
+                                {% else %}
+
+                                    🔴 Offline
+
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             LAST UPDATED
+                        ================================== -->
+
+                        <div class="info-box">
+
+                            <label>
+                                Last Updated
+                            </label>
+
+                            <p id="lastUpdated">
+
+                                {{ tracking.last_updated or "--" }}
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- ======================================
+                         ROUTE STOPS
+                    ====================================== -->
+
+                    <div class="route-stops-section">
+
+                        <h3>
+
+                            <i class="fa-solid fa-route"></i>
+
+                            Route Stops
+
+                        </h3>
+
+
+                        <div id="routeStops">
+
+
+                            {% if route_stops %}
+
+
+                                {% for stop in route_stops %}
+
+                                <div
+                                    class="route-stop"
+                                    data-stop="{{ stop.stop_name }}"
+                                    data-order="{{ stop.stop_order }}"
+                                >
+
+
+                                    <div class="stop-number">
+
+                                        {{ loop.index }}
+
+                                    </div>
+
+
+                                    <div class="stop-line"></div>
+
+
+                                    <div class="stop-content">
+
+                                        <strong>
+
+                                            {{ stop.stop_name }}
+
+                                        </strong>
+
+                                        <span>
+
+                                            Stop {{ stop.stop_order }}
+
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+                                {% endfor %}
+
+
+                            {% else %}
+
+
+                                <div class="no-route-stops">
+
+                                    <i class="fa-solid fa-route"></i>
+
+                                    <p>
+                                        Route stops are not available.
+                                    </p>
+
+                                </div>
+
+
+                            {% endif %}
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ======================================
+                     RIGHT CARD - LIVE MAP
+                ====================================== -->
+
+                <div class="desktop-card profile-card">
+
+
+                    <h2>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Live Location
+
+                    </h2>
+
+
+                    <!-- ==================================
+                         MAP
+                    ================================== -->
+
+                    <div
+                        id="liveMap"
+
+                        data-busid="{{ tracking.bus_id }}"
+
+                        data-lat="{{ tracking.latitude }}"
+
+                        data-lng="{{ tracking.longitude }}"
+
+                        data-bus="{{ tracking.bus_number }}"
+
+                        data-driver="{{ tracking.driver_name }}"
+
+                        data-stop="{{ tracking.current_stop }}"
+
+                        data-speed="{{ tracking.speed }}"
+
+                        data-eta="{{ tracking.eta }}"
+
+                        data-route="{{ tracking.route_name }}"
+
+                        data-current-stop="{{ tracking.current_stop }}"
+                    >
+
+                    </div>
+
+
+                    <!-- ==================================
+                         MAP INFORMATION
+                    ================================== -->
+
+                    <div class="map-info">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        <h3>
+                            Live Bus Location
+                        </h3>
+
+                        <p>
+                            Real-time location updates using GPS.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
-</div>
-</div>
 
-<script src="{{ url_for('static', filename='js/live_tracking.js') }}"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="{{ url_for('static',filename='js/live_map.js') }}"></script>
+
+    <!-- ==========================================
+         LEAFLET JAVASCRIPT
+         MUST LOAD BEFORE live_map.js
+    ========================================== -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+    <!-- ==========================================
+         ROUTE STOPS FROM FLASK
+    ========================================== -->
+
+    <script>
+
+        window.studentRouteStops =
+            {{ route_stops | tojson }};
+
+    </script>
+
+
+    <!-- ==========================================
+         EXISTING LIVE TRACKING JS
+    ========================================== -->
+
+    <script src="{{ url_for('static', filename='js/live_tracking.js') }}"></script>
+    <!-- ==========================================
+         LIVE MAP JS
+    ========================================== -->
+
+    <script src="{{ url_for('static', filename='js/live_map.js') }}"></script>
 
 </body>
 

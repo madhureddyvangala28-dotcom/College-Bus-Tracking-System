@@ -1,0 +1,1718 @@
+/* =====================================================
+                    GLOBAL
+===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    background:
+
+        #f5f5f5;
+
+    color:
+
+        #1f2937;
+
+}
+
+
+/* =====================================================
+                    PAGE HEADER
+===================================================== */
+
+.send-page-header {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #111827,
+            #1f2937
+        );
+
+    padding:
+
+        45px
+        7%;
+
+    border-bottom:
+
+        4px
+        solid
+        #ffc107;
+
+}
+
+
+.header-content {
+
+    max-width:
+
+        1400px;
+
+    margin:
+
+        auto;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        space-between;
+
+    gap:
+
+        25px;
+
+}
+
+
+.page-label {
+
+    display:
+
+        inline-flex;
+
+    align-items:
+
+        center;
+
+    gap:
+
+        8px;
+
+    background:
+
+        rgba(
+            255,
+            193,
+            7,
+            0.15
+        );
+
+    color:
+
+        #ffc107;
+
+    padding:
+
+        8px
+        14px;
+
+    border-radius:
+
+        30px;
+
+    font-size:
+
+        12px;
+
+    font-weight:
+
+        700;
+
+    letter-spacing:
+
+        1px;
+
+    margin-bottom:
+
+        15px;
+
+}
+
+
+.header-left h1 {
+
+    color:
+
+        white;
+
+    font-size:
+
+        34px;
+
+    margin-bottom:
+
+        10px;
+
+}
+
+
+.header-left p {
+
+    color:
+
+        #d1d5db;
+
+    font-size:
+
+        16px;
+
+    line-height:
+
+        1.6;
+
+}
+
+
+/* =====================================================
+                    BACK BUTTON
+===================================================== */
+
+.back-btn {
+
+    display:
+
+        inline-flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    gap:
+
+        10px;
+
+    padding:
+
+        13px
+        20px;
+
+    background:
+
+        #ffc107;
+
+    color:
+
+        #111827;
+
+    text-decoration:
+
+        none;
+
+    font-weight:
+
+        700;
+
+    border-radius:
+
+        10px;
+
+    transition:
+
+        0.3s;
+
+    white-space:
+
+        nowrap;
+
+}
+
+
+.back-btn:hover {
+
+    background:
+
+        #ffca2c;
+
+    transform:
+
+        translateY(-2px);
+
+}
+
+
+/* =====================================================
+                    FLASH MESSAGES
+===================================================== */
+
+.flash-container {
+
+    width:
+
+        86%;
+
+    max-width:
+
+        1400px;
+
+    margin:
+
+        25px
+        auto
+        0;
+
+}
+
+
+.flash-message {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    gap:
+
+        12px;
+
+    padding:
+
+        15px
+        20px;
+
+    border-radius:
+
+        10px;
+
+    font-weight:
+
+        600;
+
+}
+
+
+.flash-message.success {
+
+    background:
+
+        #ecfdf5;
+
+    color:
+
+        #15803d;
+
+    border-left:
+
+        4px
+        solid
+        #22c55e;
+
+}
+
+
+.flash-message.error {
+
+    background:
+
+        #fef2f2;
+
+    color:
+
+        #dc2626;
+
+    border-left:
+
+        4px
+        solid
+        #ef4444;
+
+}
+
+
+/* =====================================================
+                    MAIN SECTION
+===================================================== */
+
+.send-notification-section {
+
+    padding:
+
+        45px
+        7%
+        60px;
+
+}
+
+
+.notification-layout {
+
+    max-width:
+
+        1400px;
+
+    margin:
+
+        auto;
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        minmax(0, 1.6fr)
+        minmax(320px, 0.8fr);
+
+    gap:
+
+        28px;
+
+    align-items:
+
+        start;
+
+}
+
+
+/* =====================================================
+                    FORM CARD
+===================================================== */
+
+.notification-form-card {
+
+    background:
+
+        white;
+
+    border-radius:
+
+        18px;
+
+    overflow:
+
+        hidden;
+
+    border:
+
+        1px
+        solid
+        #e5e7eb;
+
+    box-shadow:
+
+        0
+        10px
+        30px
+        rgba(
+            0,
+            0,
+            0,
+            0.07
+        );
+
+}
+
+
+.form-card-header {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    gap:
+
+        16px;
+
+    padding:
+
+        28px;
+
+    background:
+
+        #fafafa;
+
+    border-bottom:
+
+        1px
+        solid
+        #e5e7eb;
+
+}
+
+
+.header-icon {
+
+    width:
+
+        55px;
+
+    height:
+
+        55px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    border-radius:
+
+        14px;
+
+    background:
+
+        #ffc107;
+
+    color:
+
+        #111827;
+
+    font-size:
+
+        22px;
+
+}
+
+
+.form-card-header h2 {
+
+    font-size:
+
+        22px;
+
+    color:
+
+        #111827;
+
+    margin-bottom:
+
+        6px;
+
+}
+
+
+.form-card-header p {
+
+    color:
+
+        #6b7280;
+
+    font-size:
+
+        14px;
+
+}
+
+
+/* =====================================================
+                    FORM
+===================================================== */
+
+.notification-form {
+
+    padding:
+
+        30px;
+
+}
+
+
+.form-group {
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    margin-bottom:
+
+        24px;
+
+}
+
+
+.form-group label {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    gap:
+
+        8px;
+
+    color:
+
+        #374151;
+
+    font-size:
+
+        14px;
+
+    font-weight:
+
+        700;
+
+    margin-bottom:
+
+        9px;
+
+}
+
+
+.form-group label i {
+
+    color:
+
+        #d69e00;
+
+}
+
+
+.form-group input,
+
+.form-group textarea,
+
+.form-group select {
+
+    width:
+
+        100%;
+
+    border:
+
+        1px
+        solid
+        #d1d5db;
+
+    border-radius:
+
+        10px;
+
+    padding:
+
+        13px
+        15px;
+
+    font-size:
+
+        14px;
+
+    font-family:
+
+        inherit;
+
+    color:
+
+        #1f2937;
+
+    background:
+
+        white;
+
+    outline:
+
+        none;
+
+    transition:
+
+        0.25s;
+
+}
+
+
+.form-group textarea {
+
+    resize:
+
+        vertical;
+
+    min-height:
+
+        150px;
+
+    line-height:
+
+        1.6;
+
+}
+
+
+.form-group input:focus,
+
+.form-group textarea:focus,
+
+.form-group select:focus {
+
+    border-color:
+
+        #ffc107;
+
+    box-shadow:
+
+        0
+        0
+        0
+        3px
+        rgba(
+            255,
+            193,
+            7,
+            0.18
+        );
+
+}
+
+
+.form-group small {
+
+    margin-top:
+
+        8px;
+
+    color:
+
+        #6b7280;
+
+    font-size:
+
+        12px;
+
+}
+
+
+.form-group small i {
+
+    color:
+
+        #d69e00;
+
+}
+
+
+/* =====================================================
+                    FORM ROW
+===================================================== */
+
+.form-row {
+
+    display:
+
+        grid;
+
+    grid-template-columns:
+
+        1fr
+        1fr;
+
+    gap:
+
+        20px;
+
+}
+
+
+/* =====================================================
+                    INFO BOX
+===================================================== */
+
+.send-info-box {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        flex-start;
+
+    gap:
+
+        15px;
+
+    padding:
+
+        18px;
+
+    background:
+
+        #fffbeb;
+
+    border:
+
+        1px
+        solid
+        #fde68a;
+
+    border-radius:
+
+        12px;
+
+    margin:
+
+        5px
+        0
+        28px;
+
+}
+
+
+.info-icon {
+
+    width:
+
+        42px;
+
+    height:
+
+        42px;
+
+    min-width:
+
+        42px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    background:
+
+        #ffc107;
+
+    color:
+
+        #111827;
+
+    border-radius:
+
+        10px;
+
+}
+
+
+.send-info-box h4 {
+
+    color:
+
+        #111827;
+
+    margin-bottom:
+
+        6px;
+
+    font-size:
+
+        15px;
+
+}
+
+
+.send-info-box p {
+
+    color:
+
+        #6b5a24;
+
+    font-size:
+
+        13px;
+
+    line-height:
+
+        1.6;
+
+}
+
+
+/* =====================================================
+                    FORM ACTIONS
+===================================================== */
+
+.form-actions {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        flex-end;
+
+    gap:
+
+        15px;
+
+    padding-top:
+
+        5px;
+
+}
+
+
+.cancel-btn,
+
+.send-btn {
+
+    display:
+
+        inline-flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    gap:
+
+        9px;
+
+    padding:
+
+        13px
+        22px;
+
+    border-radius:
+
+        10px;
+
+    font-size:
+
+        14px;
+
+    font-weight:
+
+        700;
+
+    cursor:
+
+        pointer;
+
+    transition:
+
+        0.3s;
+
+}
+
+
+.cancel-btn {
+
+    background:
+
+        white;
+
+    color:
+
+        #4b5563;
+
+    text-decoration:
+
+        none;
+
+    border:
+
+        1px
+        solid
+        #d1d5db;
+
+}
+
+
+.cancel-btn:hover {
+
+    background:
+
+        #f3f4f6;
+
+}
+
+
+.send-btn {
+
+    border:
+
+        none;
+
+    background:
+
+        #ffc107;
+
+    color:
+
+        #111827;
+
+}
+
+
+.send-btn:hover {
+
+    background:
+
+        #ffca2c;
+
+    transform:
+
+        translateY(-2px);
+
+    box-shadow:
+
+        0
+        7px
+        18px
+        rgba(
+            255,
+            193,
+            7,
+            0.35
+        );
+
+}
+
+
+/* =====================================================
+                    SIDE PANEL
+===================================================== */
+
+.notification-side-panel {
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    gap:
+
+        22px;
+
+}
+
+
+/* =====================================================
+                    GUIDE CARD
+===================================================== */
+
+.guide-card {
+
+    background:
+
+        white;
+
+    border:
+
+        1px
+        solid
+        #e5e7eb;
+
+    border-radius:
+
+        18px;
+
+    padding:
+
+        28px;
+
+    box-shadow:
+
+        0
+        10px
+        30px
+        rgba(
+            0,
+            0,
+            0,
+            0.06
+        );
+
+}
+
+
+.guide-icon {
+
+    width:
+
+        52px;
+
+    height:
+
+        52px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    background:
+
+        #fff3cd;
+
+    color:
+
+        #d69e00;
+
+    border-radius:
+
+        14px;
+
+    font-size:
+
+        21px;
+
+    margin-bottom:
+
+        18px;
+
+}
+
+
+.guide-card h3 {
+
+    color:
+
+        #111827;
+
+    font-size:
+
+        20px;
+
+    margin-bottom:
+
+        10px;
+
+}
+
+
+.guide-card > p {
+
+    color:
+
+        #6b7280;
+
+    font-size:
+
+        14px;
+
+    line-height:
+
+        1.6;
+
+    margin-bottom:
+
+        22px;
+
+}
+
+
+/* =====================================================
+                    GUIDE LIST
+===================================================== */
+
+.guide-list {
+
+    display:
+
+        flex;
+
+    flex-direction:
+
+        column;
+
+    gap:
+
+        14px;
+
+}
+
+
+.guide-item {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    gap:
+
+        13px;
+
+    padding:
+
+        12px;
+
+    border-radius:
+
+        12px;
+
+    background:
+
+        #fafafa;
+
+}
+
+
+.guide-item-icon {
+
+    width:
+
+        42px;
+
+    height:
+
+        42px;
+
+    min-width:
+
+        42px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    border-radius:
+
+        10px;
+
+}
+
+
+.guide-item strong {
+
+    display:
+
+        block;
+
+    font-size:
+
+        14px;
+
+    color:
+
+        #1f2937;
+
+    margin-bottom:
+
+        4px;
+
+}
+
+
+.guide-item span {
+
+    display:
+
+        block;
+
+    font-size:
+
+        12px;
+
+    color:
+
+        #6b7280;
+
+    line-height:
+
+        1.4;
+
+}
+
+
+/* INFO */
+
+.guide-item.info .guide-item-icon {
+
+    background:
+
+        #fff3cd;
+
+    color:
+
+        #d69e00;
+
+}
+
+
+/* WARNING */
+
+.guide-item.warning .guide-item-icon {
+
+    background:
+
+        #fff7ed;
+
+    color:
+
+        #ea580c;
+
+}
+
+
+/* EMERGENCY */
+
+.guide-item.emergency .guide-item-icon {
+
+    background:
+
+        #fef2f2;
+
+    color:
+
+        #dc2626;
+
+}
+
+
+/* HOLIDAY */
+
+.guide-item.holiday .guide-item-icon {
+
+    background:
+
+        #fefce8;
+
+    color:
+
+        #ca8a04;
+
+}
+
+
+/* =====================================================
+                    AUDIENCE CARD
+===================================================== */
+
+.audience-card {
+
+    display:
+
+        flex;
+
+    align-items:
+
+        flex-start;
+
+    gap:
+
+        15px;
+
+    padding:
+
+        22px;
+
+    background:
+
+        #111827;
+
+    border-radius:
+
+        18px;
+
+}
+
+
+.audience-card-icon {
+
+    width:
+
+        48px;
+
+    height:
+
+        48px;
+
+    min-width:
+
+        48px;
+
+    display:
+
+        flex;
+
+    align-items:
+
+        center;
+
+    justify-content:
+
+        center;
+
+    background:
+
+        #ffc107;
+
+    color:
+
+        #111827;
+
+    border-radius:
+
+        12px;
+
+}
+
+
+.audience-card h3 {
+
+    color:
+
+        white;
+
+    font-size:
+
+        16px;
+
+    margin-bottom:
+
+        7px;
+
+}
+
+
+.audience-card p {
+
+    color:
+
+        #d1d5db;
+
+    font-size:
+
+        13px;
+
+    line-height:
+
+        1.6;
+
+}
+
+
+/* =====================================================
+                    FOOTER
+===================================================== */
+
+.footer {
+
+    background:
+
+        #111827;
+
+    color:
+
+        #d1d5db;
+
+    text-align:
+
+        center;
+
+    padding:
+
+        22px;
+
+    font-size:
+
+        13px;
+
+}
+
+
+.footer span {
+
+    color:
+
+        #ffc107;
+
+    margin:
+
+        0
+        8px;
+
+}
+
+
+/* =====================================================
+                    TABLET
+===================================================== */
+
+@media
+(max-width: 1000px) {
+
+
+    .notification-layout {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+
+    .notification-side-panel {
+
+        display:
+
+            grid;
+
+        grid-template-columns:
+
+            1fr
+            1fr;
+
+        align-items:
+
+            start;
+
+    }
+
+
+}
+
+
+/* =====================================================
+                    MOBILE
+===================================================== */
+
+@media
+(max-width: 768px) {
+
+
+    .send-page-header {
+
+        padding:
+
+            35px
+            5%;
+
+    }
+
+
+    .header-content {
+
+        flex-direction:
+
+            column;
+
+        align-items:
+
+            flex-start;
+
+    }
+
+
+    .header-left h1 {
+
+        font-size:
+
+            28px;
+
+    }
+
+
+    .back-btn {
+
+        width:
+
+            100%;
+
+    }
+
+
+    .send-notification-section {
+
+        padding:
+
+            30px
+            5%
+            45px;
+
+    }
+
+
+    .notification-form {
+
+        padding:
+
+            22px;
+
+    }
+
+
+    .form-card-header {
+
+        padding:
+
+            22px;
+
+    }
+
+
+    .form-row {
+
+        grid-template-columns:
+
+            1fr;
+
+        gap:
+
+            0;
+
+    }
+
+
+    .form-actions {
+
+        flex-direction:
+
+            column-reverse;
+
+        align-items:
+
+            stretch;
+
+    }
+
+
+    .cancel-btn,
+
+    .send-btn {
+
+        width:
+
+            100%;
+
+    }
+
+
+    .notification-side-panel {
+
+        display:
+
+            flex;
+
+    }
+
+
+}
+
+
+/* =====================================================
+                    SMALL MOBILE
+===================================================== */
+
+@media
+(max-width: 480px) {
+
+
+    .header-left h1 {
+
+        font-size:
+
+            25px;
+
+    }
+
+
+    .form-card-header {
+
+        flex-direction:
+
+            column;
+
+        align-items:
+
+            flex-start;
+
+    }
+
+
+    .send-info-box {
+
+        flex-direction:
+
+            column;
+
+    }
+
+
+    .guide-card {
+
+        padding:
+
+            22px;
+
+    }
+
+
+    .footer {
+
+        font-size:
+
+            12px;
+
+        line-height:
+
+            1.7;
+
+    }
+
+
+}

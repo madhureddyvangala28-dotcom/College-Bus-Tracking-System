@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Live Fleet | College Bus Tracking</title>
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- Leaflet -->
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+
+    <!-- Admin Navbar -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/navbar.css') }}">
+
+
+    <!-- Live Fleet CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/live_fleet.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    {% include "admin/navbar.html" %}
+
+
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <main class="fleet-page">
+
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================== -->
+
+        <section class="fleet-header">
+
+            <div>
+
+                <div class="page-title">
+
+                    <span class="title-icon">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                    </span>
+
+                    <div>
+
+                        <h1>Live Fleet Tracking</h1>
+
+                        <p>
+                            Monitor all buses, drivers and routes
+                            in real time.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="live-indicator">
+
+                <span class="pulse-dot"></span>
+
+                <span>LIVE</span>
+
+                <small id="lastSync">
+                    Updating...
+                </small>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="fleet-stats">
+
+
+            <div class="fleet-stat">
+
+                <div class="stat-icon total">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Total Buses</span>
+
+                    <strong id="totalBuses">
+                        {{ total_buses }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="fleet-stat">
+
+                <div class="stat-icon online">
+
+                    <i class="fa-solid fa-signal"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Online</span>
+
+                    <strong id="onlineBuses">
+                        {{ online_buses }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="fleet-stat">
+
+                <div class="stat-icon moving">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Moving</span>
+
+                    <strong id="movingBuses">
+                        {{ moving_buses }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="fleet-stat">
+
+                <div class="stat-icon stopped">
+
+                    <i class="fa-solid fa-circle-pause"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Stopped</span>
+
+                    <strong id="stoppedBuses">
+                        {{ stopped_buses }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="fleet-stat">
+
+                <div class="stat-icon offline">
+
+                    <i class="fa-solid fa-power-off"></i>
+
+                </div>
+
+                <div>
+
+                    <span>Offline</span>
+
+                    <strong id="offlineBuses">
+                        {{ offline_buses }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MAIN FLEET AREA
+        ================================================== -->
+
+        <section class="fleet-container">
+
+
+            <!-- =============================================
+                 LEFT PANEL
+            ============================================== -->
+
+            <aside class="fleet-sidebar">
+
+
+                <div class="sidebar-header">
+
+                    <div>
+
+                        <h2>Fleet</h2>
+
+                        <p>
+                            All registered buses
+                        </p>
+
+                    </div>
+
+                    <span id="busCountBadge">
+                        {{ total_buses }}
+                    </span>
+
+                </div>
+
+
+
+                <!-- Search -->
+
+                <div class="fleet-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="busSearch"
+                        placeholder="Search bus or driver..."
+                        autocomplete="off">
+
+                </div>
+
+
+
+                <!-- Filters -->
+
+                <div class="fleet-filters">
+
+                    <button
+                        type="button"
+                        class="filter-btn active"
+                        data-filter="all">
+
+                        All
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="moving">
+
+                        Moving
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="stopped">
+
+                        Stopped
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="offline">
+
+                        Offline
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Bus List -->
+
+                <div
+                    class="fleet-list"
+                    id="fleetList">
+
+
+                    {% for bus in buses %}
+
+                    <div
+                        class="fleet-item"
+                        data-bus-id="{{ bus.bus_id }}"
+                        data-bus-number="{{ bus.bus_number|lower }}"
+                        data-driver="{{ (bus.driver_name or '')|lower }}"
+                        data-status="{% if bus.trip_status == 'Online' and (bus.speed or 0)|float > 0 %}moving{% elif bus.trip_status == 'Online' %}stopped{% else %}offline{% endif %}">
+
+
+                        <div class="bus-item-icon">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                        </div>
+
+
+                        <div class="bus-item-info">
+
+                            <strong>
+                                {{ bus.bus_number }}
+                            </strong>
+
+                            <span>
+                                {{ bus.driver_name or 'Driver not assigned' }}
+                            </span>
+
+                            <small>
+                                {{ bus.route_name or 'No route assigned' }}
+                            </small>
+
+                        </div>
+
+
+                        <div class="bus-item-status">
+
+                            {% if bus.trip_status == "Online" %}
+
+                                {% if (bus.speed or 0)|float > 0 %}
+
+                                <span class="status-dot moving"></span>
+
+                                {% else %}
+
+                                <span class="status-dot stopped"></span>
+
+                                {% endif %}
+
+                            {% else %}
+
+                                <span class="status-dot offline"></span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="empty-fleet">
+
+                        <i class="fa-solid fa-bus"></i>
+
+                        <h3>No buses found</h3>
+
+                        <p>
+                            No buses are currently registered.
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- =============================================
+                 MAP AREA
+            ============================================== -->
+
+            <div class="map-panel">
+
+
+                <!-- Map -->
+
+                <div id="fleetMap"></div>
+
+
+                <!-- Map Controls -->
+
+                <div class="map-tools">
+
+                    <button
+                        type="button"
+                        id="fitFleet"
+                        title="Show all buses">
+
+                        <i class="fa-solid fa-expand"></i>
+
+                    </button>
+
+                    <button
+                        type="button"
+                        id="locateFleet"
+                        title="Center active buses">
+
+                        <i class="fa-solid fa-location-crosshairs"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- Map Legend -->
+
+                <div class="map-legend">
+
+                    <div class="legend-title">
+                        Fleet Status
+                    </div>
+
+                    <div>
+
+                        <span class="legend-dot moving"></span>
+
+                        Moving
+
+                    </div>
+
+                    <div>
+
+                        <span class="legend-dot stopped"></span>
+
+                        Stopped
+
+                    </div>
+
+                    <div>
+
+                        <span class="legend-dot offline"></span>
+
+                        Offline
+
+                    </div>
+
+                    <div>
+
+                        <span class="legend-stop"></span>
+
+                        Bus Stop
+
+                    </div>
+
+                </div>
+
+
+                <!-- Selected Bus Card -->
+
+                <div
+                    class="selected-bus-card"
+                    id="selectedBusCard">
+
+                    <button
+                        type="button"
+                        class="close-selected"
+                        id="closeSelected">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+
+                    <div class="selected-bus-top">
+
+                        <div class="selected-bus-icon">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong id="selectedBusNumber">
+                                Bus
+                            </strong>
+
+                            <span id="selectedDriver">
+                                Driver
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="selected-grid">
+
+                        <div>
+
+                            <label>Route</label>
+
+                            <strong id="selectedRoute">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <label>Current Stop</label>
+
+                            <strong id="selectedStop">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <label>Speed</label>
+
+                            <strong id="selectedSpeed">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <label>ETA</label>
+
+                            <strong id="selectedEta">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="selected-footer">
+
+                        <span id="selectedStatus">
+                            —
+                        </span>
+
+                        <span id="selectedUpdated">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ROUTE OVERVIEW
+        ================================================== -->
+
+        <section class="route-overview">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+
+                        <i class="fa-solid fa-route"></i>
+
+                        Route Overview
+
+                    </h2>
+
+                    <p>
+                        Routes and stops currently configured
+                        in the system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-grid">
+
+
+                {% for route in routes %}
+
+                <div
+                    class="route-card"
+                    data-route-id="{{ route.route_id }}">
+
+
+                    <div class="route-card-header">
+
+                        <div class="route-icon">
+
+                            <i class="fa-solid fa-route"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                {{ route.route_name }}
+                            </h3>
+
+                            <span>
+                                {{ route.source }}
+                                →
+                                {{ route.destination }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="route-card-info">
+
+                        <div>
+
+                            <i class="fa-solid fa-road"></i>
+
+                            <span>
+                                {{ route.distance or '—' }}
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            <span>
+                                {{ route.estimated_time or '—' }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="show-route-btn"
+                        data-route="{{ route.route_id }}">
+
+                        <i class="fa-solid fa-map"></i>
+
+                        Show Route
+
+                    </button>
+
+                </div>
+
+                {% else %}
+
+                <div class="no-routes">
+
+                    <i class="fa-solid fa-route"></i>
+
+                    <h3>No routes available</h3>
+
+                    <p>
+                        Add routes and bus stops to display
+                        the transport network.
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         LEAFLET
+    ====================================================== -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <!-- =====================================================
+         DATA FROM FLASK
+    ====================================================== -->
+
+    <script>
+
+        window.adminFleetData = {
+
+            buses: {{ buses | tojson }},
+
+            routes: {{ routes | tojson }},
+
+            stops: {{ stops | tojson }}
+
+        };
+
+    </script>
+
+
+    <!-- =====================================================
+         LIVE FLEET JS
+    ====================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='js/live_fleet.js') }}">
+    </script>
+
+
+</body>
+
+</html>

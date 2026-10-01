@@ -825,3 +825,163 @@ STEP 4 - FINAL POLISH
 }
 
 }
+
+/* ==========================================
+   MY BUS LIVE STATUS
+========================================== */
+
+.my-status-dot {
+
+    width: 12px;
+    height: 12px;
+
+    min-width: 12px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    margin-right: 7px;
+
+}
+
+
+/* ==========================================
+   ONLINE
+========================================== */
+
+.status-online {
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.15);
+
+}
+
+
+/* ==========================================
+   MOVING
+========================================== */
+
+.status-moving {
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.15);
+
+}
+
+
+/* ==========================================
+   STOPPED
+========================================== */
+
+.status-stopped {
+
+    background: #f59e0b;
+
+    box-shadow:
+        0 0 0 4px rgba(245, 158, 11, 0.15);
+
+}
+
+
+/* ==========================================
+   DELAYED
+========================================== */
+
+.status-delayed {
+
+    background: #ef4444;
+
+    box-shadow:
+        0 0 0 4px rgba(239, 68, 68, 0.15);
+
+}
+
+
+/* ==========================================
+   OFFLINE
+========================================== */
+
+.status-offline {
+
+    background: #94a3b8;
+
+    box-shadow:
+        0 0 0 4px rgba(148, 163, 184, 0.15);
+
+}
+
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.status-badge-online,
+.status-badge-moving {
+
+    background: #dcfce7 !important;
+
+    color: #15803d !important;
+
+}
+
+
+.status-badge-stopped {
+
+    background: #fef3c7 !important;
+
+    color: #b45309 !important;
+
+}
+
+
+.status-badge-delayed {
+
+    background: #fee2e2 !important;
+
+    color: #dc2626 !important;
+
+}
+
+
+.status-badge-offline {
+
+    background: #e2e8f0 !important;
+
+    color: #475569 !important;
+
+}
+
+
+/* ==========================================
+   LAST UPDATED
+========================================== */
+
+.live-updated-text {
+
+    margin-top: 22px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #e5e7eb;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    text-align: right;
+
+}
+
+
+.live-updated-text span {
+
+    font-weight: 600;
+
+    color: #334155;
+
+}

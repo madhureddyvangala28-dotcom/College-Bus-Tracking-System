@@ -3,126 +3,171 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-<nav class="navbar">
+    <nav class="navbar">
 
-    <!-- ================= Logo ================= -->
+        <!-- ================= Logo ================= -->
 
-    <div class="logo-area">
+        <div class="logo-area">
 
-        <img
-        src="{{ url_for('static', filename='images/logo.png') }}"
-        alt="Logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
 
-        <div class="logo-text">
+            <div class="logo-text">
 
-            <h2>College Bus Tracking System</h2>
+                <h2>College Bus Tracking System</h2>
+
+            </div>
 
         </div>
 
-    </div>
+        <!-- ================= Menu ================= -->
 
-    <!-- ================= Menu ================= -->
+        <ul class="nav-links">
+            <li>
 
-    <ul class="nav-links">
-        <li>
+                <a href="{{ url_for('dashboard') }}" class="{% if active_page=='dashboard' %}active{% endif %}">
 
-            <a
-            href="{{ url_for('dashboard') }}"
-            class="{% if active_page=='dashboard' %}active{% endif %}">
+                    <i class="fas fa-chart-line"></i>
 
-                <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
 
-                <span>Dashboard</span>
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{{ url_for('admin_live_fleet') }}" class="{% if active_page=='live_fleet' %}active{% endif %}">
+
+                    <i class="fa-solid fa-map-location-dot"></i>
+
+                    <span>Live Fleet</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{{ url_for('students') }}" class="{% if active_page=='students' %}active{% endif %}">
+
+                    <i class="fas fa-user-graduate"></i>
+
+                    <span>Students</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{{ url_for('drivers') }}" class="{% if active_page=='drivers' %}active{% endif %}">
+
+                    <i class="fas fa-id-card"></i>
+
+                    <span>Drivers</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{{ url_for('buses') }}" class="{% if active_page=='buses' %}active{% endif %}">
+
+                    <i class="fas fa-bus"></i>
+
+                    <span>Buses</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{{ url_for('admin_seat_availability') }}"
+                    class="{% if active_page=='seat_availability' %}active{% endif %}">
+
+                    <i class="fa-solid fa-chair"></i>
+
+                    <span>Seat Availability</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="{{ url_for('routes') }}" class="{% if active_page=='routes' %}active{% endif %}">
+
+                    <i class="fas fa-route"></i>
+
+                    <span>Routes</span>
+
+                </a>
+
+            </li>
+
+            <li>
+                <a href="{{ url_for('admin_bus_stops') }}" class="nav-item">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span>Bus Stops</span>
+
+                </a>
+
+            </li>
+
+            <li>
+                <a href="{{ url_for('admin_emergencies') }}"
+                    class="{% if active_page == 'emergencies' %}active{% endif %}">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    Emergencies
+
+                </a>
+            </li>
+            <li>
+
+                <a href="{{ url_for('admin_notifications') }}"
+                    class="{% if active_page=='notifications' %}active{% endif %}">
+
+                    <i class="fas fa-bell"></i>
+
+                    <span>Notifications</span>
+
+                </a>
+            </li>
+
+
+        </ul>
+
+        <!-- ================= Logout ================= -->
+
+        <div class="logout">
+
+            <a href="{{ url_for('logout') }}">
+
+                <i class="fas fa-right-from-bracket"></i>
+
+                Logout
 
             </a>
 
-        </li>
+        </div>
 
-        <li>
-
-            <a
-            href="{{ url_for('students') }}"
-            class="{% if active_page=='students' %}active{% endif %}">
-
-                <i class="fas fa-user-graduate"></i>
-
-                <span>Students</span>
-
-            </a>
-
-        </li>
-
-        <li>
-
-            <a
-            href="{{ url_for('drivers') }}"
-            class="{% if active_page=='drivers' %}active{% endif %}">
-
-                <i class="fas fa-id-card"></i>
-
-                <span>Drivers</span>
-
-            </a>
-
-        </li>
-
-        <li>
-
-            <a
-            href="{{ url_for('buses') }}"
-            class="{% if active_page=='buses' %}active{% endif %}">
-
-                <i class="fas fa-bus"></i>
-
-                <span>Buses</span>
-
-            </a>
-
-        </li>
-
-        <li>
-
-            <a
-            href="{{ url_for('routes') }}"
-            class="{% if active_page=='routes' %}active{% endif %}">
-
-                <i class="fas fa-route"></i>
-
-                <span>Routes</span>
-
-            </a>
-
-        </li>
-
-    </ul>
-
-    <!-- ================= Logout ================= -->
-
-    <div class="logout">
-
-        <a href="{{ url_for('logout') }}">
-
-            <i class="fas fa-right-from-bracket"></i>
-
-            Logout
-
-        </a>
-
-    </div>
-
-</nav>
+    </nav>
 
 </body>
 

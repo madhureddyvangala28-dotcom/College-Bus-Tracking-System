@@ -1,0 +1,1618 @@
+/* ==========================================================
+   COLLEGE BUS DRIVER
+   NOTIFICATIONS PAGE
+   ========================================================== */
+
+
+/* ==========================================================
+   ROOT
+   ========================================================== */
+
+:root {
+
+    --yellow: #FFC107;
+    --yellow-dark: #F4B400;
+    --yellow-light: #FFF8E1;
+
+    --black: #172033;
+    --black-light: #273449;
+
+    --red: #EF4444;
+    --red-light: #FEE2E2;
+
+    --green: #16A34A;
+    --green-light: #DCFCE7;
+
+    --orange: #D97706;
+    --orange-light: #FEF3C7;
+
+    --background: #F4F6F9;
+    --white: #FFFFFF;
+
+    --text: #111827;
+    --text-light: #64748B;
+    --text-muted: #94A3B8;
+
+    --border: #E5E7EB;
+
+}
+
+
+/* ==========================================================
+   RESET
+   ========================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+}
+
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+
+button,
+input {
+
+    font-family: inherit;
+
+}
+
+
+/* ==========================================================
+   MAIN PAGE
+   ========================================================== */
+
+.driver-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+}
+
+
+/* ==========================================================
+   SIDEBAR
+   ========================================================== */
+
+.driver-sidebar {
+
+    width: 270px;
+
+    min-width: 270px;
+
+    min-height: 100vh;
+
+    background: var(--black);
+
+    padding: 25px 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 1000;
+
+}
+
+
+/* ==========================================================
+   SIDEBAR LOGO
+   ========================================================== */
+
+.sidebar-logo {
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 0 22px;
+
+    margin-bottom: 22px;
+
+    color: #FFFFFF;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+
+.sidebar-logo i {
+
+    color: var(--yellow);
+
+    font-size: 34px;
+
+}
+
+
+/* ==========================================================
+   SIDEBAR LINKS
+   ========================================================== */
+
+.driver-sidebar > a {
+
+    min-height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    padding: 0 20px;
+
+    border-radius: 14px;
+
+    color: #E5E7EB;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
+
+}
+
+
+.driver-sidebar > a i {
+
+    width: 25px;
+
+    text-align: center;
+
+    font-size: 19px;
+
+}
+
+
+/* Hover */
+
+.driver-sidebar > a:hover {
+
+    background: rgba(255, 193, 7, .12);
+
+    color: var(--yellow);
+
+}
+
+
+/* Active */
+
+.driver-sidebar > a.active {
+
+    background: var(--yellow);
+
+    color: var(--black);
+
+    font-weight: 700;
+
+}
+
+
+.driver-sidebar > a.active i {
+
+    color: var(--black);
+
+}
+
+
+/* ==========================================================
+   MAIN CONTENT
+   ========================================================== */
+
+.driver-main {
+
+    width: calc(100% - 270px);
+
+    margin-left: 270px;
+
+    min-height: 100vh;
+
+    padding: 30px;
+
+}
+
+
+/* ==========================================================
+   PAGE HEADER
+   ========================================================== */
+
+.page-header {
+
+    min-height: 155px;
+
+    background: var(--white);
+
+    border-radius: 24px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .06);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 28px 40px;
+
+    margin-bottom: 28px;
+
+}
+
+
+/* ==========================================================
+   MENU BUTTON
+   ========================================================== */
+
+.menu-btn {
+
+    display: none;
+
+    width: 44px;
+
+    height: 44px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--black);
+
+    color: #FFFFFF;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+}
+
+
+/* ==========================================================
+   HEADER TITLE
+   ========================================================== */
+
+.header-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.header-icon {
+
+    width: 64px;
+
+    height: 64px;
+
+    border-radius: 18px;
+
+    background: var(--yellow-light);
+
+    color: #E5A900;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.header-icon i {
+
+    font-size: 28px;
+
+}
+
+
+.header-title h1 {
+
+    font-size: 34px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    color: var(--black);
+
+    margin-bottom: 7px;
+
+}
+
+
+.header-title p {
+
+    font-size: 16px;
+
+    color: var(--text-light);
+
+}
+
+
+/* ==========================================================
+   BACK BUTTON
+   ========================================================== */
+
+.back-btn {
+
+    min-height: 55px;
+
+    padding: 0 24px;
+
+    border-radius: 15px;
+
+    background: #F1F4F8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    color: var(--black);
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition: .25s ease;
+
+}
+
+
+.back-btn i {
+
+    font-size: 18px;
+
+}
+
+
+.back-btn:hover {
+
+    background: var(--yellow);
+
+    color: var(--black);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   SEARCH SECTION
+   ========================================================== */
+
+.search-section {
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    padding: 22px;
+
+    margin-bottom: 28px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .06);
+
+}
+
+
+.search-box {
+
+    height: 58px;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 16px;
+
+    background: #FAFBFC;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    transition: .25s ease;
+
+}
+
+
+.search-box:focus-within {
+
+    border-color: var(--yellow);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 193, 7, .12);
+
+}
+
+
+.search-box > i {
+
+    color: #94A3B8;
+
+    font-size: 18px;
+
+    flex-shrink: 0;
+
+}
+
+
+.search-box input {
+
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    padding: 0 14px;
+
+    color: var(--text);
+
+    font-size: 15px;
+
+}
+
+
+.search-box input::placeholder {
+
+    color: #94A3B8;
+
+}
+
+
+/* Clear Button */
+
+.clear-search {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #94A3B8;
+
+    cursor: pointer;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.clear-search:hover {
+
+    background: #F1F5F9;
+
+    color: var(--black);
+
+}
+
+
+/* ==========================================================
+   NOTIFICATIONS SECTION
+   ========================================================== */
+
+.notifications-section {
+
+    background: var(--white);
+
+    border-radius: 24px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .06);
+
+    padding: 30px;
+
+}
+
+
+/* ==========================================================
+   SECTION HEADER
+   ========================================================== */
+
+.section-header {
+
+    padding-bottom: 22px;
+
+    margin-bottom: 4px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.section-header h2 {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--black);
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+
+}
+
+
+.section-header h2 i {
+
+    color: var(--yellow);
+
+}
+
+
+.section-header p {
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+}
+
+
+/* ==========================================================
+   NOTIFICATION LIST
+   ========================================================== */
+
+.notifications-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+/* ==========================================================
+   NOTIFICATION CARD
+   ========================================================== */
+
+.notification-card {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    padding: 22px 5px;
+
+    border-bottom: 1px solid var(--border);
+
+    transition: .25s ease;
+
+}
+
+
+.notification-card:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.notification-card:hover {
+
+    transform: translateX(5px);
+
+}
+
+
+/* ==========================================================
+   NOTIFICATION ICON
+   ========================================================== */
+
+.notification-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.notification-icon i {
+
+    font-size: 22px;
+
+}
+
+
+/* Success */
+
+.notification-icon.success {
+
+    background: var(--green-light);
+
+    color: var(--green);
+
+}
+
+
+/* Warning */
+
+.notification-icon.warning {
+
+    background: var(--orange-light);
+
+    color: var(--orange);
+
+}
+
+
+/* Information */
+
+.notification-icon.info {
+
+    background: var(--yellow-light);
+
+    color: #D89E00;
+
+}
+
+
+/* Emergency */
+
+.notification-icon.danger {
+
+    background: var(--red-light);
+
+    color: var(--red);
+
+}
+
+
+/* ==========================================================
+   NOTIFICATION CONTENT
+   ========================================================== */
+
+.notification-content {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.notification-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.notification-content h3 {
+
+    color: var(--black);
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+}
+
+
+.notification-content p {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* ==========================================================
+   TYPE BADGE
+   ========================================================== */
+
+.notification-type {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 80px;
+
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
+
+}
+
+
+.notification-type.success {
+
+    background: var(--green-light);
+
+    color: #15803D;
+
+}
+
+
+.notification-type.warning {
+
+    background: var(--orange-light);
+
+    color: #B45309;
+
+}
+
+
+.notification-type.info {
+
+    background: var(--yellow-light);
+
+    color: #A16207;
+
+}
+
+
+.notification-type.danger {
+
+    background: var(--red-light);
+
+    color: #B91C1C;
+
+}
+
+
+/* ==========================================================
+   TIME
+   ========================================================== */
+
+.notification-time {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+}
+
+
+.notification-time i {
+
+    color: var(--yellow-dark);
+
+}
+
+
+/* ==========================================================
+   EMPTY STATE
+   ========================================================== */
+
+.empty-state,
+.no-search-results {
+
+    text-align: center;
+
+    padding: 70px 25px;
+
+}
+
+
+.no-search-results {
+
+    display: none;
+
+}
+
+
+.empty-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 22px;
+
+    background: var(--yellow-light);
+
+    color: var(--yellow-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.empty-icon i {
+
+    font-size: 34px;
+
+}
+
+
+.empty-state h3,
+.no-search-results h3 {
+
+    color: var(--black);
+
+    font-size: 21px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.empty-state p,
+.no-search-results p {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+.page-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 25px 5px 10px;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+}
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 1100px) {
+
+    .driver-sidebar {
+
+        width: 230px;
+
+        min-width: 230px;
+
+    }
+
+
+    .driver-main {
+
+        width: calc(100% - 230px);
+
+        margin-left: 230px;
+
+        padding: 22px;
+
+    }
+
+
+    .sidebar-logo {
+
+        padding: 0 15px;
+
+        font-size: 21px;
+
+    }
+
+
+    .driver-sidebar > a {
+
+        padding: 0 15px;
+
+    }
+
+
+    .page-header {
+
+        padding: 25px;
+
+    }
+
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    body {
+
+        overflow-x: hidden;
+
+    }
+
+
+    .driver-page {
+
+        display: block;
+
+        width: 100%;
+
+    }
+
+
+    /* ------------------------------------------------------
+       MOBILE NAVIGATION
+       ------------------------------------------------------ */
+
+    .driver-sidebar {
+
+        position: relative;
+
+        top: auto;
+
+        left: auto;
+
+        width: 100%;
+
+        min-width: 0;
+
+        min-height: auto;
+
+        height: auto;
+
+        padding: 10px 10px 12px;
+
+        display: block;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        white-space: nowrap;
+
+        scrollbar-width: thin;
+
+    }
+
+
+    .driver-sidebar::-webkit-scrollbar {
+
+        height: 4px;
+
+    }
+
+
+    .driver-sidebar::-webkit-scrollbar-track {
+
+        background: #101827;
+
+    }
+
+
+    .driver-sidebar::-webkit-scrollbar-thumb {
+
+        background: var(--yellow);
+
+        border-radius: 10px;
+
+    }
+
+
+    /* Logo */
+
+    .sidebar-logo {
+
+        height: 50px;
+
+        padding: 0 8px;
+
+        margin: 0 0 8px 0;
+
+        display: flex;
+
+        font-size: 20px;
+
+        gap: 10px;
+
+    }
+
+
+    .sidebar-logo i {
+
+        font-size: 25px;
+
+    }
+
+
+    /* Navigation links */
+
+    .driver-sidebar > a {
+
+        display: inline-flex;
+
+        width: auto;
+
+        min-height: 43px;
+
+        height: 43px;
+
+        padding: 0 12px;
+
+        margin-right: 4px;
+
+        border-radius: 10px;
+
+        gap: 7px;
+
+        font-size: 12px;
+
+        vertical-align: middle;
+
+    }
+
+
+    .driver-sidebar > a i {
+
+        width: auto;
+
+        font-size: 13px;
+
+    }
+
+
+    .driver-sidebar > a.active {
+
+        background: var(--yellow);
+
+        color: var(--black);
+
+    }
+
+
+    /* ------------------------------------------------------
+       MAIN
+       ------------------------------------------------------ */
+
+    .driver-main {
+
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 10px;
+
+    }
+
+
+    /* ------------------------------------------------------
+       PAGE HEADER
+       ------------------------------------------------------ */
+
+    .page-header {
+
+        min-height: auto;
+
+        padding: 18px;
+
+        border-radius: 18px;
+
+        margin-bottom: 14px;
+
+        display: grid;
+
+        grid-template-columns: auto 1fr auto;
+
+        align-items: center;
+
+        gap: 12px;
+
+    }
+
+
+    .menu-btn {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+    }
+
+
+    .header-title {
+
+        gap: 10px;
+
+        min-width: 0;
+
+    }
+
+
+    .header-icon {
+
+        width: 48px;
+
+        height: 48px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .header-icon i {
+
+        font-size: 21px;
+
+    }
+
+
+    .header-title h1 {
+
+        font-size: 22px;
+
+        margin-bottom: 3px;
+
+    }
+
+
+    .header-title p {
+
+        font-size: 11px;
+
+        line-height: 1.4;
+
+    }
+
+
+    .back-btn {
+
+        width: 44px;
+
+        height: 44px;
+
+        min-height: 44px;
+
+        padding: 0;
+
+        border-radius: 12px;
+
+    }
+
+
+    .back-btn span {
+
+        display: none;
+
+    }
+
+
+    .back-btn i {
+
+        font-size: 17px;
+
+    }
+
+
+    /* ------------------------------------------------------
+       SEARCH
+       ------------------------------------------------------ */
+
+    .search-section {
+
+        padding: 12px;
+
+        border-radius: 18px;
+
+        margin-bottom: 14px;
+
+    }
+
+
+    .search-box {
+
+        height: 50px;
+
+        border-radius: 13px;
+
+        padding: 0 14px;
+
+    }
+
+
+    .search-box input {
+
+        font-size: 13px;
+
+        padding: 0 10px;
+
+    }
+
+
+    /* ------------------------------------------------------
+       NOTIFICATIONS SECTION
+       ------------------------------------------------------ */
+
+    .notifications-section {
+
+        padding: 16px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .section-header {
+
+        padding-bottom: 15px;
+
+    }
+
+
+    .section-header h2 {
+
+        font-size: 20px;
+
+        gap: 8px;
+
+    }
+
+
+    .section-header p {
+
+        font-size: 12px;
+
+    }
+
+
+    /* ------------------------------------------------------
+       NOTIFICATION CARD
+       ------------------------------------------------------ */
+
+    .notification-card {
+
+        gap: 11px;
+
+        padding: 17px 0;
+
+    }
+
+
+    .notification-icon {
+
+        width: 46px;
+
+        height: 46px;
+
+        border-radius: 13px;
+
+    }
+
+
+    .notification-icon i {
+
+        font-size: 18px;
+
+    }
+
+
+    .notification-top {
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
+
+    .notification-content h3 {
+
+        font-size: 14px;
+
+    }
+
+
+    .notification-content p {
+
+        font-size: 12px;
+
+        line-height: 1.6;
+
+        margin-bottom: 7px;
+
+    }
+
+
+    .notification-type {
+
+        min-width: auto;
+
+        padding: 4px 8px;
+
+        font-size: 9px;
+
+    }
+
+
+    .notification-time {
+
+        font-size: 10px;
+
+    }
+
+
+    /* ------------------------------------------------------
+       FOOTER
+       ------------------------------------------------------ */
+
+    .page-footer {
+
+        padding: 18px 3px 8px;
+
+        font-size: 10px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 430px) {
+
+    .driver-main {
+
+        padding: 8px;
+
+    }
+
+
+    .page-header {
+
+        padding: 14px;
+
+        grid-template-columns: 40px 1fr 40px;
+
+    }
+
+
+    .menu-btn {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 16px;
+
+    }
+
+
+    .header-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+
+    .header-icon i {
+
+        font-size: 18px;
+
+    }
+
+
+    .header-title h1 {
+
+        font-size: 18px;
+
+    }
+
+
+    .header-title p {
+
+        font-size: 10px;
+
+    }
+
+
+    .back-btn {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+
+    .notifications-section {
+
+        padding: 13px;
+
+    }
+
+
+    .notification-card {
+
+        gap: 9px;
+
+    }
+
+
+    .notification-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+
+    .notification-content h3 {
+
+        font-size: 13px;
+
+    }
+
+
+    .notification-content p {
+
+        font-size: 11px;
+
+    }
+
+
+    .notification-type {
+
+        font-size: 8px;
+
+        padding: 3px 6px;
+
+    }
+
+}

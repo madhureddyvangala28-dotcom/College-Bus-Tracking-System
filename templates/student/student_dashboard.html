@@ -69,6 +69,10 @@
 
                         <a href="{{ url_for('student_notifications') }}" class="notification-btn">
                             <i class="fa-solid fa-bell"></i>
+
+                            <span id="notification-count" class="notification-count">
+                                0
+                            </span>
                         </a>
 
                         <div class="profile-image" id="profileBtn">
@@ -142,37 +146,133 @@
             <section class="bus-card">
 
                 <div class="bus-title">
+
                     <i class="fa-solid fa-bus"></i>
+
                     <span>Today's Bus</span>
+
                 </div>
+
 
                 {% if bus_status %}
 
+                <!-- Hidden live bus ID for JavaScript -->
+
+                <div id="dashboardLiveData" data-bus-id="{{ bus_status.bus_id }}" style="display:none;">
+                </div>
+
+
                 <div class="bus-info">
 
+                    <!-- =====================================
+             BUS NUMBER
+        ====================================== -->
+
                     <div class="info-box">
+
                         <small>Bus Number</small>
-                        <h4>{{ bus_status.bus_number }}</h4>
-                    </div>
 
-                    <div class="info-box">
-                        <small>Driver</small>
-                        <h4>{{ bus_status.driver_name }}</h4>
-                    </div>
-
-                    <div class="info-box">
-                        <small>Route</small>
-                        <h4>{{ bus_status.route_name }}</h4>
-                    </div>
-
-                    <div class="info-box">
-                        <small>Status</small>
-                        <h4 class="status">
-                            🟢 {{ bus_status.status }}
+                        <h4>
+                            {{ bus_status.bus_number or 'Not Assigned' }}
                         </h4>
+
+                    </div>
+
+
+                    <!-- =====================================
+             DRIVER
+        ====================================== -->
+
+                    <div class="info-box">
+
+                        <small>Driver</small>
+
+                        <h4>
+                            {{ bus_status.driver_name or 'Not Assigned' }}
+                        </h4>
+
+                    </div>
+
+
+                    <!-- =====================================
+             ROUTE
+        ====================================== -->
+
+                    <div class="info-box">
+
+                        <small>Route</small>
+
+                        <h4>
+                            {{ bus_status.route_name or 'Not Assigned' }}
+                        </h4>
+
+                    </div>
+
+
+                    <!-- =====================================
+             REAL LIVE STATUS
+        ====================================== -->
+
+                    <div class="info-box">
+
+                        <small>Status</small>
+
+                        <h4 class="status">
+
+                            <span id="dashboardStatusDot" class="status-dot
+                    {% if bus_status.status == 'Online' %}
+                        online
+                    {% elif bus_status.status == 'Moving' %}
+                        moving
+                    {% elif bus_status.status == 'Stopped' %}
+                        stopped
+                    {% elif bus_status.status == 'Delayed' %}
+                        delayed
+                    {% elif bus_status.status == 'On Trip' %}
+                        moving
+                    {% else %}
+                        offline
+                    {% endif %}">
+                            </span>
+
+                            <span id="dashboardStatus">
+
+                                {{ bus_status.status or 'Offline' }}
+
+                            </span>
+
+                        </h4>
+
                     </div>
 
                 </div>
+
+
+                <!-- =====================================
+         OPTIONAL LIVE INFORMATION
+         This does NOT change your design.
+    ====================================== -->
+
+                <div id="dashboardLiveInfo" style="display:none;">
+
+                    <span id="dashboardCurrentStop">
+                        {{ bus_status.current_stop or '' }}
+                    </span>
+
+                    <span id="dashboardEta">
+                        {{ bus_status.eta_time or '' }}
+                    </span>
+
+                    <span id="dashboardSpeed">
+                        {{ bus_status.speed or 0 }}
+                    </span>
+
+                    <span id="dashboardLastUpdated">
+                        {{ bus_status.last_updated or '' }}
+                    </span>
+
+                </div>
+
 
                 {% else %}
 
@@ -181,7 +281,6 @@
                 {% endif %}
 
             </section>
-
             <!-- ================= Live Tracking ================= -->
 
             <section class="live-tracking-card">
@@ -205,6 +304,172 @@
 
             </section>
 
+
+            <!-- ==========================================
+        SEAT AVAILABILITY
+========================================== -->
+
+            {% if bus_status and bus_status.bus_id %}
+
+            <section class="seat-availability-section">
+
+                <div class="seat-availability-card">
+
+                    <!-- Header -->
+
+                    <div class="seat-header">
+
+                        <div class="seat-icon">
+
+                            <i class="fa-solid fa-chair"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>Seat Availability</h2>
+
+                            <p>
+                                {{ bus_status.bus_number }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Seat Statistics -->
+
+                    <div class="seat-stats">
+
+                        <!-- Total -->
+
+                        <div class="seat-stat">
+
+                            <span class="seat-number">
+
+                                {{ bus_status.capacity }}
+
+                            </span>
+
+                            <span class="seat-label">
+
+                                Total Seats
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- Available -->
+
+                        <div class="seat-stat available">
+
+                            <span class="seat-number">
+
+                                {{ bus_status.available_seats }}
+
+                            </span>
+
+                            <span class="seat-label">
+
+                                Available
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- Occupied -->
+
+                        <div class="seat-stat occupied">
+
+                            <span class="seat-number">
+
+                                {{ bus_status.occupied_seats }}
+
+                            </span>
+
+                            <span class="seat-label">
+
+                                Occupied
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Availability Progress -->
+
+                    <div class="seat-progress-container">
+
+                        <div class="seat-progress-info">
+
+                            <span>
+                                Seat Occupancy
+                            </span>
+
+                            <span>
+
+                                {{ bus_status.occupied_seats }}
+                                /
+                                {{ bus_status.capacity }}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="seat-progress-bar">
+
+                            <div class="seat-progress-fill" style="
+                        width:
+                        {{ (bus_status.occupied_seats / bus_status.capacity * 100) if bus_status.capacity > 0 else 0 }}%;
+                    ">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Status Message -->
+
+                    <div class="seat-status-message">
+
+                        {% if bus_status.available_seats > 0 %}
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+
+                            {{ bus_status.available_seats }}
+                            seat{{ 's' if bus_status.available_seats != 1 else '' }}
+                            available
+
+                        </span>
+
+                        {% else %}
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                        <span>
+                            Bus is Full
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            {% endif %}
+
             <!-- ================= Feature Grid ================= -->
 
             <section class="feature-grid">
@@ -212,6 +477,11 @@
                 <a href="{{ url_for('student_bus') }}" class="feature-card">
                     <i class="fa-solid fa-bus-simple"></i>
                     <span>My Bus</span>
+                </a>
+
+                <a href="{{ url_for('student_scan_qr') }}" class="feature-card">
+                    <i class="fa-solid fa-qrcode"></i>
+                    <span>Scan Bus QR</span>
                 </a>
 
                 <a href="{{ url_for('student_route') }}" class="feature-card">
@@ -249,6 +519,133 @@
     <!-- Dashboard JS -->
 
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+    <script>
+
+        // ==========================================
+        // LOAD UNREAD NOTIFICATION COUNT
+        // ==========================================
+
+        async function loadNotificationCount() {
+
+            try {
+
+                const response = await fetch(
+                    "/student/notifications/unread-count"
+                );
+
+                const data = await response.json();
+
+                const notificationCount =
+                    document.getElementById(
+                        "notification-count"
+                    );
+
+
+                if (notificationCount) {
+
+                    const count = data.count || 0;
+
+                    notificationCount.innerText = count;
+
+
+                    // Hide badge when there are no notifications
+                    if (count <= 0) {
+
+                        notificationCount.style.display = "none";
+
+                    } else {
+
+                        notificationCount.style.display = "flex";
+
+                    }
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Notification count error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // LOAD COUNT WHEN PAGE OPENS
+        // ==========================================
+
+        loadNotificationCount();
+
+
+        // ==========================================
+        // LISTEN FOR FIREBASE NOTIFICATIONS
+        // ==========================================
+
+        window.addEventListener(
+
+            "firebaseNotificationReceived",
+
+            function (event) {
+
+                console.log(
+                    "New Firebase notification received:",
+                    event.detail
+                );
+
+
+                // Reload actual count from database
+                loadNotificationCount();
+
+            }
+
+        );
+
+
+        // ==========================================
+        // OPTIONAL: AUTO REFRESH EVERY 30 SECONDS
+        // ==========================================
+
+        setInterval(
+            loadNotificationCount,
+            30000
+        );
+
+
+        // ==========================================
+        // QR BUTTON SAFETY CHECK
+        // ==========================================
+
+        const scanBusQRBtn =
+            document.getElementById("scanBusQRBtn");
+
+
+        if (scanBusQRBtn) {
+
+            scanBusQRBtn.addEventListener(
+                "click",
+
+                function (event) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Please use your phone camera to scan the QR Code displayed by your bus driver."
+                    );
+
+                }
+
+            );
+
+        }
+
+    </script>
+
+    <script type="module" src="{{ url_for('static', filename='js/firebase-messaging.js') }}">
+    </script>
 
 </body>
 

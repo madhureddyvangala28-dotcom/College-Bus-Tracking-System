@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bus Stops Management</title>
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/admin/route_coordinate_manager.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    {% include "admin/navbar.html" %}
+
+    <!-- ==========================================
+        MAIN LAYOUT
+========================================== -->
+
+    <div class="coordinate-layout">
+
+        <!-- LEFT PANEL -->
+
+        <div class="left-panel">
+
+            <!-- Route -->
+
+            <div class="card">
+
+                <h3>
+
+                    Route Selection
+
+                </h3>
+
+                <select id="routeSelect">
+
+                    <option value="">
+
+                        Select Route
+
+                    </option>
+
+                    {% for route in routes %}
+
+                    <option value="{{ route.route_id }}">
+
+                        {{ route.route_name }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <!-- Stops -->
+
+            <div class="card">
+
+                <h3>
+
+                    Bus Stops
+
+                </h3>
+
+                <div id="stopList" class="stop-list">
+
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+        SELECTED STOP
+========================================== -->
+
+            <div class="card">
+
+                <h3>
+
+                    Selected Stop
+
+                </h3>
+
+                <label>
+
+                    Stop Name
+
+                </label>
+
+                <input id="selectedStopName" type="text" readonly>
+
+                <label>
+
+                    Latitude
+
+                </label>
+
+                <input id="selectedLatitude" type="text" readonly>
+
+                <label>
+
+                    Longitude
+
+                </label>
+
+                <input id="selectedLongitude" type="text" readonly>
+
+                <button class="save-btn" id="saveCoordinateBtn" disabled>
+
+                    Save Coordinates
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="right-panel">
+
+            <div id="coordinateMap"></div>
+
+        </div>
+
+
+
+    </div>
+
+    <!-- ==========================================
+     REAL ROUTE INFORMATION
+     STEP 5.3.2
+========================================== -->
+
+    <div class="route-info-card" id="routeInfoCard">
+
+        <div class="route-info-header">
+
+            <div class="route-info-title">
+
+                <i class="fas fa-route"></i>
+
+                <div>
+                    <h3>Route Information</h3>
+
+                    <span>
+                        Real road route
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="route-live-badge">
+
+                <span></span>
+
+                LIVE
+
+            </div>
+
+        </div>
+
+
+        <div class="route-info-grid">
+
+            <!-- DISTANCE -->
+
+            <div class="route-info-item">
+
+                <div class="route-info-icon distance-icon">
+
+                    <i class="fas fa-road"></i>
+
+                </div>
+
+                <div>
+
+                    <small>Distance</small>
+
+                    <strong id="routeDistance">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- DURATION -->
+
+            <div class="route-info-item">
+
+                <div class="route-info-icon duration-icon">
+
+                    <i class="fas fa-clock"></i>
+
+                </div>
+
+                <div>
+
+                    <small>Travel Time</small>
+
+                    <strong id="routeDuration">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- STOPS -->
+
+            <div class="route-info-item">
+
+                <div class="route-info-icon stops-icon">
+
+                    <i class="fas fa-location-dot"></i>
+
+                </div>
+
+                <div>
+
+                    <small>Total Stops</small>
+
+                    <strong id="routeTotalStops">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAPPED -->
+
+            <div class="route-info-item">
+
+                <div class="route-info-icon mapped-icon">
+
+                    <i class="fas fa-map-pin"></i>
+
+                </div>
+
+                <div>
+
+                    <small>Mapped Stops</small>
+
+                    <strong id="routeMappedStops">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAPPING STATUS -->
+
+        <div class="route-mapping-status">
+
+            <div class="mapping-status-top">
+
+                <span>
+                    Coordinate Coverage
+                </span>
+
+                <strong id="routeCoverage">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="mapping-progress">
+
+                <div class="mapping-progress-bar" id="routeCoverageBar" style="width:0%;"></div>
+
+            </div>
+
+
+            <div class="mapping-status-bottom">
+
+                <span id="routeMappingMessage">
+                    Select a route to view information.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="{{ url_for('static',
+filename='js/admin/route_coordinate_manager.js') }}"></script>
+    <!-- ==========================================
+        SAVE NOTIFICATION
+========================================== -->
+
+    <div id="coordinateToast" class="coordinate-toast">
+
+        <div class="toast-icon">
+
+            <i class="fas fa-check"></i>
+
+        </div>
+
+        <div class="toast-content">
+
+            <strong id="toastTitle">
+                Success
+            </strong>
+
+            <span id="toastMessage">
+                Coordinates saved successfully.
+            </span>
+
+        </div>
+
+        <button type="button" class="toast-close" onclick="hideCoordinateToast()">
+
+            <i class="fas fa-xmark"></i>
+
+        </button>
+
+    </div>
+</body>
+
+</html>

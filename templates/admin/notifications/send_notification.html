@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Send Notification | College Bus Tracking</title>
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+
+    <!-- NAVBAR CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/navbar.css') }}"
+    >
+
+
+    <!-- PAGE CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/admin/send_notification.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+                ADMIN NAVBAR
+========================================== -->
+
+{% include "admin/navbar.html" %}
+
+
+<!-- ==========================================
+                PAGE HEADER
+========================================== -->
+
+<section class="send-page-header">
+
+    <div class="header-content">
+
+
+        <div class="header-left">
+
+
+            <span class="page-label">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                NOTIFICATION CENTER
+
+            </span>
+
+
+            <h1>
+
+                Send Notification
+
+            </h1>
+
+
+            <p>
+
+                Send important updates and alerts to students,
+                parents and drivers.
+
+            </p>
+
+
+        </div>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="{{ url_for('admin_notifications') }}"
+            class="back-btn"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Notifications
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+                FLASH MESSAGES
+========================================== -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        <section class="flash-container">
+
+            {% for category, message in messages %}
+
+                <div class="flash-message {{ category }}">
+
+                    {% if category == "success" %}
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    {% else %}
+
+                        <i class="fa-solid fa-circle-exclamation"></i>
+
+                    {% endif %}
+
+
+                    <span>
+
+                        {{ message }}
+
+                    </span>
+
+
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+    {% endif %}
+
+{% endwith %}
+
+
+<!-- ==========================================
+                MAIN SECTION
+========================================== -->
+
+<section class="send-notification-section">
+
+
+    <div class="notification-layout">
+
+
+        <!-- =====================================
+                    FORM CARD
+        ====================================== -->
+
+        <div class="notification-form-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="form-card-header">
+
+
+                <div class="header-icon">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+
+                        Create Notification
+
+                    </h2>
+
+
+                    <p>
+
+                        Fill in the details below and send your notification.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ==================================
+                        FORM
+            =================================== -->
+
+            <form
+                action="{{ url_for('send_admin_notification') }}"
+                method="POST"
+                class="notification-form"
+            >
+
+
+                <!-- TITLE -->
+
+                <div class="form-group">
+
+                    <label for="title">
+
+                        <i class="fa-solid fa-heading"></i>
+
+                        Notification Title
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Enter notification title"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group">
+
+                    <label for="message">
+
+                        <i class="fa-solid fa-message"></i>
+
+                        Notification Message
+
+                    </label>
+
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Write your notification message here..."
+                        rows="7"
+                        required
+                    ></textarea>
+
+
+                    <small>
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        Provide clear and useful information.
+
+                    </small>
+
+                </div>
+
+
+                <!-- TYPE + AUDIENCE -->
+
+                <div class="form-row">
+
+
+                    <!-- NOTIFICATION TYPE -->
+
+                    <div class="form-group">
+
+                        <label for="notification_type">
+
+                            <i class="fa-solid fa-tag"></i>
+
+                            Notification Type
+
+                        </label>
+
+
+                        <select
+                            id="notification_type"
+                            name="notification_type"
+                            required
+                        >
+
+                            <option value="Info">
+
+                                ℹ️ Information
+
+                            </option>
+
+
+                            <option value="Warning">
+
+                                ⚠️ Warning
+
+                            </option>
+
+
+                            <option value="Emergency">
+
+                                🚨 Emergency
+
+                            </option>
+
+
+                            <option value="Holiday">
+
+                                🏖️ Holiday
+
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                    <!-- TARGET AUDIENCE -->
+
+                    <div class="form-group">
+
+                        <label for="target_audience">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            Send To
+
+                        </label>
+
+
+                        <select
+                            id="target_audience"
+                            name="target_audience"
+                            required
+                        >
+
+                            <option value="All">
+
+                                🌐 Everyone
+
+                            </option>
+
+
+                            <option value="Students">
+
+                                🎓 Students
+
+                            </option>
+
+
+                            <option value="Parents">
+
+                                👨‍👩‍👧 Parents
+
+                            </option>
+
+
+                            <option value="Drivers">
+
+                                🚌 Drivers
+
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- INFO BOX -->
+
+                <div class="send-info-box">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-bullhorn"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+
+                            Ready to Send
+
+                        </h4>
+
+
+                        <p>
+
+                            The selected users will be able to see
+                            this notification in their notification panel.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+
+                    <a
+                        href="{{ url_for('admin_notifications') }}"
+                        class="cancel-btn"
+                    >
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="send-btn"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Send Notification
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+        <!-- =====================================
+                    PREVIEW / INFORMATION
+        ====================================== -->
+
+        <div class="notification-side-panel">
+
+
+            <!-- QUICK GUIDE -->
+
+            <div class="guide-card">
+
+
+                <div class="guide-icon">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                </div>
+
+
+                <h3>
+
+                    Notification Guide
+
+                </h3>
+
+
+                <p>
+
+                    Choose the appropriate notification type
+                    based on the importance of your message.
+
+                </p>
+
+
+                <div class="guide-list">
+
+
+                    <div class="guide-item info">
+
+                        <div class="guide-item-icon">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+
+                                Information
+
+                            </strong>
+
+                            <span>
+
+                                General announcements and updates
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="guide-item warning">
+
+                        <div class="guide-item-icon">
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+
+                                Warning
+
+                            </strong>
+
+                            <span>
+
+                                Important notices requiring attention
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="guide-item emergency">
+
+                        <div class="guide-item-icon">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+
+                                Emergency
+
+                            </strong>
+
+                            <span>
+
+                                Urgent safety or emergency alerts
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="guide-item holiday">
+
+                        <div class="guide-item-icon">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+
+                                Holiday
+
+                            </strong>
+
+                            <span>
+
+                                Holiday and service schedule updates
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- AUDIENCE CARD -->
+
+            <div class="audience-card">
+
+
+                <div class="audience-card-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        Select Your Audience
+
+                    </h3>
+
+
+                    <p>
+
+                        You can send notifications to everyone
+                        or a specific group of users.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ==========================================
+                FOOTER
+========================================== -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 College Bus Tracking System
+
+        <span>|</span>
+
+        Notification Management
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

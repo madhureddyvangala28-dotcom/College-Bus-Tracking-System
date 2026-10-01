@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Driver Live Tracking</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Leaflet -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="{{ url_for('static',
+          filename='css/driver/live_tracking.css') }}">
+
+</head>
+
+<body>
+
+    <div class="tracking-container">
+
+        <!-- ==========================================
+                    HEADER
+    =========================================== -->
+
+        <header class="tracking-header">
+
+            <a href="{{ url_for('driver_dashboard') }}" class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </a>
+
+            <div class="header-title">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span>Driver Live Tracking</span>
+
+            </div>
+
+            <div class="gps-status">
+
+                <span class="dot"></span>
+
+                GPS Active
+
+            </div>
+
+        </header>
+
+        <!-- ==========================================
+                MAIN CONTENT
+    =========================================== -->
+
+        <div class="tracking-main">
+
+            <!-- ======================================
+                    LEFT PANEL
+        ======================================= -->
+
+            <div class="left-panel">
+
+                <!-- ==================================
+                    DRIVER DETAILS
+            =================================== -->
+
+                <div class="panel-card">
+
+                    <div class="panel-title">
+
+                        <i class="fa-solid fa-id-card"></i>
+
+                        Driver Details
+
+                    </div>
+
+                    <div class="driver-info">
+
+                        <div class="info-card">
+
+                            <small>Driver</small>
+
+                            <h3>{{ driver.driver_name }}</h3>
+
+                        </div>
+
+                        <div class="info-card">
+
+                            <small>Bus Number</small>
+
+                            <h3>{{ driver.bus_number }}</h3>
+
+                        </div>
+
+                        <div class="info-card">
+
+                            <small>Route</small>
+
+                            <h3>
+
+                                {% if route %}
+
+                                {{ route.route_name }}
+
+                                {% else %}
+
+                                Not Assigned
+
+                                {% endif %}
+
+                            </h3>
+
+                        </div>
+
+                        <div class="info-card">
+
+                            <small>Status</small>
+
+                            <h3 id="trackingStatus">
+
+                                <span class="status-dot"></span>
+
+                                Sharing Live
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ==================================
+                    LIVE INFORMATION
+            =================================== -->
+
+                <div class="panel-card">
+
+                    <div class="panel-title">
+
+                        <i class="fa-solid fa-satellite-dish"></i>
+
+                        Live Information
+
+                    </div>
+
+                    <div class="location-details">
+
+                        <div class="location-box">
+
+                            <i class="fa-solid fa-location-crosshairs"></i>
+
+                            <div>
+
+                                <small>Latitude</small>
+
+                                <h4 id="latitude">--</h4>
+
+                            </div>
+
+                        </div>
+
+                        <div class="location-box">
+
+                            <i class="fa-solid fa-earth-asia"></i>
+
+                            <div>
+
+                                <small>Longitude</small>
+
+                                <h4 id="longitude">--</h4>
+
+                            </div>
+
+                        </div>
+
+                        <div class="location-box">
+
+                            <i class="fa-solid fa-gauge-high"></i>
+
+                            <div>
+
+                                <small>Speed</small>
+
+                                <h4 id="speed">--</h4>
+
+                            </div>
+
+                        </div>
+
+                        <div class="location-box">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            <div>
+
+                                <small>Last Update</small>
+
+                                <h4 id="lastUpdate">--</h4>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ==================================
+                    ACTION BUTTONS
+            =================================== -->
+
+                <div class="panel-card">
+
+                    <div class="panel-title">
+
+                        <i class="fa-solid fa-sliders"></i>
+
+                        Controls
+
+                    </div>
+
+                    <!-- ==========================================
+        ROUTE PROGRESS
+========================================== -->
+
+                    <section class="progress-card">
+
+                        <div class="section-title">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            Route Progress
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div class="progress-fill" style="width: {{ progress_percentage }}%;">
+
+                            </div>
+
+                        </div>
+
+                        <div class="progress-percent">
+
+                            {{ progress_percentage }}%
+
+                        </div>
+
+                        <div class="progress-grid">
+
+                            <div>
+
+                                <small>Current Stop</small>
+
+                                <h4>{{ current_stop }}</h4>
+
+                            </div>
+
+                            <div>
+
+                                <small>Remaining Stops</small>
+
+                                <h4>{{ remaining_stops }}</h4>
+
+                            </div>
+
+                            <div>
+
+                                <small>Total Stops</small>
+
+                                <h4>{{ total_stops }}</h4>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+                    <!-- ==========================================
+        LIVE ROUTE INFORMATION
+========================================== -->
+
+                    <section class="live-route-card">
+
+                        <div class="section-title">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            Live Route Information
+
+                        </div>
+
+                        <div class="route-info-grid">
+
+                            <div class="route-info-box">
+
+                                <small>📍 Current Stop</small>
+
+                                <h3>{{ current_stop }}</h3>
+
+                            </div>
+
+                            <div class="route-info-box">
+
+                                <small>➡ Next Stop</small>
+
+                                <h3>{{ next_stop }}</h3>
+
+                            </div>
+
+                            <div class="route-info-box">
+
+                                <small>🚏 Remaining Stops</small>
+
+                                <h3>{{ remaining_stops }}</h3>
+
+                            </div>
+
+                            <div class="route-info-box">
+                                <small>📏 Distance Remaining</small>
+                                <h3 id="distanceRemaining">
+                                    --
+                                </h3>
+                            </div>
+                            <div class="route-info-box">
+                                <small>⏱ ETA</small>
+                                <h3 id="eta">
+                                    --
+                                </h3>
+                            </div>
+
+                        </div>
+
+                    </section>
+                    <!-- ==========================================
+                          ROUTE STOPS
+                    ========================================== -->
+
+                    <section class="route-stops">
+
+                        <div class="section-title">
+
+                            <i class="fa-solid fa-route"></i>
+
+                            Assigned Stops
+
+                        </div>
+
+                        {% for stop in route_stops %}
+
+                        <div class="stop-item">
+
+                            <div class="stop-icon">
+
+                                {% if stop.stop_order < current_stop_order %} 🟢 {% elif
+                                    stop.stop_order==current_stop_order %} 🟠 {% else %} ⚪ {% endif %} </div>
+
+                                    <div class="stop-details">
+
+                                        <h4>{{ stop.stop_name }}</h4>
+
+                                        <small>
+
+                                            {% if stop.stop_order < current_stop_order %} Completed {% elif
+                                                stop.stop_order==current_stop_order %} Current Stop {% else %} Upcoming
+                                                {% endif %} </small>
+
+                                    </div>
+
+                            </div>
+
+                            {% endfor %}
+
+                    </section>
+
+                    <div class="tracking-actions">
+
+                        <button id="startTrackingBtn" class="start-btn">
+
+                            <i class="fa-solid fa-play"></i>
+
+                            Start Sharing
+
+                        </button>
+
+                        <button id="stopTrackingBtn" class="stop-btn">
+
+                            <i class="fa-solid fa-stop"></i>
+
+                            Stop Sharing
+
+                        </button>
+
+                        <button id="centerMapBtn" class="center-btn">
+
+                            <i class="fa-solid fa-crosshairs"></i>
+
+                            Center Map
+
+                        </button>
+
+                        <button class="emergency-btn">
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                            Emergency
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- ======================================
+                    RIGHT PANEL
+        ======================================= -->
+
+            <div class="right-panel">
+
+                <div class="panel-card map-card">
+
+                    <div class="panel-title">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        Live Bus Location
+
+                    </div>
+
+                    <!-- ===============================
+                        LIVE MAP
+                ================================ -->
+
+                    <section class="map-section">
+
+                        <div id="map"></div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+                FOOTER
+    =========================================== -->
+
+        <footer class="tracking-footer">
+
+            <i class="fa-solid fa-bus"></i>
+
+            College Bus Tracking System | Driver Live Tracking
+
+        </footer>
+
+    </div>
+
+    <!-- ==========================================
+            LEAFLET JS
+========================================== -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // ==========================================
+        // ROUTE DATA FROM FLASK
+        // ==========================================
+
+        window.driverRouteStops = {{ route_stops | tojson | safe }};
+
+        window.driverCurrentStop = {{ current_stop | tojson | safe }};
+
+        window.driverCurrentStopOrder = {{ current_stop_order | default (0) }};
+
+        window.driverTotalStops = {{ total_stops | default (0) }};
+
+        window.driverRemainingStops = {{ remaining_stops | default (0) }};
+    </script>
+
+
+    <!-- ==========================================
+        DRIVER LIVE TRACKING JS
+========================================== -->
+
+    <script src="{{ url_for('static',filename='js/driver/live_tracking.js') }}"></script>
+
+</body>
+
+</html>

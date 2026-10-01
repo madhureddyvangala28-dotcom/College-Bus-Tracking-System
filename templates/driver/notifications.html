@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications | College Bus Tracking</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- ONLY Notifications CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/driver/notifications.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="driver-page">
+
+    <!-- =====================================================
+                         SIDEBAR
+    ====================================================== -->
+
+    <aside class="driver-sidebar">
+
+        <!-- Logo -->
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-bus"></i>
+
+            <span>College Bus</span>
+
+        </div>
+
+
+        <!-- Dashboard -->
+
+        <a href="{{ url_for('driver_dashboard') }}">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <!-- Live Tracking -->
+
+        <a href="{{ url_for('driver_live_tracking') }}">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>Live Tracking</span>
+
+        </a>
+
+
+        <!-- Students -->
+
+        <a href="{{ url_for('driver_students') }}">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Students</span>
+
+        </a>
+
+
+        <!-- My Bus -->
+
+        <a href="{{ url_for('driver_my_bus') }}">
+
+            <i class="fa-solid fa-bus-simple"></i>
+
+            <span>My Bus</span>
+
+        </a>
+
+
+        <!-- Route Details -->
+
+        <a href="{{ url_for('driver_route_details') }}">
+
+            <i class="fa-solid fa-route"></i>
+
+            <span>Route Details</span>
+
+        </a>
+
+
+        <!-- Trip History -->
+
+        <a href="{{ url_for('driver_trip_history') }}">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>Trip History</span>
+
+        </a>
+
+
+        <!-- Notifications -->
+
+        <a
+            href="{{ url_for('driver_notifications') }}"
+            class="active"
+        >
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span>Notifications</span>
+
+        </a>
+
+
+        <!-- Logout -->
+
+        <a href="{{ url_for('logout') }}">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </aside>
+
+
+    <!-- =====================================================
+                         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="driver-main">
+
+
+        <!-- =================================================
+                           TOP HEADER
+        ================================================== -->
+
+        <header class="page-header">
+
+            <!-- Mobile Menu -->
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="Open menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- Header Title -->
+
+            <div class="header-title">
+
+                <div class="header-icon">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>Notifications</h1>
+
+                    <p>
+                        View important announcements and updates.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Back Button -->
+
+            <a
+                href="{{ url_for('driver_dashboard') }}"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </header>
+
+
+
+        <!-- =================================================
+                         SEARCH
+        ================================================== -->
+
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="searchNotification"
+                    placeholder="Search notifications..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-search"
+                    aria-label="Clear search"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+                      NOTIFICATIONS SECTION
+        ================================================== -->
+
+        <section class="notifications-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+
+                        <i class="fa-solid fa-bell"></i>
+
+                        Notifications
+
+                    </h2>
+
+                    <p>
+                        Important updates for your assigned bus.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                       NOTIFICATION LIST
+            ================================================== -->
+
+            {% if notifications %}
+
+            <div
+                class="notifications-list"
+                id="notificationsList"
+            >
+
+                {% for notification in notifications %}
+
+                <article
+                    class="notification-card"
+                    data-notification-type="{{ notification.type }}"
+                >
+
+
+                    <!-- Notification Icon -->
+
+                    <div
+                        class="notification-icon
+                        {% if notification.type == 'Success' %}
+                            success
+                        {% elif notification.type == 'Warning' %}
+                            warning
+                        {% elif notification.type == 'Emergency' %}
+                            danger
+                        {% else %}
+                            info
+                        {% endif %}"
+                    >
+
+                        {% if notification.type == 'Success' %}
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        {% elif notification.type == 'Warning' %}
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                        {% elif notification.type == 'Emergency' %}
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                        {% else %}
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        {% endif %}
+
+                    </div>
+
+
+
+                    <!-- Notification Content -->
+
+                    <div class="notification-content">
+
+                        <div class="notification-top">
+
+                            <h3>
+                                {{ notification.title }}
+                            </h3>
+
+
+                            <span
+                                class="notification-type
+                                {% if notification.type == 'Success' %}
+                                    success
+                                {% elif notification.type == 'Warning' %}
+                                    warning
+                                {% elif notification.type == 'Emergency' %}
+                                    danger
+                                {% else %}
+                                    info
+                                {% endif %}"
+                            >
+
+                                {{ notification.type }}
+
+                            </span>
+
+                        </div>
+
+
+                        <p>
+                            {{ notification.message }}
+                        </p>
+
+
+                        <div class="notification-time">
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            <span>
+                                {{ notification.created_at }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- =================================================
+                        NO SEARCH RESULTS
+            ================================================== -->
+
+            <div
+                class="no-search-results"
+                id="noSearchResults"
+            >
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </div>
+
+                <h3>No Notifications Found</h3>
+
+                <p>
+                    No notification matches your search.
+                </p>
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- =================================================
+                         EMPTY DATABASE STATE
+            ================================================== -->
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+
+                    <i class="fa-regular fa-bell-slash"></i>
+
+                </div>
+
+                <h3>
+                    No Notifications Available
+                </h3>
+
+                <p>
+                    You don't have any notifications yet.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                             FOOTER
+        ================================================== -->
+
+        <footer class="page-footer">
+
+            <span>
+                College Bus Tracking System
+            </span>
+
+            <span>
+                Version 1.0
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+                         JAVASCRIPT
+====================================================== -->
+
+<script
+    src="{{ url_for('static', filename='js/driver/notifications.js') }}"
+></script>
+
+
+</body>
+
+</html>

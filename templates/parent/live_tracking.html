@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Live Bus Tracking | College Bus</title>
+
+
+    <!-- GOOGLE FONT -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <!-- LEAFLET CSS -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+
+    <!-- LIVE TRACKING CSS -->
+
+    <link rel="stylesheet" href="{{ url_for('static',
+          filename='css/parent/parent_live_tracking.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <div class="parent-container">
+
+
+        <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+        <header class="parent-header">
+
+
+            <!-- BRAND -->
+
+            <a href="/parent_dashboard" class="brand-section">
+
+                <div class="brand-icon">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+
+                <div class="brand-text">
+
+                    <h2>College Bus</h2>
+
+                    <span>Parent Portal</span>
+
+                </div>
+
+            </a>
+
+
+            <!-- DESKTOP NAVIGATION -->
+
+            <nav class="parent-nav" id="desktopNavigation">
+
+
+                <a href="/parent_dashboard" class="nav-link">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+
+                <a href="/parent/live_tracking" class="nav-link active">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span>Live Tracking</span>
+
+                </a>
+
+
+                <a href="/parent/notifications" class="nav-link">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span>Notifications</span>
+
+                </a>
+
+
+                <a href="/parent/profile" class="nav-link">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <span>Profile</span>
+
+                </a>
+
+
+                <a href="/logout" class="nav-link logout-link">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Logout</span>
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- RIGHT SECTION -->
+
+            <div class="header-user-section">
+
+
+                <!-- NOTIFICATION -->
+
+                <a href="/parent/notifications" class="notification-btn">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </a>
+
+
+                <!-- USER PROFILE -->
+
+                <div class="user-profile">
+
+
+                    <div class="user-avatar">
+
+                        {{ parent_student.parent_name[0].upper()
+                        if parent_student
+                        and parent_student.parent_name
+                        else 'P' }}
+
+                    </div>
+
+
+                    <div class="user-info">
+
+                        <h4>
+
+                            {{ parent_student.parent_name
+                            if parent_student
+                            and parent_student.parent_name
+                            else 'Parent' }}
+
+                        </h4>
+
+                        <span>Parent</span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- MOBILE MENU BUTTON -->
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+            </div>
+
+
+        </header>
+
+
+        <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
+
+        <div class="mobile-menu" id="mobileMenu">
+
+
+            <a href="/parent_dashboard">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/parent/live_tracking" class="active">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Live Tracking
+
+            </a>
+
+
+            <a href="/parent/notifications">
+
+                <i class="fa-solid fa-bell"></i>
+
+                Notifications
+
+            </a>
+
+
+            <a href="/parent/profile">
+
+                <i class="fa-solid fa-user"></i>
+
+                Profile
+
+            </a>
+
+
+            <a href="/logout" class="mobile-logout">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+         MAIN PAGE
+    ====================================================== -->
+
+        <main class="live-tracking-page">
+
+
+            <!-- =================================================
+             HERO
+        ================================================== -->
+
+            <section class="tracking-hero">
+
+
+                <!-- CHILD -->
+
+                <div class="hero-child-info">
+
+
+                    <div class="hero-student-icon">
+
+                        <i class="fa-solid fa-user-graduate"></i>
+
+                    </div>
+
+
+                    <div class="hero-student-details">
+
+                        <span>Your Child</span>
+
+
+                        <h1>
+
+                            {{ parent_student.student_name
+                            if parent_student
+                            and parent_student.student_name
+                            else 'Student Name' }}
+
+                        </h1>
+
+
+                        <p>
+
+                            {{ parent_student.roll_number
+                            if parent_student
+                            and parent_student.roll_number
+                            else 'Roll Number Not Available' }}
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BUS -->
+
+                <div class="hero-bus-info">
+
+
+                    <div class="hero-bus-divider"></div>
+
+
+                    <div class="hero-bus-details">
+
+                        <span>Assigned Bus</span>
+
+
+                        <h2>
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            {{ tracking.bus_number
+                            if tracking
+                            and tracking.bus_number
+                            else 'Not Assigned' }}
+
+                        </h2>
+
+
+                        <p>
+
+                            {{ tracking.route_name
+                            if tracking
+                            and tracking.route_name
+                            else 'Route Not Available' }}
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+             MAIN TRACKING GRID
+        ================================================== -->
+
+            <section class="tracking-content">
+
+
+                <!-- =================================================
+                 MAP CARD
+            ================================================== -->
+
+                <div class="map-card">
+
+
+                    <div class="map-card-header">
+
+
+                        <div class="section-title">
+
+                            <i class="fa-solid fa-map-location-dot"></i>
+
+                            <h2>Bus Location</h2>
+
+                        </div>
+
+
+                        <div class="map-update-time">
+
+                            <span>Updated:</span>
+
+                            <strong id="lastUpdated">
+
+                                {{ tracking.last_updated
+                                if tracking
+                                and tracking.last_updated
+                                else 'No Data' }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                     MAP
+                ================================================== -->
+
+                    <div id="busMap" data-bus-id="{{ tracking.bus_id if tracking and tracking.bus_id else '' }}"
+                        data-latitude="{{ tracking.latitude if tracking and tracking.latitude is not none else '' }}"
+                        data-longitude="{{ tracking.longitude if tracking and tracking.longitude is not none else '' }}"
+                        data-current-stop="{{ tracking.current_stop if tracking and tracking.current_stop else 'Location Not Available' }}"
+                        data-speed="{{ tracking.speed if tracking and tracking.speed is not none else '0' }}"
+                        data-status="{{ tracking.status if tracking and tracking.status else 'Offline' }}"
+                        data-last-updated="{{ tracking.last_updated if tracking and tracking.last_updated else 'No Data' }}"
+                        data-eta="{{ tracking.eta if tracking and tracking.eta else 'Not Available' }}">
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                 BUS STATUS
+            ================================================== -->
+
+                <div class="bus-status-card">
+
+
+                    <div class="status-title">
+
+                        <i class="fa-solid fa-bus"></i>
+
+                        <h2>Bus Status</h2>
+
+                    </div>
+
+
+
+                    <!-- CURRENT STATUS -->
+
+                    <div class="current-status-box">
+
+
+                        <div class="status-icon">
+
+                            <i class="fa-solid fa-signal"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>Current Status</span>
+
+
+                            <h3 id="tripStatus">
+
+                                {{ tracking.status
+                                if tracking
+                                and tracking.status
+                                else 'Offline' }}
+
+                            </h3>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- LOCATION -->
+
+                    <div class="status-row">
+
+
+                        <div class="row-icon location-icon">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                        </div>
+
+
+                        <div class="row-content">
+
+                            <span>Current Location</span>
+
+
+                            <strong id="currentLocation">
+
+                                {{ tracking.current_stop
+                                if tracking
+                                and tracking.current_stop
+                                else 'Location Not Available' }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- SPEED -->
+
+                    <div class="status-row">
+
+
+                        <div class="row-icon speed-icon">
+
+                            <i class="fa-solid fa-gauge-high"></i>
+
+                        </div>
+
+
+                        <div class="row-content">
+
+                            <span>Bus Speed</span>
+
+
+                            <strong>
+
+                                <span id="busSpeed">
+
+                                    {{ tracking.speed
+                                    if tracking
+                                    and tracking.speed is not none
+                                    else 0 }}
+
+                                </span>
+
+                                <small>km/h</small>
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ETA -->
+
+                    <div class="status-row">
+
+
+                        <div class="row-icon arrival-icon">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                        </div>
+
+
+                        <div class="row-content">
+
+                            <span>Estimated Arrival</span>
+
+
+                            <strong id="estimatedArrival">
+
+                                {{ tracking.eta
+                                if tracking
+                                and tracking.eta
+                                else 'Not Available' }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- DRIVER -->
+
+                    <div class="status-row">
+
+
+                        <div class="row-icon driver-icon">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+
+                        <div class="row-content">
+
+                            <span>Driver</span>
+
+
+                            <strong id="driverName">
+
+                                {{ tracking.driver_name
+                                if tracking
+                                and tracking.driver_name
+                                else 'Not Assigned' }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+             INFORMATION CARD
+        ================================================== -->
+
+            <section class="tracking-info-card">
+
+
+                <div class="tracking-info-icon">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>Live Tracking Information</h3>
+
+                    <p>
+
+                        The bus location automatically updates using the latest
+                        GPS coordinates. Route stops and the road route are
+                        displayed on the map when location data is available.
+
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- =====================================================
+         MOBILE BOTTOM NAVIGATION
+    ====================================================== -->
+
+        <nav class="mobile-bottom-nav">
+
+
+            <a href="/parent_dashboard">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="/parent/live_tracking" class="active">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span>Track</span>
+
+            </a>
+
+
+            <a href="/parent/notifications">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Alerts</span>
+
+            </a>
+
+
+            <a href="/parent/profile" class="mobile-nav-link {% if active_page == 'profile' %}active{% endif %}">
+
+                <i class="fas fa-user"></i>
+
+                <span>Profile</span>
+
+            </a>
+
+
+        </nav>
+
+
+    </div>
+
+
+
+    <!-- =========================================
+     ROUTE STOPS DATA
+========================================= -->
+
+    <script id="routeStopsData" type="application/json">
+{{ route_stops | tojson }}
+</script>
+
+
+    <!-- =========================================
+     LEAFLET JAVASCRIPT
+========================================= -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+    <!-- =========================================
+     PARENT LIVE TRACKING JAVASCRIPT
+========================================= -->
+
+    <script src="{{ url_for(
+    'static',
+    filename='js/parent/parent_live_tracking.js'
+) }}"></script>
+
+
+    <!-- =========================================
+     MOBILE MENU JAVASCRIPT
+========================================= -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const menuButton =
+                document.getElementById("mobileMenuBtn");
+
+            const mobileMenu =
+                document.getElementById("mobileMenu");
+
+            if (menuButton && mobileMenu) {
+
+                menuButton.addEventListener("click", function () {
+
+                    mobileMenu.classList.toggle("show");
+
+                });
+
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,13 +1,15 @@
+import os
+
 import mysql.connector
 from argon2 import PasswordHasher
 
 ph = PasswordHasher()
 
 conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Madhu@123",
-    database="college_bus_tracking"
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
 )
 
 cursor = conn.cursor()

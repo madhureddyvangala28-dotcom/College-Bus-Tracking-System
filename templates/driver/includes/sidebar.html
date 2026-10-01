@@ -1,0 +1,78 @@
+<!-- ======================================================
+                    DRIVER SIDEBAR
+=======================================================-->
+
+<aside class="driver-sidebar">
+
+    <!-- ==========================================
+                    LOGO
+    =========================================== -->
+
+    <div class="sidebar-logo">
+
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-bus"></i>
+
+        </div>
+
+        <div class="logo-text">
+
+            <h2>College</h2>
+
+            <h2>Bus</h2>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                    MENU
+    =========================================== -->
+
+    <nav class="sidebar-menu">
+
+        <!-- Dashboard -->
+        <a href="{{ url_for('driver_dashboard') }}"
+            class="{% if request.endpoint=='driver_dashboard' %}active{% endif %}">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <!-- Live Tracking -->
+        <a href="#">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Live Tracking</span>
+        </a>
+
+        <!-- My Profile -->
+        <a href="#">
+            <i class="fa-solid fa-user"></i>
+            <span>My Profile</span>
+        </a>
+
+        <!-- Notifications -->
+        <a href="{{ url_for('driver_notifications') }}"
+            class="{% if request.endpoint=='driver_notifications' %}active{% endif %}">
+            <i class="fa-solid fa-bell"></i>
+            <span>Notifications</span>
+        </a>
+
+        <!-- ==========================================
+                FOOTER
+========================================== -->
+
+        <div class="sidebar-footer">
+
+            <a href="{{ url_for('logout') }}" class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+
+        </div>
+
+</aside>

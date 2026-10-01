@@ -1,0 +1,631 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ==========================================
+                GLOBAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #1f2937;
+
+    /* IMPORTANT:
+       Remove padding-top because navbar is
+       already in normal page layout */
+    padding-top: 0;
+}
+
+
+/* ==========================================
+                PAGE HEADER
+========================================== */
+
+.seat-page-header {
+    padding: 45px 7% 40px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.page-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #d97706;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+
+    margin-bottom: 10px;
+}
+
+.seat-page-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #16213e;
+
+    margin-bottom: 8px;
+}
+
+.seat-page-header p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* ==========================================
+                REFRESH BUTTON
+========================================== */
+
+.refresh-btn {
+    border: none;
+
+    background: #16213e;
+    color: #ffffff;
+
+    padding: 14px 25px;
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    transition: 0.3s ease;
+}
+
+.refresh-btn:hover {
+    background: #26375c;
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(22, 33, 62, 0.2);
+}
+
+
+/* ==========================================
+                SUMMARY CARDS
+========================================== */
+
+.seat-summary {
+    max-width: 1400px;
+
+    margin: 35px auto;
+
+    padding: 0 25px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 22px;
+}
+
+.summary-card {
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    border: 1px solid #edf0f4;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+    transition: 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+}
+
+.summary-icon {
+    width: 58px;
+    height: 58px;
+
+    min-width: 58px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+
+/* TOTAL */
+
+.summary-card.total .summary-icon {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+
+/* CAPACITY */
+
+.summary-card.capacity .summary-icon {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+
+/* OCCUPIED */
+
+.summary-card.occupied .summary-icon {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+
+/* AVAILABLE */
+
+.summary-card.available .summary-icon {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+
+.summary-card span {
+    display: block;
+
+    font-size: 13px;
+    color: #6b7280;
+
+    margin-bottom: 3px;
+}
+
+.summary-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+
+    color: #16213e;
+}
+
+
+/* ==========================================
+                BUS SECTION
+========================================== */
+
+.bus-seat-section {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 15px 25px 50px;
+}
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+    color: #16213e;
+
+    margin-bottom: 6px;
+}
+
+.section-heading p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+                BUS GRID
+========================================== */
+
+.bus-seat-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* ==========================================
+                BUS CARD
+========================================== */
+
+.bus-seat-card {
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    border: 1px solid #edf0f4;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+    transition: 0.3s ease;
+}
+
+.bus-seat-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==========================================
+                CARD HEADER
+========================================== */
+
+.bus-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.bus-icon {
+    width: 50px;
+    height: 50px;
+
+    min-width: 50px;
+
+    background: #fff4d6;
+    color: #d97706;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.bus-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.bus-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #16213e;
+
+    margin-bottom: 3px;
+}
+
+.bus-info p {
+    font-size: 12px;
+
+    color: #6b7280;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ==========================================
+                STATUS
+========================================== */
+
+.seat-status {
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.seat-status.available {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.seat-status.full {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+
+/* ==========================================
+                DRIVER INFO
+========================================== */
+
+.driver-info {
+    margin: 18px 0;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 13px;
+
+    color: #6b7280;
+}
+
+.driver-info i {
+    color: #f59e0b;
+}
+
+
+/* ==========================================
+                SEAT NUMBERS
+========================================== */
+
+.seat-numbers {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.seat-box {
+    text-align: center;
+
+    padding: 14px 6px;
+
+    background: #f8fafc;
+
+    border-radius: 12px;
+}
+
+.seat-value {
+    display: block;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    color: #2563eb;
+}
+
+.seat-title {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color: #6b7280;
+}
+
+.seat-box.occupied .seat-value {
+    color: #dc2626;
+}
+
+.seat-box.available .seat-value {
+    color: #16a34a;
+}
+
+
+/* ==========================================
+                PROGRESS BAR
+========================================== */
+
+.occupancy-section {
+    margin-bottom: 18px;
+}
+
+.occupancy-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    font-size: 12px;
+
+    color: #6b7280;
+}
+
+.occupancy-header strong {
+    color: #374151;
+    font-size: 13px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 9px;
+
+    background: #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+
+    background: #f59e0b;
+
+    border-radius: 20px;
+
+    transition: width 0.5s ease;
+}
+
+
+/* ==========================================
+                CARD FOOTER
+========================================== */
+
+.seat-card-footer {
+    padding-top: 15px;
+
+    border-top: 1px solid #e5e7eb;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #16a34a;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+
+/* ==========================================
+                NO BUSES
+========================================== */
+
+.no-buses {
+    grid-column: 1 / -1;
+
+    background: #ffffff;
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    border: 1px solid #edf0f4;
+}
+
+.no-buses i {
+    font-size: 45px;
+    color: #f59e0b;
+
+    margin-bottom: 15px;
+}
+
+.no-buses h3 {
+    color: #16213e;
+
+    margin-bottom: 7px;
+}
+
+.no-buses p {
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+                FOOTER
+========================================== */
+
+.footer {
+    background: #ffffff;
+
+    border-top: 1px solid #e5e7eb;
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+.footer span {
+    margin: 0 8px;
+}
+
+
+/* ==========================================
+                RESPONSIVE - TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .seat-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bus-seat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* ==========================================
+                RESPONSIVE - MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .seat-page-header {
+        padding: 30px 20px;
+    }
+
+    .header-content {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .seat-page-header h1 {
+        font-size: 27px;
+    }
+
+    .refresh-btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .seat-summary {
+        grid-template-columns: 1fr;
+
+        padding: 0 18px;
+
+        margin: 25px auto;
+    }
+
+    .bus-seat-section {
+        padding: 10px 18px 35px;
+    }
+
+    .bus-seat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bus-card-header {
+        flex-wrap: wrap;
+    }
+
+}

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Students | College Bus Tracking</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Driver Students CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/driver/students.css') }}"
+    >
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     MAIN LAYOUT
+===================================================== -->
+
+<div class="driver-page">
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="driver-sidebar">
+
+        <!-- Logo -->
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-bus"></i>
+
+            <span>College Bus</span>
+
+        </div>
+
+
+        <!-- Dashboard -->
+
+        <a href="{{ url_for('driver_dashboard') }}">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <!-- Live Tracking -->
+
+        <a href="{{ url_for('driver_live_tracking') }}">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>Live Tracking</span>
+
+        </a>
+
+
+        <!-- Students -->
+
+        <a
+            href="{{ url_for('driver_students') }}"
+            class="active"
+        >
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Students</span>
+
+        </a>
+
+
+        <!-- Notifications -->
+
+        <a href="{{ url_for('driver_notifications') }}">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span>Notifications</span>
+
+        </a>
+
+
+        <!-- Logout -->
+
+        <a href="{{ url_for('logout') }}">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="driver-main">
+
+
+        <!-- =================================================
+             TOP HEADER
+        ================================================== -->
+
+        <header class="page-header">
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="header-title">
+
+                <div class="header-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <div>
+
+                    <h1>My Students</h1>
+
+                    <p>
+                        Students assigned to your bus
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('driver_dashboard') }}"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </header>
+
+
+        <!-- =================================================
+             BUS INFORMATION
+        ================================================== -->
+
+        <section class="bus-card">
+
+            <div class="bus-card-left">
+
+                <div class="bus-icon">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+                <div>
+
+                    <span class="small-label">
+                        Assigned Bus
+                    </span>
+
+                    <h2>
+                        {{ bus.bus_number }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="student-count">
+
+                <span class="count-label">
+                    Total Students
+                </span>
+
+                <strong>
+                    {{ total_students }}
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STUDENTS SECTION
+        ================================================== -->
+
+        <section class="students-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+
+                        <i class="fa-solid fa-users"></i>
+
+                        Assigned Students
+
+                    </h2>
+
+                    <p>
+                        Students travelling on your assigned bus
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STUDENT LIST
+            ================================================== -->
+
+            {% if students %}
+
+            <div class="students-list">
+
+                {% for student in students %}
+
+                <div class="student-card">
+
+
+                    <!-- Student Profile -->
+
+                    <div class="student-profile">
+
+                        <div class="student-avatar">
+
+                            {% if student.profile_image %}
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='students/' + student.profile_image
+                                ) }}"
+                                alt="Student"
+                            >
+
+                            {% else %}
+
+                            <i class="fa-solid fa-user"></i>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="student-main-info">
+
+                            <h3>
+                                {{ student.student_name }}
+                            </h3>
+
+                            <span class="roll-number">
+
+                                <i class="fa-solid fa-id-card"></i>
+
+                                {{ student.roll_number }}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Student Details -->
+
+                    <div class="student-details">
+
+
+                        <!-- Boarding Point -->
+
+                        <div class="student-detail">
+
+                            <div class="detail-icon location">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Boarding Point
+                                </span>
+
+                                <strong>
+
+                                    {% if student.boarding_point %}
+
+                                        {{ student.boarding_point }}
+
+                                    {% else %}
+
+                                        Not assigned
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Phone -->
+
+                        <div class="student-detail">
+
+                            <div class="detail-icon phone">
+
+                                <i class="fa-solid fa-phone"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Phone
+                                </span>
+
+                                <strong>
+
+                                    {% if student.phone %}
+
+                                        {{ student.phone }}
+
+                                    {% else %}
+
+                                        Not available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Student Number -->
+
+                    <div class="student-number">
+
+                        {{ loop.index }}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            {% else %}
+
+            <!-- =================================================
+                 NO STUDENTS
+            ================================================== -->
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-users-slash"></i>
+
+                </div>
+
+                <h3>
+                    No Students Assigned
+                </h3>
+
+                <p>
+                    No students are currently assigned to your bus.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="page-footer">
+
+            <span>
+                College Bus Tracking System
+            </span>
+
+            <span>
+                Version 1.0
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="{{ url_for(
+    'static',
+    filename='js/driver/students.js'
+) }}"></script>
+
+</body>
+
+</html>

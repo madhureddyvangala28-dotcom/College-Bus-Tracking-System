@@ -1,0 +1,131 @@
+<!--==========================================================
+                    HERO BANNER
+===========================================================-->
+
+<section class="hero-banner">
+
+    <!-- Mobile Menu -->
+
+    <button class="menu-toggle" id="menuToggle">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+    <!-- Top Row -->
+
+    <div class="hero-top">
+
+        <div class="hero-logo">
+
+            <div class="hero-logo-icon">
+
+                <i class="fa-solid fa-bus"></i>
+
+            </div>
+
+            <div>
+
+                <h2>College Bus Tracking</h2>
+
+                <span>Driver Dashboard</span>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <button class="hero-notification"
+                    id="notificationButton">
+
+                <i class="fa-solid fa-bell"></i>
+
+                {% if notifications|length > 0 %}
+
+                <span>
+
+                    {{ notifications|length }}
+
+                </span>
+
+                {% endif %}
+
+            </button>
+
+            <div class="hero-profile">
+
+                {% if driver.profile_image and driver.profile_image!='default-driver.png' %}
+
+                <img src="{{ url_for('static',
+                filename='uploads/drivers/' + driver.profile_image) }}">
+
+                {% else %}
+
+                <img src="{{ url_for('static',
+                filename='images/default-driver.png') }}">
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Welcome -->
+
+    <div class="hero-content">
+
+        <h3>
+
+            👋 Good Morning
+
+        </h3>
+
+        <h1>
+
+            {{ driver.driver_name }}
+
+        </h1>
+
+        <div class="hero-details">
+
+            <div>
+
+                <i class="fa-solid fa-id-card"></i>
+
+                Driver ID :
+                {{ driver.id }}
+
+            </div>
+
+            <div>
+
+                <i class="fa-solid fa-phone"></i>
+
+                {{ driver.phone }}
+
+            </div>
+
+            <div>
+
+                <i class="fa-solid fa-bus"></i>
+
+                {{ bus.bus_number }}
+
+            </div>
+
+            <div>
+
+                <i class="fa-solid fa-route"></i>
+
+                {{ route.route_name }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

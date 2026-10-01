@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Verify OTP | College Bus Tracking System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/forgot_password.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="forgot-container">
+
+    <div class="forgot-card">
+
+        <div class="forgot-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+        <h1>Verify OTP</h1>
+
+        <p class="subtitle">
+
+           Enter the 6-digit OTP sent to your registered email.
+
+        </p>
+
+        <form
+            action="{{ url_for('verify_reset_otp') }}"
+            method="POST">
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-key"></i>
+
+                <input
+                    type="text"
+                    name="otp"
+                    maxlength="6"
+                    inputmode="numeric"
+                    pattern="[0-9]{6}"
+                    placeholder="Enter 6-digit OTP"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="reset-btn">
+
+                <i class="fa-solid fa-check"></i>
+
+                Verify OTP
+
+            </button>
+
+        </form>
+
+        <a
+            href="{{ url_for('forgot_password') }}"
+            class="back-login">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

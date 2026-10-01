@@ -1,0 +1,1495 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f3f5f9;
+    color: #1f2937;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.parent-container {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   DESKTOP NAVBAR
+========================================================= */
+
+.parent-header {
+    width: 100%;
+    min-height: 110px;
+
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+
+    align-items: center;
+    gap: 30px;
+
+    padding: 15px clamp(25px, 5vw, 95px);
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 2000;
+
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    color: inherit;
+
+    min-width: 0;
+}
+
+.brand-icon {
+    width: 112px;
+    height: 112px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 28px;
+
+    background: linear-gradient(
+        135deg,
+        #ff9800,
+        #ffc52b
+    );
+
+    color: #1d2939;
+
+    font-size: 48px;
+
+    box-shadow:
+        0 14px 30px rgba(245, 158, 11, 0.25);
+}
+
+.brand-text {
+    min-width: max-content;
+}
+
+.brand-text h2 {
+    color: #263448;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    line-height: 1.1;
+
+    margin-bottom: 8px;
+}
+
+.brand-text span {
+    color: #64748b;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
+.parent-nav {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: clamp(8px, 1vw, 20px);
+
+    white-space: nowrap;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    padding: 18px 25px;
+
+    border-radius: 20px;
+
+    color: #64748b;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+.nav-link i {
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    background: #fff8e8;
+    color: #c97b00;
+}
+
+.nav-link.active {
+    background: linear-gradient(
+        135deg,
+        #fff8e9,
+        #fff0c7
+    );
+
+    color: #b86d00;
+
+    box-shadow:
+        0 8px 20px rgba(245, 158, 11, 0.12);
+}
+
+.logout-link {
+    color: #c93632;
+}
+
+.logout-link:hover {
+    background: #fff1f1;
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   RIGHT NAVBAR
+========================================================= */
+
+.header-user-section {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    min-width: 0;
+}
+
+.notification-btn {
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #f1f3f6;
+
+    color: #475569;
+
+    font-size: 26px;
+
+    transition: 0.25s ease;
+}
+
+.notification-btn:hover {
+    background: #fff3d6;
+    color: #c77b00;
+}
+
+.notification-dot {
+    width: 10px;
+    height: 10px;
+
+    position: absolute;
+
+    top: 16px;
+    right: 19px;
+
+    border-radius: 50%;
+
+    background: #ef4444;
+
+    border: 2px solid white;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+.user-avatar {
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #1f2d42;
+
+    color: white;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.user-info {
+    min-width: max-content;
+}
+
+.user-info h4 {
+    color: #263448;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.user-info span {
+    color: #64748b;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-btn {
+    display: none;
+
+    width: 52px;
+    height: 52px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #f1f3f6;
+
+    color: #475569;
+
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.live-tracking-page {
+    width: 100%;
+
+    max-width: 1800px;
+
+    margin: 0 auto;
+
+    padding: 42px clamp(25px, 5vw, 95px) 80px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.tracking-hero {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 38px 50px;
+
+    margin-bottom: 38px;
+
+    border-radius: 32px;
+
+    background: linear-gradient(
+        135deg,
+        #ff9800,
+        #ffc52b
+    );
+
+    color: white;
+
+    box-shadow:
+        0 18px 40px rgba(245, 158, 11, 0.25);
+}
+
+.hero-child-info {
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+}
+
+.hero-student-icon {
+    width: 104px;
+    height: 104px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    font-size: 43px;
+
+    backdrop-filter: blur(8px);
+}
+
+.hero-student-details span,
+.hero-bus-details span {
+    display: block;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    opacity: 0.9;
+
+    margin-bottom: 7px;
+}
+
+.hero-student-details h1 {
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    margin-bottom: 8px;
+
+    text-transform: uppercase;
+}
+
+.hero-student-details p {
+    font-size: 18px;
+
+    opacity: 0.92;
+}
+
+.hero-bus-info {
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+
+    flex-shrink: 0;
+}
+
+.hero-bus-divider {
+    width: 1px;
+    height: 120px;
+
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.hero-bus-details h2 {
+    font-size: clamp(28px, 2.5vw, 40px);
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.hero-bus-details h2 i {
+    margin-right: 10px;
+}
+
+.hero-bus-details p {
+    font-size: 17px;
+
+    opacity: 0.92;
+}
+
+
+/* =========================================================
+   CONTENT GRID
+========================================================= */
+
+.tracking-content {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.8fr)
+        minmax(380px, 1fr);
+
+    gap: 38px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   MAP CARD
+========================================================= */
+
+.map-card,
+.bus-status-card {
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.07);
+}
+
+.map-card {
+    padding: 30px;
+
+    overflow: hidden;
+}
+
+.map-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.section-title,
+.status-title {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.section-title i,
+.status-title i {
+    color: #f59e0b;
+
+    font-size: 28px;
+}
+
+.section-title h2,
+.status-title h2 {
+    color: #263448;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.map-update-time {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 15px;
+}
+
+.map-update-time strong {
+    color: #334155;
+}
+
+
+/* =========================================
+   LEAFLET MAP
+========================================= */
+
+#busMap {
+    width: 100%;
+    height: 600px;
+    min-height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================
+   BUS MARKER
+========================================= */
+
+.custom-bus-marker {
+    background: transparent !important;
+    border: none !important;
+}
+
+.bus-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bus-icon-wrapper img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+
+/* =========================================
+   STOP MARKER
+========================================= */
+
+.custom-stop-marker {
+    background: transparent !important;
+    border: none !important;
+}
+
+.stop-marker-icon {
+    width: 34px;
+    height: 42px;
+    background: #ffffff;
+    color: #f59e0b;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.stop-marker-icon i {
+    transform: rotate(45deg);
+    font-size: 17px;
+}
+
+
+/* =========================================
+   CURRENT LOCATION MARKER
+========================================= */
+
+.custom-current-location {
+    background: transparent !important;
+    border: none !important;
+}
+
+.current-location-marker {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.current-location-marker i {
+    font-size: 18px;
+}
+
+
+/* =========================================
+   LEAFLET POPUPS
+========================================= */
+
+.leaflet-popup-content-wrapper {
+    border-radius: 14px;
+}
+
+.leaflet-popup-content {
+    margin: 14px 18px;
+    font-family: "Poppins", sans-serif;
+}
+
+.bus-popup {
+    min-width: 180px;
+    line-height: 1.8;
+}
+
+.bus-popup strong {
+    font-size: 16px;
+    color: #1e293b;
+}
+
+.stop-popup {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+/* =========================================================
+   BUS STATUS CARD
+========================================================= */
+
+.bus-status-card {
+    padding: 32px;
+}
+
+.status-title {
+    margin-bottom: 30px;
+}
+
+.current-status-box {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f6ef,
+            #edf7f2
+        );
+}
+
+.status-icon {
+    width: 78px;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 22px;
+
+    background: #24975a;
+
+    color: white;
+
+    font-size: 31px;
+}
+
+.current-status-box span {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    margin-bottom: 6px;
+}
+
+.current-status-box h3 {
+    color: #15803d;
+
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   STATUS ROW
+========================================================= */
+
+.status-row {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.status-row:last-child {
+    border-bottom: none;
+}
+
+.row-icon {
+    width: 66px;
+    height: 66px;
+
+    min-width: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 19px;
+
+    font-size: 25px;
+}
+
+.location-icon {
+    background: #fff3e6;
+    color: #f97316;
+}
+
+.speed-icon {
+    background: #eaf2ff;
+    color: #2563eb;
+}
+
+.arrival-icon {
+    background: #fff8e3;
+    color: #c78100;
+}
+
+.driver-icon {
+    background: #f0ebff;
+    color: #7045c5;
+}
+
+.row-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    min-width: 0;
+}
+
+.row-content > span {
+    color: #64748b;
+
+    font-size: 15px;
+}
+
+.row-content strong {
+    color: #263448;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    word-break: break-word;
+}
+
+.row-content small {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   INFORMATION CARD
+========================================================= */
+
+.tracking-info-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 38px;
+
+    padding: 28px 34px;
+
+    background: white;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+.tracking-info-icon {
+    width: 68px;
+    height: 68px;
+
+    min-width: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: #fff3d6;
+
+    color: #c87900;
+
+    font-size: 26px;
+}
+
+.tracking-info-card h3 {
+    color: #263448;
+
+    font-size: 22px;
+
+    margin-bottom: 8px;
+}
+
+.tracking-info-card p {
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAV
+========================================================= */
+
+.mobile-bottom-nav {
+    display: none;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP FIX
+========================================================= */
+
+@media (max-width: 1600px) {
+
+    .brand-icon {
+        width: 90px;
+        height: 90px;
+
+        font-size: 38px;
+    }
+
+    .brand-text h2 {
+        font-size: 28px;
+    }
+
+    .brand-text span {
+        font-size: 16px;
+    }
+
+    .nav-link {
+        padding: 16px 18px;
+
+        font-size: 16px;
+    }
+
+    .notification-btn,
+    .user-avatar {
+        width: 66px;
+        height: 66px;
+    }
+
+    .notification-btn {
+        font-size: 23px;
+    }
+
+    .user-avatar {
+        font-size: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1300px) {
+
+    .parent-header {
+        gap: 18px;
+
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    .brand-icon {
+        width: 70px;
+        height: 70px;
+
+        border-radius: 20px;
+
+        font-size: 30px;
+    }
+
+    .brand-text h2 {
+        font-size: 24px;
+    }
+
+    .brand-text span {
+        font-size: 14px;
+    }
+
+    .nav-link {
+        padding: 14px 14px;
+
+        font-size: 15px;
+    }
+
+    .notification-btn,
+    .user-avatar {
+        width: 56px;
+        height: 56px;
+    }
+
+    .user-info h4 {
+        font-size: 15px;
+    }
+
+    .user-info span {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .parent-header {
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .nav-link {
+        padding: 14px 12px;
+    }
+
+    .nav-link span {
+        display: none;
+    }
+
+    .nav-link {
+        width: 48px;
+        height: 48px;
+
+        padding: 0;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .tracking-content {
+        grid-template-columns: 1fr;
+    }
+
+    #busMap {
+        height: 520px;
+        min-height: 520px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        background: #f3f5f9;
+
+        padding-bottom: 75px;
+    }
+
+
+    /* HEADER */
+
+    .parent-header {
+        min-height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 10px;
+
+        padding: 10px 16px;
+
+        position: sticky;
+        top: 0;
+    }
+
+
+    /* BRAND */
+
+    .brand-section {
+        gap: 0;
+    }
+
+    .brand-icon {
+        width: 44px;
+        height: 44px;
+
+        border-radius: 13px;
+
+        font-size: 19px;
+    }
+
+    .brand-text {
+        display: none;
+    }
+
+
+    /* HIDE DESKTOP NAV */
+
+    .parent-nav {
+        display: none;
+    }
+
+
+    /* USER */
+
+    .header-user-section {
+        gap: 10px;
+    }
+
+    .notification-btn {
+        width: 46px;
+        height: 46px;
+
+        font-size: 17px;
+    }
+
+    .notification-dot {
+        width: 7px;
+        height: 7px;
+
+        top: 8px;
+        right: 10px;
+    }
+
+    .user-profile {
+        display: none;
+    }
+
+
+    /* MOBILE BUTTON */
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* MOBILE DROPDOWN */
+
+    .mobile-menu {
+        position: fixed;
+
+        top: 70px;
+        right: 14px;
+
+        width: 220px;
+
+        padding: 12px;
+
+        background: white;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 15px 40px rgba(15, 23, 42, 0.18);
+
+        z-index: 3000;
+    }
+
+    .mobile-menu.show {
+        display: block;
+    }
+
+    .mobile-menu a {
+        display: flex;
+        align-items: center;
+
+        gap: 13px;
+
+        padding: 14px;
+
+        margin-bottom: 4px;
+
+        border-radius: 12px;
+
+        color: #475569;
+
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .mobile-menu a.active {
+        background: #fff3d6;
+
+        color: #b86d00;
+    }
+
+    .mobile-menu a.mobile-logout {
+        color: #dc2626;
+    }
+
+
+    /* MAIN */
+
+    .live-tracking-page {
+        padding: 15px 15px 30px;
+    }
+
+
+    /* HERO */
+
+    .tracking-hero {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 22px;
+
+        padding: 24px;
+
+        margin-bottom: 20px;
+
+        border-radius: 22px;
+    }
+
+    .hero-child-info {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .hero-student-icon {
+        width: 65px;
+        height: 65px;
+
+        border-radius: 18px;
+
+        font-size: 27px;
+    }
+
+    .hero-student-details span,
+    .hero-bus-details span {
+        font-size: 13px;
+    }
+
+    .hero-student-details h1 {
+        font-size: 22px;
+    }
+
+    .hero-student-details p {
+        font-size: 14px;
+    }
+
+    .hero-bus-info {
+        width: 100%;
+
+        gap: 15px;
+    }
+
+    .hero-bus-divider {
+        height: 65px;
+    }
+
+    .hero-bus-details h2 {
+        font-size: 21px;
+    }
+
+    .hero-bus-details p {
+        font-size: 14px;
+    }
+
+
+    /* CARDS */
+
+    .map-card,
+    .bus-status-card {
+        padding: 20px;
+
+        border-radius: 20px;
+    }
+
+    .map-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        margin-bottom: 18px;
+    }
+
+    .section-title,
+    .status-title {
+        gap: 11px;
+    }
+
+    .section-title i,
+    .status-title i {
+        font-size: 21px;
+    }
+
+    .section-title h2,
+    .status-title h2 {
+        font-size: 21px;
+    }
+
+    .map-update-time {
+        font-size: 12px;
+    }
+
+
+    /* MAP */
+
+    #busMap {
+        height: 400px;
+
+        min-height: 350px;
+
+        border-radius: 16px;
+    }
+    
+    .bus-icon-wrapper,
+    .bus-icon-wrapper img {
+        width: 55px;
+        height: 55px;
+    }
+
+
+    /* STATUS */
+
+    .status-title {
+        margin-bottom: 20px;
+    }
+
+    .current-status-box {
+        gap: 16px;
+
+        padding: 16px;
+
+        border-radius: 18px;
+    }
+
+    .status-icon {
+        width: 56px;
+        height: 56px;
+
+        border-radius: 16px;
+
+        font-size: 22px;
+    }
+
+    .current-status-box span {
+        font-size: 12px;
+    }
+
+    .current-status-box h3 {
+        font-size: 19px;
+    }
+
+    .status-row {
+        gap: 14px;
+
+        padding: 18px 0;
+    }
+
+    .row-icon {
+        width: 48px;
+        height: 48px;
+
+        min-width: 48px;
+
+        border-radius: 14px;
+
+        font-size: 18px;
+    }
+
+    .row-content > span {
+        font-size: 12px;
+    }
+
+    .row-content strong {
+        font-size: 16px;
+    }
+
+    .row-content small {
+        font-size: 12px;
+    }
+
+
+    /* INFO */
+
+    .tracking-info-card {
+        align-items: flex-start;
+
+        gap: 15px;
+
+        margin-top: 20px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+    }
+
+    .tracking-info-icon {
+        width: 52px;
+        height: 52px;
+
+        min-width: 52px;
+
+        border-radius: 16px;
+
+        font-size: 19px;
+    }
+
+    .tracking-info-card h3 {
+        font-size: 16px;
+
+        margin-bottom: 5px;
+    }
+
+    .tracking-info-card p {
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+
+    /* BOTTOM NAVIGATION */
+
+    .mobile-bottom-nav {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        height: 68px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        background: white;
+
+        border-top: 1px solid #e5e7eb;
+
+        z-index: 2500;
+    }
+
+    .mobile-bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: 5px;
+
+        color: #94a3b8;
+
+        font-size: 10px;
+        font-weight: 600;
+
+        min-width: 60px;
+    }
+
+    .mobile-bottom-nav i {
+        font-size: 16px;
+    }
+
+    .mobile-bottom-nav a.active {
+        color: #d97706;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .live-tracking-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .tracking-hero {
+        padding: 20px;
+    }
+
+    .hero-student-details h1 {
+        font-size: 19px;
+    }
+
+    #busMap {
+        height: 340px;
+
+        min-height: 340px;
+    }
+
+    .map-card,
+    .bus-status-card {
+        padding: 16px;
+    }
+
+}

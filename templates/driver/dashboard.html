@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Driver Dashboard</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Driver Dashboard CSS -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/driver/dashboard.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+                DESKTOP LAYOUT
+    =========================================== -->
+
+    <div class="desktop-layout">
+
+        <!-- ==========================================
+                    DESKTOP SIDEBAR
+        =========================================== -->
+
+        <aside class="desktop-sidebar" id="mobileSidebar">
+
+            <div class="sidebar-logo">
+
+                <i class="fa-solid fa-bus"></i>
+
+                <span>College Bus</span>
+
+            </div>
+
+            <a href="{{ url_for('driver_dashboard') }}" class="active">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="{{ url_for('driver_live_tracking') }}">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Live Tracking
+
+            </a>
+
+            <a href="{{ url_for('driver_profile') }}">
+
+                <i class="fa-solid fa-user"></i>
+
+                My Profile
+
+            </a>
+
+            <a href="{{ url_for('driver_notifications') }}">
+
+                <i class="fa-solid fa-bell"></i>
+
+                Notifications
+
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </aside>
+
+        <!-- ==========================================
+                    APP CONTAINER
+        =========================================== -->
+
+        <main class="app-container">
+
+            <!-- ==========================================
+                        HEADER
+            =========================================== -->
+
+            <header class="dashboard-header">
+
+                <!-- Top Bar -->
+
+                <div class="top-bar">
+
+                    <!-- Mobile Menu -->
+
+                    <button class="menu-btn" id="menuBtn">
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </button>
+
+                    <!-- Logo -->
+
+                    <div class="logo">
+
+                        <i class="fa-solid fa-bus"></i>
+
+                        <span>College Bus Tracking</span>
+
+                    </div>
+
+                    <!-- Right -->
+
+                    <div class="header-actions">
+
+                        <a href="{{ url_for('driver_notifications') }}" class="notification-btn">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        </a>
+
+                        <div class="profile-image" id="profileBtn">
+
+                            <img src="{{ url_for('static', filename='images/default-driver.png') }}" alt="Driver"
+                                class="profile-photo">
+
+                        </div>
+                        <!-- ==========================================
+                          DRIVER PROFILE POPUP
+                        ========================================== -->
+
+                        <div class="profile-menu" id="profileMenu">
+
+                            <div class="profile-header">
+
+                                <div class="profile-image" id="profileBtn">
+
+                                    <img src="{{ url_for('static', filename='images/default-driver.png') }}"
+                                        alt="Driver" class="profile-photo">
+
+                                </div>
+
+                                <div class="profile-info">
+
+                                    <h3>
+
+                                        {{ driver.driver_name }}
+
+                                    </h3>
+
+                                    <p>
+
+                                        Driver
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="menu-divider"></div>
+
+                            <a href="{{ url_for('driver_profile') }}">
+
+                                <i class="fa-solid fa-user"></i>
+
+                                <span>My Profile</span>
+
+                            </a>
+
+                            <a href="{{ url_for('driver_change_password') }}">
+
+                                <i class="fa-solid fa-lock"></i>
+
+                                <span>Change Password</span>
+
+                            </a>
+
+                            <a href="{{ url_for('logout') }}">
+
+                                <i class="fa-solid fa-right-from-bracket"></i>
+
+                                <span>Logout</span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Driver Details -->
+
+                <div class="driver-details">
+
+                    <h3 id="greeting">
+
+                        Good Morning 👋
+
+                    </h3>
+
+                    <h2>
+
+                        {{ driver.driver_name }}
+
+                    </h2>
+
+                    <p>
+
+                        Driver ID :
+                        {{ driver.id }}
+
+                    </p>
+
+                    <p>
+
+                        Phone :
+                        {{ driver.phone }}
+
+                    </p>
+
+                </div>
+
+            </header>
+
+            <!-- ==========================================
+        ACTION BUTTONS
+========================================== -->
+
+            <section class="action-buttons">
+
+                <!-- START TRIP -->
+
+                <button id="startTripBtn" class="start-btn">
+
+                    <i class="fa-solid fa-play"></i>
+
+                    <span>Start Trip</span>
+
+                </button>
+
+
+                <!-- END TRIP -->
+
+                <button id="endTripBtn" class="end-btn">
+
+                    <i class="fa-solid fa-stop"></i>
+
+                    <span>End Trip</span>
+
+                </button>
+
+            </section>
+
+            <!-- ==========================================
+                LIVE TRACKING
+========================================== -->
+
+            <section class="live-tracking-card">
+
+                <a href="/driver/live_tracking" class="live-card">
+
+                    <div class="live-left">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                    </div>
+
+                    <div class="live-right">
+
+                        <h3>Live Bus Tracking</h3>
+
+                        <p>View Current Bus Location</p>
+
+                    </div>
+
+                    <div class="live-arrow">
+
+                        <i class="fa-solid fa-angle-right"></i>
+
+                    </div>
+
+                </a>
+
+            </section>
+
+            <!-- ==========================================
+        EMERGENCY TYPES
+========================================== -->
+
+            <section class="emergency-types-section">
+
+                <!-- ==========================================
+            SECTION HEADER
+    ========================================== -->
+
+                <div class="emergency-types-header">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    <h2>
+                        Emergency Types
+                    </h2>
+
+                    <p>
+                        Select the type of emergency immediately
+                    </p>
+
+                </div>
+
+
+                <!-- ==========================================
+            EMERGENCY GRID
+    ========================================== -->
+
+                <div class="emergency-types-grid">
+
+
+                    <!-- ======================================
+                ACCIDENT
+        ======================================= -->
+
+                    <button type="button" class="emergency-type-card accident" data-emergency-type="Accident">
+
+                        <i class="fa-solid fa-car-burst"></i>
+
+                        <span>
+                            Accident
+                        </span>
+
+                        <p>
+                            Report a bus accident immediately
+                        </p>
+
+                    </button>
+
+
+                    <!-- ======================================
+                MEDICAL EMERGENCY
+        ======================================= -->
+
+                    <button type="button" class="emergency-type-card medical" data-emergency-type="Medical Emergency">
+
+                        <i class="fa-solid fa-truck-medical"></i>
+
+                        <span>
+                            Medical Emergency
+                        </span>
+
+                        <p>
+                            Request immediate medical assistance
+                        </p>
+
+                    </button>
+
+
+                    <!-- ======================================
+                BUS BREAKDOWN
+        ======================================= -->
+
+                    <button type="button" class="emergency-type-card breakdown" data-emergency-type="Bus Breakdown">
+
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                        <span>
+                            Bus Breakdown
+                        </span>
+
+                        <p>
+                            Report a bus breakdown or technical issue
+                        </p>
+
+                    </button>
+
+
+                    <!-- ======================================
+                SOS / OTHER EMERGENCY
+        ======================================= -->
+
+                    <button type="button" class="emergency-type-card sos" data-emergency-type="SOS / Other Emergency">
+
+                        <i class="fa-solid fa-tower-broadcast"></i>
+
+                        <span>
+                            SOS / Other Emergency
+                        </span>
+
+                        <p>
+                            Send an urgent emergency alert
+                        </p>
+
+                    </button>
+
+
+                </div>
+
+            </section>
+            <!-- ==========================================
+            DRIVER FEATURES
+========================================== -->
+
+            <section class="feature-grid">
+
+                <a href="{{ url_for('driver_students') }}" class="feature-card blue">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>Students</span>
+
+                </a>
+
+                <a href="{{ url_for('driver_my_bus') }}" class="feature-card green">
+
+                    <i class="fa-solid fa-bus-simple"></i>
+
+                    <span>My Bus</span>
+
+                </a>
+
+                <a href="{{ url_for('driver_qr') }}" class="feature-card blue">
+
+                    <i class="fa-solid fa-qrcode"></i>
+
+                    <span>Boarding QR</span>
+
+                </a>
+
+                <a href="{{ url_for('driver_route_details') }}" class="feature-card orange">
+
+                    <i class="fa-solid fa-route"></i>
+
+                    <span>Route Details</span>
+
+                </a>
+
+                <a href="{{ url_for('driver_trip_history') }}" class="feature-card red">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    <span>Trip History</span>
+
+                </a>
+                <a href="{{ url_for('driver_notifications') }}" class="feature-card purple">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <span>Notifications</span>
+
+                </a>
+
+                <a href="{{ url_for('driver_settings') }}" class="feature-card dark">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>Settings</span>
+
+                </a>
+
+            </section>
+            <!-- ==========================================
+                    FOOTER
+            =========================================== -->
+
+            <footer class="dashboard-footer">
+
+                <p>
+
+                    College Bus Tracking System
+
+                </p>
+
+                <span>
+
+                    Version 1.0
+
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- Driver Dashboard JS -->
+
+    <script src="{{ url_for('static',filename='js/driver/dashboard.js') }}"></script>
+
+    <script type="module" src="{{ url_for('static', filename='js/driver-firebase-messaging.js') }}">
+    </script>
+
+    <script src="{{ url_for('static', filename='js/driver/driver-emergency.js') }}">
+    </script>
+
+</body>
+
+</html>

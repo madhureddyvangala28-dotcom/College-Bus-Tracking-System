@@ -1,0 +1,98 @@
+<!-- ==========================================
+     PROFILE DROPDOWN
+========================================== -->
+
+<div class="profile-dropdown" id="profileDropdown">
+
+    <!-- Profile Header -->
+
+    <div class="dropdown-header">
+
+        {% if driver.profile_image and driver.profile_image != 'default-driver.png' %}
+
+        <img src="{{ url_for('static', filename='uploads/drivers/' + driver.profile_image) }}"
+            alt="{{ driver.driver_name }}">
+
+        {% else %}
+
+        <img src="{{ url_for('static', filename='images/default-driver.png') }}" alt="{{ driver.driver_name }}">
+
+        {% endif %}
+
+        <div class="dropdown-user">
+
+            <h3>
+
+                {{ driver.driver_name }}
+
+            </h3>
+
+            <span>
+
+                Driver
+
+            </span>
+
+            <small>
+
+                {{ driver.license_number }}
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- Menu -->
+
+    <div class="dropdown-menu">
+
+        <a href="#" class="dropdown-item">
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>My Profile</span>
+
+        </a>
+
+        <a href="#" class="dropdown-item">
+
+            <i class="fa-solid fa-id-card"></i>
+
+            <span>License Details</span>
+
+        </a>
+
+        <a href="#" class="dropdown-item">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+        <a href="#" class="dropdown-item">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <span>Change Password</span>
+
+        </a>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="dropdown-footer">
+
+        <a href="{{ url_for('logout') }}">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>

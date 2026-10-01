@@ -3,130 +3,122 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Driver Profile</title>
+    <title>Driver Profile</title>
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/driver_profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/driver_profile.css') }}">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
 
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-{% include "admin/navbar.html" %}
+    {% include "admin/navbar.html" %}
 
-<section class="page-header">
+    <section class="page-header">
 
-<h1>Driver Profile</h1>
+        <h1>Driver Profile</h1>
 
-<p>Complete Driver Information</p>
+        <p>Complete Driver Information</p>
 
-</section>
+    </section>
 
-<div class="profile-card">
+    <div class="profile-card">
 
-<div class="profile-top">
+        <div class="profile-top">
 
-<div class="avatar">
+            <div class="avatar">
 
-<i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-user"></i>
 
-</div>
+            </div>
 
-<div>
+            <div>
 
-<h2>{{ driver.driver_name }}</h2>
+                <h2>{{ driver.driver_name }}</h2>
 
-<p>{{ driver.license_number }}</p>
+                <p>{{ driver.license_number }}</p>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="info-grid">
+        <div class="info-grid">
 
-<div class="item">
-<label>Driver ID</label>
-<span>{{ driver.id }}</span>
-</div>
+            <div class="item">
+                <label>Driver ID</label>
+                <span>{{ driver.id }}</span>
+            </div>
 
-<div class="item">
-<label>Phone</label>
-<span>{{ driver.phone }}</span>
-</div>
+            <div class="item">
+                <label>Phone</label>
+                <span>{{ driver.phone }}</span>
+            </div>
 
-<div class="item">
-<label>Bus Number</label>
-<span>{{ driver.bus_number }}</span>
-</div>
+            <div class="item">
+                <label>Bus Number</label>
+                <span>{{ driver.bus_number }}</span>
+            </div>
 
-<div class="item">
-<label>Route</label>
-<span>{{ driver.route_name }}</span>
-</div>
+            <div class="item">
+                <label>Route</label>
+                <span>{{ driver.route_name }}</span>
+            </div>
 
-<div class="item">
-<label>Capacity</label>
-<span>{{ driver.capacity }} Seats</span>
-</div>
+            <div class="item">
+                <label>Capacity</label>
+                <span>{{ driver.capacity }} Seats</span>
+            </div>
 
-<div class="item">
-<label>Status</label>
+            <div class="item">
+                <label>Status</label>
 
-<span class="status">
+                <span class="status">
 
-{{ driver.status }}
+                    {{ driver.status }}
 
-</span>
+                </span>
 
-</div>
+            </div>
 
-<div class="item full">
+            <div class="item full">
 
-<label>Password</label>
+                <label>Password</label>
 
-<span>{{ driver.password }}</span>
+                <span>{{ driver.password }}</span>
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="buttons">
+        <div class="buttons">
 
-<a
-href="{{ url_for('drivers') }}"
-class="back-btn">
+            <a href="{{ url_for('drivers') }}" class="back-btn">
 
-<i class="fa-solid fa-arrow-left"></i>
+                <i class="fa-solid fa-arrow-left"></i>
 
-Back
+                Back
 
-</a>
+            </a>
 
-<a
-href="{{ url_for('edit_driver',id=driver.id) }}"
-class="edit-btn">
+            <a href="{{ url_for('edit_driver',id=driver.id) }}" class="edit-btn">
 
-<i class="fa-solid fa-pen"></i>
+                <i class="fa-solid fa-pen"></i>
 
-Edit Driver
+                Edit Driver
 
-</a>
+            </a>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </body>
 

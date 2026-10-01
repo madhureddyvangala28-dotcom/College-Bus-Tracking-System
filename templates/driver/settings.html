@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | College Bus Tracking</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Settings CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/driver/settings.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="settings-page">
+
+    <!-- =====================================================
+                         SIDEBAR
+    ====================================================== -->
+
+    <aside class="driver-sidebar" id="driverSidebar">
+
+        <!-- Logo -->
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-bus"></i>
+
+            <span>College Bus</span>
+
+        </div>
+
+
+        <!-- Dashboard -->
+
+        <a href="{{ url_for('driver_dashboard') }}">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <!-- Live Tracking -->
+
+        <a href="{{ url_for('driver_live_tracking') }}">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>Live Tracking</span>
+
+        </a>
+
+
+        <!-- Students -->
+
+        <a href="{{ url_for('driver_students') }}">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Students</span>
+
+        </a>
+
+
+        <!-- My Bus -->
+
+        <a href="{{ url_for('driver_my_bus') }}">
+
+            <i class="fa-solid fa-bus-simple"></i>
+
+            <span>My Bus</span>
+
+        </a>
+
+
+        <!-- Route Details -->
+
+        <a href="{{ url_for('driver_route_details') }}">
+
+            <i class="fa-solid fa-route"></i>
+
+            <span>Route Details</span>
+
+        </a>
+
+
+        <!-- Trip History -->
+
+        <a href="{{ url_for('driver_trip_history') }}">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>Trip History</span>
+
+        </a>
+
+
+        <!-- Notifications -->
+
+        <a href="{{ url_for('driver_notifications') }}">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span>Notifications</span>
+
+        </a>
+
+
+        <!-- Settings -->
+
+        <a href="{{ url_for('driver_settings') }}"
+           class="active">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+        <!-- Logout -->
+
+        <a href="{{ url_for('logout') }}"
+           class="logout-link">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </aside>
+
+
+    <!-- =====================================================
+                         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="driver-main">
+
+
+        <!-- =================================================
+                         PAGE HEADER
+        ================================================== -->
+
+        <header class="page-header">
+
+
+            <!-- Mobile Menu -->
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="Open menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- Header Title -->
+
+            <div class="header-title">
+
+                <div class="header-icon">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                </div>
+
+                <div>
+
+                    <h1>Settings</h1>
+
+                    <p>
+                        Manage your driver account settings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Back -->
+
+            <a
+                href="{{ url_for('driver_dashboard') }}"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </header>
+
+
+        <!-- =================================================
+                     SETTINGS CONTENT
+        ================================================== -->
+
+        <section class="settings-container">
+
+
+            <!-- =================================================
+                         PROFILE SETTINGS
+            ================================================== -->
+
+            <div class="settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading-icon yellow">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>Driver Profile</h2>
+
+                        <p>
+                            Your driver account information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-box">
+
+
+                    <div class="profile-avatar">
+
+                        <img src="{{ url_for('static', filename='images/default-driver.png') }}"
+                            alt="Driver" class="profile-photo">
+                    </div>
+
+
+                    <div class="profile-details">
+
+                        <h3>
+                            {{ driver.driver_name }}
+                        </h3>
+
+                        <span>
+                            Driver ID: {{ driver.id }}
+                        </span>
+
+                        <span>
+                            Phone: {{ driver.phone }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                       ACCOUNT SETTINGS
+            ================================================== -->
+
+            <div class="settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading-icon green">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>Account</h2>
+
+                        <p>
+                            Manage your account security
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Change Password -->
+
+                <button
+                    type="button"
+                    class="setting-row"
+                    id="changePasswordBtn"
+                >
+
+                    <div class="setting-row-left">
+
+                        <div class="row-icon yellow">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>Change Password</h3>
+
+                            <p>
+                                Update your account password
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <i class="fa-solid fa-angle-right arrow"></i>
+
+                </button>
+
+
+            </div>
+
+
+            <!-- =================================================
+                       NOTIFICATION SETTINGS
+            ================================================== -->
+
+            <div class="settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading-icon yellow">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>Notifications</h2>
+
+                        <p>
+                            Control driver notifications
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row notification-setting">
+
+                    <div class="setting-row-left">
+
+                        <div class="row-icon green">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>Notifications</h3>
+
+                            <p>
+                                Receive important bus updates
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="notificationToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                           LOGOUT
+            ================================================== -->
+
+            <div class="settings-card danger-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading-icon red">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>Logout</h2>
+
+                        <p>
+                            Sign out from your driver account
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('logout') }}"
+                    class="logout-btn"
+                    id="logoutBtn"
+                >
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Logout</span>
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+                             FOOTER
+        ================================================== -->
+
+        <footer class="page-footer">
+
+            <span>
+                College Bus Tracking System
+            </span>
+
+            <span>
+                Version 1.0
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+                         JAVASCRIPT
+====================================================== -->
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/driver/settings.js'
+    ) }}"
+></script>
+
+
+</body>
+</html>

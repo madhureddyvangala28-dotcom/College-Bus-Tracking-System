@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Seat Availability | College Bus Tracking</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Navbar CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/seat_availability.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+                ADMIN NAVBAR
+========================================== -->
+
+{% include "admin/navbar.html" %}
+
+
+<!-- ==========================================
+                PAGE HEADER
+========================================== -->
+
+<section class="seat-page-header">
+
+    <div class="header-content">
+
+        <div>
+
+            <span class="page-label">
+
+                <i class="fa-solid fa-chair"></i>
+
+                LIVE SEAT MONITORING
+
+            </span>
+
+
+            <h1>
+
+                Bus Seat Availability
+
+            </h1>
+
+
+            <p>
+
+                Monitor real-time seat availability
+                across all college buses.
+
+            </p>
+
+        </div>
+
+
+        <button
+            class="refresh-btn"
+            onclick="location.reload()">
+
+            <i class="fa-solid fa-rotate"></i>
+
+            Refresh
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+                SEAT SUMMARY
+========================================== -->
+
+<section class="seat-summary">
+
+
+    <!-- TOTAL BUSES -->
+
+    <div class="summary-card total">
+
+        <div class="summary-icon">
+
+            <i class="fa-solid fa-bus"></i>
+
+        </div>
+
+        <div>
+
+            <span>Total Buses</span>
+
+            <h2>
+
+                {{ buses|length }}
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOTAL CAPACITY -->
+
+    <div class="summary-card capacity">
+
+        <div class="summary-icon">
+
+            <i class="fa-solid fa-chair"></i>
+
+        </div>
+
+        <div>
+
+            <span>Total Capacity</span>
+
+            <h2>
+
+                {% set total_capacity = namespace(value=0) %}
+
+                {% for bus in buses %}
+
+                    {% set total_capacity.value =
+                        total_capacity.value + (bus.capacity or 0) %}
+
+                {% endfor %}
+
+                {{ total_capacity.value }}
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- OCCUPIED -->
+
+    <div class="summary-card occupied">
+
+        <div class="summary-icon">
+
+            <i class="fa-solid fa-users"></i>
+
+        </div>
+
+        <div>
+
+            <span>Occupied Seats</span>
+
+            <h2>
+
+                {% set total_occupied = namespace(value=0) %}
+
+                {% for bus in buses %}
+
+                    {% set total_occupied.value =
+                        total_occupied.value + (bus.occupied_seats or 0) %}
+
+                {% endfor %}
+
+                {{ total_occupied.value }}
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- AVAILABLE -->
+
+    <div class="summary-card available">
+
+        <div class="summary-icon">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div>
+
+            <span>Available Seats</span>
+
+            <h2>
+
+                {% set total_available = namespace(value=0) %}
+
+                {% for bus in buses %}
+
+                    {% set total_available.value =
+                        total_available.value + (bus.available_seats or 0) %}
+
+                {% endfor %}
+
+                {{ total_available.value }}
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- ==========================================
+                BUS SEAT CARDS
+========================================== -->
+
+<section class="bus-seat-section">
+
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="page-label">
+
+                <i class="fa-solid fa-bus"></i>
+
+                ALL BUSES
+
+            </span>
+
+            <h2>
+
+                Current Seat Status
+
+            </h2>
+
+            <p>
+
+                Real-time seat information for every bus.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="bus-seat-grid">
+
+
+        {% for bus in buses %}
+
+
+        <div class="bus-seat-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="bus-card-header">
+
+
+                <div class="bus-icon">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+
+                <div class="bus-info">
+
+                    <h3>
+
+                        {{ bus.bus_number }}
+
+                    </h3>
+
+                    <p>
+
+                        {{ bus.route_name or "Route Not Assigned" }}
+
+                    </p>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                {% if (bus.available_seats or 0) > 0 %}
+
+                    <span class="seat-status available">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Available
+
+                    </span>
+
+                {% else %}
+
+                    <span class="seat-status full">
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                        Full
+
+                    </span>
+
+                {% endif %}
+
+
+            </div>
+
+
+            <!-- DRIVER -->
+
+            <div class="driver-info">
+
+                <i class="fa-solid fa-id-card"></i>
+
+                <span>
+
+                    {{ bus.driver_name or "Driver Not Assigned" }}
+
+                </span>
+
+            </div>
+
+
+            <!-- SEAT NUMBERS -->
+
+            <div class="seat-numbers">
+
+
+                <div class="seat-box">
+
+                    <span class="seat-value">
+
+                        {{ bus.capacity or 0 }}
+
+                    </span>
+
+                    <span class="seat-title">
+
+                        Capacity
+
+                    </span>
+
+                </div>
+
+
+                <div class="seat-box occupied">
+
+                    <span class="seat-value">
+
+                        {{ bus.occupied_seats or 0 }}
+
+                    </span>
+
+                    <span class="seat-title">
+
+                        Occupied
+
+                    </span>
+
+                </div>
+
+
+                <div class="seat-box available">
+
+                    <span class="seat-value">
+
+                        {{ bus.available_seats or 0 }}
+
+                    </span>
+
+                    <span class="seat-title">
+
+                        Available
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="occupancy-section">
+
+
+                <div class="occupancy-header">
+
+                    <span>
+
+                        Seat Occupancy
+
+                    </span>
+
+                    <strong>
+
+                        {{ bus.occupied_seats or 0 }}
+
+                        /
+
+                        {{ bus.capacity or 0 }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+
+                        class="progress-fill"
+
+                        style="width: {{ ((bus.occupied_seats or 0) / bus.capacity * 100) if bus.capacity and bus.capacity > 0 else 0 }}%;">
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="seat-card-footer">
+
+                {% if (bus.available_seats or 0) > 0 %}
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    {{ bus.available_seats }} seats available
+
+                {% else %}
+
+                    <i class="fa-solid fa-circle-xmark"></i>
+
+                    No seats available
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- NO BUSES -->
+
+        <div class="no-buses">
+
+            <i class="fa-solid fa-bus"></i>
+
+            <h3>No Buses Available</h3>
+
+            <p>
+
+                Add buses to start monitoring seat availability.
+
+            </p>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ==========================================
+                FOOTER
+========================================== -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 College Bus Tracking System
+
+        <span>|</span>
+
+        Seat Availability Monitoring
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

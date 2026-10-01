@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | College Bus Tracking System</title>
+
+
+    <!-- =========================================
+         PARENT PROFILE CSS
+    ========================================== -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static',
+        filename='css/parent/parent_profile.css') }}">
+
+
+    <!-- =========================================
+         FONT AWESOME
+    ========================================== -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+                TOP NAVBAR
+    ========================================== -->
+
+    <header class="top-navbar">
+
+
+        <!-- ======================================
+                    LOGO
+        ======================================= -->
+
+        <div class="brand">
+
+            <div class="brand-icon">
+
+                <i class="fas fa-bus"></i>
+
+            </div>
+
+
+            <div class="brand-text">
+
+                <h2>College Bus</h2>
+
+                <span>Parent Portal</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ======================================
+                DESKTOP NAVIGATION
+        ======================================= -->
+
+        <nav class="desktop-nav">
+
+
+            <!-- DASHBOARD -->
+
+            <a href="{{ url_for('parent_dashboard') }}"
+                class="nav-link {% if active_page == 'dashboard' %}active{% endif %}">
+
+                <i class="fas fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+
+
+            <!-- LIVE TRACKING -->
+
+            <a href="{{ url_for('parent_live_tracking') }}"
+                class="nav-link {% if active_page == 'live_tracking' %}active{% endif %}">
+
+                <i class="fas fa-location-dot"></i>
+
+                Live Tracking
+
+            </a>
+
+
+
+            <!-- NOTIFICATIONS -->
+
+            <a href="{{ url_for('parent_notifications') }}"
+                class="nav-link {% if active_page == 'notifications' %}active{% endif %}">
+
+                <i class="fas fa-bell"></i>
+
+                Notifications
+
+            </a>
+
+
+
+            <!-- PROFILE -->
+
+            <a href="{{ url_for('parent_profile') }}"
+                class="nav-link {% if active_page == 'profile' %}active{% endif %}">
+
+                <i class="fas fa-user"></i>
+
+                Profile
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- ======================================
+                    RIGHT SIDE
+        ======================================= -->
+
+        <div class="nav-actions">
+
+
+            <!-- NOTIFICATION BUTTON -->
+
+            <a href="{{ url_for('parent_notifications') }}"
+                class="notification-btn">
+
+                <i class="fas fa-bell"></i>
+
+            </a>
+
+
+
+            <!-- ======================================
+                    PARENT PROFILE INFO
+            ======================================= -->
+
+            <div class="parent-info">
+
+
+                <div class="parent-avatar">
+
+                    {% if profile_data and profile_data.parent_name %}
+
+                        {{ profile_data.parent_name[0] | upper }}
+
+                    {% else %}
+
+                        P
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <div class="parent-details">
+
+                    <strong>
+
+                        {% if profile_data and profile_data.parent_name %}
+
+                            {{ profile_data.parent_name }}
+
+                        {% else %}
+
+                            Parent
+
+                        {% endif %}
+
+                    </strong>
+
+                    <span>Parent</span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ======================================
+                    MOBILE MENU BUTTON
+            ======================================= -->
+
+            <button class="mobile-menu-btn"
+                type="button"
+                onclick="toggleMobileMenu()">
+
+                <i class="fas fa-bars"></i>
+
+            </button>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- ==========================================
+                MOBILE MENU
+    ========================================== -->
+
+    <div class="mobile-menu"
+        id="mobileMenu">
+
+
+        <!-- DASHBOARD -->
+
+        <a href="{{ url_for('parent_dashboard') }}"
+            class="mobile-nav-link">
+
+            <i class="fas fa-house"></i>
+
+            Dashboard
+
+        </a>
+
+
+
+        <!-- LIVE TRACKING -->
+
+        <a href="{{ url_for('parent_live_tracking') }}"
+            class="mobile-nav-link">
+
+            <i class="fas fa-location-dot"></i>
+
+            Live Tracking
+
+        </a>
+
+
+
+        <!-- NOTIFICATIONS -->
+
+        <a href="{{ url_for('parent_notifications') }}"
+            class="mobile-nav-link">
+
+            <i class="fas fa-bell"></i>
+
+            Notifications
+
+        </a>
+
+
+
+        <!-- PROFILE -->
+
+        <a href="{{ url_for('parent_profile') }}"
+            class="mobile-nav-link active">
+
+            <i class="fas fa-user"></i>
+
+            Profile
+
+        </a>
+
+
+
+        <!-- LOGOUT -->
+
+        <a href="/logout"
+            class="mobile-nav-link logout-link">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+                MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- ==========================================
+                    PROFILE HEADER
+        =========================================== -->
+
+        <section class="profile-header">
+
+
+            <div class="profile-header-content">
+
+
+                <!-- LEFT SIDE -->
+
+                <div class="profile-header-left">
+
+
+                    <!-- PROFILE AVATAR -->
+
+                    <div class="profile-main-avatar">
+
+
+                        {% if profile_data
+                        and profile_data.parent_profile_image %}
+
+                            <img
+                                src="{{ url_for(
+                                'static',
+                                filename=profile_data.parent_profile_image
+                                ) }}"
+
+                                alt="Parent Profile Image"
+
+                                onerror="
+                                this.style.display='none';
+                                this.nextElementSibling.style.display='flex';
+                                "
+                            >
+
+
+                            <div class="avatar-letter fallback-avatar"
+                                style="display:none;">
+
+                                {{ profile_data.parent_name[0] | upper }}
+
+                            </div>
+
+
+                        {% else %}
+
+                            <div class="avatar-letter">
+
+                                {% if profile_data
+                                and profile_data.parent_name %}
+
+                                    {{ profile_data.parent_name[0] | upper }}
+
+                                {% else %}
+
+                                    P
+
+                                {% endif %}
+
+                            </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+
+                    <!-- PROFILE TEXT -->
+
+                    <div class="profile-header-text">
+
+
+                        <span class="profile-small-title">
+
+                            <i class="fas fa-user-shield"></i>
+
+                            Parent Profile
+
+                        </span>
+
+
+                        <h1>
+
+                            {% if profile_data
+                            and profile_data.parent_name %}
+
+                                {{ profile_data.parent_name }}
+
+                            {% else %}
+
+                                Parent
+
+                            {% endif %}
+
+                        </h1>
+
+
+                        <p>
+
+                            Manage and view your profile and your child's
+                            transportation information.
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- RIGHT SIDE SUMMARY -->
+
+                <div class="profile-summary">
+
+
+                    <div class="summary-icon">
+
+                        <i class="fas fa-user-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Account Status</span>
+
+                        <strong>Active</strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==========================================
+                    PROFILE GRID
+        =========================================== -->
+
+        <div class="profile-grid">
+
+
+            <!-- ======================================
+                    LEFT COLUMN
+            ======================================= -->
+
+            <div class="profile-left-column">
+
+
+                <!-- ======================================
+                        PARENT INFORMATION
+                ======================================= -->
+
+                <section class="profile-card">
+
+
+                    <div class="card-header">
+
+
+                        <div class="card-title">
+
+                            <div class="section-icon parent-icon">
+
+                                <i class="fas fa-user"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2>Parent Information</h2>
+
+                                <p>Your registered account details</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="profile-details-list">
+
+
+                        <!-- NAME -->
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+
+                                <i class="fas fa-user"></i>
+
+                            </div>
+
+
+                            <div class="detail-content">
+
+                                <span>Full Name</span>
+
+                                <strong>
+
+                                    {% if profile_data
+                                    and profile_data.parent_name %}
+
+                                        {{ profile_data.parent_name }}
+
+                                    {% else %}
+
+                                        Not Available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PHONE -->
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+
+                                <i class="fas fa-phone"></i>
+
+                            </div>
+
+
+                            <div class="detail-content">
+
+                                <span>Phone Number</span>
+
+                                <strong>
+
+                                    {% if profile_data
+                                    and profile_data.parent_phone %}
+
+                                        {{ profile_data.parent_phone }}
+
+                                    {% else %}
+
+                                        Not Available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- USERNAME -->
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+
+                                <i class="fas fa-at"></i>
+
+                            </div>
+
+
+                            <div class="detail-content">
+
+                                <span>Username</span>
+
+                                <strong>
+
+                                    {% if profile_data
+                                    and profile_data.username %}
+
+                                        {{ profile_data.username }}
+
+                                    {% else %}
+
+                                        Not Available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- ======================================
+                        CHILD INFORMATION
+                ======================================= -->
+
+                <section class="profile-card">
+
+
+                    <div class="card-header">
+
+
+                        <div class="card-title">
+
+                            <div class="section-icon student-icon">
+
+                                <i class="fas fa-user-graduate"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2>Child Information</h2>
+
+                                <p>Your child's registered details</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="student-profile-content">
+
+
+                        <!-- STUDENT IMAGE -->
+
+                        <div class="student-profile-avatar">
+
+
+                            {% if profile_data
+                            and profile_data.student_profile_image %}
+
+                                <img
+                                    src="{{ url_for(
+                                    'static',
+                                    filename=profile_data.student_profile_image
+                                    ) }}"
+
+                                    alt="Student Profile Image"
+
+                                    onerror="
+                                    this.style.display='none';
+                                    this.nextElementSibling.style.display='flex';
+                                    "
+                                >
+
+
+                                <div class="student-avatar-letter"
+                                    style="display:none;">
+
+                                    {{ profile_data.student_name[0] | upper }}
+
+                                </div>
+
+
+                            {% else %}
+
+                                <div class="student-avatar-letter">
+
+                                    {% if profile_data
+                                    and profile_data.student_name %}
+
+                                        {{ profile_data.student_name[0] | upper }}
+
+                                    {% else %}
+
+                                        S
+
+                                    {% endif %}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- STUDENT NAME -->
+
+                        <div class="student-profile-name">
+
+                            <h3>
+
+                                {% if profile_data
+                                and profile_data.student_name %}
+
+                                    {{ profile_data.student_name }}
+
+                                {% else %}
+
+                                    Student Not Available
+
+                                {% endif %}
+
+                            </h3>
+
+
+                            <span>
+
+                                <i class="fas fa-id-card"></i>
+
+                                {% if profile_data
+                                and profile_data.roll_number %}
+
+                                    {{ profile_data.roll_number }}
+
+                                {% else %}
+
+                                    Roll Number Not Available
+
+                                {% endif %}
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="profile-details-list student-details">
+
+
+                        <!-- PHONE -->
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+
+                                <i class="fas fa-phone"></i>
+
+                            </div>
+
+
+                            <div class="detail-content">
+
+                                <span>Student Phone</span>
+
+                                <strong>
+
+                                    {% if profile_data
+                                    and profile_data.student_phone %}
+
+                                        {{ profile_data.student_phone }}
+
+                                    {% else %}
+
+                                        Not Available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+
+                                <i class="fas fa-envelope"></i>
+
+                            </div>
+
+
+                            <div class="detail-content">
+
+                                <span>Email Address</span>
+
+                                <strong>
+
+                                    {% if profile_data
+                                    and profile_data.student_email %}
+
+                                        {{ profile_data.student_email }}
+
+                                    {% else %}
+
+                                        Not Available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DEPARTMENT -->
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+
+                                <i class="fas fa-building-columns"></i>
+
+                            </div>
+
+
+                            <div class="detail-content">
+
+                                <span>Department</span>
+
+                                <strong>
+
+                                    {% if profile_data
+                                    and profile_data.department %}
+
+                                        {{ profile_data.department }}
+
+                                    {% else %}
+
+                                        Not Available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- SEMESTER -->
+
+                        <div class="detail-row">
+
+                            <div class="detail-icon">
+
+                                <i class="fas fa-book-open"></i>
+
+                            </div>
+
+
+                            <div class="detail-content">
+
+                                <span>Semester</span>
+
+                                <strong>
+
+                                    {% if profile_data
+                                    and profile_data.semester %}
+
+                                        {{ profile_data.semester }}
+
+                                    {% else %}
+
+                                        Not Available
+
+                                    {% endif %}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+
+            <!-- ======================================
+                    RIGHT COLUMN
+            ======================================= -->
+
+            <div class="profile-right-column">
+
+
+                <!-- ======================================
+                        BUS INFORMATION
+                ======================================= -->
+
+                <section class="profile-card bus-info-card">
+
+
+                    <div class="card-header">
+
+
+                        <div class="card-title">
+
+                            <div class="section-icon bus-icon">
+
+                                <i class="fas fa-bus"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2>Bus Information</h2>
+
+                                <p>Your child's assigned bus</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="bus-number-display">
+
+
+                        <span>Assigned Bus</span>
+
+
+                        <strong>
+
+                            {% if profile_data
+                            and profile_data.bus_number %}
+
+                                {{ profile_data.bus_number }}
+
+                            {% else %}
+
+                                Not Assigned
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="bus-info-list">
+
+
+                        <!-- DRIVER -->
+
+                        <div class="bus-detail">
+
+                            <span>
+
+                                <i class="fas fa-user-tie"></i>
+
+                                Driver
+
+                            </span>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.driver_name %}
+
+                                    {{ profile_data.driver_name }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- CAPACITY -->
+
+                        <div class="bus-detail">
+
+                            <span>
+
+                                <i class="fas fa-users"></i>
+
+                                Capacity
+
+                            </span>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.capacity is not none %}
+
+                                    {{ profile_data.capacity }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- AVAILABLE SEATS -->
+
+                        <div class="bus-detail">
+
+                            <span>
+
+                                <i class="fas fa-chair"></i>
+
+                                Available Seats
+
+                            </span>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.available_seats is not none %}
+
+                                    {{ profile_data.available_seats }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- ======================================
+                        ROUTE INFORMATION
+                ======================================= -->
+
+                <section class="profile-card route-info-card">
+
+
+                    <div class="card-header">
+
+
+                        <div class="card-title">
+
+                            <div class="section-icon route-icon">
+
+                                <i class="fas fa-route"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2>Route Information</h2>
+
+                                <p>Assigned transportation route</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ROUTE NAME -->
+
+                    <div class="route-name-box">
+
+                        <span>Route Name</span>
+
+                        <strong>
+
+                            {% if profile_data
+                            and profile_data.route_name %}
+
+                                {{ profile_data.route_name }}
+
+                            {% else %}
+
+                                Route Not Assigned
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="route-details-list">
+
+
+                        <!-- SOURCE -->
+
+                        <div class="route-detail">
+
+                            <div>
+
+                                <i class="fas fa-circle-dot source-icon"></i>
+
+                                <span>Source</span>
+
+                            </div>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.source %}
+
+                                    {{ profile_data.source }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- DESTINATION -->
+
+                        <div class="route-detail">
+
+                            <div>
+
+                                <i class="fas fa-location-dot destination-icon"></i>
+
+                                <span>Destination</span>
+
+                            </div>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.destination %}
+
+                                    {{ profile_data.destination }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- DISTANCE -->
+
+                        <div class="route-detail">
+
+                            <div>
+
+                                <i class="fas fa-road"></i>
+
+                                <span>Distance</span>
+
+                            </div>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.distance %}
+
+                                    {{ profile_data.distance }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- ESTIMATED TIME -->
+
+                        <div class="route-detail">
+
+                            <div>
+
+                                <i class="fas fa-clock"></i>
+
+                                <span>Estimated Time</span>
+
+                            </div>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.estimated_time %}
+
+                                    {{ profile_data.estimated_time }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- ======================================
+                        BOARDING INFORMATION
+                ======================================= -->
+
+                <section class="profile-card boarding-card">
+
+
+                    <div class="card-header">
+
+
+                        <div class="card-title">
+
+                            <div class="section-icon boarding-icon">
+
+                                <i class="fas fa-map-location-dot"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2>Boarding Information</h2>
+
+                                <p>Your child's pickup details</p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="boarding-point-box">
+
+
+                        <i class="fas fa-location-dot"></i>
+
+
+                        <div>
+
+                            <span>Boarding Point</span>
+
+
+                            <strong>
+
+                                {% if profile_data
+                                and profile_data.boarding_point %}
+
+                                    {{ profile_data.boarding_point }}
+
+                                {% else %}
+
+                                    Not Available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==========================================
+                    PROFILE INFORMATION CARD
+        =========================================== -->
+
+        <section class="profile-info-card">
+
+
+            <div class="profile-info-icon">
+
+                <i class="fas fa-shield-heart"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Your Information is Secure</h3>
+
+                <p>
+
+                    Your profile, child information and transportation
+                    details are securely managed by the College Bus
+                    Tracking System.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+            MOBILE BOTTOM NAVIGATION
+    ========================================== -->
+
+    <nav class="bottom-navigation">
+
+
+        <!-- HOME -->
+
+        <a href="{{ url_for('parent_dashboard') }}"
+            class="bottom-nav-item">
+
+            <i class="fas fa-house"></i>
+
+            <span>Home</span>
+
+        </a>
+
+
+
+        <!-- TRACK -->
+
+        <a href="{{ url_for('parent_live_tracking') }}"
+            class="bottom-nav-item">
+
+            <i class="fas fa-location-dot"></i>
+
+            <span>Track</span>
+
+        </a>
+
+
+
+        <!-- ALERTS -->
+
+        <a href="{{ url_for('parent_notifications') }}"
+            class="bottom-nav-item">
+
+            <i class="fas fa-bell"></i>
+
+            <span>Alerts</span>
+
+        </a>
+
+
+
+        <!-- PROFILE -->
+
+        <a href="{{ url_for('parent_profile') }}"
+            class="bottom-nav-item active">
+
+            <i class="fas fa-user"></i>
+
+            <span>Profile</span>
+
+        </a>
+
+
+    </nav>
+
+
+
+    <!-- ==========================================
+                JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+
+        /* ==========================================
+            MOBILE MENU
+        ========================================== */
+
+        function toggleMobileMenu() {
+
+            const menu =
+                document.getElementById("mobileMenu");
+
+            menu.classList.toggle("show");
+
+        }
+
+
+
+        /* ==========================================
+            CLOSE MOBILE MENU
+        ========================================== */
+
+        document
+            .querySelectorAll(".mobile-nav-link")
+            .forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    document
+                        .getElementById("mobileMenu")
+                        .classList.remove("show");
+
+                });
+
+            });
+
+
+    </script>
+
+
+</body>
+
+</html>

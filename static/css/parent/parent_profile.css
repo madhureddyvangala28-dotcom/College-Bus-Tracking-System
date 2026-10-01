@@ -1,0 +1,1807 @@
+/* =========================================================
+   GOOGLE FONT
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f6f7fb;
+    color: #252525;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   TOP NAVBAR
+========================================================= */
+
+.top-navbar {
+    width: 100%;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #eeeeee;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+
+.brand-icon {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #ffb300,
+        #ff7a00
+    );
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 6px 16px rgba(255, 145, 0, 0.22);
+}
+
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.brand-text h2 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+.brand-text span {
+    font-size: 11px;
+    color: #888888;
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    margin-left: auto;
+    margin-right: 28px;
+}
+
+
+.nav-link {
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    color: #777777;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: 0.25s ease;
+}
+
+
+.nav-link i {
+    font-size: 14px;
+}
+
+
+.nav-link:hover {
+    color: #f58b00;
+    background: #fff6e8;
+}
+
+
+.nav-link.active {
+    color: #e98200;
+    background: #fff3dd;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   NAV ACTIONS
+========================================================= */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    flex-shrink: 0;
+}
+
+
+.notification-btn {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    background: #fff7ea;
+    color: #ef9000;
+
+    transition: 0.25s ease;
+}
+
+
+.notification-btn:hover {
+    background: #ffb300;
+    color: #ffffff;
+}
+
+
+.parent-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.parent-avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #ffad0d,
+        #f47700
+    );
+
+    color: #ffffff;
+
+    font-weight: 700;
+    font-size: 17px;
+}
+
+
+.parent-details {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.parent-details strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333333;
+
+    max-width: 150px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.parent-details span {
+    font-size: 11px;
+    color: #999999;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-btn {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+
+    background: #fff4e1;
+    color: #e98400;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   MOBILE SIDE / DROPDOWN MENU
+========================================================= */
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    width: 100%;
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    padding:
+        32px 5%
+        110px;
+}
+
+
+/* =========================================================
+   PROFILE HEADER
+========================================================= */
+
+.profile-header {
+    width: 100%;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    margin-bottom: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb000,
+            #ff7a00
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(244, 132, 0, 0.20);
+}
+
+
+.profile-header-content {
+    min-height: 210px;
+
+    padding: 34px 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.profile-header-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+/* =========================================================
+   MAIN PROFILE AVATAR
+========================================================= */
+
+.profile-main-avatar {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    border: 5px solid rgba(255, 255, 255, 0.55);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 22px
+        rgba(0, 0, 0, 0.14);
+}
+
+
+.profile-main-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.avatar-letter,
+.fallback-avatar {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    color: #ed8500;
+
+    font-size: 38px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PROFILE HEADER TEXT
+========================================================= */
+
+.profile-header-text {
+    color: #ffffff;
+}
+
+
+.profile-small-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.18);
+
+    font-size: 12px;
+    font-weight: 500;
+
+    margin-bottom: 10px;
+}
+
+
+.profile-header-text h1 {
+    font-size: 30px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    margin-bottom: 8px;
+}
+
+
+.profile-header-text p {
+    max-width: 620px;
+
+    font-size: 13px;
+
+    opacity: 0.92;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ACCOUNT STATUS
+========================================================= */
+
+.profile-summary {
+    min-width: 190px;
+
+    padding: 18px 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    color: #ffffff;
+
+    backdrop-filter: blur(8px);
+}
+
+
+.summary-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.22);
+
+    font-size: 18px;
+}
+
+
+.profile-summary div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.profile-summary span {
+    font-size: 11px;
+    opacity: 0.85;
+}
+
+
+.profile-summary strong {
+    margin-top: 3px;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   PROFILE GRID
+========================================================= */
+
+.profile-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(330px, 0.75fr);
+
+    gap: 24px;
+
+    align-items: start;
+}
+
+
+.profile-left-column,
+.profile-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 8px 25px
+        rgba(30, 30, 30, 0.04);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    margin-bottom: 18px;
+}
+
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+
+.section-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+
+.parent-icon {
+    color: #ed8500;
+    background: #fff2dd;
+}
+
+
+.student-icon {
+    color: #5c6cff;
+    background: #eef0ff;
+}
+
+
+.bus-icon {
+    color: #f07b00;
+    background: #fff0dc;
+}
+
+
+.route-icon {
+    color: #17a77c;
+    background: #e5f8f1;
+}
+
+
+.boarding-icon {
+    color: #e85757;
+    background: #fff0f0;
+}
+
+
+.card-title h2 {
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #303030;
+}
+
+
+.card-title p {
+    font-size: 11px;
+
+    color: #999999;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   PROFILE DETAILS
+========================================================= */
+
+.profile-details-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.detail-row {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 15px 0;
+
+    border-bottom:
+        1px solid #f2f2f2;
+}
+
+
+.detail-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+.detail-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #f8f9fc;
+
+    color: #ed8b00;
+
+    font-size: 15px;
+}
+
+
+.detail-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.detail-content span {
+    color: #999999;
+    font-size: 11px;
+}
+
+
+.detail-content strong {
+    color: #353535;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   STUDENT PROFILE
+========================================================= */
+
+.student-profile-content {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    margin-bottom: 4px;
+}
+
+
+.student-profile-avatar {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    background: #eef0ff;
+
+    border: 3px solid #f1f2ff;
+}
+
+
+.student-profile-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.student-avatar-letter {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6f7dff,
+            #4858e8
+        );
+
+    color: #ffffff;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+
+.student-profile-name {
+    min-width: 0;
+}
+
+
+.student-profile-name h3 {
+    font-size: 17px;
+
+    color: #303030;
+
+    overflow-wrap: anywhere;
+}
+
+
+.student-profile-name span {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 5px;
+
+    color: #999999;
+
+    font-size: 12px;
+}
+
+
+.student-profile-name span i {
+    color: #ee8b00;
+}
+
+
+/* =========================================================
+   BUS NUMBER
+========================================================= */
+
+.bus-number-display {
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7eb,
+            #fff0d6
+        );
+
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 16px;
+}
+
+
+.bus-number-display span {
+    font-size: 11px;
+    color: #9a7a4c;
+}
+
+
+.bus-number-display strong {
+    margin-top: 5px;
+
+    color: #df7800;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   BUS DETAILS
+========================================================= */
+
+.bus-info-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.bus-detail {
+    padding: 13px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-bottom: 1px solid #f2f2f2;
+}
+
+
+.bus-detail:last-child {
+    border-bottom: none;
+}
+
+
+.bus-detail span {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #777777;
+
+    font-size: 12px;
+}
+
+
+.bus-detail span i {
+    width: 20px;
+
+    color: #ed8a00;
+}
+
+
+.bus-detail strong {
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #333333;
+
+    text-align: right;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   ROUTE NAME
+========================================================= */
+
+.route-name-box {
+    padding: 17px;
+
+    border-radius: 14px;
+
+    background: #f2fbf7;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 14px;
+}
+
+
+.route-name-box span {
+    color: #59947f;
+    font-size: 11px;
+}
+
+
+.route-name-box strong {
+    margin-top: 4px;
+
+    color: #168664;
+
+    font-size: 16px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   ROUTE DETAILS
+========================================================= */
+
+.route-details-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.route-detail {
+    padding: 13px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    border-bottom: 1px solid #f2f2f2;
+}
+
+
+.route-detail:last-child {
+    border-bottom: none;
+}
+
+
+.route-detail > div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #777777;
+
+    font-size: 12px;
+
+    min-width: 0;
+}
+
+
+.route-detail > div i {
+    width: 18px;
+}
+
+
+.route-detail strong {
+    color: #333333;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-align: right;
+
+    overflow-wrap: anywhere;
+}
+
+
+.source-icon {
+    color: #16a16f;
+}
+
+
+.destination-icon {
+    color: #ef5a4e;
+}
+
+
+/* =========================================================
+   BOARDING INFORMATION
+========================================================= */
+
+.boarding-point-box {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px;
+
+    border-radius: 14px;
+
+    background: #fff6f6;
+}
+
+
+.boarding-point-box > i {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffe5e5;
+
+    color: #e85858;
+}
+
+
+.boarding-point-box div {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.boarding-point-box span {
+    font-size: 11px;
+    color: #999999;
+}
+
+
+.boarding-point-box strong {
+    margin-top: 4px;
+
+    color: #333333;
+
+    font-size: 13px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   SECURITY INFORMATION CARD
+========================================================= */
+
+.profile-info-card {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 20px 24px;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(30, 30, 30, 0.04);
+}
+
+
+.profile-info-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff2dc;
+
+    color: #e88600;
+
+    font-size: 20px;
+}
+
+
+.profile-info-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #333333;
+
+    margin-bottom: 4px;
+}
+
+
+.profile-info-card p {
+    font-size: 12px;
+
+    color: #8a8a8a;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAVIGATION
+========================================================= */
+
+.bottom-navigation {
+    display: none;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP ADJUSTMENTS
+========================================================= */
+
+@media (min-width: 1400px) {
+
+    .main-content {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .desktop-nav {
+        gap: 2px;
+        margin-right: 15px;
+    }
+
+
+    .nav-link {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .profile-right-column {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+    }
+
+
+    .boarding-card {
+        grid-column: span 2;
+    }
+
+
+    .profile-header-content {
+        padding: 30px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+
+    /* ==========================================
+       BODY
+    ========================================== */
+
+    body {
+        padding-bottom: 76px;
+    }
+
+
+    /* ==========================================
+       NAVBAR
+    ========================================== */
+
+    .top-navbar {
+        height: 68px;
+
+        padding: 0 16px;
+
+        position: sticky;
+        top: 0;
+    }
+
+
+    .brand {
+        gap: 9px;
+    }
+
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 11px;
+
+        font-size: 17px;
+    }
+
+
+    .brand-text h2 {
+        font-size: 15px;
+    }
+
+
+    .brand-text span {
+        font-size: 9px;
+    }
+
+
+    .desktop-nav {
+        display: none;
+    }
+
+
+    .parent-info {
+        display: none;
+    }
+
+
+    .nav-actions {
+        gap: 9px;
+    }
+
+
+    .notification-btn {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 11px;
+    }
+
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 40px;
+        height: 40px;
+    }
+
+
+    /* ==========================================
+       MOBILE MENU
+    ========================================== */
+
+    .mobile-menu {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 4px;
+
+        position: fixed;
+
+        top: 68px;
+        left: 0;
+        right: 0;
+
+        padding: 14px 16px 18px;
+
+        background: #ffffff;
+
+        border-bottom:
+            1px solid #eeeeee;
+
+        box-shadow:
+            0 10px 22px
+            rgba(0, 0, 0, 0.08);
+
+        z-index: 999;
+
+        transform:
+            translateY(-130%);
+
+        opacity: 0;
+
+        pointer-events: none;
+
+        transition: 0.3s ease;
+    }
+
+
+    .mobile-menu.show {
+        transform: translateY(0);
+
+        opacity: 1;
+
+        pointer-events: auto;
+    }
+
+
+    .mobile-nav-link {
+        text-decoration: none;
+
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        padding: 13px 14px;
+
+        border-radius: 11px;
+
+        color: #666666;
+
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+
+    .mobile-nav-link i {
+        width: 20px;
+
+        color: #ef9000;
+    }
+
+
+    .mobile-nav-link.active {
+        background: #fff3df;
+
+        color: #e88600;
+
+        font-weight: 600;
+    }
+
+
+    .logout-link {
+        margin-top: 5px;
+
+        background: #fff4f4;
+
+        color: #dc5a5a;
+    }
+
+
+    .logout-link i {
+        color: #dc5a5a;
+    }
+
+
+    /* ==========================================
+       MAIN CONTENT
+    ========================================== */
+
+    .main-content {
+        padding:
+            18px 15px
+            95px;
+
+        max-width: 100%;
+    }
+
+
+    /* ==========================================
+       PROFILE HEADER
+    ========================================== */
+
+    .profile-header {
+        border-radius: 20px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .profile-header-content {
+        min-height: auto;
+
+        padding: 24px 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+
+    .profile-header-left {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+        gap: 14px;
+    }
+
+
+    .profile-main-avatar {
+        width: 86px;
+        height: 86px;
+
+        border-width: 4px;
+    }
+
+
+    .avatar-letter,
+    .fallback-avatar {
+        font-size: 31px;
+    }
+
+
+    .profile-small-title {
+        font-size: 10px;
+
+        padding: 5px 10px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .profile-header-text h1 {
+        font-size: 23px;
+    }
+
+
+    .profile-header-text p {
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+
+
+    .profile-summary {
+        width: 100%;
+
+        min-width: 0;
+
+        justify-content: center;
+
+        padding: 14px;
+    }
+
+
+    /* ==========================================
+       GRID
+    ========================================== */
+
+    .profile-grid {
+        display: flex;
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+
+    .profile-left-column,
+    .profile-right-column {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+
+    /* ==========================================
+       PROFILE CARD
+    ========================================== */
+
+    .profile-card {
+        border-radius: 17px;
+
+        padding: 18px;
+    }
+
+
+    .card-header {
+        padding-bottom: 14px;
+
+        margin-bottom: 14px;
+    }
+
+
+    .card-title {
+        gap: 10px;
+    }
+
+
+    .section-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 11px;
+
+        font-size: 16px;
+    }
+
+
+    .card-title h2 {
+        font-size: 14px;
+    }
+
+
+    .card-title p {
+        font-size: 10px;
+    }
+
+
+    /* ==========================================
+       DETAILS
+    ========================================== */
+
+    .detail-row {
+        padding: 13px 0;
+
+        gap: 11px;
+    }
+
+
+    .detail-icon {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+
+        font-size: 13px;
+    }
+
+
+    .detail-content span {
+        font-size: 10px;
+    }
+
+
+    .detail-content strong {
+        font-size: 12px;
+    }
+
+
+    /* ==========================================
+       STUDENT
+    ========================================== */
+
+    .student-profile-avatar {
+        width: 56px;
+        height: 56px;
+    }
+
+
+    .student-avatar-letter {
+        font-size: 20px;
+    }
+
+
+    .student-profile-name h3 {
+        font-size: 15px;
+    }
+
+
+    .student-profile-name span {
+        font-size: 11px;
+    }
+
+
+    /* ==========================================
+       BUS
+    ========================================== */
+
+    .bus-number-display {
+        padding: 17px;
+    }
+
+
+    .bus-number-display strong {
+        font-size: 22px;
+    }
+
+
+    .bus-detail {
+        padding: 12px 0;
+    }
+
+
+    .bus-detail span,
+    .bus-detail strong {
+        font-size: 11px;
+    }
+
+
+    /* ==========================================
+       ROUTE
+    ========================================== */
+
+    .route-detail {
+        padding: 12px 0;
+    }
+
+
+    .route-detail > div,
+    .route-detail strong {
+        font-size: 11px;
+    }
+
+
+    /* ==========================================
+       PROFILE INFO
+    ========================================== */
+
+    .profile-info-card {
+        margin-top: 18px;
+
+        padding: 17px;
+
+        border-radius: 16px;
+
+        align-items: flex-start;
+    }
+
+
+    .profile-info-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+
+        font-size: 17px;
+    }
+
+
+    .profile-info-card h3 {
+        font-size: 13px;
+    }
+
+
+    .profile-info-card p {
+        font-size: 10px;
+    }
+
+
+    /* ==========================================
+       BOTTOM NAVIGATION
+    ========================================== */
+
+    .bottom-navigation {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-around;
+
+        position: fixed;
+
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        height: 70px;
+
+        padding: 0 5px;
+
+        background: #ffffff;
+
+        border-top:
+            1px solid #eeeeee;
+
+        box-shadow:
+            0 -5px 18px
+            rgba(0, 0, 0, 0.06);
+
+        z-index: 1000;
+    }
+
+
+    .bottom-nav-item {
+        flex: 1;
+
+        height: 100%;
+
+        text-decoration: none;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 4px;
+
+        color: #9b9b9b;
+
+        font-size: 10px;
+
+        transition: 0.2s ease;
+    }
+
+
+    .bottom-nav-item i {
+        font-size: 17px;
+    }
+
+
+    .bottom-nav-item.active {
+        color: #ed8900;
+
+        font-weight: 600;
+    }
+
+
+    .bottom-nav-item.active i {
+        transform: translateY(-1px);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .brand-text h2 {
+        font-size: 14px;
+    }
+
+
+    .profile-header-content {
+        padding: 21px 16px;
+    }
+
+
+    .profile-header-text h1 {
+        font-size: 21px;
+    }
+
+
+    .profile-card {
+        padding: 16px;
+    }
+
+
+    .bus-detail,
+    .route-detail {
+        gap: 8px;
+    }
+
+}

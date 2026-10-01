@@ -1,0 +1,695 @@
+/* ==========================================================
+                    DRIVER LAYOUT
+========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f3f4f6;
+    color: #182238;
+}
+
+
+/* ==========================================================
+                    SIDEBAR
+========================================================== */
+
+.driver-sidebar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 280px;
+    height: 100vh;
+
+    background: #182238;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+
+}
+
+
+.sidebar-logo {
+
+    height: 95px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 0 30px;
+
+    color: #ffffff;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+}
+
+
+.sidebar-logo i {
+
+    color: #FFB800;
+
+    font-size: 34px;
+
+}
+
+
+/* ==========================================================
+                    SIDEBAR NAVIGATION
+========================================================== */
+
+.driver-navigation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 15px;
+
+    gap: 7px;
+
+}
+
+
+.driver-navigation a {
+
+    min-height: 56px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    border-radius: 14px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    transition: 0.25s ease;
+
+}
+
+
+.driver-navigation a i {
+
+    width: 25px;
+
+    text-align: center;
+
+    font-size: 19px;
+
+}
+
+
+.driver-navigation a:hover {
+
+    background: rgba(255, 184, 0, 0.12);
+
+    color: #FFB800;
+
+}
+
+
+/* ACTIVE PAGE */
+
+.driver-navigation a.active {
+
+    background: #FFB800;
+
+    color: #182238;
+
+    font-weight: 600;
+
+}
+
+
+.driver-navigation a.active i {
+
+    color: #182238;
+
+}
+
+
+/* ==========================================================
+                    MAIN AREA
+========================================================== */
+
+.driver-main {
+
+    margin-left: 280px;
+
+    min-height: 100vh;
+
+    width: calc(100% - 280px);
+
+}
+
+
+/* ==========================================================
+                    TOP NAVBAR
+========================================================== */
+
+.driver-navbar {
+
+    height: 76px;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 900;
+
+}
+
+
+.navbar-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #182238;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+}
+
+
+.navbar-title i {
+
+    color: #FFB800;
+
+}
+
+
+.navbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.navbar-notification {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #182238;
+
+    text-decoration: none;
+
+    position: relative;
+
+}
+
+
+.navbar-notification:hover,
+.navbar-notification.active {
+
+    background: #FFF7D6;
+
+    color: #FFB800;
+
+}
+
+
+.navbar-notification i {
+
+    font-size: 19px;
+
+}
+
+
+.navbar-profile {
+
+    width: 44px;
+
+    height: 44px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+}
+
+
+.navbar-profile img {
+
+    width: 44px;
+
+    height: 44px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #FFB800;
+
+}
+
+
+/* ==========================================================
+                    MOBILE MENU BUTTON
+========================================================== */
+
+.mobile-menu-btn {
+
+    display: none;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    background: #182238;
+
+    color: #ffffff;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+}
+
+
+/* ==========================================================
+                    PROFILE DROPDOWN
+========================================================== */
+
+.profile-menu {
+
+    position: fixed;
+
+    top: 70px;
+
+    right: 30px;
+
+    width: 270px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 15px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+
+    z-index: 1500;
+
+    display: none;
+
+}
+
+
+.profile-menu.show {
+
+    display: block;
+
+}
+
+
+.profile-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.profile-header img {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #FFB800;
+
+}
+
+
+.profile-header h3 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    color: #182238;
+
+}
+
+
+.profile-header p {
+
+    margin: 2px 0 0;
+
+    color: #64748B;
+
+    font-size: 12px;
+
+}
+
+
+.menu-divider {
+
+    height: 1px;
+
+    background: #e5e7eb;
+
+    margin: 12px 0;
+
+}
+
+
+.profile-menu > a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px;
+
+    border-radius: 9px;
+
+    color: #182238;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+}
+
+
+.profile-menu > a:hover {
+
+    background: #FFF7D6;
+
+}
+
+
+.profile-menu > a i {
+
+    color: #FFB800;
+
+    width: 20px;
+
+}
+
+
+/* ==========================================================
+                    MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+
+    body {
+
+        overflow-x: hidden;
+
+    }
+
+
+    /* -----------------------------------------
+                HORIZONTAL SIDEBAR
+    ----------------------------------------- */
+
+    .driver-sidebar {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+
+        width: 100%;
+
+        height: auto;
+
+        background: #182238;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        white-space: nowrap;
+
+    }
+
+
+    .sidebar-logo {
+
+        height: 58px;
+
+        padding: 0 16px;
+
+        font-size: 19px;
+
+        gap: 10px;
+
+    }
+
+
+    .sidebar-logo i {
+
+        font-size: 24px;
+
+    }
+
+
+    .driver-navigation {
+
+        flex-direction: row;
+
+        width: max-content;
+
+        padding: 7px 10px;
+
+        gap: 5px;
+
+    }
+
+
+    .driver-navigation a {
+
+        min-height: 40px;
+
+        height: 40px;
+
+        padding: 0 13px;
+
+        border-radius: 9px;
+
+        gap: 7px;
+
+        font-size: 11px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .driver-navigation a i {
+
+        width: auto;
+
+        font-size: 13px;
+
+    }
+
+
+    /*
+        Hide scrollbar but keep scrolling
+    */
+
+    .driver-sidebar::-webkit-scrollbar {
+
+        height: 0;
+
+    }
+
+
+    .driver-sidebar {
+
+        scrollbar-width: none;
+
+    }
+
+
+    /* -----------------------------------------
+                MAIN AREA
+    ----------------------------------------- */
+
+    .driver-main {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        min-height: auto;
+
+    }
+
+
+    /* -----------------------------------------
+                NAVBAR
+    ----------------------------------------- */
+
+    .driver-navbar {
+
+        height: 58px;
+
+        padding: 0 12px;
+
+    }
+
+
+    .mobile-menu-btn {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .navbar-title {
+
+        font-size: 13px;
+
+        gap: 7px;
+
+    }
+
+
+    .navbar-title i {
+
+        font-size: 16px;
+
+    }
+
+
+    .navbar-right {
+
+        gap: 7px;
+
+    }
+
+
+    .navbar-notification {
+
+        width: 34px;
+
+        height: 34px;
+
+    }
+
+
+    .navbar-notification i {
+
+        font-size: 15px;
+
+    }
+
+
+    .navbar-profile {
+
+        width: 35px;
+
+        height: 35px;
+
+    }
+
+
+    .navbar-profile img {
+
+        width: 35px;
+
+        height: 35px;
+
+    }
+
+
+    /* -----------------------------------------
+                PROFILE
+    ----------------------------------------- */
+
+    .profile-menu {
+
+        top: 120px;
+
+        right: 10px;
+
+        width: calc(100% - 20px);
+
+        max-width: 300px;
+
+    }
+
+}

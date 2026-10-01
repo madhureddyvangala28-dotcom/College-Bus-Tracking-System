@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Bus | College Bus Tracking</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- My Bus CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/driver/my_bus.css') }}">
+
+</head>
+
+<body>
+
+<div class="my-bus-page">
+
+    <!-- ==========================================
+                    SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- Logo -->
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-bus"></i>
+
+            <span>College Bus</span>
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <nav class="sidebar-nav">
+
+            <a href="{{ url_for('driver_dashboard') }}">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="{{ url_for('driver_live_tracking') }}">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span>Live Tracking</span>
+
+            </a>
+
+
+            <a href="{{ url_for('driver_my_bus') }}"
+               class="active">
+
+                <i class="fa-solid fa-bus"></i>
+
+                <span>My Bus</span>
+
+            </a>
+
+
+            <a href="{{ url_for('driver_notifications') }}">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </a>
+
+
+            <a href="{{ url_for('logout') }}">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ==========================================
+                    MAIN CONTENT
+    =========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- ======================================
+                    TOP HEADER
+        ======================================= -->
+
+        <header class="page-header">
+
+            <div class="header-left">
+
+                <button class="mobile-menu-btn"
+                        id="mobileMenuBtn">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="header-icon">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>My Bus</h1>
+
+                    <p>Your assigned bus information</p>
+
+                </div>
+
+            </div>
+
+
+            <a href="{{ url_for('driver_dashboard') }}"
+               class="dashboard-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Dashboard
+
+            </a>
+
+        </header>
+
+
+        <!-- ======================================
+                    BUS HERO CARD
+        ======================================= -->
+
+        <section class="bus-main-card">
+
+            <div class="bus-main-left">
+
+                <div class="bus-icon-box">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+
+                <div class="bus-main-info">
+
+                    <span class="small-label">
+                        ASSIGNED BUS
+                    </span>
+
+                    <h2>
+                        {{ bus.bus_number }}
+                    </h2>
+
+                    <p>
+                        Bus ID :
+                        {{ bus.bus_id }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- LIVE STATUS -->
+
+            <div class="live-status">
+
+                {% if live_location %}
+
+                    <span class="status-dot active"></span>
+
+                    <div>
+
+                        <strong>Live</strong>
+
+                        <small>Tracking Active</small>
+
+                    </div>
+
+                {% else %}
+
+                    <span class="status-dot inactive"></span>
+
+                    <div>
+
+                        <strong>Offline</strong>
+
+                        <small>No live location</small>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+                    BUS INFORMATION
+        ======================================= -->
+
+        <section class="section-card">
+
+            <div class="section-title">
+
+                <div class="title-icon yellow">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Bus Information</h2>
+
+                    <p>Details of your assigned bus</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+
+                <!-- BUS NUMBER -->
+
+                <div class="info-item">
+
+                    <div class="info-icon yellow-bg">
+
+                        <i class="fa-solid fa-bus"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Bus Number</span>
+
+                        <strong>
+                            {{ bus.bus_number }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUS ID -->
+
+                <div class="info-item">
+
+                    <div class="info-icon dark-bg">
+
+                        <i class="fa-solid fa-id-card"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Bus ID</span>
+
+                        <strong>
+                            {{ bus.bus_id }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+                    ROUTE INFORMATION
+        ======================================= -->
+
+        {% if route %}
+
+        <section class="section-card">
+
+            <div class="section-title">
+
+                <div class="title-icon red">
+
+                    <i class="fa-solid fa-route"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Assigned Route</h2>
+
+                    <p>Your current bus route</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-card">
+
+                <div class="route-icon">
+
+                    <i class="fa-solid fa-route"></i>
+
+                </div>
+
+
+                <div class="route-details">
+
+                    <span>Route</span>
+
+                    <h3>
+                        {{ route.route_name }}
+                    </h3>
+
+                    <p>
+                        Route ID :
+                        {{ route.route_id }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+        <!-- ======================================
+                    LIVE TRACKING
+        ======================================= -->
+
+        <section class="tracking-card">
+
+            <div class="tracking-content">
+
+                <div class="tracking-icon">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>Live Bus Tracking</h2>
+
+                    <p>
+                        View the current location of your assigned bus.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a href="{{ url_for('driver_live_tracking') }}"
+               class="tracking-btn">
+
+                <span>View Tracking</span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </section>
+
+
+        <!-- ======================================
+                    FOOTER
+        ======================================= -->
+
+        <footer class="page-footer">
+
+            <span>
+                College Bus Tracking System
+            </span>
+
+            <span>
+                Version 1.0
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- ==========================================
+                MOBILE OVERLAY
+=========================================== -->
+
+<div class="sidebar-overlay"
+     id="sidebarOverlay">
+</div>
+
+
+<script src="{{ url_for('static', filename='js/driver/my_bus.js') }}"></script>
+
+</body>
+
+</html>

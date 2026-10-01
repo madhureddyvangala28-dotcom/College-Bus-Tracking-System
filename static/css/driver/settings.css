@@ -1,0 +1,1216 @@
+/* ==========================================================
+   SETTINGS PAGE
+========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #F1F3F7;
+    color: #172036;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* ==========================================================
+   MAIN PAGE
+========================================================== */
+
+.settings-page {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.driver-sidebar {
+    width: 300px;
+    min-width: 300px;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background: #172036;
+
+    padding: 28px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+}
+
+
+/* ==========================================================
+   SIDEBAR LOGO
+========================================================== */
+
+.sidebar-logo {
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 0 20px;
+
+    margin-bottom: 28px;
+
+    color: #FFFFFF;
+
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.sidebar-logo i {
+    color: #FFC107;
+    font-size: 34px;
+}
+
+
+/* ==========================================================
+   SIDEBAR LINKS
+========================================================== */
+
+.driver-sidebar > a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    min-height: 58px;
+
+    padding: 0 20px;
+
+    margin-bottom: 8px;
+
+    border-radius: 16px;
+
+    color: #FFFFFF;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    transition: all .25s ease;
+}
+
+.driver-sidebar > a i {
+    width: 24px;
+
+    text-align: center;
+
+    font-size: 19px;
+}
+
+.driver-sidebar > a:hover {
+    background: rgba(255, 193, 7, .12);
+
+    color: #FFC107;
+}
+
+
+/* ==========================================================
+   ACTIVE LINK
+========================================================== */
+
+.driver-sidebar > a.active {
+    background: #FFC107;
+
+    color: #172036;
+
+    font-weight: 700;
+}
+
+.driver-sidebar > a.active i {
+    color: #172036;
+}
+
+
+/* ==========================================================
+   LOGOUT
+========================================================== */
+
+.driver-sidebar .logout-link {
+    margin-top: auto;
+}
+
+.driver-sidebar .logout-link:hover {
+    background: #EF4444;
+    color: #FFFFFF;
+}
+
+
+/* ==========================================================
+   MAIN AREA
+========================================================== */
+
+.driver-main {
+    width: calc(100% - 300px);
+
+    margin-left: 300px;
+
+    min-height: 100vh;
+
+    padding: 30px 42px;
+
+    overflow-x: hidden;
+}
+
+
+/* ==========================================================
+   PAGE HEADER
+========================================================== */
+
+.page-header {
+    width: 100%;
+
+    min-height: 155px;
+
+    background: #FFFFFF;
+
+    border-radius: 28px;
+
+    padding: 30px 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, .07);
+
+    margin-bottom: 30px;
+}
+
+
+/* ==========================================================
+   MENU BUTTON
+========================================================== */
+
+.menu-btn {
+    width: 58px;
+    height: 58px;
+
+    border: none;
+
+    border-radius: 17px;
+
+    background: #FFC107;
+
+    color: #172036;
+
+    font-size: 25px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   HEADER TITLE
+========================================================== */
+
+.header-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex: 1;
+}
+
+.header-icon {
+    width: 76px;
+    height: 76px;
+
+    border-radius: 22px;
+
+    background: #FFF7D6;
+
+    color: #E9A900;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.header-icon i {
+    font-size: 32px;
+}
+
+.header-title h1 {
+    font-size: 38px;
+
+    line-height: 1.1;
+
+    font-weight: 700;
+
+    color: #172036;
+
+    margin-bottom: 7px;
+}
+
+.header-title p {
+    color: #64748B;
+
+    font-size: 17px;
+}
+
+
+/* ==========================================================
+   BACK BUTTON
+========================================================== */
+
+.back-btn {
+    min-width: 150px;
+
+    height: 60px;
+
+    padding: 0 22px;
+
+    border-radius: 18px;
+
+    background: #F1F5F9;
+
+    color: #172036;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.back-btn:hover {
+    background: #FFC107;
+}
+
+.back-btn i {
+    font-size: 20px;
+}
+
+
+/* ==========================================================
+   SETTINGS CONTAINER
+========================================================== */
+
+.settings-container {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+
+/* ==========================================================
+   SETTINGS CARD
+========================================================== */
+
+.settings-card {
+    width: 100%;
+
+    background: #FFFFFF;
+
+    border-radius: 24px;
+
+    padding: 28px 32px;
+
+    border-left: 5px solid #FFC107;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .07);
+}
+
+
+/* ==========================================================
+   SETTINGS CARD HEADER
+========================================================== */
+
+.settings-card-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+.settings-heading-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.settings-heading-icon i {
+    font-size: 23px;
+}
+
+
+/* ==========================================================
+   HEADING COLORS
+========================================================== */
+
+.settings-heading-icon.yellow {
+    background: #FFF7D6;
+    color: #E9A900;
+}
+
+.settings-heading-icon.green {
+    background: #ECFDF5;
+    color: #16A34A;
+}
+
+.settings-heading-icon.red {
+    background: #FEE2E2;
+    color: #EF4444;
+}
+
+
+/* ==========================================================
+   CARD HEADING
+========================================================== */
+
+.settings-card-header h2 {
+    color: #172036;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.settings-card-header p {
+    color: #64748B;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================================
+   PROFILE BOX
+========================================================== */
+
+.profile-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    background: #F8FAFC;
+
+    border-radius: 18px;
+}
+
+
+/* ==========================================================
+   PROFILE AVATAR
+========================================================== */
+
+.profile-avatar {
+    width: 75px;
+    height: 75px;
+
+    border-radius: 50%;
+
+    background: #FFF7D6;
+
+    color: #E9A900;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+}
+
+.profile-avatar i {
+    font-size: 31px;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ==========================================================
+   PROFILE DETAILS
+========================================================== */
+
+.profile-details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.profile-details h3 {
+    color: #172036;
+
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+.profile-details span {
+    color: #64748B;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================================
+   SETTING ROW
+========================================================== */
+
+.setting-row {
+    width: 100%;
+
+    min-height: 82px;
+
+    border: none;
+
+    background: #F8FAFC;
+
+    border-radius: 18px;
+
+    padding: 14px 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: .25s;
+}
+
+.setting-row:hover {
+    background: #FFF9E6;
+
+    transform: translateX(3px);
+}
+
+
+/* ==========================================================
+   SETTING ROW LEFT
+========================================================== */
+
+.setting-row-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-width: 0;
+}
+
+
+/* ==========================================================
+   ROW ICON
+========================================================== */
+
+.row-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.row-icon.yellow {
+    background: #FFF7D6;
+
+    color: #E9A900;
+}
+
+.row-icon.green {
+    background: #ECFDF5;
+
+    color: #16A34A;
+}
+
+.row-icon i {
+    font-size: 19px;
+}
+
+
+/* ==========================================================
+   ROW TEXT
+========================================================== */
+
+.setting-row h3 {
+    color: #172036;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+.setting-row p {
+    color: #64748B;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   ARROW
+========================================================== */
+
+.arrow {
+    color: #94A3B8;
+
+    font-size: 18px;
+
+    margin-right: 5px;
+}
+
+
+/* ==========================================================
+   NOTIFICATION SETTING
+========================================================== */
+
+.notification-setting {
+    cursor: default;
+}
+
+.notification-setting:hover {
+    transform: none;
+
+    background: #F8FAFC;
+}
+
+
+/* ==========================================================
+   TOGGLE SWITCH
+========================================================== */
+
+.switch {
+    position: relative;
+
+    width: 54px;
+    height: 30px;
+
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+
+    inset: 0;
+
+    cursor: pointer;
+
+    background: #CBD5E1;
+
+    border-radius: 30px;
+
+    transition: .3s;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 22px;
+
+    left: 4px;
+    top: 4px;
+
+    background: #FFFFFF;
+
+    border-radius: 50%;
+
+    transition: .3s;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,.15);
+}
+
+.switch input:checked + .slider {
+    background: #16A34A;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+
+/* ==========================================================
+   DANGER CARD
+========================================================== */
+
+.danger-card {
+    border-left-color: #EF4444;
+}
+
+
+/* ==========================================================
+   LOGOUT BUTTON
+========================================================== */
+
+.logout-btn {
+    width: 100%;
+
+    height: 56px;
+
+    border-radius: 16px;
+
+    background: #FEE2E2;
+
+    color: #DC2626;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.logout-btn:hover {
+    background: #EF4444;
+
+    color: #FFFFFF;
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.page-footer {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 25px 5px 10px;
+
+    color: #64748B;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   SIDEBAR OVERLAY
+========================================================== */
+
+.sidebar-overlay {
+    display: none;
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1100px) {
+
+    .driver-sidebar {
+        width: 250px;
+        min-width: 250px;
+    }
+
+    .driver-main {
+        width: calc(100% - 250px);
+
+        margin-left: 250px;
+
+        padding: 25px;
+    }
+
+    .sidebar-logo {
+        font-size: 23px;
+    }
+
+    .driver-sidebar > a {
+        font-size: 15px;
+    }
+
+    .header-title h1 {
+        font-size: 32px;
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        background: #EEF1F5;
+    }
+
+
+    /* ------------------------------------------------------
+       SIDEBAR
+    ------------------------------------------------------ */
+
+    .driver-sidebar {
+        width: 280px;
+        min-width: 280px;
+
+        height: 100vh;
+
+        left: -290px;
+
+        transition: left .3s ease;
+
+        box-shadow: 8px 0 30px rgba(0,0,0,.18);
+    }
+
+    .driver-sidebar.show {
+        left: 0;
+    }
+
+
+    /* ------------------------------------------------------
+       OVERLAY
+    ------------------------------------------------------ */
+
+    .sidebar-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(15, 23, 42, .45);
+
+        z-index: 900;
+
+        display: none;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+
+    /* ------------------------------------------------------
+       MAIN
+    ------------------------------------------------------ */
+
+    .driver-main {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding: 16px;
+
+        min-height: 100vh;
+    }
+
+
+    /* ------------------------------------------------------
+       HEADER
+    ------------------------------------------------------ */
+
+    .page-header {
+        min-height: 125px;
+
+        border-radius: 22px;
+
+        padding: 20px;
+
+        gap: 12px;
+
+        margin-bottom: 20px;
+    }
+
+
+    /* ------------------------------------------------------
+       MENU
+    ------------------------------------------------------ */
+
+    .menu-btn {
+        display: flex;
+
+        width: 54px;
+        height: 54px;
+
+        border-radius: 16px;
+
+        flex-shrink: 0;
+    }
+
+
+    /* ------------------------------------------------------
+       HEADER ICON
+    ------------------------------------------------------ */
+
+    .header-icon {
+        width: 58px;
+        height: 58px;
+
+        border-radius: 17px;
+    }
+
+    .header-icon i {
+        font-size: 25px;
+    }
+
+
+    /* ------------------------------------------------------
+       TITLE
+    ------------------------------------------------------ */
+
+    .header-title {
+        gap: 12px;
+    }
+
+    .header-title h1 {
+        font-size: 25px;
+
+        margin-bottom: 4px;
+    }
+
+    .header-title p {
+        font-size: 13px;
+
+        line-height: 1.4;
+    }
+
+
+    /* ------------------------------------------------------
+       BACK BUTTON
+    ------------------------------------------------------ */
+
+    .back-btn {
+        width: 54px;
+        min-width: 54px;
+
+        height: 54px;
+
+        padding: 0;
+
+        border-radius: 16px;
+    }
+
+    .back-btn span {
+        display: none;
+    }
+
+    .back-btn i {
+        font-size: 20px;
+    }
+
+
+    /* ------------------------------------------------------
+       SETTINGS
+    ------------------------------------------------------ */
+
+    .settings-container {
+        gap: 18px;
+    }
+
+    .settings-card {
+        border-radius: 20px;
+
+        padding: 20px;
+
+        border-left-width: 4px;
+    }
+
+
+    /* ------------------------------------------------------
+       CARD HEADER
+    ------------------------------------------------------ */
+
+    .settings-card-header {
+        gap: 13px;
+
+        margin-bottom: 18px;
+    }
+
+    .settings-heading-icon {
+        width: 50px;
+        height: 50px;
+
+        border-radius: 15px;
+    }
+
+    .settings-heading-icon i {
+        font-size: 20px;
+    }
+
+    .settings-card-header h2 {
+        font-size: 19px;
+    }
+
+    .settings-card-header p {
+        font-size: 12px;
+    }
+
+
+    /* ------------------------------------------------------
+       PROFILE
+    ------------------------------------------------------ */
+
+    .profile-box {
+        padding: 15px;
+
+        gap: 13px;
+
+        border-radius: 16px;
+    }
+
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-avatar i {
+        font-size: 25px;
+    }
+
+    .profile-details h3 {
+        font-size: 18px;
+    }
+
+    .profile-details span {
+        font-size: 12px;
+    }
+
+
+    /* ------------------------------------------------------
+       SETTING ROW
+    ------------------------------------------------------ */
+
+    .setting-row {
+        min-height: 70px;
+
+        padding: 10px 12px;
+
+        border-radius: 16px;
+    }
+
+    .setting-row-left {
+        gap: 11px;
+    }
+
+    .row-icon {
+        width: 44px;
+        height: 44px;
+
+        border-radius: 13px;
+    }
+
+    .row-icon i {
+        font-size: 17px;
+    }
+
+    .setting-row h3 {
+        font-size: 14px;
+    }
+
+    .setting-row p {
+        font-size: 11px;
+
+        line-height: 1.4;
+    }
+
+    .arrow {
+        font-size: 16px;
+    }
+
+
+    /* ------------------------------------------------------
+       LOGOUT
+    ------------------------------------------------------ */
+
+    .logout-btn {
+        height: 52px;
+
+        border-radius: 15px;
+
+        font-size: 14px;
+    }
+
+
+    /* ------------------------------------------------------
+       FOOTER
+    ------------------------------------------------------ */
+
+    .page-footer {
+        padding: 20px 3px 5px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 430px) {
+
+    .driver-main {
+        padding: 10px;
+    }
+
+    .page-header {
+        padding: 14px;
+
+        min-height: 105px;
+
+        border-radius: 19px;
+    }
+
+    .menu-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .header-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .header-icon i {
+        font-size: 21px;
+    }
+
+    .header-title {
+        gap: 9px;
+    }
+
+    .header-title h1 {
+        font-size: 21px;
+    }
+
+    .header-title p {
+        font-size: 11px;
+    }
+
+    .back-btn {
+        width: 48px;
+        min-width: 48px;
+        height: 48px;
+    }
+
+    .settings-card {
+        padding: 16px;
+    }
+
+    .profile-box {
+        padding: 12px;
+    }
+
+    .profile-avatar {
+        width: 52px;
+        height: 52px;
+    }
+
+    .profile-details h3 {
+        font-size: 16px;
+    }
+
+    .profile-details span {
+        font-size: 11px;
+    }
+
+}

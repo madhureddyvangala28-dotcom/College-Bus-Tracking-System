@@ -1,0 +1,1640 @@
+/*==================================================
+                GOOGLE FONT
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/*==================================================
+                GLOBAL
+==================================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: #EEF2F7;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+button {
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+
+/*==================================================
+                APP CONTAINER
+==================================================*/
+
+.app-container {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    background: #F8F9FC;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .12);
+}
+
+
+/*==================================================
+                HEADER
+==================================================*/
+
+.dashboard-header {
+    background: linear-gradient(135deg, #0F172A, #1E293B);
+    color: #FFFFFF;
+    padding: 20px;
+    padding-bottom: 90px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
+
+
+/*==================================================
+                TOP BAR
+==================================================*/
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+/*==================================================
+                LOGO
+==================================================*/
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.logo i {
+    font-size: 24px;
+    color: #FFC107;
+}
+
+
+.logo span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+
+/*==================================================
+                HEADER ACTIONS
+==================================================*/
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.notification-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFC107;
+    transition: .3s;
+}
+
+
+.notification-btn:hover {
+    background: #FFC107;
+    color: #111827;
+}
+
+
+.profile-image {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #FFC107;
+}
+
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*==================================================
+                DRIVER DETAILS
+==================================================*/
+
+.driver-details {
+    margin-top: 10px;
+}
+
+
+.driver-details h3 {
+    color: #FFC107;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+.driver-details h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+
+.driver-details p {
+    color: #D5D9E0;
+    margin-bottom: 5px;
+}
+
+
+.menu-btn {
+    display: none;
+}
+
+
+/*==================================================
+                ACTION BUTTONS
+                START TRIP + END TRIP
+==================================================*/
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 90%;
+    margin: -55px auto 25px;
+}
+
+
+/*==================================================
+                ACTION BUTTON CARD
+==================================================*/
+
+.action-buttons button {
+    background: #FFFFFF;
+    border: none;
+    border-radius: 22px;
+    padding: 22px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .10);
+    transition: .30s;
+}
+
+
+.action-buttons button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .15);
+}
+
+
+.action-buttons button:active {
+    transform: scale(.96);
+}
+
+
+/*==================================================
+                ACTION ICON
+==================================================*/
+
+.action-buttons i {
+    font-size: 30px;
+}
+
+
+/*==================================================
+                ACTION TEXT
+==================================================*/
+
+.action-buttons span {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/*==================================================
+                START TRIP BUTTON
+==================================================*/
+
+.start-btn {
+    border-top: 5px solid #16A34A !important;
+}
+
+
+.start-btn i {
+    color: #16A34A;
+}
+
+
+/*==================================================
+                END TRIP BUTTON
+==================================================*/
+
+.end-btn {
+    border-top: 5px solid #EF4444 !important;
+}
+
+
+.end-btn i {
+    color: #EF4444;
+}
+
+
+/*==================================================
+                EMERGENCY TYPES SECTION
+==================================================*/
+
+.emergency-types-section {
+    padding: 0 20px 25px;
+}
+
+
+/*==================================================
+                EMERGENCY HEADER
+==================================================*/
+
+.emergency-types-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+
+.emergency-types-header i {
+    color: #EF4444;
+    font-size: 24px;
+}
+
+
+.emergency-types-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1F2937;
+}
+
+
+/*==================================================
+                EMERGENCY TYPES GRID
+==================================================*/
+
+.emergency-types-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+
+/*==================================================
+                EMERGENCY TYPE CARD
+==================================================*/
+
+.emergency-type-card {
+    background: #FFFFFF;
+    border: none;
+    border-radius: 20px;
+    padding: 22px 12px;
+    min-height: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .10);
+    transition: .30s;
+    border-top: 5px solid transparent;
+}
+
+
+.emergency-type-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .15);
+}
+
+
+.emergency-type-card:active {
+    transform: scale(.96);
+}
+
+
+.emergency-type-card i {
+    font-size: 34px;
+}
+
+
+.emergency-type-card span {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1F2937;
+}
+
+
+/*==================================================
+                ACCIDENT
+==================================================*/
+
+.emergency-type-card.accident {
+    border-top-color: #EF4444;
+}
+
+
+.emergency-type-card.accident i {
+    color: #EF4444;
+}
+
+
+/*==================================================
+                MEDICAL EMERGENCY
+==================================================*/
+
+.emergency-type-card.medical {
+    border-top-color: #DC2626;
+}
+
+
+.emergency-type-card.medical i {
+    color: #DC2626;
+}
+
+
+/*==================================================
+                BUS BREAKDOWN
+==================================================*/
+
+.emergency-type-card.breakdown {
+    border-top-color: #F59E0B;
+}
+
+
+.emergency-type-card.breakdown i {
+    color: #F59E0B;
+}
+
+
+/*==================================================
+                SOS / OTHER EMERGENCY
+==================================================*/
+
+.emergency-type-card.sos {
+    border-top-color: #7C3AED;
+}
+
+
+.emergency-type-card.sos i {
+    color: #7C3AED;
+}
+
+
+/*==================================================
+                LIVE TRACKING
+==================================================*/
+
+.live-tracking-card {
+    padding: 0 20px 25px;
+}
+
+
+/*==================================================
+                LIVE CARD
+==================================================*/
+
+.live-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #0F172A, #334155);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 15px 30px rgba(15, 23, 42, .25);
+    transition: .30s;
+}
+
+
+.live-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.live-card:active {
+    transform: scale(.97);
+}
+
+
+/*==================================================
+                LIVE LEFT ICON
+==================================================*/
+
+.live-left {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+
+.live-left i {
+    font-size: 28px;
+    color: #FFC107;
+}
+
+
+/*==================================================
+                LIVE TEXT
+==================================================*/
+
+.live-right {
+    flex: 1;
+    margin-left: 18px;
+}
+
+
+.live-right h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+
+.live-right p {
+    font-size: 14px;
+    color: #E5E7EB;
+}
+
+
+/*==================================================
+                LIVE ARROW
+==================================================*/
+
+.live-arrow {
+    font-size: 22px;
+    color: #FFC107;
+}
+
+
+/*==================================================
+                FEATURE GRID
+==================================================*/
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+    padding: 0 20px;
+}
+
+
+/*==================================================
+                FEATURE CARD
+==================================================*/
+
+.feature-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 35px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #1B2235;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, .10);
+    transition: .35s;
+    border-top: 6px solid transparent;
+}
+
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .18);
+}
+
+
+.feature-card:active {
+    transform: scale(.97);
+}
+
+
+.feature-card i {
+    font-size: 52px;
+    margin-bottom: 20px;
+}
+
+
+.feature-card span {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+
+.feature-card:hover i {
+    color: #FFC107;
+    transform: scale(1.12);
+}
+
+
+/*==================================================
+                FEATURE CARD COLORS
+==================================================*/
+
+.feature-card.blue {
+    border-top-color: #2563EB;
+}
+
+
+.feature-card.green {
+    border-top-color: #16A34A;
+}
+
+
+.feature-card.orange {
+    border-top-color: #F59E0B;
+}
+
+
+.feature-card.red {
+    border-top-color: #EF4444;
+}
+
+
+.feature-card.purple {
+    border-top-color: #7C3AED;
+}
+
+
+.feature-card.cyan {
+    border-top-color: #0EA5E9;
+}
+
+
+.feature-card.dark {
+    border-top-color: #374151;
+}
+
+
+/*==================================================
+                FOOTER
+==================================================*/
+
+.dashboard-footer {
+    text-align: center;
+    padding: 25px 20px 35px;
+    margin-top: 10px;
+}
+
+
+.dashboard-footer p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 6px;
+}
+
+
+.dashboard-footer span {
+    font-size: 13px;
+    color: #6B7280;
+    letter-spacing: .5px;
+}
+
+
+/*==================================================
+                PROFILE POPUP
+==================================================*/
+
+.profile-menu {
+    position: absolute;
+    top: 75px;
+    right: 20px;
+    width: 280px;
+    background: #FFFFFF;
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .15);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: .30s;
+    z-index: 1000;
+}
+
+
+.profile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/*==================================================
+                PROFILE HEADER
+==================================================*/
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+
+.popup-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #FFC107;
+}
+
+
+.profile-info h3 {
+    font-size: 18px;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+
+.profile-info p {
+    color: #6B7280;
+    font-size: 14px;
+}
+
+
+/*==================================================
+                MENU DIVIDER
+==================================================*/
+
+.menu-divider {
+    height: 1px;
+    background: #E5E7EB;
+}
+
+
+/*==================================================
+                PROFILE MENU ITEMS
+==================================================*/
+
+.profile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px 20px;
+    color: #1F2937;
+    transition: .30s;
+}
+
+
+.profile-menu a:hover {
+    background: #F3F4F6;
+}
+
+
+.profile-menu i {
+    width: 22px;
+    text-align: center;
+    color: #FFC107;
+}
+
+
+/*==================================================
+                MOBILE RESPONSIVE
+==================================================*/
+
+@media (max-width: 768px) {
+
+    body {
+        background: #F8F9FC;
+    }
+
+
+    .app-container {
+        max-width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+
+    .dashboard-header {
+        padding: 20px;
+        padding-bottom: 80px;
+        border-radius: 0 0 30px 30px;
+    }
+
+
+    /* Mobile Menu */
+
+    .menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .15);
+        color: #FFFFFF;
+        font-size: 20px;
+    }
+
+
+    /* Logo */
+
+    .logo span {
+        font-size: 16px;
+    }
+
+
+    /* Driver */
+
+    .driver-details h2 {
+        font-size: 28px;
+    }
+
+
+    .driver-details p {
+        font-size: 14px;
+    }
+
+
+    /* Action Buttons */
+
+    .action-buttons {
+        width: 92%;
+        grid-template-columns: repeat(2, 1fr);
+        margin: -50px auto 20px;
+        gap: 12px;
+    }
+
+
+    .action-buttons button {
+        padding: 18px 10px;
+    }
+
+
+    .action-buttons i {
+        font-size: 24px;
+    }
+
+
+    .action-buttons span {
+        font-size: 13px;
+    }
+
+
+    /* Emergency Types */
+
+    .emergency-types-section {
+        padding: 0 15px 20px;
+    }
+
+
+    .emergency-types-header h2 {
+        font-size: 20px;
+    }
+
+
+    .emergency-types-grid {
+        gap: 12px;
+    }
+
+
+    .emergency-type-card {
+        min-height: 130px;
+        padding: 18px 8px;
+        border-radius: 18px;
+    }
+
+
+    .emergency-type-card i {
+        font-size: 30px;
+    }
+
+
+    .emergency-type-card span {
+        font-size: 13px;
+    }
+
+
+    /* Live Tracking */
+
+    .live-tracking-card {
+        padding: 0 15px 20px;
+    }
+
+
+    .live-card {
+        padding: 18px;
+    }
+
+
+    .live-left {
+        width: 55px;
+        height: 55px;
+    }
+
+
+    .live-left i {
+        font-size: 24px;
+    }
+
+
+    .live-right h3 {
+        font-size: 18px;
+    }
+
+
+    .live-right p {
+        font-size: 13px;
+    }
+
+
+    /* Features */
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        margin-top: 25px;
+        padding: 0 15px;
+    }
+
+
+    .feature-card {
+        padding: 22px 10px;
+    }
+
+
+    .feature-card i {
+        font-size: 34px;
+    }
+
+
+    .feature-card span {
+        font-size: 18px;
+    }
+
+
+    /* Footer */
+
+    .dashboard-footer {
+        padding: 20px;
+    }
+
+
+    /*==================================================
+                    MOBILE SIDEBAR
+    ==================================================*/
+
+    .desktop-sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 280px;
+        height: 100vh;
+        background: #111827;
+        z-index: 9999;
+        transition: left .35s ease;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+
+    .desktop-sidebar.show {
+        left: 0;
+    }
+
+}
+
+
+/*==================================================
+                DESKTOP LAYOUT
+==================================================*/
+
+.desktop-layout {
+    display: block;
+}
+
+
+/*==================================================
+                DESKTOP SIDEBAR
+==================================================*/
+
+.desktop-sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*==================================================
+                DESKTOP 1200px+
+==================================================*/
+
+@media (min-width: 1200px) {
+
+    body {
+        background: #E9EEF5;
+        padding: 25px;
+    }
+
+
+    /* Desktop Layout */
+
+    .desktop-layout {
+        display: flex;
+        width: 100%;
+        max-width: 1600px;
+        gap: 25px;
+        align-items: flex-start;
+    }
+
+
+    /* Sidebar */
+
+    .desktop-sidebar {
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        min-width: 280px;
+        height: calc(100vh - 50px);
+        position: sticky;
+        top: 25px;
+        background: #111827;
+        border-radius: 28px;
+        padding: 30px 22px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+    }
+
+
+    /* Sidebar Logo */
+
+    .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #FFFFFF;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 45px;
+    }
+
+
+    .sidebar-logo i {
+        width: 55px;
+        height: 55px;
+        border-radius: 16px;
+        background: #FFC107;
+        color: #111827;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+    }
+
+
+    /* Sidebar Menu */
+
+    .desktop-sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 18px;
+        margin-bottom: 10px;
+        border-radius: 16px;
+        color: #E5E7EB;
+        font-size: 17px;
+        font-weight: 500;
+        transition: .30s;
+    }
+
+
+    .desktop-sidebar a i {
+        width: 24px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+
+    .desktop-sidebar a:hover {
+        background: rgba(255, 255, 255, .08);
+        color: #FFFFFF;
+    }
+
+
+    .desktop-sidebar a.active {
+        background: #FFC107;
+        color: #111827;
+        font-weight: 700;
+    }
+
+
+    /* Logout */
+
+    .desktop-sidebar a:last-child {
+        margin-top: auto;
+        background: #EF4444;
+        color: #FFFFFF;
+        justify-content: center;
+    }
+
+
+    .desktop-sidebar a:last-child:hover {
+        background: #DC2626;
+    }
+
+
+    /* App Container */
+
+    .app-container {
+        flex: 1;
+        max-width: none;
+        border-radius: 28px;
+        min-height: calc(100vh - 50px);
+    }
+
+
+    /* Action Buttons */
+
+    .action-buttons {
+        max-width: 800px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* Emergency Types */
+
+    .emergency-types-section {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+
+    .emergency-types-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+
+    /* Menu Button */
+
+    .menu-btn {
+        display: none;
+    }
+
+}
+
+
+/*==================================================
+                TABLET RESPONSIVE
+==================================================*/
+
+@media (min-width: 769px) and (max-width: 1199px) {
+
+    body {
+        background: #EEF2F7;
+        padding: 20px;
+    }
+
+
+    /* App */
+
+    .app-container {
+        max-width: 900px;
+        margin: auto;
+        border-radius: 25px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, .10);
+    }
+
+
+    /* Header */
+
+    .dashboard-header {
+        padding: 25px;
+        padding-bottom: 90px;
+    }
+
+
+    .logo span {
+        font-size: 20px;
+    }
+
+
+    .driver-details h2 {
+        font-size: 34px;
+    }
+
+
+    .driver-details p {
+        font-size: 15px;
+    }
+
+
+    /* Action Buttons */
+
+    .action-buttons {
+        width: 75%;
+        grid-template-columns: repeat(2, 1fr);
+        margin: -55px auto 25px;
+        gap: 18px;
+    }
+
+
+    .action-buttons button {
+        padding: 24px 16px;
+    }
+
+
+    .action-buttons i {
+        font-size: 30px;
+    }
+
+
+    .action-buttons span {
+        font-size: 15px;
+    }
+
+
+    /* Emergency Types */
+
+    .emergency-types-section {
+        padding: 0 20px 25px;
+    }
+
+
+    .emergency-types-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+
+    /* Live Tracking */
+
+    .live-tracking-card {
+        padding: 0 20px 25px;
+    }
+
+
+    .live-card {
+        padding: 22px;
+    }
+
+
+    .live-left {
+        width: 60px;
+        height: 60px;
+    }
+
+
+    .live-left i {
+        font-size: 28px;
+    }
+
+
+    .live-right h3 {
+        font-size: 21px;
+    }
+
+
+    .live-right p {
+        font-size: 15px;
+    }
+
+
+    /* Feature Grid */
+
+    .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        padding: 0 20px 30px;
+    }
+
+
+    .feature-card {
+        min-height: 140px;
+    }
+
+
+    .feature-card i {
+        font-size: 34px;
+    }
+
+
+    .feature-card span {
+        font-size: 15px;
+    }
+
+
+    /* Footer */
+
+    .dashboard-footer {
+        padding: 30px;
+    }
+
+}
+
+/*==================================================
+        FINAL EMERGENCY TYPES DESIGN
+        DESKTOP = 4 IN ONE ROW
+        MOBILE = 2 + 2
+==================================================*/
+
+.emergency-types-section {
+    width: 100%;
+    padding: 0 20px 32px;
+    margin: 0 auto;
+}
+
+.emergency-types-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px;
+}
+
+.emergency-types-header i {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #EF4444, #B91C1C);
+    font-size: 17px;
+    box-shadow: 0 8px 18px rgba(239, 68, 68, .22);
+}
+
+.emergency-types-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1F2937;
+    margin: 0;
+}
+
+.emergency-types-header p {
+    flex-basis: 100%;
+    width: 100%;
+    margin: 0;
+    color: #6B7280;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/*==================================================
+        EMERGENCY GRID
+==================================================*/
+
+.emergency-types-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100%;
+    align-items: stretch;
+}
+
+/*==================================================
+        EMERGENCY CARD
+==================================================*/
+
+.emergency-type-card {
+    width: 100% !important;
+    min-width: 0;
+    min-height: 205px;
+    padding: 25px 16px;
+    background: #FFFFFF;
+    border: 1px solid rgba(15, 23, 42, .06);
+    border-top: 5px solid transparent;
+    border-radius: 22px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, .09);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.emergency-type-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 38px rgba(15, 23, 42, .16);
+}
+
+.emergency-type-card:active {
+    transform: scale(.98);
+}
+
+.emergency-type-card i {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 0 0 4px;
+    border-radius: 18px;
+    font-size: 30px;
+    transition: transform .25s ease;
+}
+
+.emergency-type-card:hover i {
+    transform: scale(1.08);
+}
+
+.emergency-type-card span {
+    display: block;
+    color: #1F2937;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+    word-break: normal;
+}
+
+.emergency-type-card p {
+    margin: 0;
+    color: #64748B;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 240px;
+}
+
+/*==================================================
+        EMERGENCY COLORS
+==================================================*/
+
+.emergency-type-card.accident {
+    background: linear-gradient(135deg, #FFF5F5, #FFFFFF);
+    border-top-color: #EF4444;
+}
+
+.emergency-type-card.accident i {
+    color: #DC2626;
+    background: #FEE2E2;
+}
+
+.emergency-type-card.medical {
+    background: linear-gradient(135deg, #FFF1F2, #FFFFFF);
+    border-top-color: #E11D48;
+}
+
+.emergency-type-card.medical i {
+    color: #E11D48;
+    background: #FFE4E6;
+}
+
+.emergency-type-card.breakdown {
+    background: linear-gradient(135deg, #FFFBEB, #FFFFFF);
+    border-top-color: #F59E0B;
+}
+
+.emergency-type-card.breakdown i {
+    color: #D97706;
+    background: #FEF3C7;
+}
+
+.emergency-type-card.sos {
+    background: linear-gradient(135deg, #F5F3FF, #FFFFFF);
+    border-top-color: #7C3AED;
+}
+
+.emergency-type-card.sos i {
+    color: #7C3AED;
+    background: #EDE9FE;
+}
+
+/*==================================================
+        LARGE DESKTOP
+        1200px+
+        4 CARDS IN ONE ROW
+==================================================*/
+
+@media (min-width: 1200px) {
+    .emergency-types-section {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 35px 40px;
+    }
+
+    .emergency-types-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 22px !important;
+        width: 100%;
+    }
+
+    .emergency-type-card {
+        min-height: 220px;
+        padding: 28px 18px;
+    }
+
+    .emergency-type-card i {
+        width: 64px;
+        height: 64px;
+        font-size: 31px;
+    }
+
+    .emergency-type-card span {
+        font-size: 18px;
+    }
+
+    .emergency-type-card p {
+        font-size: 13px;
+        max-width: 250px;
+    }
+}
+
+/*==================================================
+        TABLET
+        769px - 1199px
+        2 CARDS IN EACH ROW
+==================================================*/
+
+@media (min-width: 769px) and (max-width: 1199px) {
+    .emergency-types-section {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 25px 35px;
+    }
+
+    .emergency-types-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+        width: 100%;
+    }
+
+    .emergency-type-card {
+        min-height: 200px;
+        padding: 24px 15px;
+    }
+
+    .emergency-type-card span {
+        font-size: 17px;
+    }
+
+    .emergency-type-card p {
+        font-size: 13px;
+    }
+}
+
+/*==================================================
+        MOBILE
+        768px AND BELOW
+        2 CARDS IN EACH ROW
+==================================================*/
+
+@media (max-width: 768px) {
+    .emergency-types-section {
+        width: 100%;
+        padding: 0 15px 25px;
+    }
+
+    .emergency-types-header {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .emergency-types-header i {
+        width: 31px;
+        height: 31px;
+        border-radius: 9px;
+        font-size: 15px;
+    }
+
+    .emergency-types-header h2 {
+        font-size: 20px;
+    }
+
+    .emergency-types-header p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .emergency-types-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        width: 100%;
+    }
+
+    .emergency-type-card {
+        width: 100% !important;
+        min-height: 160px;
+        padding: 18px 8px;
+        border-radius: 18px;
+        gap: 8px;
+    }
+
+    .emergency-type-card i {
+        width: 52px;
+        height: 52px;
+        border-radius: 15px;
+        font-size: 25px;
+    }
+
+    .emergency-type-card span {
+        font-size: 14px;
+        line-height: 1.3;
+    }
+
+    .emergency-type-card p {
+        font-size: 10px;
+        line-height: 1.4;
+        max-width: 145px;
+    }
+}
+
+/*==================================================
+        SMALL MOBILE
+        380px AND BELOW
+        STILL 2 CARDS PER ROW
+==================================================*/
+
+@media (max-width: 380px) {
+    .emergency-types-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .emergency-types-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+    }
+
+    .emergency-type-card {
+        min-height: 150px;
+        padding: 15px 5px;
+        border-radius: 16px;
+        gap: 7px;
+    }
+
+    .emergency-type-card i {
+        width: 46px;
+        height: 46px;
+        border-radius: 13px;
+        font-size: 22px;
+    }
+
+    .emergency-type-card span {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    .emergency-type-card p {
+        font-size: 9px;
+        line-height: 1.35;
+        max-width: 125px;
+    }
+}

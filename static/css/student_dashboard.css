@@ -177,43 +177,6 @@ body{
 }
 
 
-/*==================================================
-  NOTIFICATION BADGE
-==================================================*/
-
-.notification-btn::after{
-
-    content:"3";
-
-    position:absolute;
-
-    top:-4px;
-
-    right:-2px;
-
-    width:18px;
-
-    height:18px;
-
-    border-radius:50%;
-
-    background:#EF4444;
-
-    color:#fff;
-
-    font-size:10px;
-
-    font-weight:700;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    border:2px solid #1E293B;
-
-}
 
 /*==================================================
   LOGO
@@ -1425,3 +1388,425 @@ body{
 
 }
 
+/* ==========================================
+   REAL LIVE BUS STATUS
+========================================== */
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+/* ==========================================
+   STATUS DOT
+========================================== */
+
+.status-dot {
+
+    width: 14px;
+    height: 14px;
+
+    min-width: 14px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+}
+
+
+/* ==========================================
+   ONLINE
+========================================== */
+
+.status-dot.online {
+
+    background: #22C55E;
+
+    box-shadow:
+        0 0 0 5px rgba(34, 197, 94, 0.14);
+
+}
+
+
+/* ==========================================
+   MOVING
+========================================== */
+
+.status-dot.moving {
+
+    background: #22C55E;
+
+    box-shadow:
+        0 0 0 5px rgba(34, 197, 94, 0.14);
+
+}
+
+
+/* ==========================================
+   STOPPED
+========================================== */
+
+.status-dot.stopped {
+
+    background: #F59E0B;
+
+    box-shadow:
+        0 0 0 5px rgba(245, 158, 11, 0.14);
+
+}
+
+
+/* ==========================================
+   DELAYED
+========================================== */
+
+.status-dot.delayed {
+
+    background: #EF4444;
+
+    box-shadow:
+        0 0 0 5px rgba(239, 68, 68, 0.14);
+
+}
+
+
+/* ==========================================
+   OFFLINE
+========================================== */
+
+.status-dot.offline {
+
+    background: #94A3B8;
+
+    box-shadow:
+        0 0 0 5px rgba(148, 163, 184, 0.14);
+
+}
+
+
+/* ==========================================
+        SEAT AVAILABILITY
+========================================== */
+
+.seat-availability-section {
+
+    width: 100%;
+
+    margin: 25px 0;
+
+}
+
+
+.seat-availability-card {
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #edf0f5;
+
+}
+
+
+/* HEADER */
+
+.seat-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.seat-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 16px;
+
+    background: #e8f0ff;
+
+    color: #2563eb;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 24px;
+
+}
+
+
+.seat-header h2 {
+
+    margin: 0;
+
+    font-size: 21px;
+
+    color: #1e293b;
+
+}
+
+
+.seat-header p {
+
+    margin: 4px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+
+/* SEAT STATISTICS */
+
+.seat-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.seat-stat {
+
+    background: #f8fafc;
+
+    border-radius: 16px;
+
+    padding: 18px 10px;
+
+    text-align: center;
+
+}
+
+
+.seat-stat.available {
+
+    background: #ecfdf5;
+
+}
+
+
+.seat-stat.occupied {
+
+    background: #fff7ed;
+
+}
+
+
+.seat-number {
+
+    display: block;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: #1e293b;
+
+}
+
+
+.seat-stat.available .seat-number {
+
+    color: #16a34a;
+
+}
+
+
+.seat-stat.occupied .seat-number {
+
+    color: #ea580c;
+
+}
+
+
+.seat-label {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
+    color: #64748b;
+
+}
+
+
+/* PROGRESS */
+
+.seat-progress-container {
+
+    margin-top: 25px;
+
+}
+
+
+.seat-progress-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #475569;
+
+    margin-bottom: 10px;
+
+}
+
+
+.seat-progress-bar {
+
+    width: 100%;
+
+    height: 10px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.seat-progress-fill {
+
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #60a5fa
+    );
+
+    border-radius: 20px;
+
+    transition: width 0.5s ease;
+
+}
+
+
+/* STATUS MESSAGE */
+
+.seat-status-message {
+
+    margin-top: 20px;
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    background: #ecfdf5;
+
+    color: #15803d;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .seat-availability-card {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .seat-number {
+
+        font-size: 24px;
+
+    }
+
+
+    .seat-label {
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+
+.notification-btn {
+    position: relative;
+}
+
+
+.notification-count {
+
+    position: absolute;
+
+    top: -8px;
+
+    right: -8px;
+
+    min-width: 20px;
+
+    height: 20px;
+
+    padding: 0 5px;
+
+    border-radius: 50%;
+
+    background: #ff3b30;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}

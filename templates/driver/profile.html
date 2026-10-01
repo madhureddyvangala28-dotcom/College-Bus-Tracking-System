@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile | College Bus Tracking</title>
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Profile CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/driver/profile.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+                    MAIN PAGE
+===================================================== -->
+
+<div class="driver-page">
+
+
+    <!-- =================================================
+                        SIDEBAR
+    ================================================== -->
+
+    <aside class="driver-sidebar" id="driverSidebar">
+
+
+        <!-- Logo -->
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-bus"></i>
+
+            <span>College Bus</span>
+
+        </div>
+
+
+        <!-- Dashboard -->
+
+        <a href="{{ url_for('driver_dashboard') }}">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <!-- Live Tracking -->
+
+        <a href="{{ url_for('driver_live_tracking') }}">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>Live Tracking</span>
+
+        </a>
+
+
+        <!-- Students -->
+
+        <a href="{{ url_for('driver_students') }}">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>Students</span>
+
+        </a>
+
+
+        <!-- My Bus -->
+
+        <a href="{{ url_for('driver_my_bus') }}">
+
+            <i class="fa-solid fa-bus-simple"></i>
+
+            <span>My Bus</span>
+
+        </a>
+
+
+        <!-- Route Details -->
+
+        <a href="{{ url_for('driver_route_details') }}">
+
+            <i class="fa-solid fa-route"></i>
+
+            <span>Route Details</span>
+
+        </a>
+
+
+        <!-- Trip History -->
+
+        <a href="{{ url_for('driver_trip_history') }}">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>Trip History</span>
+
+        </a>
+
+
+        <!-- Notifications -->
+
+        <a href="{{ url_for('driver_notifications') }}">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span>Notifications</span>
+
+        </a>
+
+
+        <!-- Settings -->
+
+        <a href="{{ url_for('driver_settings') }}">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+        <!-- Profile -->
+
+        <a
+            href="{{ url_for('driver_profile') }}"
+            class="active"
+        >
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>My Profile</span>
+
+        </a>
+
+
+        <!-- Logout -->
+
+        <a href="{{ url_for('logout') }}">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+                    MAIN CONTENT
+    ================================================== -->
+
+    <main class="driver-main">
+
+
+        <!-- =================================================
+                        PAGE HEADER
+        ================================================== -->
+
+        <header class="profile-header">
+
+
+            <!-- Mobile Menu -->
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <!-- Header Title -->
+
+            <div class="header-title">
+
+
+                <div class="header-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>My Profile</h1>
+
+                    <p>
+                        View your driver information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Back -->
+
+            <a
+                href="{{ url_for('driver_dashboard') }}"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+                    PROFILE MAIN CARD
+        ================================================== -->
+
+        <section class="profile-card">
+
+
+            <!-- =================================================
+                        PROFILE TOP
+            ================================================== -->
+
+            <div class="profile-top">
+
+
+                <div class="profile-avatar">
+
+                    <img src="{{ url_for('static', filename='images/default-driver.png') }}" alt="Driver"
+                        class="profile-photo">
+
+                </div>
+
+
+                <div class="profile-main-info">
+
+                    <h2>
+                        {{ driver.driver_name }}
+                    </h2>
+
+                    <p>
+                        <i class="fa-solid fa-id-card"></i>
+
+                        Driver ID: {{ driver.id }}
+                    </p>
+
+
+                    <span class="status-badge
+                    {% if driver.status == 'On Trip' %}
+                        on-trip
+                    {% else %}
+                        available
+                    {% endif %}
+                    ">
+
+                        <span class="status-dot"></span>
+
+                        {{ driver.status }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                    DRIVER INFORMATION
+            ================================================== -->
+
+            <div class="profile-section">
+
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <div>
+
+                        <h3>Driver Information</h3>
+
+                        <p>
+                            Your registered driver details
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="details-grid">
+
+
+                    <!-- Driver Name -->
+
+                    <div class="detail-box">
+
+                        <div class="detail-icon yellow">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Driver Name</span>
+
+                            <strong>
+                                {{ driver.driver_name }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Driver ID -->
+
+                    <div class="detail-box">
+
+                        <div class="detail-icon dark">
+
+                            <i class="fa-solid fa-id-card"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Driver ID</span>
+
+                            <strong>
+                                {{ driver.id }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="detail-box">
+
+                        <div class="detail-icon green">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Phone</span>
+
+                            <strong>
+
+                                {% if driver.phone %}
+
+                                    {{ driver.phone }}
+
+                                {% else %}
+
+                                    Not available
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="detail-box">
+
+                        <div class="detail-icon
+                        {% if driver.status == 'On Trip' %}
+                            red
+                        {% else %}
+                            green
+                        {% endif %}
+                        ">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Status</span>
+
+                            <strong>
+                                {{ driver.status }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                        ASSIGNMENT INFORMATION
+            ================================================== -->
+
+            <div class="profile-section assignment-section">
+
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                    <div>
+
+                        <h3>Assignment Information</h3>
+
+                        <p>
+                            Your current bus and route
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="assignment-grid">
+
+
+                    <!-- Assigned Bus -->
+
+                    <div class="assignment-card bus-assignment">
+
+                        <div class="assignment-icon">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Assigned Bus</span>
+
+                            <strong>
+
+                                {% if bus %}
+
+                                    {{ bus.bus_number }}
+
+                                {% else %}
+
+                                    Not assigned
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Assigned Route -->
+
+                    <div class="assignment-card route-assignment">
+
+                        <div class="assignment-icon">
+
+                            <i class="fa-solid fa-route"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>Assigned Route</span>
+
+                            <strong>
+
+                                {% if route %}
+
+                                    {{ route.route_name }}
+
+                                {% else %}
+
+                                    Not assigned
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                        FOOTER
+        ================================================== -->
+
+        <footer class="page-footer">
+
+            <span>
+                College Bus Tracking System
+            </span>
+
+            <span>
+                Version 1.0
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+                        JAVASCRIPT
+===================================================== -->
+
+<script src="{{ url_for(
+    'static',
+    filename='js/driver/profile.js'
+) }}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,309 @@
+/*==========================================================
+                    SIDEBAR
+==========================================================*/
+
+.driver-sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:280px;
+
+    height:100vh;
+
+    background:#0F172A;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    z-index:1000;
+
+    overflow:hidden;
+
+}
+
+
+/*==========================================================
+                    HEADER
+==========================================================*/
+
+.sidebar-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:25px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+
+.sidebar-logo{
+
+    width:60px;
+
+    height:60px;
+
+    background:#FFC107;
+
+    color:#111827;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    flex-shrink:0;
+
+}
+
+
+.sidebar-title h2{
+
+    color:#FFFFFF;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+
+.sidebar-title span{
+
+    color:#94A3B8;
+
+    font-size:14px;
+
+}
+
+
+/*==========================================================
+                    MENU
+==========================================================*/
+
+.sidebar-menu{
+
+    flex:1;
+
+    padding:25px 18px;
+
+    overflow-y:auto;
+
+}
+
+
+.sidebar-menu ul{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+
+/*==========================================================
+                    MENU LINK
+==========================================================*/
+
+.sidebar-menu a{
+
+    height:58px;
+
+    padding:0 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    border-radius:16px;
+
+    color:#CBD5E1;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:.30s;
+
+}
+
+
+.sidebar-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+
+/*==========================================================
+                    ACTIVE MENU
+==========================================================*/
+
+.sidebar-menu a.active{
+
+    background:#FFC107;
+
+    color:#111827;
+
+    font-weight:600;
+
+    box-shadow:0 10px 25px rgba(255,193,7,.30);
+
+}
+
+
+.sidebar-menu a.active i{
+
+    color:#111827;
+
+}
+
+
+/*==========================================================
+                    HOVER
+==========================================================*/
+
+.sidebar-menu a:hover{
+
+    background:rgba(255,255,255,.08);
+
+    color:#FFFFFF;
+
+    transform:translateX(5px);
+
+}
+
+
+.sidebar-menu a.active:hover{
+
+    background:#FFC107;
+
+    color:#111827;
+
+}
+
+
+/*==========================================================
+                    BADGE
+==========================================================*/
+
+.menu-badge{
+
+    margin-left:auto;
+
+    min-width:22px;
+
+    height:22px;
+
+    padding:0 6px;
+
+    background:#EF4444;
+
+    color:#FFFFFF;
+
+    border-radius:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+/*==========================================================
+                    FOOTER
+==========================================================*/
+
+.sidebar-footer{
+
+    padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+
+/*==========================================================
+                    LOGOUT
+==========================================================*/
+
+.logout-btn{
+
+    height:56px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    background:#EF4444;
+
+    color:#FFFFFF;
+
+    border-radius:16px;
+
+    font-weight:600;
+
+    transition:.30s;
+
+}
+
+
+.logout-btn:hover{
+
+    background:#DC2626;
+
+    transform:translateY(-2px);
+
+}
+
+/*==========================================================
+                SIDEBAR TOGGLE
+==========================================================*/
+
+.sidebar{
+
+    transition:all .35s ease;
+
+}
+
+.sidebar.active{
+
+    left:0;
+
+}

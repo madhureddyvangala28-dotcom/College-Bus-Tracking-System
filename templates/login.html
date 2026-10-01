@@ -56,6 +56,8 @@
 
                 <div class="role-selection">
 
+                    <!-- Student -->
+
                     <div class="role-card active" onclick="selectRole('student')" id="studentCard">
 
                         🎓
@@ -63,6 +65,20 @@
                         <span>Student</span>
 
                     </div>
+
+
+                    <!-- Parent -->
+
+                    <div class="role-card" onclick="selectRole('parent')" id="parentCard">
+
+                        👨‍👩‍👧
+
+                        <span>Parent</span>
+
+                    </div>
+
+
+                    <!-- Driver -->
 
                     <div class="role-card" onclick="selectRole('driver')" id="driverCard">
 
@@ -110,7 +126,7 @@
 
                         </label>
 
-                        <a href="/forgot_password">
+                        <a href="{{ url_for('forgot_password') }}">
 
                             Forgot Password?
 
@@ -150,30 +166,59 @@
             document.getElementById("role").value = role;
 
             let student = document.getElementById("studentCard");
-
+            let parent = document.getElementById("parentCard");
             let driver = document.getElementById("driverCard");
 
             let username = document.getElementById("username");
 
-            if (role == "student") {
+
+            // Remove active class from all
+
+            student.classList.remove("active");
+            parent.classList.remove("active");
+            driver.classList.remove("active");
+
+
+            // ==========================================
+            // STUDENT
+            // ==========================================
+
+            if (role === "student") {
 
                 student.classList.add("active");
-                driver.classList.remove("active");
 
                 username.placeholder = "Enter Roll Number";
 
             }
 
-            else {
+
+            // ==========================================
+            // PARENT
+            // ==========================================
+
+            else if (role === "parent") {
+
+                parent.classList.add("active");
+
+                username.placeholder = "Enter Parent Username";
+
+            }
+
+
+            // ==========================================
+            // DRIVER
+            // ==========================================
+
+            else if (role === "driver") {
 
                 driver.classList.add("active");
-                student.classList.remove("active");
 
-                username.placeholder = "Enter Driver ID";
+                username.placeholder = "Enter License Number";
 
             }
 
         }
+
 
         function togglePassword() {
 

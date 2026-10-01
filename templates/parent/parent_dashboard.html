@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parent Dashboard | College Bus</title>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/parent/parent_dashboard.css') }}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+                        TOP NAVBAR
+    ====================================================== -->
+
+    <header class="top-navbar">
+
+        <!-- ================= LOGO ================= -->
+
+        <a href="{{ url_for('parent_dashboard') }}" class="brand">
+
+            <div class="brand-icon">
+                <i class="fas fa-bus"></i>
+            </div>
+
+            <div class="brand-text">
+
+                <h2>College Bus</h2>
+
+                <span>Parent Portal</span>
+
+            </div>
+
+        </a>
+
+
+        <!-- ================= DESKTOP NAV ================= -->
+
+        <nav class="desktop-nav">
+
+            <!-- Dashboard -->
+
+            <a href="{{ url_for('parent_dashboard') }}"
+                class="nav-link {% if active_page == 'dashboard' %}active{% endif %}">
+
+                <i class="fas fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <!-- Live Tracking -->
+
+            <a href="{{ url_for('parent_live_tracking') }}"
+                class="nav-link {% if active_page == 'live_tracking' or active_page == 'tracking' %}active{% endif %}">
+
+                <i class="fas fa-location-dot"></i>
+
+                <span>Live Tracking</span>
+
+            </a>
+
+
+            <!-- Notifications -->
+
+            <a href="{{ url_for('parent_notifications') }}"
+                class="nav-link {% if active_page == 'notifications' %}active{% endif %}">
+
+                <i class="fas fa-bell"></i>
+
+                <span>Notifications</span>
+
+            </a>
+
+
+            <!-- Profile -->
+
+            <a href="/parent/profile" class="nav-link {% if active_page == 'profile' %}active{% endif %}">
+
+                <i class="fas fa-user"></i>
+
+                <span>Profile</span>
+            </a>
+
+
+            <!-- Logout -->
+
+            <a href="/logout" class="nav-link logout-link">
+
+                <i class="fas fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- ================= RIGHT NAVIGATION ================= -->
+
+        <div class="nav-actions">
+
+
+            <!-- Notification Button -->
+
+            <a href="{{ url_for('parent_notifications') }}" class="notification-btn" aria-label="Notifications">
+
+                <i class="fas fa-bell"></i>
+
+                {% if unread_count is defined and unread_count > 0 %}
+
+                <span class="notification-badge">
+                    {{ unread_count }}
+                </span>
+
+                {% else %}
+
+                <span class="notification-dot"></span>
+
+                {% endif %}
+
+            </a>
+
+
+            <!-- Parent Information -->
+
+            <div class="parent-info">
+
+                <div class="parent-avatar">
+
+                    {% if parent_data and parent_data.parent_name %}
+
+                    {{ parent_data.parent_name[0]|upper }}
+
+                    {% else %}
+
+                    P
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="parent-details">
+
+                    <strong>
+
+                        {% if parent_data and parent_data.parent_name %}
+
+                        {{ parent_data.parent_name }}
+
+                        {% else %}
+
+                        Parent
+
+                        {% endif %}
+
+                    </strong>
+
+                    <span>Parent</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Mobile Menu -->
+
+            <button class="mobile-menu-btn" id="mobileMenuButton" type="button" aria-label="Open Menu">
+
+                <i class="fas fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+                        MOBILE MENU
+    ====================================================== -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+
+        <a href="{{ url_for('parent_dashboard') }}"
+            class="mobile-nav-link {% if active_page == 'dashboard' %}active{% endif %}">
+
+            <i class="fas fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <a href="{{ url_for('parent_live_tracking') }}"
+            class="mobile-nav-link {% if active_page == 'live_tracking' or active_page == 'tracking' %}active{% endif %}">
+
+            <i class="fas fa-location-dot"></i>
+
+            <span>Live Tracking</span>
+
+        </a>
+
+
+        <a href="{{ url_for('parent_notifications') }}"
+            class="mobile-nav-link {% if active_page == 'notifications' %}active{% endif %}">
+
+            <i class="fas fa-bell"></i>
+
+            <span>Notifications</span>
+
+        </a>
+
+
+        <a href="/parent/profile" class="nav-link {% if active_page == 'profile' %}active{% endif %}">
+
+            <i class="fas fa-user"></i>
+
+            <span>Profile</span>
+
+        </a>
+
+
+        <a href="/logout" class="mobile-nav-link logout-mobile">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+                        MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+                        WELCOME SECTION
+        ================================================== -->
+
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+
+
+                <div class="welcome-left">
+
+
+                    <span class="welcome-small">
+
+                        <i class="fas fa-hand"></i>
+
+                        Welcome Back
+
+                    </span>
+
+
+                    <h1>
+
+                        Hello,
+
+                        {% if parent_data and parent_data.parent_name %}
+
+                        {{ parent_data.parent_name }}
+
+                        {% else %}
+
+                        Parent
+
+                        {% endif %}
+
+                        👋
+
+                    </h1>
+
+
+                    <p>
+
+                        Track your child's bus and stay updated with
+                        the latest journey information.
+
+                    </p>
+
+                </div>
+
+
+                <div class="date-box">
+
+                    <i class="fas fa-calendar-days"></i>
+
+                    <span id="currentDate"></span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+                        CHILD INFORMATION
+        ================================================== -->
+
+        <section class="section-header">
+
+            <div>
+
+                <h2>
+
+                    <i class="fas fa-child"></i>
+
+                    Child Information
+
+                </h2>
+
+                <p>
+                    Your registered student details.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+                        CHILD CARD
+        ================================================== -->
+
+        <section class="child-card">
+
+
+            <div class="child-profile">
+
+
+                <!-- Student Image -->
+
+                <div class="student-avatar">
+
+                    {% if parent_data and parent_data.profile_image %}
+
+                    <img src="{{ url_for('static', filename='images/students/' ~ parent_data.profile_image) }}"
+                        alt="{{ parent_data.student_name }}" class="student-profile-image">
+
+                    {% else %}
+
+                    <div class="student-initial">
+
+                        {{ parent_data.student_name[0]|upper
+                        if parent_data and parent_data.student_name
+                        else 'S' }}
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- Student Details -->
+
+                <div class="child-details">
+
+
+                    <h2>
+
+                        {% if parent_data and parent_data.student_name %}
+
+                        {{ parent_data.student_name }}
+
+                        {% else %}
+
+                        Student Name
+
+                        {% endif %}
+
+                    </h2>
+
+
+                    <p>
+
+                        <i class="fas fa-id-card"></i>
+
+                        {% if parent_data and parent_data.roll_number %}
+
+                        {{ parent_data.roll_number }}
+
+                        {% else %}
+
+                        Roll Number Not Available
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <p>
+
+                        <i class="fas fa-phone"></i>
+
+                        {% if parent_data and parent_data.phone %}
+
+                        {{ parent_data.phone }}
+
+                        {% else %}
+
+                        Phone Not Available
+
+                        {% endif %}
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Assigned Bus -->
+
+            <div class="child-status">
+
+                <span class="status-label">
+
+                    Assigned Bus
+
+                </span>
+
+
+                <strong>
+
+                    {% if bus_status and bus_status.bus_number %}
+
+                    {{ bus_status.bus_number }}
+
+                    {% else %}
+
+                    Not Assigned
+
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                        LIVE BUS STATUS
+        ================================================== -->
+
+        <section class="section-header bus-status-header">
+
+
+            <div>
+
+                <h2>
+
+                    <i class="fas fa-bus"></i>
+
+                    Live Bus Status
+
+                </h2>
+
+                <p>
+                    Real-time information about your child's bus.
+                </p>
+
+            </div>
+
+
+            <a href="{{ url_for('parent_live_tracking') }}" class="track-btn">
+
+                <i class="fas fa-location-crosshairs"></i>
+
+                <span>Track Live</span>
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                        STATUS GRID
+        ================================================== -->
+
+        <section class="status-grid">
+
+
+            <!-- Bus Number -->
+
+            <div class="status-card">
+
+                <div class="status-icon bus-icon">
+
+                    <i class="fas fa-bus"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Bus Number</span>
+
+                    <h3>
+
+                        {% if bus_status and bus_status.bus_number %}
+
+                        {{ bus_status.bus_number }}
+
+                        {% else %}
+
+                        Not Available
+
+                        {% endif %}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Route -->
+
+            <div class="status-card">
+
+                <div class="status-icon route-icon">
+
+                    <i class="fas fa-route"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Route</span>
+
+                    <h3>
+
+                        {% if bus_status and bus_status.route_name %}
+
+                        {{ bus_status.route_name }}
+
+                        {% else %}
+
+                        Not Available
+
+                        {% endif %}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Current Stop -->
+
+            <div class="status-card">
+
+                <div class="status-icon stop-icon">
+
+                    <i class="fas fa-location-dot"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Current Stop</span>
+
+                    <h3>
+
+                        {% if bus_status and bus_status.current_stop %}
+
+                        {{ bus_status.current_stop }}
+
+                        {% else %}
+
+                        Not Available
+
+                        {% endif %}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Trip Status -->
+
+            <div class="status-card">
+
+                <div class="status-icon status-icon-main">
+
+                    <i class="fas fa-circle-info"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Trip Status</span>
+
+                    <h3>
+
+                        {% if bus_status and bus_status.status %}
+
+                        {{ bus_status.status }}
+
+                        {% else %}
+
+                        Offline
+
+                        {% endif %}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                        JOURNEY INFORMATION
+        ================================================== -->
+
+        <section class="journey-section">
+
+
+            <!-- ETA -->
+
+            <div class="journey-card">
+
+                <div class="journey-icon eta-icon">
+
+                    <i class="fas fa-clock"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Estimated Arrival</span>
+
+                    <h2>
+
+                        {% if bus_status and bus_status.eta %}
+
+                        {{ bus_status.eta }}
+
+                        {% else %}
+
+                        Not Available
+
+                        {% endif %}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Speed -->
+
+            <div class="journey-card">
+
+                <div class="journey-icon speed-icon">
+
+                    <i class="fas fa-gauge-high"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Current Speed</span>
+
+                    <h2>
+
+                        {% if bus_status and bus_status.speed is not none %}
+
+                        {{ bus_status.speed }}
+
+                        {% else %}
+
+                        0
+
+                        {% endif %}
+
+                        <small>km/h</small>
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Updated -->
+
+            <div class="journey-card">
+
+                <div class="journey-icon update-icon">
+
+                    <i class="fas fa-clock-rotate-left"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>Last Updated</span>
+
+                    <h2>
+
+                        {% if bus_status and bus_status.last_updated %}
+
+                        {{ bus_status.last_updated }}
+
+                        {% else %}
+
+                        No Data
+
+                        {% endif %}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                        QUICK ACTIONS
+        ================================================== -->
+
+        <section class="quick-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+
+                        <i class="fas fa-bolt"></i>
+
+                        Quick Actions
+
+                    </h2>
+
+                    <p>
+                        Access important parent services.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions-grid">
+
+
+                <a href="{{ url_for('parent_live_tracking') }}" class="quick-action-card">
+
+                    <div class="quick-icon">
+
+                        <i class="fas fa-location-dot"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>Live Tracking</h3>
+
+                        <p>
+                            Track your child's bus in real time.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fas fa-arrow-right action-arrow"></i>
+
+                </a>
+
+
+
+                <a href="{{ url_for('parent_notifications') }}" class="quick-action-card">
+
+                    <div class="quick-icon notification-quick-icon">
+
+                        <i class="fas fa-bell"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>Notifications</h3>
+
+                        <p>
+                            View important bus updates.
+                        </p>
+
+                    </div>
+
+
+                    <i class="fas fa-arrow-right action-arrow"></i>
+
+                </a>
+
+
+
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                        SAFETY CARD
+        ================================================== -->
+
+        <section class="safety-card">
+
+
+            <div class="safety-icon">
+
+                <i class="fas fa-shield-heart"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Child Safety Monitoring</h3>
+
+                <p>
+
+                    You can monitor your child's assigned bus and
+                    receive important journey updates.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+                    MOBILE BOTTOM NAVIGATION
+    ====================================================== -->
+
+    <nav class="bottom-navigation">
+
+
+        <a href="{{ url_for('parent_dashboard') }}" class="bottom-nav-item active">
+
+            <i class="fas fa-house"></i>
+
+            <span>Home</span>
+
+        </a>
+
+
+        <a href="{{ url_for('parent_live_tracking') }}" class="bottom-nav-item">
+
+            <i class="fas fa-location-dot"></i>
+
+            <span>Track</span>
+
+        </a>
+
+
+        <a href="{{ url_for('parent_notifications') }}" class="bottom-nav-item">
+
+            <i class="fas fa-bell"></i>
+
+            <span>Alerts</span>
+
+        </a>
+
+
+        <a href="/parent/profile" class="bottom-nav-item">
+
+            <i class="fas fa-user"></i>
+
+            <span>Profile</span>
+
+        </a>
+
+
+    </nav>
+
+
+
+    <!-- =====================================================
+                        JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            /* =====================================
+                    MOBILE MENU
+            ====================================== */
+
+            const menuButton =
+                document.getElementById("mobileMenuButton");
+
+            const mobileMenu =
+                document.getElementById("mobileMenu");
+
+
+            if (menuButton && mobileMenu) {
+
+                menuButton.addEventListener("click", function () {
+
+                    mobileMenu.classList.toggle("show");
+
+                    const icon =
+                        menuButton.querySelector("i");
+
+
+                    if (mobileMenu.classList.contains("show")) {
+
+                        icon.classList.remove("fa-bars");
+
+                        icon.classList.add("fa-xmark");
+
+                    } else {
+
+                        icon.classList.remove("fa-xmark");
+
+                        icon.classList.add("fa-bars");
+
+                    }
+
+                });
+
+            }
+
+
+
+            /* =====================================
+                    CURRENT DATE
+            ====================================== */
+
+            const dateElement =
+                document.getElementById("currentDate");
+
+
+            if (dateElement) {
+
+                const today = new Date();
+
+
+                const options = {
+
+                    weekday: "long",
+
+                    year: "numeric",
+
+                    month: "long",
+
+                    day: "numeric"
+
+                };
+
+
+                dateElement.textContent =
+                    today.toLocaleDateString(
+                        "en-US",
+                        options
+                    );
+
+            }
+
+
+        });
+
+
+    </script>
+    <script type="module" src="{{ url_for('static', filename='js/parent-firebase-messaging.js') }}">
+    </script>
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                setTimeout(
+                    function () {
+
+                        if (
+                            window.requestParentNotificationPermission
+                        ) {
+
+                            window.requestParentNotificationPermission();
+
+                        }
+
+                    },
+                    1000
+                );
+
+            }
+        );
+
+    </script>
+</body>
+
+</html>

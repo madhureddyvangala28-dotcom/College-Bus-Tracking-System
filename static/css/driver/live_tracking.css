@@ -1,0 +1,1147 @@
+/*==================================================
+                GOOGLE FONT
+==================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*==================================================
+                RESET
+==================================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+    background:#F4F7FC;
+
+    color:#1F2937;
+
+}
+
+/*==================================================
+                CONTAINER
+==================================================*/
+
+.tracking-container{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+}
+
+/*==================================================
+                HEADER
+==================================================*/
+
+.tracking-header{
+
+    background:#1C2438;
+
+    color:#FFFFFF;
+
+    padding:25px 40px;
+
+    border-radius:0 0 30px 30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.header-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.header-title i{
+
+    color:#FFC107;
+
+    font-size:28px;
+
+}
+
+.header-title span{
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+.back-btn{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.10);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#FFFFFF;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#FFC107;
+
+    color:#1C2438;
+
+}
+
+.back-btn i{
+
+    font-size:22px;
+
+}
+
+/*==================================================
+                GPS STATUS
+==================================================*/
+
+.gps-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+.dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+    50%{
+
+        transform:scale(1.4);
+
+        opacity:.4;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/*==================================================
+                MAP
+==================================================*/
+
+.map-section{
+
+    padding:30px;
+
+}
+
+#map{
+
+    width:100%;
+
+    height:520px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+
+}
+
+/*==================================================
+                DRIVER INFO
+==================================================*/
+
+.driver-info{
+
+    padding:0 30px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.info-card{
+
+    background:#FFFFFF;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    text-align:center;
+
+}
+
+.info-card small{
+
+    color:#7C8597;
+
+    font-size:14px;
+
+}
+
+.info-card h3{
+
+    margin-top:10px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.status-dot{
+
+    width:12px;
+
+    height:12px;
+
+    display:inline-block;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    margin-right:8px;
+
+}
+
+/*==================================================
+                LOCATION
+==================================================*/
+
+.location-details{
+
+    padding:30px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.location-box{
+
+    background:#FFFFFF;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.location-box i{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:16px;
+
+    background:#FFF6D9;
+
+    color:#FFC107;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+
+}
+
+.location-box small{
+
+    color:#8A93A5;
+
+    font-size:14px;
+
+}
+
+.location-box h4{
+
+    margin-top:5px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+/*==================================================
+                BUTTONS
+==================================================*/
+
+.tracking-actions{
+
+    padding:0 30px 40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.tracking-actions button{
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    color:#FFFFFF;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    transition:.3s;
+
+}
+
+.start-btn{
+
+    background:#16A34A;
+
+}
+
+.stop-btn{
+
+    background:#EF4444;
+
+}
+
+.center-btn{
+
+    background:#F59E0B;
+
+}
+
+.tracking-actions button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 25px rgba(0,0,0,.18);
+
+}
+
+/*==================================================
+                FOOTER
+==================================================*/
+
+.tracking-footer{
+
+    padding:25px;
+
+    text-align:center;
+
+    color:#6B7280;
+
+    font-size:15px;
+
+}
+
+/*==================================================
+                MOBILE RESPONSIVE
+==================================================*/
+
+@media (max-width:768px){
+
+    .tracking-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        padding:20px;
+
+        border-radius:0 0 25px 25px;
+
+    }
+
+    .header-title span{
+
+        font-size:22px;
+
+    }
+
+    .gps-status{
+
+        font-size:14px;
+
+    }
+
+    .map-section{
+
+        padding:15px;
+
+    }
+
+    #map{
+
+        height:320px;
+
+        border-radius:18px;
+
+    }
+
+    .driver-info{
+
+        grid-template-columns:1fr;
+
+        padding:0 15px;
+
+        gap:15px;
+
+    }
+
+    .info-card{
+
+        padding:20px;
+
+    }
+
+    .info-card h3{
+
+        font-size:20px;
+
+    }
+
+    .location-details{
+
+        grid-template-columns:1fr;
+
+        padding:20px 15px;
+
+        gap:15px;
+
+    }
+
+    .location-box{
+
+        padding:18px;
+
+    }
+
+    .location-box i{
+
+        width:50px;
+
+        height:50px;
+
+        font-size:20px;
+
+    }
+
+    .tracking-actions{
+
+        grid-template-columns:1fr;
+
+        padding:0 15px 30px;
+
+        gap:15px;
+
+    }
+
+    .tracking-actions button{
+
+        padding:18px;
+
+        font-size:16px;
+
+    }
+
+}
+
+/*==================================================
+                TABLET RESPONSIVE
+==================================================*/
+
+@media (min-width:769px) and (max-width:1199px){
+
+    .tracking-header{
+
+        padding:25px;
+
+    }
+
+    .header-title span{
+
+        font-size:26px;
+
+    }
+
+    #map{
+
+        height:420px;
+
+    }
+
+    .driver-info{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .location-details{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .tracking-actions{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+
+
+
+/*==================================================
+        DRIVER LIVE TRACKING V2 LAYOUT
+==================================================*/
+
+.tracking-main{
+
+    display:flex;
+
+    gap:25px;
+
+    padding:30px;
+
+    align-items:flex-start;
+
+}
+
+/*==================================================
+        LEFT PANEL
+==================================================*/
+
+.left-panel{
+
+    width:38%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/*==================================================
+        RIGHT PANEL
+==================================================*/
+
+.right-panel{
+
+    width:62%;
+
+    position:sticky;
+
+    top:20px;
+
+}
+
+/*==================================================
+        PANEL CARD
+==================================================*/
+
+.panel-card{
+
+    background:#FFFFFF;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+/*==================================================
+        PANEL TITLE
+==================================================*/
+
+.panel-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#1C2438;
+
+    margin-bottom:20px;
+
+}
+
+.panel-title i{
+
+    color:#2563EB;
+
+    font-size:22px;
+
+}
+
+/*==================================================
+        DRIVER INFO
+==================================================*/
+
+.driver-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    padding:0;
+
+}
+
+.info-card{
+
+    padding:18px;
+
+}
+
+.info-card h3{
+
+    font-size:20px;
+
+}
+
+/*==================================================
+        LIVE INFORMATION
+==================================================*/
+
+.location-details{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    padding:0;
+
+}
+
+.location-box{
+
+    padding:18px;
+
+}
+
+.location-box i{
+
+    width:55px;
+
+    height:55px;
+
+}
+/*==================================================
+        BUTTONS
+==================================================*/
+
+.tracking-actions{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    padding:0;
+
+}
+
+.tracking-actions button{
+
+    height:58px;
+
+    font-size:17px;
+
+    border-radius:14px;
+
+}
+
+.emergency-btn{
+
+    background:#DC2626;
+
+    color:#FFFFFF;
+
+}
+/*==================================================
+        MAP
+==================================================*/
+
+.map-section{
+
+    padding:0;
+
+}
+
+#map{
+
+    height:700px;
+
+    border-radius:20px;
+
+}
+
+/*==================================================
+        RESPONSIVE
+==================================================*/
+
+@media(max-width:992px){
+
+.tracking-main{
+
+    flex-direction:column;
+
+}
+
+.left-panel{
+
+    width:100%;
+
+}
+
+.right-panel{
+
+    width:100%;
+
+    position:relative;
+
+    top:0;
+
+}
+
+#map{
+
+    height:400px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.driver-info{
+
+    grid-template-columns:1fr;
+
+}
+
+.location-details{
+
+    grid-template-columns:1fr;
+
+}
+
+.tracking-actions{
+
+    grid-template-columns:1fr;
+
+}
+
+#map{
+
+    height:320px;
+
+}
+
+}
+
+
+/*==========================================
+        ROUTE STOPS
+==========================================*/
+
+.route-stops{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    margin-top:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.section-title{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    margin-bottom:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.stop-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.stop-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.stop-icon{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    background:#f59e0b;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+}
+
+.stop-details h4{
+
+    margin:0;
+
+    font-size:18px;
+
+    color:#1e293b;
+
+}
+
+.stop-details small{
+
+    color:#64748b;
+
+}
+
+.stop-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #ececec;
+
+    transition:.3s;
+
+}
+
+.stop-item:hover{
+
+    transform:translateX(5px);
+
+}
+
+.stop-icon{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:#f8fafc;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+
+}
+
+/*==========================================
+        ROUTE PROGRESS
+==========================================*/
+
+.progress-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin:25px 0;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:14px;
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:18px 0 10px;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:linear-gradient(90deg,#16a34a,#22c55e);
+
+    border-radius:20px;
+
+    transition:.5s;
+
+}
+
+.progress-percent{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#16a34a;
+
+    margin-bottom:20px;
+
+}
+
+.progress-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.progress-grid div{
+
+    background:#f8fafc;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+.progress-grid small{
+
+    color:#64748b;
+
+}
+
+.progress-grid h4{
+
+    margin-top:8px;
+
+    color:#0f172a;
+
+}
+
+/*==========================================
+        LIVE ROUTE INFORMATION
+==========================================*/
+
+.live-route-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin:25px 0;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.route-info-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.route-info-box{
+
+    background:#f8fafc;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    border-left:5px solid #0ea5e9;
+
+}
+
+.route-info-box small{
+
+    color:#64748b;
+
+}
+
+.route-info-box h3{
+
+    margin-top:10px;
+
+    color:#0f172a;
+
+}
