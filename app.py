@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 import mysql.connector
 import os
+import json
 import random
 import smtplib
 import uuid
@@ -22,9 +23,9 @@ from argon2.exceptions import VerifyMismatchError
 from datetime import datetime, timedelta
 
 
-# ==========================================
+# ================================
 # FIREBASE ADMIN INITIALIZATION
-# ==========================================
+# ================================
 
 FIREBASE_SERVICE_ACCOUNT = os.path.join(
     os.path.dirname(__file__),
@@ -32,16 +33,35 @@ FIREBASE_SERVICE_ACCOUNT = os.path.join(
     "firebase-service-account.json"
 )
 
+FIREBASE_SERVICE_ACCOUNT_JSON = os.getenv(
+    "FIREBASE_SERVICE_ACCOUNT_JSON"
+)
+
 if not firebase_admin._apps:
 
-    cred = credentials.Certificate(
-        FIREBASE_SERVICE_ACCOUNT
-    )
+    if FIREBASE_SERVICE_ACCOUNT_JSON:
+        # Railway / production
+        firebase_credentials = json.loads(
+            FIREBASE_SERVICE_ACCOUNT_JSON
+        )
+
+        cred = credentials.Certificate(
+            firebase_credentials
+        )
+
+        print("Firebase credentials loaded from environment variable")
+
+    else:
+        # Local development
+        cred = credentials.Certificate(
+            FIREBASE_SERVICE_ACCOUNT
+        )
+
+        print("Firebase credentials loaded from local JSON file")
 
     firebase_admin.initialize_app(cred)
 
     print("Firebase Admin SDK initialized successfully")
-    
 # ==========================================
 # SEND FIREBASE PUSH NOTIFICATION
 # ==========================================
