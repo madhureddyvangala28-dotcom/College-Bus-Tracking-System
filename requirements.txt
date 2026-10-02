@@ -162,3 +162,4 @@ websocket-client==1.9.0
 Werkzeug==3.1.8
 xgboost==3.2.0
 yarl==1.24.5
+gunicorn==26.2.0
