@@ -655,6 +655,7 @@ def get_db_connection():
 
     return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
+        port=int(os.getenv("DB_PORT")),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME")
@@ -860,6 +861,7 @@ def add_student():
                 routes=routes,
                 active_page="students"
             )
+        password_hash = ph.hash(password)
 
         # ----------------------------
         # Duplicate Roll Number
@@ -957,7 +959,7 @@ def add_student():
             roll_number,
             phone,
             route_id,
-            password,
+            password_hash,
             filename
         ))
 
@@ -1043,6 +1045,7 @@ def edit_student(id):
         route_id = request.form["route_id"]
 
         password = request.form["password"].strip()
+        password_hash = ph.hash(password)
 
         # ----------------------------
         # Validation
@@ -1186,7 +1189,9 @@ def edit_student(id):
 
         if password == "":
 
-            password = student["password"]
+            password_hash = student["password"]
+        else:
+            password_hash = ph.hash(password)
 
         # ----------------------------
         # Update Database
@@ -1223,7 +1228,7 @@ def edit_student(id):
 
             route_id,
 
-            password,
+            password_hash,
 
             filename,
 
@@ -6932,6 +6937,7 @@ def edit_profile():
 
     conn = mysql.connector.connect(
         host=os.getenv("DB_HOST"),
+        port=int(os.getenv("DB_PORT")),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME")
@@ -7007,6 +7013,7 @@ def update_profile():
     conn = mysql.connector.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
+        port=int(os.getenv("DB_PORT")),
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME")
     )
