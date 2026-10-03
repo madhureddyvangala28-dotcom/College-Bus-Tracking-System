@@ -23,3 +23,6 @@ desktop.ini
 
 # Uploaded files
 static/uploads/
+
+# Database backups
+*.sql
